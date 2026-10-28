@@ -1,0 +1,34 @@
+\section{流形基础习题与解答}
+第1--3题参照梁书上册第二版2.1的例子及文内留证任务改编（印刷页16--17，PDF第32--33页），不冒称为该章末尾习题的原题号。第4--6题为本工程补充题。
+\begin{enumerate}[label=\textbf{3.\arabic*.},ref=3.\arabic*,leftmargin=*]
+\Needspace{8\baselineskip}
+\item \textbf{圆周的投影坐标。}对$\varepsilon=\pm1$，令$U_{1,\varepsilon}=\{(x,y)\in S^1:\varepsilon x>0\}$并取坐标$y$；类似地令$U_{2,\varepsilon}=\{\varepsilon y>0\}$并取坐标$x$。证明这四张卡组成光滑图册。
+\begin{proof}[解答]
+各$U$都是圆周相对开集。第一类卡逆映射为$t\mapsto(\varepsilon\sqrt{1-t^2},t)$，$t\in(-1,1)$；第二类为$t\mapsto(t,\varepsilon\sqrt{1-t^2})$。它们连续且与投影互逆。两个第一类卡互不重叠，两个第二类同理。第一类与第二类的过渡映射是在$t>0$或$t<0$的适当开子区间上取$\varepsilon\sqrt{1-t^2}$，其中$|t|<1$，故光滑；反向同形。每个圆周点至少一个坐标非零，所以四卡覆盖圆周；Hausdorff与第二可数性由子空间遗传。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{两张卡覆盖球面。}验证正文立体投影的过渡映射为$T(x)=x/|x|^2$，并计算其逆。
+\begin{proof}[解答]
+把$\varphi_N^{-1}$代入$\varphi_S$，分母$1+t=2|x|^2/(1+|x|^2)$，分子$u=2x/(1+|x|^2)$，相除得$T(x)$，定义域为$x\ne0$。因$|T(x)|^2=1/|x|^2$，有$T(T(x))=x$，故$T^{-1}=T$。分母在定义域非零，所以两个方向都光滑。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{紧致球面不能用一张卡覆盖。}证明$n\geq1$时$S^n$没有定义在整个球面上的坐标卡。
+\begin{proof}[解答]
+$S^n$为$\R^{n+1}$中的有界闭集，依Heine--Borel定理紧致。若存在全局卡，它将$S^n$同胚到$\R^n$中的非空开集$O$，故$O$紧致又闭。$\R^n$道路连通，因为线段连接任意两点，故$O$既开又闭只能等于$\R^n$。然而$\{B(0,k):k\geq1\}$覆盖$\R^n$却无有限子覆盖，所以$\R^n$不紧致，矛盾。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{同胚与光滑结构。}在同一实线底空间上分别用全局卡$x(t)=t$和$y(t)=t^3$生成光滑结构。证明两图册不兼容，但两个光滑流形之间存在微分同胚。
+\begin{proof}[解答]
+$y\circ x^{-1}(s)=s^3$光滑，而$x\circ y^{-1}(s)=\sqrt[3]s$在零点不可微，因为差商为$|s|^{-2/3}$且无有限极限。所以两图册不兼容，底层恒等映射并非双向光滑。但映射$F$从$x$结构实线到$y$结构实线，定义为$F(t)=\sqrt[3]t$，其坐标表示$y\circ F\circ x^{-1}(s)=s$；逆向表示也为恒等，故$F$是微分同胚。不同的底层识别方式不能与“不同微分同胚类型”混为一谈。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{射影直线的换卡。}计算$\mathbb{RP}^1$两标准卡之间的坐标变换。
+\begin{proof}[解答]
+在$U_0$上记$t=x_1/x_0$，在$U_1$上记$s=x_0/x_1$。重叠区域要求$x_0x_1\ne0$，故$t,s\ne0$且$s=1/t$。此函数在$\R\setminus\{0\}$光滑，并且逆仍为倒数函数，故双向兼容。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{第二可数流形的分支数量。}证明每个流形的道路连通分支都是开集，且分支至多可数。
+\begin{proof}[解答]
+通过一点取坐标卡，再在该点坐标周围取包含于坐标像的开球。此球凸，故逆像道路连通，并是该点的开邻域。若该点属于道路分支$C$，邻域中任一点可由道路连接到该点，再与$C$中的道路拼接，所以邻域包含于$C$。于是$C$开。取可数基，给每个非空$C$选包含于$C$的首个非空基成员；不同分支不交，所选基成员不同，因而道路分支至多可数。道路的拼接在中点连续，可由两段的连续性和它们在端点值相同直接验证。
+\end{proof}
+\end{enumerate}

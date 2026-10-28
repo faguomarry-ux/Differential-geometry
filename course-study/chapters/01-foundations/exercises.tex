@@ -1,0 +1,84 @@
+\section{习题与详细解答：梁书第1章}
+本节依据梁灿彬、周彬《微分几何入门与广义相对论》上册第二版第1章习题1--16（印刷页13--14；本地PDF第29--30页）重新编述；每题标题注明原题号。为保持原题对应关系，本节使用独立习题编号。解答为本工程编写，不声称是原书标准答案。涉及$\R^n$均取通常拓扑。
+\begin{enumerate}[label=\textbf{1.\arabic*.},ref=1.\arabic*,leftmargin=*]
+\Needspace{8\baselineskip}
+\item\label{ex:set-difference} \textbf{集合差（原题1）。}对$A,B\subseteq X$，证明$A\setminus B=A\cap(X\setminus B)$。
+\begin{proof}[解答]
+对任意$x\in X$，$x\in A\setminus B$等价于$x\in A$且$x\notin B$，也就等价于$x\in A$且$x\in X\setminus B$。这恰好是右侧的成员条件。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{差集的补集（原题2）。}证明$X\setminus(B\setminus A)=(X\setminus B)\cup A$。
+\begin{proof}[解答]
+对$x\in X$，不满足“$x\in B$且$x\notin A$”等价于“$x\notin B$或$x\in A$”。右侧正是这些点组成的集合。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{单射与满射（原题3）。}将$x^3,x^2,e^x,\cos x,5$分别视为$\R\to\R$的映射，判断单射、满射性。
+\begin{proof}[解答]
+$x^3$严格递增，且任意$y\in\R$有原像$\sqrt[3]y$，故既单又满。$x^2$因$1,-1$同像而非单射，负实数无原像，故非满射。$e^x$严格递增所以单射，但像为$(0,\infty)$，不是满射。$\cos x$因$0,2\pi$同像而非单射，像为$[-1,1]$，故非满射。常值$5$把所有点送到一点，故非单射，且像只有$\{5\}$，不是满射。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{定义域与开闭性（原题4）。}判断：$\tan x$和$\log x$各自能否按通常实函数定义作为$\R\to\R$的映射？当$a<b$时，$(a,b]$在$\R$中是否开，$[a,b]$是否闭？
+\begin{proof}[解答]
+$\tan x$在$\pi/2+k\pi$无定义，$\log x$在$x\leq0$无实数值，故按通常定义均不能作为定义域为全体实数的实值映射。$(a,b]$不开放：$b$的任意开邻域包含大于$b$的点。$[a,b]$闭，因为其补集$(-\infty,a)\cup(b,\infty)$开。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{无限交（原题5）。}用例子说明无限个开集的交未必开。
+\begin{proof}[解答]
+令$U_n=(-1/n,1/n)$。$0$在所有$U_n$中；若$x\ne0$，选$n>1/|x|$便有$x\notin U_n$，故交为$\{0\}$。该单点集不含任何$0$的开区间邻域，因此不是开集。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{验证子空间拓扑（原题6）。}从拓扑公理直接证明$\mathcal T|_A$为拓扑。
+\begin{proof}[解答]
+它含$A=A\cap X$与$\varnothing=A\cap\varnothing$。任意多个相对开集的并等于$A$与对应环境开集之并的交；有限个相对开集的交等于$A$与对应环境开集之交的交。这些环境并、有限交都开放，所以三条公理成立；计算式见定理\ref{thm:subspace}。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{既不开也不闭（原题7）。}在$\R^3$中给出并证明一个既不开也不闭的集合。
+\begin{proof}[解答]
+取$A=\{(t,0,0):0\leq t<1\}$。原点的任意三维开球都含$(0,\varepsilon,0)$之类不在$A$中的点，故$A$不开。点$(1,0,0)$不在$A$中，但它的每个开球都含$A$中点，故在闭包中；于是$A$不闭。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{常值映射（原题8）。}证明任意拓扑空间之间的常值映射连续。
+\begin{proof}[解答]
+设常值为$y_0$。目标开集$V$若含$y_0$，原像为$X$；否则原像为空集。两者都开，故映射连续。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{离散与平凡拓扑（原题9）。}设$X$取离散拓扑，$Y$取平凡拓扑，刻画两个方向的连续映射。
+\begin{proof}[解答]
+任意$f:X\to Y$连续，因为$Y$中仅有的开集为空集和$Y$，其原像为空集和$X$。若$Y$非空且$g:Y\to X$连续，则对每个$x\in X$，单点开集$\{x\}$的原像只能是$\varnothing$或$Y$。选$y_0\in Y$，置$x_0=g(y_0)$，其原像非空，必须等于$Y$，故$g$常值。反之常值映射连续。若$Y$为空集，唯一的空映射连续；若$Y$非空而$X$为空集，则该方向根本不存在映射。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{连续性的两种定义（原题10）。}证明开集原像定义与逐点开邻域定义等价。
+\begin{proof}[解答]
+若开集原像开，对$f(x)$的开邻域$V$取$U=f^{-1}(V)$，则$x\in U$且$f(U)\subseteq V$。反之，对任意目标开集$V$及每个$x\in f^{-1}(V)$，逐点条件给出开邻域$U_x\subseteq f^{-1}(V)$。故$f^{-1}(V)=\bigcup_xU_x$开，空原像也开。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{开区间与实线（原题11）。}对有限实数$a<b$，构造$(a,b)$到$\R$的同胚。
+\begin{proof}[解答]
+取$h(t)=\tan\bigl(\pi(t-a)/(b-a)-\pi/2\bigr)$。括号将$(a,b)$线性双射到$(-\pi/2,\pi/2)$，正切在该区间连续、严格递增，且在两端趋于$\mp\infty$，故$h$连续双射。逆映射为$h^{-1}(s)=a+(b-a)(\arctan s+\pi/2)/\pi$，也连续，故为同胚。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{两个子空间的连通性（原题12）。}判断$X_1=(1,2)\cup(2,3)$与$X_2=(1,2]\cup(2,3)$是否连通。
+\begin{proof}[解答]
+$X_1$中两段均相对开，互不相交、非空且覆盖$X_1$，因此不连通。$X_2=(1,3)$是区间，因此连通。关键区别是第二个空间包含$2$。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{离散空间（原题13）。}离散空间是否一定不连通？给出完整的基数条件。
+\begin{proof}[解答]
+若至少有两点，任选$x$，则$\{x\}$及其非空补集都开，给出分离，故不连通。若零点或一点，则不存在两个非空不交开集的分离，所以连通。这说明不加基数条件的断言不正确。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{内部和闭包的单调性（原题14）。}若$A\subseteq B$，证明$\overline A\subseteq\overline B$及$\operatorname{Int}A\subseteq\operatorname{Int}B$。
+\begin{proof}[解答]
+$\overline B$是包含$A$的闭集，故最小闭超集$\overline A$包含于它。$\operatorname{Int}A$是包含于$B$的开集，故包含于最大开子集$\operatorname{Int}B$。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{闭包的邻域判别（原题15）。}证明$x\in\overline A$当且仅当$x$的每个邻域都与$A$相交。
+\begin{proof}[解答]
+若$x\in\overline A$而某邻域$N$不交$A$，取开集$x\in U\subseteq N$，则$X\setminus U$是包含$A$的闭集，迫使$\overline A\subseteq X\setminus U$，与$x\in U$矛盾。若$x\notin\overline A$，则$X\setminus\overline A$本身就是一个与$A$不交的开邻域，反面条件成立。因此等价。
+\end{proof}
+\Needspace{8\baselineskip}
+\item \textbf{实线非紧致（原题16）。}直接用开覆盖证明$\R$不紧致。
+\begin{proof}[解答]
+族$\{(-n,n):n\geq1\}$覆盖$\R$。任取有限多个，其并等于其中最大者$(-N,N)$，漏掉$N+1$，所以没有有限子覆盖，$\R$不紧致。
+\end{proof}
+\end{enumerate}

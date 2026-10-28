@@ -26,7 +26,18 @@ for ch in manifest:
     if p not in seen:
         errors.append(f'Chapter not included: {ch["id"]}')
     elif p.is_file():
-        text = p.read_text(encoding='utf-8')
+        # Sections may live in files included by the chapter entry point.
+        def chapter_text(source, visited=None):
+            visited = set() if visited is None else visited
+            if source in visited or not source.is_file():
+                return ''
+            visited.add(source)
+            value = source.read_text(encoding='utf-8')
+            for name in re.findall(r'\\input\{([^}]+)\}', value):
+                target = root / (name if name.endswith('.tex') else name + '.tex')
+                value += '\n' + chapter_text(target, visited)
+            return value
+        text = chapter_text(p)
         for title in ch['sections']:
             if '\\section{' + title + '}' not in text:
                 errors.append(f'Missing planned section: {ch["id"]}: {title}')

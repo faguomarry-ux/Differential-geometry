@@ -1,7 +1,14 @@
 \chapter{光滑流形与光滑映射}
 \label{ch:03-manifolds}
-\ChapterPlan{周1.1}{样章草稿；尚未完成全章及独立数学审阅}
+\ChapterPlan{周1.1；梁上册第二版2.1（印刷页15--18）}{流形基础初稿，含例题与解答；未独立数学审阅}
 
+
+
+\section{拓扑流形与局部欧氏性}
+\begin{definition}[拓扑流形]
+固定非负整数$n$。一个无边界的拓扑$n$维流形是Hausdorff、第二可数的拓扑空间$M$，且每个点都有开邻域$U$同胚于$\R^n$的某个开集。这样的同胚称为坐标卡。此定义中的维数$n$固定；维数不变性定理的证明属于另行补充的代数拓扑工具，本节不以直觉代替其证明。
+\end{definition}
+“局部”不要求整个空间同胚于$\R^n$。例如$S^n$为紧致空间，而$\R^n$在$n\geq1$时不紧致，所以它们不同胚。光滑结构是在拓扑流形上增加的可微数据，不能只靠底层集合确定。
 
 \section{坐标卡、图册与极大光滑结构}
 \begin{definition}[光滑流形]
@@ -64,14 +71,71 @@
 \caption{原创示意：立体投影的二维截面。直线$NP$与赤道平面相交于$Q$，其水平坐标为$u/(1-t)$；图仅表示$n=1$的截面关系。}
 \label{fig:stereographic}
 \end{figure}
-射影空间的坐标卡、过渡函数及乘积图册的详细构造仍待补充，不能由球面例子推定这些内容已经完成。
+
+\begin{theorem}[开子流形]
+若$M$是光滑$n$维流形且$O\subseteq M$开，则$O$带有限制光滑结构，成为光滑$n$维流形。
+\end{theorem}
+\begin{proof}
+子空间$O$继承Hausdorff性与第二可数性。对$M$的卡$(U,\varphi)$，限制卡$(O\cap U,\varphi|_{O\cap U})$的像在$\R^n$中开，因为$O\cap U$在$U$中开且$\varphi$为同胚。这些卡覆盖$O$，过渡映射只是原过渡映射在开子集上的限制，故双向光滑。取其极大扩充即得光滑结构。
+\end{proof}
+\begin{theorem}[乘积流形]
+若$M,N$分别为光滑$m,n$维流形，则$M\times N$自然成为光滑$(m+n)$维流形。
+\end{theorem}
+\begin{proof}
+乘积中不同两点至少一个分量不同，用该因子的Hausdorff分离开集乘上另一因子的全空间，即得不交开邻域。两因子的可数基的所有矩形组成可数基，故乘积第二可数。对卡$(U,\varphi)$与$(V,\psi)$，取乘积卡$\varphi\times\psi:U\times V\to\varphi(U)\times\psi(V)$。其逆是两个逆映射的乘积，故由乘积连续性判别为同胚；像在$\R^{m+n}$中开。两个乘积卡之间的过渡为两个因子过渡映射的乘积，各分量光滑，所以它光滑，反向同理。
+\end{proof}
+特别地，$T^n=(S^1)^n$是$n$维光滑流形。这里的“自然”指由这些乘积卡生成的光滑结构，具体构造已在证明中给出。
+
+\begin{example}[实射影空间的完整坐标构造]
+在$\R^{n+1}\setminus\{0\}$上令$x\sim y$表示$y=\lambda x$，其中$\lambda\ne0$。商空间记为$\mathbb{RP}^n$，其点$[x_0:\cdots:x_n]$代表一条过原点的直线。对$0\leq i\leq n$，令
+\[
+U_i=\{[x]:x_i\ne0\},\qquad
+\varphi_i([x])=(x_0/x_i,\ldots,\widehat{x_i/x_i},\ldots,x_n/x_i).
+\]
+帽号表示删去该分量。这些表达式不依赖代表元，因为分子分母同时乘以$\lambda$后比值不变。
+\end{example}
+\begin{proof}[拓扑条件、坐标与过渡函数的验证]
+记商映射为$q$。对开集$O\subseteq\R^{n+1}\setminus\{0\}$，
+$q^{-1}(q(O))=\bigcup_{\lambda\ne0}\lambda O$开，故由商拓扑定义，$q$是开映射。集合$q^{-1}(U_i)=\{x_i\ne0\}$开，因此$U_i$在商空间中开。其限制$q_i:q^{-1}(U_i)\to U_i$仍是商映射：若$W\subseteq U_i$且$q_i^{-1}(W)$相对开，由$q^{-1}(U_i)$开知该原像在总空间也开，商拓扑定义便推出$W$在总商空间中开，因而在$U_i$中开；反向由$q_i$连续得到。连续比值函数经此商映射下降为连续的$\varphi_i$。反向映射把一个$n$元组送到在第$i$位插入$1$后的等价类，是连续插入映射与$q$的复合。这验证$\varphi_i$为同胚。
+
+补证Hausdorff性。每条直线可由两个相反单位向量表示；对不同的直线$[u]\ne[v]$，取单位代表元，则$\delta=\min\{|u-v|,|u+v|\}>0$。在单位球面上令$A$为$u,-u$的半径$\delta/3$开球邻域之并，$B$为$v,-v$的同类邻域之并。三角不等式表明$A\cap B=\varnothing$。归一化映射$x\mapsto x/|x|$的原像是开且按非零倍数饱和的集合，故分别下降为射影空间的不交开邻域。因此商空间Hausdorff。
+
+每个$U_i$同胚于$\R^n$，具有可数基，而且$U_i$在全空间开。合并有限多个$U_i$的基即得全空间的可数基。最后，在$U_i\cap U_j$上，以第$i$个齐次坐标为$1$，记其余坐标为$y_k$。转到第$j$卡就是将全部齐次坐标除以非零的$y_j$，得到$1/y_j$及各$y_k/y_j$，再删去第$j$位。它们在$y_j\ne0$的开集上光滑，反向换卡同理。故这些卡构成光滑图册。
+\end{proof}
+
+
 
 
 \section{光滑映射与微分同胚}
-\PlannedSection
+\begin{definition}[光滑映射]
+对光滑流形$M,N$，称映射$F:M\to N$光滑，若对每个$p\in M$，存在$p$附近的卡$(U,\varphi)$、$F(p)$附近的卡$(V,\psi)$及$p$的开邻域$U'\subseteq U$，使$F(U')\subseteq V$，且坐标表示$\psi\circ F\circ\varphi^{-1}$在$\varphi(U')$上为$C^\infty$。若$F$双射且$F,F^{-1}$都光滑，称$F$为微分同胚。
+\end{definition}
+\begin{theorem}[坐标无关性、连续性与复合]
+上述定义不依赖选卡。光滑映射连续，光滑映射的复合光滑。
+\end{theorem}
+\begin{proof}
+先在定义给出的$U'$上写出$F=\psi^{-1}\circ(\psi\circ F\circ\varphi^{-1})\circ\varphi$。中间是欧氏空间的光滑映射因而连续，两侧是同胚，故$F|_{U'}$连续。各$U'$覆盖$M$，对$N$中开集$W$，$F^{-1}(W)$与每个$U'$的交开，合并后得$F^{-1}(W)$开，所以$F$连续。
+换到其他卡时，在适当缩小的开邻域上新坐标表示为
+\[
+(\widetilde\psi\circ\psi^{-1})\circ
+(\psi\circ F\circ\varphi^{-1})\circ
+(\varphi\circ\widetilde\varphi^{-1}).
+\]
+连续性保证可把定义域限制在这些映射均有定义的开邻域；两端为光滑过渡映射，中间光滑，故由欧氏链式法则复合光滑。复合$G\circ F$时同样缩小邻域，使用同一张中间流形坐标卡，坐标表示就是两个光滑欧氏映射的复合，故光滑。
+\end{proof}
+这里使用的欧氏链式法则属于预备章仍待补证的分析基础。本节证明解决的是从该分析结果到流形定义的坐标无关性，不宣称已经补齐该分析定理本身的证明。
+
+
 
 \section{Hausdorff性与第二可数性的作用}
-\PlannedSection
+局部欧氏性不能替代这两项全局条件。
+\begin{example}[有两个原点的直线]
+取$\R\times\{a,b\}$的两份实线，当$t\ne0$时把$(t,a)$与$(t,b)$识别，保留两个不同原点$0_a,0_b$，赋予商拓扑。每份实线的像都是开集，且自然同胚于$\R$：它的原像是一份完整实线并上另一份去原点的实线；实线中的开集的像也满足同样的开放性检验。因此该空间每点局部像实线。
+但$0_a,0_b$的任意开邻域在各自实线中都含一段含零开区间，所以它们都含足够小的非零实数的等价类，必然相交。因此空间不Hausdorff，不是本书约定的流形。
+\end{example}
+\begin{example}[不可数份实线的不交并]
+取不可数指标集$I$和$M=\bigsqcup_{i\in I}\R_i$，规定每份实线开且保持通常拓扑。它Hausdorff且局部欧氏，但非第二可数。若有可数基，则每个非空开集$\R_i$包含至少一个非空基成员$B_i\subseteq\R_i$；不同$i$对应的基成员不同，这要求基不可数，矛盾。
+\end{example}
 
-\section{例题、习题与解答计划}
-需配置概念判断题、坐标计算题、完整证明题及反例题；解答必须与题号对应。
+
+\input{course-study/chapters/03-manifolds/exercises}
