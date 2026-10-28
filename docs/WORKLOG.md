@@ -20,4 +20,6 @@
 
 ### GitHub
 
-准备推送至现有远端的 `main`。GitHub公开API返回403频率限制；Actions状态须另行核实，不能据本地构建成功推断线上构建成功。工作记录不声明教材正文已经完成，也不声明已创建Release。
+- 首次提交 `76ac22711b0b2141e6e3c584cad2a3343b4a87b6` 已成功推送到现有远端 `main`，共52文件，包含三本原书。远端分支哈希已通过 `git ls-remote --heads origin` 核对，`git rev-list --left-right --count origin/main...main` 返回 `0 0`。
+- GitHub公开API返回403频率限制；改从Actions页面确认首次运行 [40655937228](https://github.com/faguomarry-ux/Differential-geometry/actions/runs/40655937228) 已启动，核实时为 `In progress`，尚无artifact。这是该时间点的快照，不表示最终结果。
+- 本条发布记录另作后续文档提交；其线上构建状态仍须对应提交单独查看。本次没有创建Release，教材正文与独立数学审阅仍待完成。
