@@ -1,0 +1,15 @@
+\begin{tikzpicture}[scale=1.75,>=Stealth]
+\draw[->,gray] (-1.45,0)--(2.15,0) node[right] {$u$};
+\draw[->,gray] (0,-1.25)--(0,1.35) node[above] {$t$};
+\draw[thick,blue!65!black] (0,0) circle (1);
+\coordinate (N) at (0,1);
+\coordinate (P) at (.8,.6);
+\coordinate (Q) at (2,0);
+\draw[thick,orange!85!black] (N)--(Q);
+\draw[dashed] (P)--(.8,0);
+\fill (N) circle (.025) node[above left] {$N$};
+\fill (P) circle (.025) node[above right] {$P=(u,t)$};
+\fill (Q) circle (.025) node[below] {$Q$};
+\node[below left] at (0,0) {$O$};
+\node[below] at (.8,0) {$u$};
+\end{tikzpicture}

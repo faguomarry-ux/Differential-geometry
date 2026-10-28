@@ -1,0 +1,77 @@
+\chapter{光滑流形与光滑映射}
+\label{ch:03-manifolds}
+\ChapterPlan{周1.1}{样章草稿；尚未完成全章及独立数学审阅}
+
+
+\section{坐标卡、图册与极大光滑结构}
+\begin{definition}[光滑流形]
+设$M$为Hausdorff、第二可数拓扑空间。一个$n$维坐标卡为$(U,\varphi)$，其中$U\subseteq M$开，$\varphi:U\to\varphi(U)\subseteq\R^n$是到欧氏开集的同胚。覆盖$M$的一族坐标卡称为图册。若任意两卡的过渡映射
+\[
+\psi\circ\varphi^{-1}:\varphi(U\cap V)\longrightarrow\psi(U\cap V)
+\]
+均为$C^\infty$映射，则称图册光滑。由所有与该图册光滑兼容的坐标卡组成的极大图册称为光滑结构。配备此结构的$M$称为光滑$n$维流形。
+\end{definition}
+过渡映射要求两个方向都光滑；上面“任意两卡”同时包含交换两卡后的条件。$U\cap V$为空时没有额外条件。光滑映射之间的复合光滑依赖多元微积分链式法则，其证明在预备章待补。
+
+\begin{theorem}[兼容图册的极大扩充唯一]
+每个光滑图册$\mathcal A$包含在唯一的极大光滑图册中。
+\end{theorem}
+\begin{proof}
+令$\mathcal A_{\max}$为所有与$\mathcal A$中每张卡双向光滑兼容的坐标卡的集合。原图册已经互相兼容，故$\mathcal A\subseteq\mathcal A_{\max}$，所以新集合仍覆盖$M$。
+
+取新集合中的两卡$(U,\varphi)$与$(V,\psi)$及$p\in U\cap V$。因原图册覆盖$M$，有$(W,\theta)\in\mathcal A$满足$p\in W$。在$U\cap V\cap W$的坐标像上，
+\[
+\psi\circ\varphi^{-1}=(\psi\circ\theta^{-1})\circ(\theta\circ\varphi^{-1}).
+\]
+右侧两映射由兼容性光滑，故左侧在$\varphi(p)$的某邻域光滑。由于$p$任意，过渡映射在整个定义域光滑；交换$\varphi,\psi$同理。因此$\mathcal A_{\max}$是光滑图册。
+
+若某卡与$\mathcal A_{\max}$兼容，它也与其子集$\mathcal A$兼容，所以已在$\mathcal A_{\max}$中；这证明极大性。若$\mathcal B$是包含$\mathcal A$的另一极大光滑图册，其每张卡都兼容于$\mathcal A$，故$\mathcal B\subseteq\mathcal A_{\max}$。极大性迫使等号成立，得唯一性。
+\end{proof}
+
+
+
+\section{球面、射影空间与乘积流形}
+\begin{example}[球面的两张立体投影卡]
+设$n\geq1$，$S^n=\{(u,t)\in\R^n\times\R:|u|^2+t^2=1\}$，南北极为$S=(0,-1)$、$N=(0,1)$。在$U_N=S^n\setminus\{N\}$和$U_S=S^n\setminus\{S\}$上定义
+\[
+\varphi_N(u,t)=\frac{u}{1-t},\qquad
+\varphi_S(u,t)=\frac{u}{1+t}.
+\]
+其逆映射分别为
+\begin{align*}
+\varphi_N^{-1}(x)&=\left(\frac{2x}{1+|x|^2},\frac{|x|^2-1}{1+|x|^2}\right),\\
+\varphi_S^{-1}(x)&=\left(\frac{2x}{1+|x|^2},\frac{1-|x|^2}{1+|x|^2}\right).
+\end{align*}
+\end{example}
+\begin{proof}[坐标卡与兼容性的验证]
+由$1\mp t>0$知投影在各自定义域内连续。上式逆映射的分母恒正，故也连续。将分量平方相加得到
+\[
+\frac{4|x|^2+(|x|^2-1)^2}{(1+|x|^2)^2}=1,
+\]
+所以逆映射确实取值于球面；其最后一坐标不会等于被删去的极点坐标。代入可验证两个方向复合均为恒等，故投影是到$\R^n$的同胚。
+
+在重叠区域，$x\ne0$。代入得到
+\[
+\varphi_S\circ\varphi_N^{-1}(x)
+=\frac{2x/(1+|x|^2)}{1+(|x|^2-1)/(1+|x|^2)}
+=\frac{x}{|x|^2}.
+\]
+此映射在$\R^n\setminus\{0\}$光滑，并且与自身复合等于恒等，所以逆向过渡也光滑。两卡覆盖球面。球面继承欧氏空间的Hausdorff性；以有理中心、有理半径欧氏开球与球面的交组成可数基，所以球面第二可数。全部流形定义条件均得到验证。
+\end{proof}
+\begin{figure}[htbp]
+\centering
+\input{course-study/figures/stereographic}
+\caption{原创示意：立体投影的二维截面。直线$NP$与赤道平面相交于$Q$，其水平坐标为$u/(1-t)$；图仅表示$n=1$的截面关系。}
+\label{fig:stereographic}
+\end{figure}
+射影空间的坐标卡、过渡函数及乘积图册的详细构造仍待补充，不能由球面例子推定这些内容已经完成。
+
+
+\section{光滑映射与微分同胚}
+\PlannedSection
+
+\section{Hausdorff性与第二可数性的作用}
+\PlannedSection
+
+\section{例题、习题与解答计划}
+需配置概念判断题、坐标计算题、完整证明题及反例题；解答必须与题号对应。

@@ -1,0 +1,30 @@
+# LaTeX intermediate files (reference PDFs must remain trackable)
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.nav
+*.snm
+*.vrb
+/main.pdf
+/build/
+/output/
+/tmp/
+# Local font copies: build uses TeX Live's Fandol and TeX Gyre fonts
+/fonts/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

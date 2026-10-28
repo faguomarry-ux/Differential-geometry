@@ -1,0 +1,16 @@
+\chapter*{阅读方法与依赖路线}
+\addcontentsline{toc}{chapter}{阅读方法与依赖路线}
+先完成预备知识，再学习流形、切空间、张量和外微分；积分与联络在此基础上展开。李群与丛理论需要前述基本工具；复几何、示性类、旋量及指标专题需要额外的代数和分析基础。相对论主线应在黎曼联络和曲率之后阅读。
+\begin{center}
+\begin{tikzpicture}[node distance=8mm, every node/.style={draw,rounded corners,align=center,font=\small,text width=48mm},>=Stealth]
+\node (a) {分析、代数与拓扑};
+\node[below=of a] (b) {流形、切空间与张量};
+\node[below left=10mm and 3mm of b] (c) {外微分、积分与上同调};
+\node[below right=10mm and 3mm of b] (d) {联络、曲率与黎曼几何};
+\node[below=of c] (e) {李群、丛与进阶专题};
+\node[below=of d] (f) {Lorentz几何与相对论};
+\draw[->] (a)--(b); \draw[->] (b)--(c); \draw[->] (b)--(d);
+\draw[->] (c)--(e); \draw[->] (d)--(e); \draw[->] (d)--(f);
+\end{tikzpicture}
+\end{center}
+图中只给出主要依赖，详细先修条件见各章及仓库中的写作计划。定理应分别标注为已完整证明、显式外引或待证明。外引定理必须列出精确条件与使用范围，核心主线最终须补齐证明。

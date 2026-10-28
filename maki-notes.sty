@@ -1,0 +1,2699 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{maki-notes}[2026/04/13 Maki lecture notes style]
+
+\newif\ifMakiBeamerMode
+\MakiBeamerModefalse
+\makeatletter
+\@ifclassloaded{beamer}{\MakiBeamerModetrue}{}
+\@ifclassloaded{ctexbeamer}{\MakiBeamerModetrue}{}
+\makeatother
+
+\ifMakiBeamerMode\else
+	\RequirePackage[
+		a4paper,
+		left=2.5cm,
+		right=2.5cm,
+		top=2.5cm,
+		bottom=2.5cm,
+		marginparwidth=20mm,
+		marginparsep=4mm
+	]{geometry}
+	\RequirePackage{fancyhdr}
+\fi
+\RequirePackage{amsmath, amssymb, amsthm, mathtools}
+\RequirePackage{mathpazo}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{xcolor}
+\RequirePackage{newunicodechar}
+\RequirePackage{etoolbox}
+\ifMakiBeamerMode\else
+	\RequirePackage{etoc}
+\fi
+\RequirePackage{esint}
+\RequirePackage{multirow}
+\RequirePackage{diagbox}
+\RequirePackage{needspace}
+\RequirePackage{tikz}
+\RequirePackage{bm}
+\usetikzlibrary{
+	angles,
+	arrows.meta,
+	backgrounds,
+	calc,
+	decorations.markings,
+	decorations.pathmorphing,
+	decorations.pathreplacing,
+	fit,
+	matrix,
+	patterns,
+	positioning,
+	quotes,
+	shapes.geometric,
+	shapes.misc
+}
+\RequirePackage{makecell}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\RequirePackage{graphicx}
+\RequirePackage{hyperref}
+\ifMakiBeamerMode\else
+	\RequirePackage{capt-of}
+	\RequirePackage{caption,subcaption}
+	\RequirePackage{wrapfig}
+	\RequirePackage{marginnote}
+	\RequirePackage{ifoddpage}
+\fi
+\ifMakiBeamerMode\else
+	\renewcommand{\thesubfigure}{\Alph{subfigure}}
+\fi
+\RequirePackage{tikz-3dplot}
+\tdplotsetmaincoords{70}{110}
+\RequirePackage{booktabs}
+\usepgfplotslibrary{fillbetween}
+
+\pgfplotsset{
+	every axis x label/.style={
+		at={(ticklabel* cs:1)},
+		anchor=west,
+	},
+	every axis y label/.style={
+		at={(ticklabel* cs:1)},
+		anchor=south,
+	}
+}
+
+\ifMakiBeamerMode\else
+	\setlength{\headheight}{26pt}
+\fi
+
+\newunicodechar{。}{.\ \ignorespaces}
+\newunicodechar{，}{,\ \ignorespaces}
+\newunicodechar{：}{:\ \ignorespaces}
+\newunicodechar{；}{;\ \ignorespaces}
+\newunicodechar{？}{?\ \ignorespaces}
+\newunicodechar{！}{!\ \ignorespaces}
+\newunicodechar{（}{\ (\ignorespaces}
+\newunicodechar{）}{)\ \ignorespaces}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\sep}{\text{ · \ }}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\leq}{\leqslant}
+
+\AddToHook{env/pmatrix/before}{\linespread{1.2}\selectfont}
+\AddToHook{env/bmatrix/before}{\linespread{1.2}\selectfont}
+\AddToHook{env/vmatrix/before}{\linespread{1.2}\selectfont}
+\AddToHook{env/dcases/before}{\linespread{1.25}\selectfont}
+\AddToHook{env/enumerate/before}{\linespread{1.4}\selectfont}
+\AddToHook{env/enumerate/before}{\vrule width 0em height 0cm depth 0.5cm}
+
+\AddToHook{env/pmatrix/after}{\vrule width 0em height 0cm depth 1.5cm}
+\AddToHook{env/bmatrix/after}{\vrule width 0em height 0em depth 1.5em}
+\AddToHook{env/vmatrix/after}{\vrule width 0em height 0em depth 1.5em}
+\AddToHook{env/dcases/after}{\vrule width 0em height 2em depth 2em}
+
+\let\olddfrac\dfrac
+\renewcommand{\dfrac}[2]{%
+	\olddfrac{#1\vrule width 0pt height 1.15em depth 0em}{#2\vrule width 0pt height 0em depth 0.6em}%
+}
+
+\let\oldlim\lim
+\renewcommand{\lim}{\displaystyle\oldlim}
+\let\oldint\int
+\renewcommand{\int}{\displaystyle{\vrule width 0pt height 0em depth 0em}\oldint}
+\let\oldiint\iint
+\renewcommand{\iint}{\displaystyle{\vrule width 0pt height 0em depth 0em}\oldiint}
+\let\oldiiint\iiint
+\renewcommand{\iiint}{\displaystyle{\vrule width 0pt height 0em depth 0em}\oldiiint}
+\let\oldoint\oint
+\renewcommand{\oint}{\displaystyle{\vrule width 0pt height 1.5em depth 1.5em}\oldoint}
+\let\oldoiint\oiint
+\renewcommand{\oiint}{\displaystyle{\vrule width 0pt height 1.5em depth 1.5em}\oldoiint}
+\let\oldsum\sum
+\renewcommand{\sum}{\displaystyle\oldsum}
+
+\providecommand{\MakiFontPreset}{common}
+\providecommand{\MakiTheme}{default}
+\providecommand{\MakiSectionStyle}{plain}
+\providecommand{\MakiResolvedFontPreset}{common}
+\providecommand{\MakiResolvedTheme}{default}
+\providecommand{\MakiSolutionsMode}{inline}
+\providecommand{\kaishu}{}
+\providecommand{\heavykaishu}{}
+\makeatletter
+\@ifundefined{ifMakiShowAnswers}{%
+	\newif\ifMakiShowAnswers
+	\MakiShowAnswersfalse
+}{}
+
+\newcommand{\maki@validatesolutionsmode}{%
+	\ifdefstring{\MakiSolutionsMode}{inline}{}{%
+		\ifdefstring{\MakiSolutionsMode}{appendix}{}{%
+			\ifdefstring{\MakiSolutionsMode}{hidden}{}{%
+				\PackageWarningNoLine{maki-notes}{Unsupported solutions mode `\MakiSolutionsMode'. Falling back to `inline'}%
+				\renewcommand{\MakiSolutionsMode}{inline}%
+			}%
+		}%
+	}%
+}
+\maki@validatesolutionsmode
+\makeatother
+
+\newcommand{\makisetlatinfonts}{%
+	\IfFileExists{texgyrepagella-regular.otf}{%
+		\setmainfont{texgyrepagella-regular.otf}[%
+			BoldFont = texgyrepagella-bold.otf,
+			ItalicFont = texgyrepagella-italic.otf,
+			BoldItalicFont = texgyrepagella-bolditalic.otf
+		]%
+	}{%
+		\setmainfont{lmroman10-regular.otf}[%
+			BoldFont = lmroman10-bold.otf,
+			ItalicFont = lmroman10-italic.otf,
+			BoldItalicFont = lmroman10-bolditalic.otf
+		]%
+	}%
+	\IfFileExists{texgyreheros-regular.otf}{%
+		\setsansfont{texgyreheros-regular.otf}[%
+			BoldFont = texgyreheros-bold.otf,
+			ItalicFont = texgyreheros-italic.otf,
+			BoldItalicFont = texgyreheros-bolditalic.otf
+		]%
+	}{}%
+	\IfFileExists{lmmono10-regular.otf}{%
+		\setmonofont{lmmono10-regular.otf}[%
+			BoldFont = lmmonolt10-bold.otf,
+			ItalicFont = lmmono10-italic.otf,
+			BoldItalicFont = lmmonolt10-oblique.otf
+		]%
+	}{}%
+}
+
+\newcommand{\makisetcommoncjkfonts}{%
+	\renewcommand{\MakiResolvedFontPreset}{common}%
+	\setCJKmainfont{FandolSong-Regular.otf}[BoldFont = FandolSong-Bold.otf, ItalicFont = FandolKai-Regular.otf]%
+	\setCJKsansfont{FandolHei-Regular.otf}[BoldFont = FandolHei-Bold.otf]%
+	\setCJKmonofont{FandolFang-Regular.otf}%
+	\setCJKfamilyfont{makiKai}{FandolKai-Regular.otf}%
+	\setCJKfamilyfont{makiHeavyKai}{FandolKai-Regular.otf}[AutoFakeBold = 10]%
+}
+
+\newcommand{\makipickfirstfont}[2]{%
+	\def\MakiPickedFont{}%
+	\begingroup
+	\renewcommand*{\do}[1]{%
+		\ifdefempty{\MakiPickedFont}{%
+			\IfFontExistsTF{##1}{\xdef\MakiPickedFont{##1}}{}%
+		}{}%
+	}%
+	\docsvlist{#1}%
+	\endgroup
+	\ifdefempty{\MakiPickedFont}{%
+		\edef\MakiPickedFont{#2}%
+	}{}%
+}
+
+\newcommand{\makiapplyfontpresetcommon}{%
+	\makisetcommoncjkfonts
+}
+
+\newcommand{\makiapplyfontpresetwindows}{%
+	\IfFontExistsTF{SimSun}{%
+		\renewcommand{\MakiResolvedFontPreset}{windows}%
+		\setCJKmainfont{SimSun}[AutoFakeBold = 3]%
+		\makipickfirstfont{Microsoft YaHei,SimHei,FandolHei-Regular.otf}{FandolHei-Regular.otf}%
+		\setCJKsansfont{\MakiPickedFont}[AutoFakeBold = 2]%
+		\makipickfirstfont{NSimSun,SimSun,FandolFang-Regular.otf}{FandolFang-Regular.otf}%
+		\setCJKmonofont{\MakiPickedFont}%
+		\makipickfirstfont{KaiTi,FandolKai-Regular.otf}{FandolKai-Regular.otf}%
+		\setCJKfamilyfont{makiKai}{\MakiPickedFont}%
+		\setCJKfamilyfont{makiHeavyKai}{\MakiPickedFont}[AutoFakeBold = 10]%
+	}{%
+		\PackageWarningNoLine{maki-notes}{Font preset `windows' requested but SimSun was not found. Falling back to `common'}%
+		\makisetcommoncjkfonts
+	}%
+}
+
+\newcommand{\makiapplyfontpresetmacos}{%
+	\IfFontExistsTF{Songti SC}{%
+		\renewcommand{\MakiResolvedFontPreset}{macos}%
+		\setCJKmainfont{Songti SC}%
+		\makipickfirstfont{PingFang SC,Heiti SC,STHeiti,FandolHei-Regular.otf}{FandolHei-Regular.otf}%
+		\setCJKsansfont{\MakiPickedFont}%
+		\makipickfirstfont{PingFang SC,SF Pro SC,FandolFang-Regular.otf}{FandolFang-Regular.otf}%
+		\setCJKmonofont{\MakiPickedFont}%
+		\makipickfirstfont{Kaiti SC,STKaiti,FandolKai-Regular.otf}{FandolKai-Regular.otf}%
+		\setCJKfamilyfont{makiKai}{\MakiPickedFont}%
+		\setCJKfamilyfont{makiHeavyKai}{\MakiPickedFont}[AutoFakeBold = 10]%
+	}{%
+		\PackageWarningNoLine{maki-notes}{Font preset `macos' requested but Songti SC was not found. Falling back to `common'}%
+		\makisetcommoncjkfonts
+	}%
+}
+
+\newcommand{\makiapplyfontpresetlinux}{%
+	\IfFontExistsTF{Noto Serif CJK SC}{%
+		\renewcommand{\MakiResolvedFontPreset}{linux}%
+		\setCJKmainfont{Noto Serif CJK SC}%
+		\makipickfirstfont{Noto Sans CJK SC,Source Han Sans SC,FandolHei-Regular.otf}{FandolHei-Regular.otf}%
+		\setCJKsansfont{\MakiPickedFont}%
+		\makipickfirstfont{Noto Sans Mono CJK SC,Noto Sans CJK SC,Source Han Sans SC,FandolFang-Regular.otf}{FandolFang-Regular.otf}%
+		\setCJKmonofont{\MakiPickedFont}%
+		\makipickfirstfont{LXGW WenKai,FandolKai-Regular.otf}{FandolKai-Regular.otf}%
+		\setCJKfamilyfont{makiKai}{\MakiPickedFont}%
+		\setCJKfamilyfont{makiHeavyKai}{\MakiPickedFont}[AutoFakeBold = 10]%
+	}{%
+		\IfFontExistsTF{Source Han Serif SC}{%
+			\renewcommand{\MakiResolvedFontPreset}{linux}%
+			\setCJKmainfont{Source Han Serif SC}%
+			\makipickfirstfont{Source Han Sans SC,Noto Sans CJK SC,FandolHei-Regular.otf}{FandolHei-Regular.otf}%
+			\setCJKsansfont{\MakiPickedFont}%
+			\makipickfirstfont{Source Han Sans SC,Noto Sans CJK SC,FandolFang-Regular.otf}{FandolFang-Regular.otf}%
+			\setCJKmonofont{\MakiPickedFont}%
+			\makipickfirstfont{LXGW WenKai,FandolKai-Regular.otf}{FandolKai-Regular.otf}%
+			\setCJKfamilyfont{makiKai}{\MakiPickedFont}%
+			\setCJKfamilyfont{makiHeavyKai}{\MakiPickedFont}[AutoFakeBold = 10]%
+		}{%
+			\PackageWarningNoLine{maki-notes}{Font preset `linux' requested but no supported Linux CJK serif font was found. Falling back to `common'}%
+			\makisetcommoncjkfonts
+		}%
+	}%
+}
+
+\newcommand{\makiapplyfontpresetauto}{%
+	\IfFontExistsTF{Songti SC}{%
+		\makiapplyfontpresetmacos
+	}{%
+		\IfFontExistsTF{SimSun}{%
+			\makiapplyfontpresetwindows
+		}{%
+			\IfFontExistsTF{Noto Serif CJK SC}{%
+				\makiapplyfontpresetlinux
+			}{%
+				\IfFontExistsTF{Source Han Serif SC}{%
+					\makiapplyfontpresetlinux
+				}{%
+					\makiapplyfontpresetcommon
+				}%
+			}%
+		}%
+	}%
+}
+
+\newcommand{\makiapplyfontpreset}{%
+	\ifcsname makiapplyfontpreset\MakiFontPreset\endcsname
+		\csname makiapplyfontpreset\MakiFontPreset\endcsname
+	\else
+		\PackageError{maki-notes}{Unsupported fontpreset `\MakiFontPreset'}{Valid values are common, auto, windows, macos, linux. Falling back to `common'.}%
+		\makiapplyfontpresetcommon
+	\fi
+}
+
+\newcommand{\makiapplythemedefault}{%
+	\renewcommand{\MakiResolvedTheme}{default}%
+	\definecolor{LogicColor}{RGB}{200, 80, 110}%
+	\definecolor{LogicBg}{RGB}{255, 240, 245}%
+	\definecolor{DefColor}{RGB}{210, 105, 30}%
+	\definecolor{DefBg}{RGB}{255, 250, 240}%
+	\definecolor{ExColor}{RGB}{70, 130, 180}%
+	\definecolor{ExBg}{RGB}{240, 248, 255}%
+	\definecolor{NoteColor}{RGB}{34, 139, 34}%
+	\definecolor{NNInputColor}{RGB}{67, 145, 98}%
+	\definecolor{NNHiddenColor}{RGB}{76, 114, 176}%
+	\definecolor{NNOutputColor}{RGB}{200, 96, 73}%
+	\definecolor{NNTensorColor}{RGB}{219, 150, 69}%
+	\definecolor{GeometryColor}{RGB}{43, 110, 163}%
+	\definecolor{GeometryBg}{RGB}{236, 245, 252}%
+	\definecolor{TopologyColor}{RGB}{40, 122, 110}%
+	\definecolor{TopologyBg}{RGB}{238, 249, 246}%
+	\definecolor{MainText}{RGB}{20, 20, 20}%
+}
+
+\newcommand{\makiapplythemeocean}{%
+	\renewcommand{\MakiResolvedTheme}{ocean}%
+	\definecolor{LogicColor}{RGB}{32, 124, 166}%
+	\definecolor{LogicBg}{RGB}{236, 247, 251}%
+	\definecolor{DefColor}{RGB}{198, 132, 64}%
+	\definecolor{DefBg}{RGB}{251, 246, 239}%
+	\definecolor{ExColor}{RGB}{70, 104, 184}%
+	\definecolor{ExBg}{RGB}{240, 245, 255}%
+	\definecolor{NoteColor}{RGB}{36, 136, 122}%
+	\definecolor{NNInputColor}{RGB}{46, 147, 134}%
+	\definecolor{NNHiddenColor}{RGB}{69, 106, 173}%
+	\definecolor{NNOutputColor}{RGB}{205, 109, 76}%
+	\definecolor{NNTensorColor}{RGB}{191, 148, 76}%
+	\definecolor{GeometryColor}{RGB}{34, 124, 175}%
+	\definecolor{GeometryBg}{RGB}{236, 246, 253}%
+	\definecolor{TopologyColor}{RGB}{41, 127, 120}%
+	\definecolor{TopologyBg}{RGB}{237, 249, 246}%
+	\definecolor{MainText}{RGB}{18, 28, 38}%
+}
+
+\newcommand{\makiapplythemeforest}{%
+	\renewcommand{\MakiResolvedTheme}{forest}%
+	\definecolor{LogicColor}{RGB}{78, 107, 87}%
+	\definecolor{LogicBg}{RGB}{242, 247, 243}%
+	\definecolor{DefColor}{RGB}{171, 112, 56}%
+	\definecolor{DefBg}{RGB}{250, 246, 240}%
+	\definecolor{ExColor}{RGB}{72, 104, 121}%
+	\definecolor{ExBg}{RGB}{239, 245, 247}%
+	\definecolor{NoteColor}{RGB}{47, 124, 78}%
+	\definecolor{NNInputColor}{RGB}{91, 145, 110}%
+	\definecolor{NNHiddenColor}{RGB}{88, 118, 137}%
+	\definecolor{NNOutputColor}{RGB}{180, 114, 78}%
+	\definecolor{NNTensorColor}{RGB}{170, 140, 82}%
+	\definecolor{GeometryColor}{RGB}{54, 102, 132}%
+	\definecolor{GeometryBg}{RGB}{238, 244, 248}%
+	\definecolor{TopologyColor}{RGB}{55, 122, 111}%
+	\definecolor{TopologyBg}{RGB}{239, 247, 244}%
+	\definecolor{MainText}{RGB}{24, 28, 24}%
+}
+
+\newcommand{\makiapplythemegraphite}{%
+	\renewcommand{\MakiResolvedTheme}{graphite}%
+	\definecolor{LogicColor}{RGB}{148, 74, 62}%
+	\definecolor{LogicBg}{RGB}{249, 242, 240}%
+	\definecolor{DefColor}{RGB}{169, 122, 64}%
+	\definecolor{DefBg}{RGB}{248, 244, 236}%
+	\definecolor{ExColor}{RGB}{74, 92, 114}%
+	\definecolor{ExBg}{RGB}{240, 243, 248}%
+	\definecolor{NoteColor}{RGB}{78, 116, 103}%
+	\definecolor{NNInputColor}{RGB}{88, 132, 118}%
+	\definecolor{NNHiddenColor}{RGB}{90, 102, 122}%
+	\definecolor{NNOutputColor}{RGB}{162, 92, 73}%
+	\definecolor{NNTensorColor}{RGB}{177, 139, 79}%
+	\definecolor{GeometryColor}{RGB}{76, 99, 128}%
+	\definecolor{GeometryBg}{RGB}{239, 243, 249}%
+	\definecolor{TopologyColor}{RGB}{72, 116, 112}%
+	\definecolor{TopologyBg}{RGB}{240, 246, 245}%
+	\definecolor{MainText}{RGB}{28, 29, 32}%
+}
+
+\newcommand{\makiapplythemeamber}{%
+	\renewcommand{\MakiResolvedTheme}{amber}%
+	\definecolor{LogicColor}{RGB}{184, 92, 48}%
+	\definecolor{LogicBg}{RGB}{252, 243, 236}%
+	\definecolor{DefColor}{RGB}{170, 123, 52}%
+	\definecolor{DefBg}{RGB}{251, 247, 238}%
+	\definecolor{ExColor}{RGB}{53, 110, 148}%
+	\definecolor{ExBg}{RGB}{238, 246, 252}%
+	\definecolor{NoteColor}{RGB}{76, 128, 103}%
+	\definecolor{NNInputColor}{RGB}{93, 144, 110}%
+	\definecolor{NNHiddenColor}{RGB}{78, 112, 156}%
+	\definecolor{NNOutputColor}{RGB}{188, 103, 65}%
+	\definecolor{NNTensorColor}{RGB}{201, 155, 69}%
+	\definecolor{GeometryColor}{RGB}{56, 116, 168}%
+	\definecolor{GeometryBg}{RGB}{237, 245, 252}%
+	\definecolor{TopologyColor}{RGB}{73, 122, 104}%
+	\definecolor{TopologyBg}{RGB}{239, 247, 243}%
+	\definecolor{MainText}{RGB}{30, 26, 22}%
+}
+
+\newcommand{\makiapplythemeberry}{%
+	\renewcommand{\MakiResolvedTheme}{berry}%
+	\definecolor{LogicColor}{RGB}{150, 75, 98}%
+	\definecolor{LogicBg}{RGB}{250, 241, 245}%
+	\definecolor{DefColor}{RGB}{181, 120, 73}%
+	\definecolor{DefBg}{RGB}{249, 244, 239}%
+	\definecolor{ExColor}{RGB}{74, 98, 142}%
+	\definecolor{ExBg}{RGB}{239, 243, 251}%
+	\definecolor{NoteColor}{RGB}{72, 124, 118}%
+	\definecolor{NNInputColor}{RGB}{90, 140, 127}%
+	\definecolor{NNHiddenColor}{RGB}{92, 104, 146}%
+	\definecolor{NNOutputColor}{RGB}{171, 91, 101}%
+	\definecolor{NNTensorColor}{RGB}{188, 145, 87}%
+	\definecolor{GeometryColor}{RGB}{70, 112, 156}%
+	\definecolor{GeometryBg}{RGB}{237, 243, 251}%
+	\definecolor{TopologyColor}{RGB}{73, 121, 123}%
+	\definecolor{TopologyBg}{RGB}{239, 246, 246}%
+	\definecolor{MainText}{RGB}{30, 26, 32}%
+}
+
+\newcommand{\makiapplythemesandstone}{%
+	\renewcommand{\MakiResolvedTheme}{sandstone}%
+	\definecolor{LogicColor}{RGB}{162, 104, 78}%
+	\definecolor{LogicBg}{RGB}{249, 243, 238}%
+	\definecolor{DefColor}{RGB}{176, 132, 79}%
+	\definecolor{DefBg}{RGB}{249, 245, 237}%
+	\definecolor{ExColor}{RGB}{84, 106, 121}%
+	\definecolor{ExBg}{RGB}{239, 243, 245}%
+	\definecolor{NoteColor}{RGB}{87, 123, 104}%
+	\definecolor{NNInputColor}{RGB}{102, 139, 112}%
+	\definecolor{NNHiddenColor}{RGB}{95, 113, 129}%
+	\definecolor{NNOutputColor}{RGB}{173, 106, 79}%
+	\definecolor{NNTensorColor}{RGB}{186, 151, 95}%
+	\definecolor{GeometryColor}{RGB}{86, 110, 136}%
+	\definecolor{GeometryBg}{RGB}{238, 243, 248}%
+	\definecolor{TopologyColor}{RGB}{88, 121, 110}%
+	\definecolor{TopologyBg}{RGB}{240, 245, 243}%
+	\definecolor{MainText}{RGB}{32, 29, 26}%
+}
+
+\newcommand{\makiapplythemecobalt}{%
+	\renewcommand{\MakiResolvedTheme}{cobalt}%
+	\definecolor{LogicColor}{RGB}{58, 88, 160}%
+	\definecolor{LogicBg}{RGB}{239, 243, 252}%
+	\definecolor{DefColor}{RGB}{170, 117, 63}%
+	\definecolor{DefBg}{RGB}{249, 245, 238}%
+	\definecolor{ExColor}{RGB}{49, 120, 173}%
+	\definecolor{ExBg}{RGB}{236, 244, 252}%
+	\definecolor{NoteColor}{RGB}{58, 130, 116}%
+	\definecolor{NNInputColor}{RGB}{70, 146, 122}%
+	\definecolor{NNHiddenColor}{RGB}{74, 104, 180}%
+	\definecolor{NNOutputColor}{RGB}{186, 92, 78}%
+	\definecolor{NNTensorColor}{RGB}{192, 150, 79}%
+	\definecolor{GeometryColor}{RGB}{53, 114, 176}%
+	\definecolor{GeometryBg}{RGB}{236, 244, 253}%
+	\definecolor{TopologyColor}{RGB}{56, 124, 121}%
+	\definecolor{TopologyBg}{RGB}{237, 246, 245}%
+	\definecolor{MainText}{RGB}{22, 27, 38}%
+}
+
+\newcommand{\makiapplythemesage}{%
+	\renewcommand{\MakiResolvedTheme}{sage}%
+	\definecolor{LogicColor}{RGB}{90, 109, 96}%
+	\definecolor{LogicBg}{RGB}{242, 246, 243}%
+	\definecolor{DefColor}{RGB}{174, 119, 72}%
+	\definecolor{DefBg}{RGB}{250, 244, 239}%
+	\definecolor{ExColor}{RGB}{80, 109, 143}%
+	\definecolor{ExBg}{RGB}{239, 243, 249}%
+	\definecolor{NoteColor}{RGB}{76, 128, 109}%
+	\definecolor{NNInputColor}{RGB}{94, 145, 117}%
+	\definecolor{NNHiddenColor}{RGB}{94, 116, 147}%
+	\definecolor{NNOutputColor}{RGB}{178, 104, 81}%
+	\definecolor{NNTensorColor}{RGB}{182, 147, 92}%
+	\definecolor{GeometryColor}{RGB}{73, 111, 149}%
+	\definecolor{GeometryBg}{RGB}{238, 243, 249}%
+	\definecolor{TopologyColor}{RGB}{74, 124, 113}%
+	\definecolor{TopologyBg}{RGB}{239, 246, 243}%
+	\definecolor{MainText}{RGB}{27, 31, 28}%
+}
+
+\newcommand{\makiapplythemeruby}{%
+	\renewcommand{\MakiResolvedTheme}{ruby}%
+	\definecolor{LogicColor}{RGB}{166, 72, 86}%
+	\definecolor{LogicBg}{RGB}{251, 240, 243}%
+	\definecolor{DefColor}{RGB}{184, 116, 73}%
+	\definecolor{DefBg}{RGB}{250, 243, 239}%
+	\definecolor{ExColor}{RGB}{78, 104, 160}%
+	\definecolor{ExBg}{RGB}{239, 243, 251}%
+	\definecolor{NoteColor}{RGB}{72, 123, 118}%
+	\definecolor{NNInputColor}{RGB}{88, 138, 124}%
+	\definecolor{NNHiddenColor}{RGB}{94, 104, 154}%
+	\definecolor{NNOutputColor}{RGB}{181, 86, 96}%
+	\definecolor{NNTensorColor}{RGB}{190, 145, 85}%
+	\definecolor{GeometryColor}{RGB}{74, 111, 160}%
+	\definecolor{GeometryBg}{RGB}{237, 242, 251}%
+	\definecolor{TopologyColor}{RGB}{72, 120, 121}%
+	\definecolor{TopologyBg}{RGB}{239, 246, 246}%
+	\definecolor{MainText}{RGB}{32, 25, 31}%
+}
+
+\newcommand{\makiapplythememidnight}{%
+	\renewcommand{\MakiResolvedTheme}{midnight}%
+	\definecolor{LogicColor}{RGB}{72, 92, 148}%
+	\definecolor{LogicBg}{RGB}{238, 242, 251}%
+	\definecolor{DefColor}{RGB}{168, 119, 72}%
+	\definecolor{DefBg}{RGB}{248, 244, 238}%
+	\definecolor{ExColor}{RGB}{58, 126, 168}%
+	\definecolor{ExBg}{RGB}{236, 244, 251}%
+	\definecolor{NoteColor}{RGB}{61, 124, 115}%
+	\definecolor{NNInputColor}{RGB}{72, 138, 118}%
+	\definecolor{NNHiddenColor}{RGB}{76, 97, 161}%
+	\definecolor{NNOutputColor}{RGB}{177, 94, 79}%
+	\definecolor{NNTensorColor}{RGB}{182, 145, 84}%
+	\definecolor{GeometryColor}{RGB}{63, 112, 171}%
+	\definecolor{GeometryBg}{RGB}{236, 243, 252}%
+	\definecolor{TopologyColor}{RGB}{64, 118, 118}%
+	\definecolor{TopologyBg}{RGB}{238, 245, 245}%
+	\definecolor{MainText}{RGB}{21, 24, 32}%
+}
+
+\newcommand{\makiapplytheme}{%
+	\ifcsname makiapplytheme\MakiTheme\endcsname
+		\csname makiapplytheme\MakiTheme\endcsname
+	\else
+		\PackageError{maki-notes}{Unsupported theme `\MakiTheme'}{Valid values are default, ocean, forest, graphite, amber, berry, sandstone, cobalt, sage, ruby, midnight. Falling back to `default'.}%
+		\makiapplythemedefault
+	\fi
+}
+
+\makisetlatinfonts
+\makiapplyfontpreset
+\renewcommand{\kaishu}{\CJKfamily{makiKai}}
+\renewcommand{\heavykaishu}{\CJKfamily{makiHeavyKai}}
+\makiapplytheme
+\color{MainText}
+
+% --------------------------------------------------------------------------
+% Watermarks (migrated from mindflow.cls)
+% --------------------------------------------------------------------------
+% Watermarks are opt-in. Keeping the package disabled by default makes the
+% feature safe for ordinary course notes and for print-ready PDFs.
+\newif\ifMakiWatermarkAvailable
+\IfFileExists{draftwatermark.sty}{%
+	\MakiWatermarkAvailabletrue
+	\RequirePackage[stamp=false]{draftwatermark}%
+}{\MakiWatermarkAvailablefalse}
+\ifMakiWatermarkAvailable
+	\NewDocumentCommand{\MakiWatermarkText}{O{gray!22} O{4} m}{%
+		\DraftwatermarkOptions{stamp=true,text={\bfseries #3},color=#1,scale=#2}%
+	}%
+	\NewDocumentCommand{\MakiWatermarkImage}{O{45} O{0.55\paperwidth} m}{%
+		\DraftwatermarkOptions{%
+			stamp=true,
+			angle=#1,
+			markcmd={\raisebox{0pt}[0pt][0pt]{\includegraphics[width=#2]{#3}}}%
+		}%
+	}%
+	\NewDocumentCommand{\MakiWatermarkOff}{}{\DraftwatermarkOptions{stamp=false}}%
+\else
+	\NewDocumentCommand{\MakiWatermarkText}{O{} O{} m}{%
+		\PackageWarningNoLine{maki-notes}{draftwatermark is unavailable; text watermark ignored}%
+	}%
+	\NewDocumentCommand{\MakiWatermarkImage}{O{} O{} m}{%
+		\PackageWarningNoLine{maki-notes}{draftwatermark is unavailable; image watermark ignored}%
+	}%
+	\NewDocumentCommand{\MakiWatermarkOff}{}{}%
+\fi
+% Compatibility aliases for MindFlow documents.
+\let\mfWatermarkText\MakiWatermarkText
+\let\mfWatermarkImage\MakiWatermarkImage
+
+% --------------------------------------------------------------------------
+% Reusable mathematics / differential-geometry / deep-learning macros
+% --------------------------------------------------------------------------
+\providecommand{\dd}{\mathop{}\!\mathrm{d}}
+\providecommand{\dx}{\,\dd x}
+\providecommand{\dy}{\,\dd y}
+\providecommand{\dz}{\,\dd z}
+\providecommand{\dt}{\,\dd t}
+\providecommand{\ds}{\,\dd s}
+\providecommand{\dw}{\,\dd w}
+\providecommand{\dtau}{\,\dd\tau}
+\providecommand{\dm}{\,\dd m}
+\providecommand{\dmu}{\,\dd\mu}
+\providecommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\providecommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\Curl}{curl}
+\providecommand{\Laplace}{\Delta}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\providecommand{\limn}{\lim_{n\to\infty}}
+\providecommand{\limk}{\lim_{k\to\infty}}
+\providecommand{\limx}[1][0]{\lim_{x\to #1}}
+\providecommand{\weakto}{\rightharpoonup}
+\providecommand{\embeds}{\hookrightarrow}
+\providecommand{\compactembeds}{\subset\!\subset}
+\providecommand{\intR}{\int_{\R}}
+\providecommand{\intRn}{\int_{\R^n}}
+\providecommand{\intO}{\int_{\Omega}}
+\providecommand{\intpO}{\int_{\partial\Omega}}
+\providecommand{\Cinf}{C^\infty}
+\providecommand{\Cc}{C_c^\infty}
+\providecommand{\Lp}[1][p]{L^{#1}}
+\providecommand{\Wkp}[2]{W^{#1,#2}}
+\providecommand{\Hk}[1][1]{H^{#1}}
+\providecommand{\normL}[2][p]{\norm{#2}_{L^{#1}}}
+\providecommand{\set}[1]{\{#1\}}
+\providecommand{\Set}[1]{\left\{#1\right\}}
+\providecommand{\st}{\;\middle|\;}
+\providecommand{\lra}{\Longleftrightarrow}
+\providecommand{\ra}{\Longrightarrow}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\Complex}{\mathbb{C}}
+
+\providecommand{\loss}{\mathcal{L}}
+\DeclareMathOperator{\MSE}{MSE}
+\DeclareMathOperator{\CE}{CE}
+\DeclareMathOperator{\BCE}{BCE}
+\DeclareMathOperator{\KLdiv}{KL}
+\providecommand{\data}{\mathcal{D}}
+\providecommand{\model}{\mathcal{M}}
+\providecommand{\param}{\bm{\theta}}
+\providecommand{\weight}{\bm{W}}
+\providecommand{\bias}{\bm{b}}
+\DeclareMathOperator*{\expect}{\mathbb{E}}
+\providecommand{\prob}{\mathbb{P}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\relu}{ReLU}
+\providecommand{\sigmoid}{\sigma}
+\DeclareMathOperator{\softmax}{softmax}
+\DeclareMathOperator{\tanhfunc}{tanh}
+\providecommand{\LSTM}{\mathrm{LSTM}}
+\providecommand{\GRU}{\mathrm{GRU}}
+\providecommand{\Conv}{\mathrm{Conv}}
+\providecommand{\Pool}{\mathrm{Pool}}
+\providecommand{\BatchNorm}{\mathrm{BatchNorm}}
+\providecommand{\Dropout}{\mathrm{Dropout}}
+\providecommand{\vect}[1]{\bm{#1}}
+\providecommand{\mat}[1]{\bm{#1}}
+\providecommand{\tensor}[1]{\mathcal{#1}}
+
+\ifMakiBeamerMode\else
+	\captionsetup{
+		font={small,stretch=1.08},
+		labelfont={bf,color=LogicColor},
+		textfont={small},
+		justification=raggedright,
+		singlelinecheck=false,
+		skip=4pt
+	}
+\fi
+
+\newlength{\MakiMarginRuleWidth}
+\newlength{\MakiMarginNoteGap}
+\newlength{\MakiWrapColumnSep}
+\newlength{\MakiWrapTextSep}
+\setlength{\MakiMarginRuleWidth}{0.8pt}
+\setlength{\MakiMarginNoteGap}{0.55em}
+\setlength{\MakiWrapColumnSep}{1.2em}
+\setlength{\MakiWrapTextSep}{0.8em}
+\setlength{\marginparpush}{0.85em}
+
+\newsavebox{\MakiFitTikZBox}
+\NewDocumentCommand{\MakiFitTikZ}{O{\linewidth} +m}{%
+	\begingroup
+		\sbox{\MakiFitTikZBox}{#2}%
+		\ifdim\wd\MakiFitTikZBox>#1\relax
+			\resizebox{#1}{!}{\usebox{\MakiFitTikZBox}}%
+		\else
+			\usebox{\MakiFitTikZBox}%
+		\fi
+	\endgroup
+}
+\NewDocumentEnvironment{makitikzfigure}{O{\linewidth} +b}{%
+	\MakiFitTikZ[#1]{#2}%
+}{}
+
+\newcommand{\MakiCourseInfoCourse}{}
+\newcommand{\MakiCourseInfoTerm}{}
+\newcommand{\MakiCourseInfoAudience}{}
+\newcommand{\MakiCourseInfoInstructor}{}
+\newcommand{\MakiCourseInfoAuthor}{}
+\newcommand{\MakiCourseInfoLecture}{}
+\newcommand{\MakiCourseInfoDate}{}
+
+\newcommand{\MakiResearchInfoProject}{}
+\newcommand{\MakiResearchInfoArea}{}
+\newcommand{\MakiResearchInfoAuthor}{}
+\newcommand{\MakiResearchInfoCollaborators}{}
+\newcommand{\MakiResearchInfoStatus}{}
+\newcommand{\MakiResearchInfoCreated}{}
+\newcommand{\MakiResearchInfoUpdated}{}
+\newcommand{\MakiResearchInfoTags}{}
+
+\newcommand{\MakiPendingChapterSubtitle}{}
+\newcommand{\MakiPendingChapterLecture}{}
+\newcommand{\MakiPendingChapterDate}{}
+\newcommand{\MakiPendingChapterKeywords}{}
+\newcommand{\MakiPendingChapterPrereq}{}
+\newcommand{\MakiPendingChapterGoals}{}
+
+\newcommand{\MakiCurrentChapterTitle}{}
+\newcommand{\MakiCurrentChapterNumber}{}
+\newcommand{\MakiCurrentChapterSubtitle}{}
+\newcommand{\MakiCurrentChapterLecture}{}
+\newcommand{\MakiCurrentChapterDate}{}
+\newcommand{\MakiCurrentChapterKeywords}{}
+\newcommand{\MakiCurrentChapterPrereq}{}
+\newcommand{\MakiCurrentChapterGoals}{}
+
+\newcommand{\MakiEffectiveChapterLecture}{}
+\newcommand{\MakiEffectiveChapterDate}{}
+
+\newcommand{\MakiGuideRoute}{}
+\newcommand{\MakiGuideFormulas}{}
+\newcommand{\MakiGuidePitfalls}{}
+\newcommand{\MakiGuideMethods}{}
+\newcommand{\MakiGuideExamFocus}{}
+
+\newcommand{\MakiEntryInfoTopic}{}
+\newcommand{\MakiEntryInfoSource}{}
+\newcommand{\MakiEntryInfoSourceKey}{}
+\newcommand{\MakiEntryInfoUpdated}{}
+\newcommand{\MakiEntryInfoTags}{}
+\newcommand{\MakiEntryInfoObjective}{}
+
+\newcommand{\MakiEntryGuideSummary}{}
+\newcommand{\MakiEntryGuideDependencies}{}
+\newcommand{\MakiEntryGuideTargets}{}
+\newcommand{\MakiEntryGuideBlockers}{}
+\newcommand{\MakiEntryGuideNextSteps}{}
+
+\newcommand{\MakiClearPendingChapterInfo}{%
+	\gdef\MakiPendingChapterSubtitle{}%
+	\gdef\MakiPendingChapterLecture{}%
+	\gdef\MakiPendingChapterDate{}%
+	\gdef\MakiPendingChapterKeywords{}%
+	\gdef\MakiPendingChapterPrereq{}%
+	\gdef\MakiPendingChapterGoals{}%
+}
+
+\newcommand{\MakiBindPendingChapterInfo}{%
+	\global\let\MakiCurrentChapterSubtitle\MakiPendingChapterSubtitle
+	\global\let\MakiCurrentChapterLecture\MakiPendingChapterLecture
+	\global\let\MakiCurrentChapterDate\MakiPendingChapterDate
+	\global\let\MakiCurrentChapterKeywords\MakiPendingChapterKeywords
+	\global\let\MakiCurrentChapterPrereq\MakiPendingChapterPrereq
+	\global\let\MakiCurrentChapterGoals\MakiPendingChapterGoals
+	\MakiResolveEffectiveChapterInfo
+	\MakiClearPendingChapterInfo
+}
+
+\newcommand{\MakiResolveEffectiveChapterInfo}{%
+	\ifdefempty{\MakiCurrentChapterLecture}
+		{\global\let\MakiEffectiveChapterLecture\MakiCourseInfoLecture}
+		{\global\let\MakiEffectiveChapterLecture\MakiCurrentChapterLecture}%
+	\ifdefempty{\MakiCurrentChapterDate}
+		{\global\let\MakiEffectiveChapterDate\MakiCourseInfoDate}
+		{\global\let\MakiEffectiveChapterDate\MakiCurrentChapterDate}%
+}
+
+\newcommand{\MakiHeaderLeftText}{%
+	\ifdefempty{\MakiResearchInfoProject}{%
+		\ifdefempty{\MakiCourseInfoCourse}{\LectureNotesTitle}{\MakiCourseInfoCourse}%
+	}{%
+		\MakiResearchInfoProject
+	}%
+}
+
+\newcommand{\MakiHeaderRightText}{%
+	\ifdefempty{\MakiResearchInfoStatus}{%
+		\ifdefempty{\MakiResearchInfoUpdated}{%
+			\ifdefempty{\MakiEffectiveChapterLecture}{%
+				\ifdefempty{\MakiEffectiveChapterDate}{\AuthorInfo}{\MakiEffectiveChapterDate}%
+			}{%
+				\MakiEffectiveChapterLecture
+				\ifdefempty{\MakiEffectiveChapterDate}{}{ \quad \MakiEffectiveChapterDate}%
+			}%
+		}{%
+			\MakiResearchInfoUpdated
+		}%
+	}{%
+		\MakiResearchInfoStatus
+		\ifdefempty{\MakiResearchInfoUpdated}{}{ \quad \MakiResearchInfoUpdated}%
+	}%
+}
+
+\newcommand{\MakiClearGuideInfo}{%
+	\gdef\MakiGuideRoute{}%
+	\gdef\MakiGuideFormulas{}%
+	\gdef\MakiGuidePitfalls{}%
+	\gdef\MakiGuideMethods{}%
+	\gdef\MakiGuideExamFocus{}%
+}
+
+\newcommand{\MakiClearEntryInfo}{%
+	\gdef\MakiEntryInfoTopic{}%
+	\gdef\MakiEntryInfoSource{}%
+	\gdef\MakiEntryInfoSourceKey{}%
+	\gdef\MakiEntryInfoUpdated{}%
+	\gdef\MakiEntryInfoTags{}%
+	\gdef\MakiEntryInfoObjective{}%
+}
+
+\newcommand{\MakiClearEntryGuideInfo}{%
+	\gdef\MakiEntryGuideSummary{}%
+	\gdef\MakiEntryGuideDependencies{}%
+	\gdef\MakiEntryGuideTargets{}%
+	\gdef\MakiEntryGuideBlockers{}%
+	\gdef\MakiEntryGuideNextSteps{}%
+}
+
+\pgfkeys{
+	/maki/course/.is family,
+	/maki/course,
+	course/.store in=\MakiCourseInfoCourse,
+	term/.store in=\MakiCourseInfoTerm,
+	audience/.store in=\MakiCourseInfoAudience,
+	instructor/.store in=\MakiCourseInfoInstructor,
+	author/.store in=\MakiCourseInfoAuthor,
+	lecture/.store in=\MakiCourseInfoLecture,
+	date/.store in=\MakiCourseInfoDate
+}
+
+\pgfkeys{
+	/maki/research/.is family,
+	/maki/research,
+	project/.store in=\MakiResearchInfoProject,
+	area/.store in=\MakiResearchInfoArea,
+	author/.store in=\MakiResearchInfoAuthor,
+	collaborators/.store in=\MakiResearchInfoCollaborators,
+	status/.store in=\MakiResearchInfoStatus,
+	created/.store in=\MakiResearchInfoCreated,
+	updated/.store in=\MakiResearchInfoUpdated,
+	tags/.store in=\MakiResearchInfoTags
+}
+
+\pgfkeys{
+	/maki/chapter/.is family,
+	/maki/chapter,
+	subtitle/.store in=\MakiPendingChapterSubtitle,
+	lecture/.store in=\MakiPendingChapterLecture,
+	date/.store in=\MakiPendingChapterDate,
+	keywords/.store in=\MakiPendingChapterKeywords,
+	prereq/.store in=\MakiPendingChapterPrereq,
+	goals/.store in=\MakiPendingChapterGoals
+}
+
+\pgfkeys{
+	/maki/guide/.is family,
+	/maki/guide,
+	route/.store in=\MakiGuideRoute,
+	formulas/.store in=\MakiGuideFormulas,
+	pitfalls/.store in=\MakiGuidePitfalls,
+	methods/.store in=\MakiGuideMethods,
+	examfocus/.store in=\MakiGuideExamFocus
+}
+
+\pgfkeys{
+	/maki/entry/.is family,
+	/maki/entry,
+	topic/.store in=\MakiEntryInfoTopic,
+	source/.store in=\MakiEntryInfoSource,
+	sourcekey/.store in=\MakiEntryInfoSourceKey,
+	updated/.store in=\MakiEntryInfoUpdated,
+	tags/.store in=\MakiEntryInfoTags,
+	objective/.store in=\MakiEntryInfoObjective
+}
+
+\pgfkeys{
+	/maki/entryguide/.is family,
+	/maki/entryguide,
+	summary/.store in=\MakiEntryGuideSummary,
+	dependencies/.store in=\MakiEntryGuideDependencies,
+	targets/.store in=\MakiEntryGuideTargets,
+	blockers/.store in=\MakiEntryGuideBlockers,
+	nextsteps/.store in=\MakiEntryGuideNextSteps
+}
+
+\NewDocumentCommand{\SetCourseInfo}{m}{%
+	\pgfkeys{/maki/course, #1}%
+	\MakiResolveEffectiveChapterInfo
+}
+
+\NewDocumentCommand{\SetResearchInfo}{m}{%
+	\pgfkeys{/maki/research, #1}%
+}
+
+\NewDocumentCommand{\SetChapterInfo}{m}{%
+	\MakiClearPendingChapterInfo
+	\pgfkeys{/maki/chapter, #1}%
+}
+
+\NewDocumentCommand{\SetEntryInfo}{m}{%
+	\MakiClearEntryInfo
+	\pgfkeys{/maki/entry, #1}%
+}
+
+\tikzset{
+	>=Latex,
+	every picture/.style={
+		line join=round,
+		line cap=round,
+		font=\small
+	},
+	maki label/.style={
+		font=\small,
+		align=center,
+		inner sep=1.5pt,
+		text=MainText
+	},
+	maki annotation/.style={
+		maki label,
+		fill=white,
+		fill opacity=0.92,
+		text opacity=1,
+		rounded corners=2pt
+	},
+	maki guide/.style={
+		thin,
+		dashed,
+		draw=black!35
+	},
+	maki point/.style={
+		circle,
+		fill=MainText,
+		inner sep=1.3pt
+	},
+	maki emphasis/.style={
+		very thick,
+		draw=LogicColor!85!black
+	},
+	nn neuron/.style={
+		circle,
+		draw=NNHiddenColor!70!black,
+		fill=NNHiddenColor!16,
+		thick,
+		minimum size=9mm,
+		inner sep=0pt
+	},
+	nn input/.style={
+		nn neuron,
+		draw=NNInputColor!70!black,
+		fill=NNInputColor!16
+	},
+	nn hidden/.style={
+		nn neuron
+	},
+	nn output/.style={
+		nn neuron,
+		draw=NNOutputColor!75!black,
+		fill=NNOutputColor!18
+	},
+	nn conv/.style={
+		rounded corners=2pt,
+		draw=NNTensorColor!75!black,
+		fill=NNTensorColor!18,
+		thick,
+		minimum width=12mm,
+		minimum height=8mm,
+		align=center
+	},
+	nn tensor/.style={
+		rounded corners=2pt,
+		draw=NNTensorColor!80!black,
+		fill=white,
+		thick,
+		minimum width=11mm,
+		minimum height=7mm,
+		align=center
+	},
+	nn block/.style={
+		rounded corners=4pt,
+		draw=NNHiddenColor!60!black,
+		fill=NNHiddenColor!8,
+		thick,
+		inner sep=6pt
+	},
+	nn sum/.style={
+		circle,
+		draw=LogicColor!75!black,
+		fill=LogicBg,
+		thick,
+		minimum size=7mm,
+		inner sep=0pt
+	},
+	nn connect/.style={
+		-Latex,
+		semithick,
+		draw=NNHiddenColor!75!black,
+		shorten <=1pt,
+		shorten >=1pt
+	},
+	nn connect strong/.style={
+		nn connect,
+		line width=1pt
+	},
+	nn skip/.style={
+		-Latex,
+		semithick,
+		draw=LogicColor!85!black,
+		densely dashed,
+		shorten <=1pt,
+		shorten >=1pt
+	},
+	nn attention/.style={
+		-Latex,
+		semithick,
+		draw=NNTensorColor!85!black,
+		dotted,
+		shorten <=1pt,
+		shorten >=1pt
+	},
+	math axis/.style={
+		-Latex,
+		semithick,
+		draw=MainText
+	},
+	math vector/.style={
+		-Latex,
+		thick,
+		draw=GeometryColor!85!black
+	},
+	math curve/.style={
+		very thick,
+		draw=GeometryColor!90!black
+	},
+	math tangent/.style={
+		very thick,
+		densely dashed,
+		draw=LogicColor!85!black
+	},
+	math normal/.style={
+		very thick,
+		dash pattern=on 4pt off 2pt on 1.2pt off 2pt,
+		draw=NoteColor!85!black
+	},
+	math secant/.style={
+		thick,
+		densely dashed,
+		draw=DefColor!85!black
+	},
+	math sample point/.style={
+		circle,
+		fill=GeometryColor!90!black,
+		inner sep=1.35pt
+	},
+	math region/.style={
+		draw=GeometryColor!70!black,
+		fill=GeometryBg,
+		fill opacity=0.8
+	},
+	geom point/.style={
+		maki point
+	},
+	geom highlighted point/.style={
+		maki point,
+		fill=LogicColor!90!black
+	},
+	geom segment/.style={
+		very thick,
+		draw=GeometryColor!90!black
+	},
+	geom helper/.style={
+		maki guide
+	},
+	geom locus/.style={
+		very thick,
+		draw=NoteColor!80!black
+	},
+	geom arc/.style={
+		thick,
+		draw=DefColor!85!black
+	},
+	geom angle mark/.style={
+		draw=DefColor!85!black,
+		thick
+	},
+	topo patch/.style={
+		draw=TopologyColor!75!black,
+		fill=TopologyBg,
+		thick,
+		rounded corners=2pt
+	},
+	topo mesh/.style={
+		draw=TopologyColor!35,
+		thin
+	},
+	topo boundary/.style={
+		very thick,
+		draw=TopologyColor!80!black
+	},
+	topo geodesic/.style={
+		very thick,
+		densely dashed,
+		draw=GeometryColor!85!black
+	},
+	topo loop/.style={
+		very thick,
+		draw=LogicColor!85!black
+	},
+	topo cut/.style={
+		very thick,
+		dash pattern=on 6pt off 2pt on 1.4pt off 2pt,
+		draw=DefColor!85!black
+	},
+	topo identify/.style={
+		topo boundary,
+		postaction={decorate},
+		decoration={
+			markings,
+			mark=at position 0.3 with {\arrow{Latex[length=4pt,width=4pt]}},
+			mark=at position 0.7 with {\arrow{Latex[length=4pt,width=4pt]}}
+		}
+	},
+		topo identify reversed/.style={
+			topo boundary,
+			postaction={decorate},
+			decoration={
+				markings,
+				mark=at position 0.3 with {\arrowreversed{Latex[length=4pt,width=4pt]}},
+				mark=at position 0.7 with {\arrowreversed{Latex[length=4pt,width=4pt]}}
+			}
+		},
+		diag object/.style={
+			rounded corners=2pt,
+			draw=GeometryColor!75!black,
+			fill=GeometryBg,
+			thick,
+			inner sep=3pt,
+			align=center
+		},
+		diag morphism/.style={
+			-Latex,
+			semithick,
+			draw=GeometryColor!85!black
+		},
+		diag morphism dashed/.style={
+			diag morphism,
+			densely dashed
+		},
+		diag morphism emph/.style={
+			-Latex,
+			thick,
+			draw=LogicColor!85!black
+		},
+		diag object accent/.style={
+			diag object,
+			draw=LogicColor!82!black,
+			fill=LogicBg
+		},
+		diag object muted/.style={
+			diag object,
+			draw=MainText!42,
+			fill=black!4
+		},
+		diag morphism dotted/.style={
+			diag morphism,
+			dotted
+		},
+		diag morphism natural/.style={
+			-Latex,
+			semithick,
+			draw=NoteColor!82!black
+		},
+		diag morphism curve/.style={
+			-Latex,
+			thick,
+			draw=DefColor!84!black
+		},
+		diag corner/.style={
+			line width=0.85pt,
+			draw=LogicColor!84!black
+		},
+		diag 2cell/.style={
+			rounded corners=2pt,
+			draw=DefColor!82!black,
+			fill=DefBg,
+			thick,
+			inner sep=1.2pt,
+			font=\scriptsize,
+			align=center
+		},
+		sphere shell/.style={
+			shading=ball,
+			ball color=GeometryColor!18,
+			draw=GeometryColor!78!black,
+			line width=1pt
+		},
+		sphere hidden/.style={
+			semithick,
+			draw=GeometryColor!45!black,
+			densely dashed
+		},
+		sphere equator/.style={
+			very thick,
+			draw=GeometryColor!84!black
+		},
+		sphere longitude/.style={
+			thick,
+			draw=NoteColor!80!black
+		},
+		sphere latitude/.style={
+			thick,
+			draw=DefColor!82!black
+		},
+		sphere tangent plane/.style={
+			draw=LogicColor!72!black,
+			fill=LogicBg,
+			fill opacity=0.75,
+			text opacity=1,
+			thick
+		},
+		sphere point/.style={
+			circle,
+			draw=LogicColor!85!black,
+			fill=white,
+			thick,
+			inner sep=1.5pt
+		},
+		sphere vector/.style={
+			-Latex,
+			thick,
+			draw=LogicColor!85!black
+		},
+		sphere axis/.style={
+			-Latex,
+			semithick,
+			draw=MainText!82
+		},
+		manifold axis/.style={
+			-Latex,
+			semithick,
+			draw=MainText
+		},
+		manifold cloud/.style={
+			draw=TopologyColor!80!black,
+			fill=TopologyBg,
+			fill opacity=0.9,
+			thick
+		},
+		manifold sheet/.style={
+			draw=NoteColor!75!black,
+			fill=NoteColor!12,
+			thick
+		},
+		manifold patch/.style={
+			draw=TopologyColor!82!black,
+			fill=TopologyBg,
+			fill opacity=0.85,
+			text opacity=1,
+			thick
+		},
+		manifold geodesic/.style={
+			very thick,
+			draw=GeometryColor!86!black
+		},
+		manifold tangent/.style={
+			draw=NoteColor!78!black,
+			fill=NoteColor!14,
+			fill opacity=0.82,
+			text opacity=1,
+			thick
+		},
+		manifold chart/.style={
+			rounded corners=2pt,
+			draw=NNHiddenColor!76!black,
+			fill=NNHiddenColor!10,
+			thick
+		},
+		manifold point/.style={
+			circle,
+			draw=LogicColor!85!black,
+			fill=LogicBg,
+			thick,
+			inner sep=1.25pt
+		},
+		manifold map accent/.style={
+			-Latex,
+			thick,
+			draw=LogicColor!85!black
+		},
+		manifold fiber/.style={
+			semithick,
+			densely dashed,
+			draw=DefColor!84!black
+		},
+		manifold latent/.style={
+			rounded corners=2pt,
+			draw=NNHiddenColor!75!black,
+			fill=NNHiddenColor!12,
+			thick
+		},
+		manifold forward/.style={
+			-Latex,
+			thick,
+			draw=LogicColor!85!black
+		},
+		manifold backward/.style={
+			-Latex,
+			thick,
+			draw=ExColor!85!black
+		},
+		fourier axis/.style={
+			-Latex,
+			semithick,
+			draw=MainText!88
+		},
+		fourier signal/.style={
+			very thick,
+			draw=LogicColor!86!black
+		},
+		fourier guide/.style={
+			semithick,
+			densely dashed,
+			draw=MainText!48
+		},
+		fourier marker/.style={
+			circle,
+			draw=LogicColor!85!black,
+			fill=white,
+			thick,
+			inner sep=1.15pt
+		},
+		fourier arrow/.style={
+			-Latex,
+			thick,
+			draw=DefColor!84!black
+		},
+		fourier spectrum/.style={
+			very thick,
+			draw=ExColor!84!black
+		},
+		fourier window/.style={
+			maki annotation,
+			draw=ExColor!18,
+			fill=white
+		},
+		nn token/.style={
+			nn tensor,
+			minimum width=13mm,
+			minimum height=8mm,
+			fill=NNInputColor!12,
+			draw=NNInputColor!75!black
+		},
+		nn op/.style={
+			rounded corners=3pt,
+			draw=NNHiddenColor!75!black,
+			fill=NNHiddenColor!14,
+			thick,
+			minimum width=17mm,
+			minimum height=8mm,
+			align=center
+		},
+		nn op warm/.style={
+			nn op,
+			draw=NNTensorColor!85!black,
+			fill=NNTensorColor!16
+		},
+		nn op accent/.style={
+			nn op,
+			draw=LogicColor!80!black,
+			fill=LogicBg
+		},
+	nn feature map/.style={
+			rounded corners=1pt,
+			draw=NNTensorColor!80!black,
+			fill=NNTensorColor!15,
+			thick
+		},
+		transformer token/.style={
+			nn token,
+			minimum width=15mm,
+			minimum height=8.5mm
+		},
+		transformer pos/.style={
+			transformer token,
+			draw=DefColor!82!black,
+			fill=DefBg
+		},
+		transformer block/.style={
+			nn op,
+			rounded corners=4pt,
+			minimum width=24mm,
+			minimum height=10mm
+		},
+		transformer attention block/.style={
+			transformer block,
+			draw=NNTensorColor!86!black,
+			fill=NNTensorColor!18
+		},
+		transformer cross block/.style={
+			transformer block,
+			draw=NoteColor!80!black,
+			fill=NoteColor!12
+		},
+		transformer ffn/.style={
+			transformer block,
+			draw=NNHiddenColor!78!black,
+			fill=NNHiddenColor!14
+		},
+		transformer norm/.style={
+			transformer block,
+			draw=MainText!52,
+			fill=black!3,
+			minimum height=8.5mm
+		},
+		transformer add/.style={
+			nn sum,
+			fill=LogicBg!72!white
+		},
+		transformer head/.style={
+			rounded corners=3pt,
+			draw=DefColor!82!black,
+			fill=DefBg,
+			thick,
+			minimum width=14mm,
+			minimum height=8mm,
+			align=center
+		},
+		transformer memory/.style={
+			nn tensor,
+			draw=NNOutputColor!78!black,
+			fill=NNOutputColor!12,
+			minimum width=17mm,
+			minimum height=9mm
+		},
+		transformer stack/.style={
+			nn block,
+			draw=LogicColor!64!black,
+			fill=LogicBg!42!white
+		},
+		transformer flow/.style={
+			-Latex,
+			thick,
+			draw=NNHiddenColor!78!black,
+			shorten <=1pt,
+			shorten >=1pt
+		},
+		transformer residual/.style={
+			-Latex,
+			semithick,
+			draw=LogicColor!86!black,
+			densely dashed,
+			shorten <=1pt,
+			shorten >=1pt
+		},
+		transformer bridge/.style={
+			-Latex,
+			semithick,
+			draw=NoteColor!84!black,
+			dash pattern=on 4pt off 2pt on 1pt off 2pt,
+			shorten <=1pt,
+			shorten >=1pt
+		},
+		pinn coordinate/.style={
+			nn token,
+			minimum width=16mm,
+			draw=GeometryColor!82!black,
+			fill=GeometryBg
+		},
+		pinn field/.style={
+			nn tensor,
+			minimum width=18mm,
+			minimum height=9mm,
+			draw=NNOutputColor!80!black,
+			fill=NNOutputColor!14
+		},
+		pinn module/.style={
+			rounded corners=4pt,
+			draw=NNHiddenColor!78!black,
+			fill=NNHiddenColor!12,
+			thick,
+			minimum width=24mm,
+			minimum height=10mm,
+			align=center
+		},
+		pinn physics/.style={
+			pinn module,
+			draw=GeometryColor!84!black,
+			fill=GeometryBg
+		},
+		pinn boundary/.style={
+			pinn module,
+			draw=DefColor!82!black,
+			fill=DefBg
+		},
+		pinn initial/.style={
+			pinn module,
+			draw=NoteColor!80!black,
+			fill=NoteColor!12
+		},
+		pinn data/.style={
+			pinn module,
+			draw=NNTensorColor!86!black,
+			fill=NNTensorColor!16
+		},
+		pinn loss/.style={
+			rounded corners=4pt,
+			draw=ExColor!82!black,
+			fill=ExBg,
+			thick,
+			minimum width=18mm,
+			minimum height=8.5mm,
+			align=center
+		},
+		pinn total/.style={
+			pinn loss,
+			draw=LogicColor!84!black,
+			fill=LogicBg
+		},
+		pinn domain/.style={
+			rounded corners=4pt,
+			draw=GeometryColor!70!black,
+			fill=GeometryBg!70!white,
+			thick
+		},
+		pinn sample/.style={
+			circle,
+			fill=GeometryColor!88!black,
+			inner sep=1.25pt
+		},
+		pinn flow/.style={
+			-Latex,
+			thick,
+			draw=NNHiddenColor!78!black,
+			shorten <=1pt,
+			shorten >=1pt
+		},
+		pinn constraint/.style={
+			-Latex,
+			semithick,
+			draw=GeometryColor!84!black,
+			densely dashed,
+			shorten <=1pt,
+			shorten >=1pt
+		},
+		pinn supervise/.style={
+			-Latex,
+			semithick,
+			draw=DefColor!84!black,
+			dash pattern=on 4pt off 2pt on 1pt off 2pt,
+			shorten <=1pt,
+			shorten >=1pt
+		},
+		fpinn operator/.style={
+			pinn module,
+			draw=ExColor!84!black,
+			fill=ExBg
+		},
+		fpinn stencil/.style={
+			pinn module,
+			draw=NNTensorColor!86!black,
+			fill=NNTensorColor!18
+		},
+		fpinn quadrature/.style={
+			pinn module,
+			draw=NoteColor!82!black,
+			fill=NoteColor!14
+		},
+		fpinn memory/.style={
+			pinn module,
+			draw=LogicColor!84!black,
+			fill=LogicBg
+		},
+		fpinn branch/.style={
+			pinn module,
+			draw=NNHiddenColor!72!black,
+			fill=NNHiddenColor!10
+		},
+		fpinn flow/.style={
+			-Latex,
+			thick,
+			draw=ExColor!84!black,
+			shorten <=1pt,
+			shorten >=1pt
+		},
+		fpinn history/.style={
+			-Latex,
+			semithick,
+			draw=LogicColor!82!black,
+			densely dotted,
+			shorten <=1pt,
+			shorten >=1pt
+		},
+	nn residual bracket/.style={
+			very thick,
+			draw=LogicColor!80!black
+	},
+	flow node/.style={
+		rounded corners=4pt,
+		draw=ExColor!75!black,
+		fill=ExBg,
+		thick,
+		minimum width=24mm,
+		minimum height=9mm,
+		align=center,
+		inner sep=4pt
+	},
+	flow terminal/.style={
+		flow node,
+		rounded corners=11pt,
+		draw=LogicColor!80!black,
+		fill=LogicBg
+	},
+	flow process/.style={
+		flow node
+	},
+	flow decision/.style={
+		diamond,
+		aspect=1.7,
+		draw=DefColor!82!black,
+		fill=DefBg,
+		thick,
+		align=center,
+		inner sep=1.8pt,
+		minimum width=18mm
+	},
+	flow io/.style={
+		trapezium,
+		trapezium left angle=75,
+		trapezium right angle=105,
+		draw=NoteColor!78!black,
+		fill=NoteColor!12,
+		thick,
+		minimum width=23mm,
+		minimum height=9mm,
+		align=center
+	},
+	flow arrow/.style={
+		-Latex,
+		thick,
+		draw=ExColor!85!black,
+		shorten <=1pt,
+		shorten >=1pt
+	},
+	flow arrow emph/.style={
+		flow arrow,
+		draw=LogicColor!85!black
+	},
+	flow arrow feedback/.style={
+		-Latex,
+		semithick,
+		densely dashed,
+		draw=DefColor!85!black,
+		shorten <=1pt,
+		shorten >=1pt
+	},
+	flow note/.style={
+		maki annotation,
+		draw=MainText!12,
+		fill=white,
+		inner sep=4pt,
+		align=left
+	},
+	timeline axis/.style={
+		-Latex,
+		very thick,
+		draw=MainText!85
+	},
+	timeline tick/.style={
+		semithick,
+		draw=MainText!60
+	},
+	timeline event/.style={
+		circle,
+		draw=ExColor!85!black,
+		fill=ExBg,
+		thick,
+		minimum size=7.5mm,
+		inner sep=0pt
+	},
+	timeline milestone/.style={
+		rounded corners=3pt,
+		draw=LogicColor!82!black,
+		fill=LogicBg,
+		thick,
+		minimum width=19mm,
+		minimum height=8mm,
+		align=center
+	},
+	timeline span/.style={
+		line width=3pt,
+		draw=NoteColor!72!black
+	},
+	timeline connector/.style={
+		-Latex,
+		semithick,
+		draw=DefColor!85!black
+	},
+	prob universe/.style={
+		draw=MainText!82,
+		fill=white,
+		thick,
+		rounded corners=2pt
+	},
+	prob event/.style={
+		draw=ExColor!88!black,
+		fill=ExBg,
+		fill opacity=0.88,
+		text opacity=1,
+		line width=1pt
+	},
+	prob event alt/.style={
+		draw=NoteColor!82!black,
+		fill=TopologyBg,
+		fill opacity=0.92,
+		text opacity=1,
+		line width=1pt
+	},
+	prob condition/.style={
+		very thick,
+		dash pattern=on 5pt off 2pt on 1.2pt off 2pt,
+		draw=LogicColor!84!black
+	},
+	prob outcome/.style={
+		circle,
+		fill=LogicColor!88!black,
+		inner sep=1.25pt
+	},
+	prob label/.style={
+		maki annotation,
+		fill=white,
+		inner sep=2pt
+	},
+	graph node/.style={
+		circle,
+		draw=GeometryColor!86!black,
+		fill=GeometryBg,
+		thick,
+		minimum size=8mm,
+		inner sep=0pt
+	},
+	graph node accent/.style={
+		graph node,
+		draw=LogicColor!85!black,
+		fill=LogicBg
+	},
+	graph node muted/.style={
+		graph node,
+		draw=MainText!40,
+		fill=black!4
+	},
+	graph edge/.style={
+		line width=0.95pt,
+		draw=MainText!72
+	},
+	graph edge strong/.style={
+		line width=1.15pt,
+		draw=LogicColor!85!black
+	},
+	graph edge cut/.style={
+		line width=1pt,
+		densely dashed,
+		draw=DefColor!85!black
+	},
+	graph walk/.style={
+		-Latex,
+		line width=1pt,
+		draw=NoteColor!85!black
+	},
+	graph label/.style={
+		maki label,
+		fill=white,
+		inner sep=1pt
+	}
+}
+
+\makeatletter
+
+\ifMakiBeamerMode
+	\NewDocumentCommand{\MakeChapterGuide}{m}{%
+		\PackageWarningNoLine{maki-notes}{\string\MakeChapterGuide\space is not supported in beamer mode and will be ignored}%
+	}
+\else
+	\pretocmd{\@chapter}{\MakiBindPendingChapterInfo}{}{}
+	\pretocmd{\@schapter}{\MakiBindPendingChapterInfo}{}{}
+
+	\renewcommand{\chaptermark}[1]{%
+		\markboth{#1}{}%
+		\gdef\MakiCurrentChapterTitle{#1}%
+		\xdef\MakiCurrentChapterNumber{\thechapter}%
+	}
+
+	\newbox\maki@localtocbox
+
+	\newcommand{\maki@guideinforow}[2]{%
+		\ifdefempty{#2}{}{%
+			{\color{LogicColor}\bfseries #1}\hspace{0.6em}#2\par
+		}%
+	}
+
+	\newcommand{\maki@guidefieldbox}[2]{%
+		\ifdefempty{#2}{}{%
+			\begin{tcolorbox}[maki workflow card,title={#1}]
+				#2
+			\end{tcolorbox}%
+		}%
+	}
+
+	\newcommand{\maki@chapterguideheader}{%
+		\begin{center}
+			{\fontsize{28pt}{34pt}\selectfont\heavykaishu\color{LogicColor} 第\ \MakiCurrentChapterNumber\ 章\par}
+			\vspace{0.75em}
+			{\fontsize{26pt}{32pt}\selectfont\heavykaishu\color{MainText} \MakiCurrentChapterTitle\par}
+			\ifdefempty{\MakiCurrentChapterSubtitle}{}{%
+				\vspace{0.7em}
+				{\large\kaishu\color{MainText!78} \MakiCurrentChapterSubtitle\par}
+			}%
+		\end{center}
+	}
+
+	\newcommand{\maki@chapterguideoverview}{%
+		\begin{tcolorbox}[maki workflow hero]
+			\maki@guideinforow{课程}{\MakiCourseInfoCourse}
+			\maki@guideinforow{学期}{\MakiCourseInfoTerm}
+			\maki@guideinforow{对象}{\MakiCourseInfoAudience}
+			\maki@guideinforow{授课}{\MakiCourseInfoInstructor}
+			\maki@guideinforow{作者}{\MakiCourseInfoAuthor}
+			\maki@guideinforow{讲次}{\MakiEffectiveChapterLecture}
+			\maki@guideinforow{日期}{\MakiEffectiveChapterDate}
+		\end{tcolorbox}
+	}
+
+	\newcommand{\maki@chapterguidenavigation}{%
+		\begingroup
+			\etocchecksemptiness
+			\etocsettocstyle{}{}%
+			\etocsetstyle{section}
+				{\begin{list}{}{\leftmargin=0pt\itemsep=0.45em\topsep=0pt\parsep=0pt\partopsep=0pt\labelwidth=0pt\labelsep=0pt}}%
+				{}%
+				{\item \textcolor{LogicColor}{\bfseries\etocthenumber}\hspace{0.6em}\etocname\hfill{\footnotesize\color{MainText!58}\etocthepage}}%
+				{\end{list}}%
+			\etocsetnexttocdepth{section}%
+			\setbox\maki@localtocbox=\vbox{%
+				\hsize=\linewidth
+				\localtableofcontents
+			}%
+			\etocifwasempty{}{%
+				\begin{tcolorbox}[maki workflow card,title={本章导航}]
+					\unvbox\maki@localtocbox
+				\end{tcolorbox}%
+			}%
+		\endgroup
+	}
+
+	\NewDocumentCommand{\MakeChapterGuide}{m}{%
+		\MakiClearGuideInfo
+		\pgfkeys{/maki/guide, #1}%
+		\MakiResolveEffectiveChapterInfo
+		\clearpage
+		\thispagestyle{plain}
+		\maki@chapterguideheader
+		\vspace{0.4em}
+		\maki@chapterguideoverview
+		\begin{tcbraster}[raster columns=2,raster column skip=6mm,raster row skip=6mm]
+			\maki@guidefieldbox{先修要求}{\MakiCurrentChapterPrereq}
+			\maki@guidefieldbox{学习目标}{\MakiCurrentChapterGoals}
+			\maki@guidefieldbox{关键词}{\MakiCurrentChapterKeywords}
+			\maki@guidefieldbox{本章路线}{\MakiGuideRoute}
+			\maki@guidefieldbox{核心公式}{\MakiGuideFormulas}
+			\maki@guidefieldbox{方法提要}{\MakiGuideMethods}
+			\maki@guidefieldbox{常见误区}{\MakiGuidePitfalls}
+			\maki@guidefieldbox{考试关注}{\MakiGuideExamFocus}
+		\end{tcbraster}
+		\maki@chapterguidenavigation
+		\clearpage
+	}
+\fi
+
+	\newcommand{\maki@entryguideinforow}[2]{%
+		\ifdefempty{#2}{}{%
+			{\color{LogicColor}\bfseries #1}\hspace{0.6em}#2\par
+		}%
+	}
+
+	\newcommand{\maki@entryguidefieldbox}[2]{%
+		\ifdefempty{#2}{}{%
+			\begin{tcolorbox}[maki workflow card,title={#1}]
+				#2
+			\end{tcolorbox}%
+		}%
+	}
+
+	\newcommand{\maki@entryguidetitle}{%
+		\ifdefempty{\MakiEntryInfoTopic}{研究条目}{\MakiEntryInfoTopic}%
+	}
+
+	\newcommand{\maki@entryguidesource}{%
+		\ifdefempty{\MakiEntryInfoSource}{%
+			\ifdefempty{\MakiEntryInfoSourceKey}{}{\texttt{\MakiEntryInfoSourceKey}}%
+		}{%
+			\MakiEntryInfoSource
+			\ifdefempty{\MakiEntryInfoSourceKey}{}{ \quad \texttt{\MakiEntryInfoSourceKey}}%
+		}%
+	}
+
+	\newcommand{\maki@entryguidepeople}{%
+		\ifdefempty{\MakiResearchInfoAuthor}{%
+			\MakiResearchInfoCollaborators
+		}{%
+			\MakiResearchInfoAuthor
+			\ifdefempty{\MakiResearchInfoCollaborators}{}{ \quad / \quad \MakiResearchInfoCollaborators}%
+		}%
+	}
+
+	\newcommand{\maki@entryguideupdated}{%
+		\ifdefempty{\MakiEntryInfoUpdated}{\MakiResearchInfoUpdated}{\MakiEntryInfoUpdated}%
+	}
+
+	\newcommand{\maki@entryguidecreated}{%
+		\MakiResearchInfoCreated
+	}
+
+	\newcommand{\maki@entryguidetags}{%
+		\ifdefempty{\MakiEntryInfoTags}{%
+			\MakiResearchInfoTags
+		}{%
+			\MakiEntryInfoTags
+			\ifdefempty{\MakiResearchInfoTags}{}{ \quad / \quad \MakiResearchInfoTags}%
+		}%
+	}
+
+	\NewDocumentCommand{\MakeEntryGuide}{m}{%
+		\MakiClearEntryGuideInfo
+		\pgfkeys{/maki/entryguide, #1}%
+		\begin{tcolorbox}[maki workflow hero,title={\maki@entryguidetitle}]
+			\maki@entryguideinforow{项目}{\MakiResearchInfoProject}
+			\maki@entryguideinforow{方向}{\MakiResearchInfoArea}
+			\maki@entryguideinforow{来源}{\maki@entryguidesource}
+			\maki@entryguideinforow{作者}{\maki@entryguidepeople}
+			\maki@entryguideinforow{状态}{\MakiResearchInfoStatus}
+			\maki@entryguideinforow{创建}{\maki@entryguidecreated}
+			\maki@entryguideinforow{更新}{\maki@entryguideupdated}
+			\maki@entryguideinforow{标签}{\maki@entryguidetags}
+		\end{tcolorbox}
+		\begin{tcbraster}[raster columns=2,raster column skip=6mm,raster row skip=6mm]
+			\maki@entryguidefieldbox{条目目标}{\MakiEntryInfoObjective}
+			\maki@entryguidefieldbox{摘要}{\MakiEntryGuideSummary}
+			\maki@entryguidefieldbox{依赖}{\MakiEntryGuideDependencies}
+			\maki@entryguidefieldbox{目标}{\MakiEntryGuideTargets}
+			\maki@entryguidefieldbox{障碍}{\MakiEntryGuideBlockers}
+			\maki@entryguidefieldbox{下一步}{\MakiEntryGuideNextSteps}
+		\end{tcbraster}
+	}
+
+	\newcommand{\maki@marginnoteformatright}[1]{%
+		\begin{tabular}{@{}p{\MakiMarginRuleWidth}@{\hspace{\MakiMarginNoteGap}}>{\raggedright\arraybackslash}p{\dimexpr\marginparwidth-\MakiMarginRuleWidth-\MakiMarginNoteGap\relax}@{}}%
+			{\color{LogicColor}\vrule width \MakiMarginRuleWidth} & #1
+		\end{tabular}%
+	}
+
+	\newcommand{\maki@marginnoteformatleft}[1]{%
+		\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{\dimexpr\marginparwidth-\MakiMarginRuleWidth-\MakiMarginNoteGap\relax}@{\hspace{\MakiMarginNoteGap}}p{\MakiMarginRuleWidth}@{}}%
+			#1 & {\color{LogicColor}\vrule width \MakiMarginRuleWidth}
+		\end{tabular}%
+	}
+
+	\newcommand{\maki@marginnotebody}[2]{%
+		{\footnotesize\linespread{1.12}\selectfont\color{MainText!85}%
+		\ifstrempty{#1}{}{%
+			{\color{LogicColor}\heavykaishu #1}\par\vspace{0.18em}%
+		}%
+		#2}%
+	}
+
+	\newcommand{\maki@outernote}[2]{%
+		\marginnote{%
+			\checkoddpage
+			\if@twoside
+				\ifoddpage
+					\maki@marginnoteformatright{\maki@marginnotebody{#1}{#2}}%
+				\else
+					\maki@marginnoteformatleft{\maki@marginnotebody{#1}{#2}}%
+				\fi
+			\else
+				\maki@marginnoteformatright{\maki@marginnotebody{#1}{#2}}%
+			\fi
+		}%
+	}
+
+	\newcommand{\maki@wrapfigurestyle}{%
+		\captionsetup{type=figure}%
+		\setlength{\columnsep}{\MakiWrapColumnSep}%
+		\setlength{\intextsep}{\MakiWrapTextSep}%
+	}
+
+	\NewDocumentEnvironment{leftfiguretext}{o m +b}{%
+		\IfNoValueTF{#1}
+			{\begin{wrapfigure}{l}{#2}}
+			{\begin{wrapfigure}[#1]{l}{#2}}%
+		\maki@wrapfigurestyle
+		#3
+	}{%
+		\end{wrapfigure}
+	}
+
+	\NewDocumentEnvironment{rightfiguretext}{o m +b}{%
+		\IfNoValueTF{#1}
+			{\begin{wrapfigure}{r}{#2}}
+			{\begin{wrapfigure}[#1]{r}{#2}}%
+		\maki@wrapfigurestyle
+		#3
+	}{%
+		\end{wrapfigure}
+	}
+
+	\NewDocumentEnvironment{figuretextleft}{o m +b}{%
+		\IfNoValueTF{#1}
+			{\begin{leftfiguretext}{#2}}
+			{\begin{leftfiguretext}[#1]{#2}}%
+		#3
+		\end{leftfiguretext}
+	}{}
+
+	\NewDocumentEnvironment{figuretextright}{o m +b}{%
+		\IfNoValueTF{#1}
+			{\begin{rightfiguretext}{#2}}
+			{\begin{rightfiguretext}[#1]{#2}}%
+		#3
+		\end{rightfiguretext}
+	}{}
+
+	\NewDocumentCommand{\wrapcaption}{m}{\caption{#1}}
+
+	\NewDocumentCommand{\sidenote}{m}{%
+		\maki@outernote{}{#1}%
+	}
+
+	\NewDocumentCommand{\marginremark}{o m}{%
+		\IfNoValueTF{#1}
+			{\maki@outernote{}{#2}}
+			{\maki@outernote{#1}{#2}}%
+	}
+
+	\NewDocumentCommand{\sidecaptionof}{m m}{%
+		\refstepcounter{#1}%
+		\marginremark[\csname fnum@#1\endcsname]{#2}%
+	}
+
+	\NewDocumentCommand{\sidecaption}{m}{%
+		\sidecaptionof{figure}{#1}%
+	}
+
+\makeatother
+
+\newcommand{\fillin}[1][3cm]{\,\underline{\hspace{#1}}\,}
+\newcommand{\selectbracket}{\unskip\nolinebreak\quad \raisebox{0.7pt}[0pt][0pt]{\mbox{$(\qquad)$}}\par}
+
+\makeatletter
+\ifMakiBeamerMode\else
+	\RequirePackage{titlesec}
+	\ctexset{
+		chapter = {
+			format = \centering,
+			nameformat = \fontsize{40pt}{50pt}\selectfont\heavykaishu\color{LogicColor},
+			titleformat = \fontsize{40pt}{50pt}\selectfont\heavykaishu\color{LogicColor},
+			aftername = \hspace{1.8em},
+			beforeskip = 10pt,
+			afterskip = 55pt,
+		},
+		section = {
+			format = \LARGE\bfseries\color{MainText},
+			beforeskip = 24pt,
+			afterskip = 27pt,
+		}
+	}
+
+	\newcommand{\maki@sectionstyle@plain}{%
+		\titleformat{\section}[hang]
+			{\centering\LARGE\bfseries\color{MainText}}
+			{\thesection}{0.7em}{}%
+		\titlespacing*{\section}{0pt}{24pt}{27pt}%
+	}
+	\newcommand{\maki@sectionstyle@classic}{%
+		\titleformat{\section}[hang]
+			{\Large\bfseries\color{MainText}}
+			{\colorbox{LogicColor}{\color{white}\strut\thesection}}
+			{0.8em}{}[\vspace{0.25em}{\color{LogicColor!65}\titlerule}]%
+		\titlespacing*{\section}{0pt}{24pt}{20pt}%
+	}
+	\newcommand{\maki@sectionstyle@modern}{%
+		\titleformat{\section}[display]
+			{\Large\bfseries\color{MainText}}
+			{\color{LogicColor}\sffamily\small SECTION\enspace\thesection}
+			{0.3em}{}[\vspace{0.35em}{\color{LogicColor}\titlerule[1.2pt]}]%
+		\titlespacing*{\section}{0pt}{26pt}{20pt}%
+	}
+	\newcommand{\maki@sectionstyle@minimal}{%
+		\titleformat{\section}[hang]
+			{\Large\bfseries\color{MainText}}
+			{\color{LogicColor}\rule[-0.2ex]{3pt}{1.35em}\hspace{0.55em}\thesection}
+			{0.7em}{}%
+		\titlespacing*{\section}{0pt}{24pt}{18pt}%
+	}
+	\newcommand{\maki@sectionstyle@boxed}{%
+		\titleformat{\section}[block]
+			{\Large\bfseries\color{MainText}}
+			{\fcolorbox{LogicColor}{LogicBg}{\color{LogicColor}\strut\thesection}}
+			{0.8em}{}%
+		\titlespacing*{\section}{0pt}{25pt}{20pt}%
+	}
+	\newcommand{\maki@sectionstyle@elegant}{%
+		\titleformat{\section}[display]
+			{\centering\Large\bfseries\color{MainText}}
+			{\color{DefColor}\rule{2.4em}{0.5pt}\enspace\thesection\enspace\rule{2.4em}{0.5pt}}
+			{0.45em}{}%
+		\titlespacing*{\section}{0pt}{28pt}{22pt}%
+	}
+	% Remaining MindFlow names are compatibility aliases grouped by their
+	% closest print-friendly Maki style.
+	\let\maki@sectionstyle@neon\maki@sectionstyle@boxed
+	\let\maki@sectionstyle@terminal\maki@sectionstyle@minimal
+	\let\maki@sectionstyle@gradient\maki@sectionstyle@modern
+	\let\maki@sectionstyle@blueprint\maki@sectionstyle@classic
+	\let\maki@sectionstyle@ribbon\maki@sectionstyle@elegant
+	\NewDocumentCommand{\SetSectionStyle}{m}{%
+		\ifcsname maki@sectionstyle@#1\endcsname
+			\csname maki@sectionstyle@#1\endcsname
+			\renewcommand{\MakiSectionStyle}{#1}%
+		\else
+			\PackageError{maki-notes}{Unsupported section style `#1'}%
+				{Valid values: plain, classic, modern, minimal, boxed, elegant, neon, terminal, gradient, blueprint, ribbon.}%
+		\fi
+	}
+	\SetSectionStyle{\MakiSectionStyle}
+\fi
+\makeatother
+
+\tcbset{
+	commonbox/.style={
+		enhanced,
+		fonttitle=\bfseries\large,
+		attach boxed title to top left={xshift=5mm, yshift*=-\tcboxedtitleheight/2},
+		boxed title style={
+			frame hidden,
+			opacityback=1,
+			rounded corners,
+			arc=4pt,
+			top=1mm, bottom=1mm, left=2mm, right=2mm
+		},
+		boxrule=0pt, frame hidden,
+		sharp corners=downhill, rounded corners, arc=10pt,
+		drop fuzzy shadow=black!15!white,
+		left=8mm, right=5mm, top=3mm, bottom=5mm,
+		middle=1em,
+		before skip=1.7em, after skip=1.2em,
+		fontupper=\linespread{1.7}\selectfont
+	},
+	maki workflow card/.style={
+		enhanced,
+		breakable,
+		colback=white,
+		colframe=LogicColor!18,
+		boxrule=0.6pt,
+		arc=8pt,
+		left=5mm,
+		right=5mm,
+		top=3mm,
+		bottom=4mm,
+		fonttitle=\bfseries\large\color{LogicColor},
+		coltitle=LogicColor,
+		title filled=false,
+		before skip=0pt,
+		after skip=0pt,
+		fontupper=\linespread{1.33}\selectfont
+	},
+	maki workflow hero/.style={
+		maki workflow card,
+		colback=LogicBg!55!white,
+		colframe=LogicColor!26,
+		boxrule=0.8pt
+	},
+	maki workflow block/.style={
+		enhanced,
+		breakable,
+		boxrule=0pt,
+		frame hidden,
+		sharp corners=downhill,
+		rounded corners,
+		arc=8pt,
+		left=7mm,
+		right=5mm,
+		top=3mm,
+		bottom=4mm,
+		before skip=1.2em,
+		after skip=1em,
+		fonttitle=\bfseries\large,
+		title filled=false,
+		fontupper=\linespread{1.45}\selectfont
+	},
+	maki keyformula box/.style={
+		maki workflow block,
+		colback=GeometryBg,
+		colbacktitle=GeometryColor,
+		coltitle=GeometryColor
+	},
+	maki pitfall box/.style={
+		maki workflow block,
+		colback=LogicBg,
+		colbacktitle=LogicColor,
+		coltitle=LogicColor
+	},
+	maki method box/.style={
+		maki workflow block,
+		colback=TopologyBg,
+		colbacktitle=NoteColor,
+		coltitle=NoteColor
+	},
+	maki examfocus box/.style={
+		maki workflow block,
+		colback=ExBg,
+		colbacktitle=ExColor,
+		coltitle=ExColor
+	},
+	maki notation box/.style={
+		maki workflow block,
+		colback=DefBg,
+		colbacktitle=DefColor,
+		coltitle=DefColor
+	},
+	maki question box/.style={
+		maki workflow block,
+		colback=GeometryBg,
+		colbacktitle=GeometryColor,
+		coltitle=GeometryColor
+	},
+	maki conjecture box/.style={
+		maki workflow block,
+		colback=TopologyBg,
+		colbacktitle=NoteColor,
+		coltitle=NoteColor
+	},
+	maki claim box/.style={
+		maki workflow block,
+		colback=LogicBg,
+		colbacktitle=LogicColor,
+		coltitle=LogicColor
+	},
+	maki remark box/.style={
+		maki workflow block,
+		colback=white,
+		colbacktitle=MainText,
+		coltitle=MainText
+	},
+	maki proof sketch box/.style={
+		maki workflow block,
+		colback=LogicBg,
+		colbacktitle=LogicColor,
+		coltitle=LogicColor
+	},
+	maki idea box/.style={
+		maki workflow block,
+		colback=TopologyBg,
+		colbacktitle=NoteColor,
+		coltitle=NoteColor
+	},
+	maki obstacle box/.style={
+		maki workflow block,
+		colback=ExBg,
+		colbacktitle=ExColor,
+		coltitle=ExColor
+	},
+	maki nextstep box/.style={
+		maki workflow block,
+		colback=DefBg,
+		colbacktitle=DefColor,
+		coltitle=DefColor
+	},
+	maki solution box/.style={
+		maki workflow block,
+		colback=TopologyBg,
+		colbacktitle=NoteColor,
+		coltitle=NoteColor
+	}
+}
+
+\newtcolorbox{thmBox}[3][]{%
+	commonbox,
+	colback=LogicBg,
+	colbacktitle=LogicColor,
+	before title={\refstepcounter{theorem}},
+	title={#2 \thetheorem\ifstrempty{#3}{}{（#3）}},
+	#1
+}
+
+\ifMakiBeamerMode\else
+	\newcounter{theorem}[chapter]
+	\renewcommand{\thetheorem}{\thechapter.\arabic{theorem}}
+\fi
+
+\ifMakiBeamerMode\else
+	\newenvironment{theorem}[1][]{\begin{thmBox}{定理}{#1}}{\end{thmBox}}
+	\newenvironment{lemma}[1][]{\begin{thmBox}{引理}{#1}}{\end{thmBox}}
+	\newenvironment{proposition}[1][]{\begin{thmBox}{命题}{#1}}{\end{thmBox}}
+	\newenvironment{corollary}[1][]{\begin{thmBox}{推论}{#1}}{\end{thmBox}}
+	\newenvironment{property}[1][]{\begin{thmBox}{性质}{#1}}{\end{thmBox}}
+\fi
+
+\newtcolorbox{defBox}[3][]{%
+	commonbox,
+	colback=DefBg,
+	colbacktitle=DefColor,
+	before title={\refstepcounter{theorem}},
+	title={#2 \thetheorem\ifstrempty{#3}{}{（#3）}},
+	#1
+}
+
+\ifMakiBeamerMode\else
+	\newcounter{definition}[chapter]
+	\renewcommand{\thedefinition}{\thechapter.\arabic{definition}}
+\fi
+
+\ifMakiBeamerMode\else
+	\newenvironment{definition}[1][]{\begin{defBox}{定义}{#1}}{\end{defBox}}
+	\newenvironment{axiom}[1][]{\begin{defBox}{公理}{#1}}{\end{defBox}}
+\fi
+
+\newtcolorbox{exBox}[3][]{%
+	commonbox,
+	colback=ExBg,
+	colbacktitle=ExColor,
+	before title={\refstepcounter{theorem}},
+	title={#2 \thetheorem\ifstrempty{#3}{}{（#3）}},
+	#1
+}
+
+\newtcolorbox{longexBox}[3][]{%
+	breakable,
+	commonbox,
+	colback=ExBg,
+	colbacktitle=ExColor,
+	before title={\refstepcounter{theorem}},
+	title={#2 \thetheorem\ifstrempty{#3}{}{（#3）}},
+	#1
+}
+
+\ifMakiBeamerMode\else
+	\newcounter{example}[chapter]
+	\renewcommand{\theexample}{\thechapter.\arabic{example}}
+\fi
+
+\ifMakiBeamerMode\else
+	\newenvironment{example}[1][]{\begin{exBox}{例题}{#1}}{\end{exBox}}
+	\newenvironment{longexample}[1][]{\begin{longexBox}{例题}{#1}}{\end{longexBox}}
+	\newenvironment{exercise}[1][]{\begin{exBox}{练习}{#1}\xdef\MakiCurrentExerciseNumber{\thetheorem}}{\end{exBox}}
+\fi
+
+\newtcolorbox{realexamBox}[2][]{%
+	commonbox,
+	colback=ExBg,
+	colbacktitle=ExColor,
+	title={真题\ \ifstrempty{#2}{}{（#2）}},
+	#1
+}
+
+\newtcolorbox{longrealexamBox}[2][]{%
+	breakable,
+	commonbox,
+	colback=ExBg,
+	colbacktitle=ExColor,
+	title={真题\ \ifstrempty{#2}{}{（#2）}},
+	#1
+}
+
+\ifMakiBeamerMode\else
+	\newenvironment{realexam}[1][]{\begin{realexamBox}{#1}}{\end{realexamBox}}
+	\newenvironment{longrealexam}[1][]{\begin{longrealexamBox}{#1}}{\end{longrealexamBox}}
+\fi
+
+\providecommand{\chapref}[1]{第~\ref{#1}~章}
+\providecommand{\secref}[1]{第~\ref{#1}~节}
+\providecommand{\thmref}[1]{定理~\ref{#1}}
+\providecommand{\defref}[1]{定义~\ref{#1}}
+\providecommand{\exref}[1]{例题~\ref{#1}}
+\providecommand{\exerciseref}[1]{练习~\ref{#1}}
+\providecommand{\claimref}[1]{断言~\ref{#1}}
+\providecommand{\questionref}[1]{问题~\ref{#1}}
+\providecommand{\conjectureref}[1]{猜想~\ref{#1}}
+\providecommand{\figref}[1]{图~\ref{#1}}
+\providecommand{\tabref}[1]{表~\ref{#1}}
+\providecommand{\eqnref}[1]{式~\eqref{#1}}
+
+\makeatletter
+\ifMakiBeamerMode\else
+\newcounter{makiSolutionEntry}
+\newcommand{\MakiCurrentExerciseNumber}{}
+
+\newcommand{\maki@solutionfield}[2]{%
+	\csname maki@solution@#1@#2\endcsname
+}
+
+\newcommand{\maki@makesolutiontitle}[1]{%
+	\def\maki@solutiontitle{解答}%
+	\ifdefempty{\MakiCurrentExerciseNumber}{}{%
+		\edef\maki@solutiontitle{\maki@solutiontitle（练习 \MakiCurrentExerciseNumber）}%
+	}%
+	\IfNoValueF{#1}{%
+		\edef\maki@solutiontitle{\maki@solutiontitle：#1}%
+	}%
+}
+
+\newcommand{\maki@rendersolution}[2]{%
+	\begin{tcolorbox}[maki solution box,title={#1}]
+		#2
+	\end{tcolorbox}%
+}
+
+\newcommand{\maki@registersolution}[2]{%
+	\stepcounter{makiSolutionEntry}%
+	\expandafter\xdef\csname maki@solution@\arabic{makiSolutionEntry}@title\endcsname{#1}%
+	\expandafter\gdef\csname maki@solution@\arabic{makiSolutionEntry}@body\endcsname{#2}%
+}
+
+\NewDocumentEnvironment{solution}{o +b}{%
+	\ifMakiShowAnswers
+		\begingroup
+			\maki@makesolutiontitle{#1}%
+			\ifdefstring{\MakiSolutionsMode}{appendix}{%
+				\maki@registersolution{\maki@solutiontitle}{#2}%
+			}{%
+				\ifdefstring{\MakiSolutionsMode}{hidden}{}{%
+					\maki@rendersolution{\maki@solutiontitle}{#2}%
+				}%
+			}%
+		\endgroup
+	\fi
+}{}
+
+\NewDocumentCommand{\PrintSolutions}{}{%
+	\ifMakiShowAnswers
+		\ifMakiBeamerMode
+			\begin{frame}[allowframebreaks]{答案与解析}
+		\else
+			\clearpage
+			\chapter*{答案与解析}
+			\addcontentsline{toc}{chapter}{答案与解析}
+		\fi
+		\ifnum\value{makiSolutionEntry}=0
+			暂无已登记答案。%
+		\else
+			\@tempcnta=1\relax
+			\@whilenum\@tempcnta<\numexpr\value{makiSolutionEntry}+1\relax\do{%
+				\maki@rendersolution
+					{\maki@solutionfield{\number\@tempcnta}{title}}
+					{\maki@solutionfield{\number\@tempcnta}{body}}%
+				\advance\@tempcnta\@ne
+			}%
+		\fi
+		\ifMakiBeamerMode
+			\end{frame}
+		\fi
+	\fi
+}
+\fi
+\makeatother
+
+\makeatletter
+\newcounter{makiSymbolEntry}
+\newcounter{makiOpenProblemEntry}
+
+\newcommand{\maki@symbolfield}[2]{%
+	\csname maki@symbol@#1@#2\endcsname
+}
+
+\newcommand{\maki@openproblemfield}[2]{%
+	\csname maki@openproblem@#1@#2\endcsname
+}
+
+\newcommand{\maki@registersymbol}[2]{%
+	\stepcounter{makiSymbolEntry}%
+	\expandafter\gdef\csname maki@symbol@\arabic{makiSymbolEntry}@symbol\endcsname{#1}%
+	\expandafter\gdef\csname maki@symbol@\arabic{makiSymbolEntry}@desc\endcsname{#2}%
+}
+
+\newcommand{\maki@registeropenproblem}[3]{%
+	\stepcounter{makiOpenProblemEntry}%
+	\expandafter\gdef\csname maki@openproblem@\arabic{makiOpenProblemEntry}@type\endcsname{#1}%
+	\expandafter\xdef\csname maki@openproblem@\arabic{makiOpenProblemEntry}@number\endcsname{#2}%
+	\expandafter\gdef\csname maki@openproblem@\arabic{makiOpenProblemEntry}@title\endcsname{#3}%
+	\expandafter\xdef\csname maki@openproblem@\arabic{makiOpenProblemEntry}@page\endcsname{\thepage}%
+}
+
+\newcommand{\DeclareSymbol}[2]{%
+	\maki@registersymbol{#1}{#2}%
+}
+
+\ifMakiBeamerMode
+	\newcounter{notation}[section]
+	\newcounter{question}[section]
+	\newcounter{conjecture}[section]
+	\newcounter{claim}[section]
+	\renewcommand{\thenotation}{\thesection.\arabic{notation}}
+	\renewcommand{\thequestion}{\thesection.\arabic{question}}
+	\renewcommand{\theconjecture}{\thesection.\arabic{conjecture}}
+	\renewcommand{\theclaim}{\thesection.\arabic{claim}}
+\else
+	\newcounter{notation}[chapter]
+	\newcounter{question}[chapter]
+	\newcounter{conjecture}[chapter]
+	\newcounter{claim}[chapter]
+	\renewcommand{\thenotation}{\thechapter.\arabic{notation}}
+	\renewcommand{\thequestion}{\thechapter.\arabic{question}}
+	\renewcommand{\theconjecture}{\thechapter.\arabic{conjecture}}
+	\renewcommand{\theclaim}{\thechapter.\arabic{claim}}
+\fi
+
+\NewDocumentEnvironment{notation}{o +b}{%
+	\refstepcounter{notation}%
+	\begin{tcolorbox}[maki notation box,title={记号 \thenotation\IfNoValueF{#1}{（#1）}}]
+		#2
+	\end{tcolorbox}
+}{}
+
+\NewDocumentEnvironment{question}{o +b}{%
+	\refstepcounter{question}%
+	\IfNoValueTF{#1}
+		{\maki@registeropenproblem{问题}{\thequestion}{}}
+		{\maki@registeropenproblem{问题}{\thequestion}{#1}}%
+	\begin{tcolorbox}[maki question box,title={问题 \thequestion\IfNoValueF{#1}{（#1）}}]
+		#2
+	\end{tcolorbox}
+}{}
+
+\NewDocumentEnvironment{conjecture}{o +b}{%
+	\refstepcounter{conjecture}%
+	\IfNoValueTF{#1}
+		{\maki@registeropenproblem{猜想}{\theconjecture}{}}
+		{\maki@registeropenproblem{猜想}{\theconjecture}{#1}}%
+	\begin{tcolorbox}[maki conjecture box,title={猜想 \theconjecture\IfNoValueF{#1}{（#1）}}]
+		#2
+	\end{tcolorbox}
+}{}
+
+\NewDocumentEnvironment{claim}{o +b}{%
+	\refstepcounter{claim}%
+	\begin{tcolorbox}[maki claim box,title={断言 \theclaim\IfNoValueF{#1}{（#1）}}]
+		#2
+	\end{tcolorbox}
+}{}
+
+\NewDocumentEnvironment{keyformula}{o +b}{%
+	\begin{tcolorbox}[maki keyformula box,title={\IfNoValueTF{#1}{核心公式}{#1}}]
+		#2
+	\end{tcolorbox}
+}{}
+
+\NewDocumentEnvironment{pitfall}{o +b}{%
+	\begin{tcolorbox}[maki pitfall box,title={\IfNoValueTF{#1}{常见误区}{#1}}]
+		#2
+	\end{tcolorbox}
+}{}
+
+\NewDocumentEnvironment{methodnote}{o +b}{%
+	\begin{tcolorbox}[maki method box,title={\IfNoValueTF{#1}{方法提要}{#1}}]
+		#2
+	\end{tcolorbox}
+}{}
+
+\NewDocumentEnvironment{examfocus}{o +b}{%
+	\begin{tcolorbox}[maki examfocus box,title={\IfNoValueTF{#1}{考试关注}{#1}}]
+		#2
+	\end{tcolorbox}
+}{}
+
+\NewDocumentEnvironment{remark}{o +b}{%
+	\begin{tcolorbox}[maki remark box,title={\IfNoValueTF{#1}{备注}{#1}}]
+		#2
+	\end{tcolorbox}
+}{}
+
+\NewDocumentEnvironment{proofsketch}{o +b}{%
+	\begin{tcolorbox}[maki proof sketch box,title={\IfNoValueTF{#1}{证明思路}{#1}}]
+		#2
+	\end{tcolorbox}
+}{}
+
+\NewDocumentEnvironment{idea}{o +b}{%
+	\begin{tcolorbox}[maki idea box,title={\IfNoValueTF{#1}{想法}{#1}}]
+		#2
+	\end{tcolorbox}
+}{}
+
+\NewDocumentEnvironment{obstacle}{o +b}{%
+	\begin{tcolorbox}[maki obstacle box,title={\IfNoValueTF{#1}{障碍}{#1}}]
+		#2
+	\end{tcolorbox}
+}{}
+
+\NewDocumentEnvironment{nextstep}{o +b}{%
+	\begin{tcolorbox}[maki nextstep box,title={\IfNoValueTF{#1}{下一步}{#1}}]
+		#2
+	\end{tcolorbox}
+}{}
+
+\newcommand{\maki@printsymbolentry}[1]{%
+	\par\noindent
+	{\color{DefColor}\bfseries \maki@symbolfield{#1}{symbol}}\hspace{0.8em}%
+	\maki@symbolfield{#1}{desc}\par
+}
+
+\newcommand{\maki@printopenproblementry}[1]{%
+	\begingroup
+		\edef\maki@openproblemtitle{\maki@openproblemfield{#1}{title}}%
+		\par\noindent
+		{\color{LogicColor}\bfseries \maki@openproblemfield{#1}{type}\ \maki@openproblemfield{#1}{number}}%
+		\ifstrempty{\maki@openproblemtitle}{}{（\maki@openproblemtitle）}%
+		\hfill{\footnotesize\color{MainText!62} 第 \maki@openproblemfield{#1}{page} 页}\par
+	\endgroup
+}
+
+\newcommand{\PrintSymbolIndex}{%
+	\begin{tcolorbox}[maki workflow card,title={符号表}]
+		\ifnum\value{makiSymbolEntry}=0
+			暂无已登记符号。%
+		\else
+			\@tempcnta=1\relax
+			\@whilenum\@tempcnta<\numexpr\value{makiSymbolEntry}+1\relax\do{%
+				\maki@printsymbolentry{\number\@tempcnta}%
+				\advance\@tempcnta\@ne
+			}%
+		\fi
+	\end{tcolorbox}
+}
+
+\newcommand{\PrintOpenProblemIndex}{%
+	\begin{tcolorbox}[maki workflow card,title={开放问题表}]
+		\ifnum\value{makiOpenProblemEntry}=0
+			暂无开放问题。%
+		\else
+			\@tempcnta=1\relax
+			\@whilenum\@tempcnta<\numexpr\value{makiOpenProblemEntry}+1\relax\do{%
+				\maki@printopenproblementry{\number\@tempcnta}%
+				\advance\@tempcnta\@ne
+			}%
+		\fi
+	\end{tcolorbox}
+}
+\makeatother
+
+\ifMakiBeamerMode\else
+	\newenvironment{note}{%
+		\par\vspace{0.5em}\noindent
+		\textbf{\color{NoteColor} 注：}%
+	}{%
+		\par\vspace{0.5em}%
+	}
+
+	\renewenvironment{proof}{%
+		\par\vspace{0.5em}\noindent
+		\textbf{\color{LogicColor} 证明：}%
+	}{%
+		\hfill \textcolor{LogicColor}{\rule{0.6em}{0.6em}} \par
+	}
+\fi
+
+\ifMakiBeamerMode
+	\numberwithin{equation}{section}
+\else
+	\pagestyle{fancy}
+	\fancyhf{}
+	\fancyhead[L]{\small \kaishu \MakiHeaderLeftText}
+	\fancyhead[R]{\small \kaishu \MakiHeaderRightText}
+	\fancyfoot[C]{\thepage}
+	\renewcommand{\headrulewidth}{0.5pt}
+	\renewcommand{\headrule}{\hbox to\headwidth{\color{LogicColor}\leaders\hrule height \headrulewidth\hfill}}
+
+	\fancypagestyle{plain}{
+		\fancyhf{}
+		\fancyhead[L]{\small \kaishu \MakiHeaderLeftText}
+		\fancyhead[R]{\small \kaishu \MakiHeaderRightText}
+		\fancyfoot[C]{\thepage}
+		\renewcommand{\headrulewidth}{0.5pt}
+		\renewcommand{\headrule}{\hbox to\headwidth{\color{LogicColor}\leaders\hrule height \headrulewidth\hfill}}
+	}
+
+	\numberwithin{equation}{chapter}
+\fi

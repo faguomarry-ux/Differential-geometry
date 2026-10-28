@@ -1,0 +1,278 @@
+[
+  {
+    "id": "01-foundations",
+    "title": "分析、代数与拓扑预备",
+    "source": "补充；周第1章预备知识",
+    "status": "sample-draft",
+    "sections": [
+      "拓扑与紧致性",
+      "多元微分与链式法则",
+      "逆映射、隐映射与常秩定理",
+      "线性代数、对偶与多重线性"
+    ]
+  },
+  {
+    "id": "02-curves-surfaces",
+    "title": "曲线曲面与几何直觉",
+    "source": "补充；梁上册相关主题",
+    "status": "planned",
+    "sections": [
+      "正则曲线、弧长与Frenet标架",
+      "正则曲面与第一基本形式",
+      "形算子、第二基本形式与主曲率",
+      "Gauss方程与曲面的内蕴几何"
+    ]
+  },
+  {
+    "id": "03-manifolds",
+    "title": "光滑流形与光滑映射",
+    "source": "周1.1",
+    "status": "sample-draft",
+    "sections": [
+      "坐标卡、图册与极大光滑结构",
+      "球面、射影空间与乘积流形",
+      "光滑映射与微分同胚",
+      "Hausdorff性与第二可数性的作用"
+    ]
+  },
+  {
+    "id": "04-tangent",
+    "title": "切空间、余切空间与切映射",
+    "source": "周1.2及1.3.3",
+    "status": "planned",
+    "sections": [
+      "曲线等价类与导子模型",
+      "坐标基及其变换",
+      "切映射、链式法则与拉回",
+      "切丛与余切丛的局部平凡化"
+    ]
+  },
+  {
+    "id": "05-submanifolds",
+    "title": "子流形、向量场与可积分布",
+    "source": "周1.3至1.5",
+    "status": "planned",
+    "sections": [
+      "浸入、嵌入与正则值",
+      "向量场、积分曲线与局部流",
+      "李括号与流的交换",
+      "Frobenius定理及其证明"
+    ]
+  },
+  {
+    "id": "06-tensors",
+    "title": "张量、外代数与向量丛初步",
+    "source": "周2.1至2.3",
+    "status": "planned",
+    "sections": [
+      "张量积的泛性质",
+      "张量型别与缩并",
+      "交替化、楔积与外代数",
+      "向量丛、截面及过渡函数"
+    ]
+  },
+  {
+    "id": "07-forms",
+    "title": "微分形式与外微分",
+    "source": "周2.4",
+    "status": "planned",
+    "sections": [
+      "微分形式及局部表示",
+      "外微分的构造与唯一性",
+      "拉回与Cartan公式",
+      "Poincare引理与同伦算子"
+    ]
+  },
+  {
+    "id": "08-integration",
+    "title": "定向、单位分解与Stokes定理",
+    "source": "周2.5至2.6",
+    "status": "planned",
+    "sections": [
+      "单位分解的构造",
+      "带边流形与边界定向",
+      "紧支形式的积分",
+      "Stokes定理的局部证明与拼接"
+    ]
+  },
+  {
+    "id": "09-cohomology",
+    "title": "de Rham上同调与计算",
+    "source": "周2.6.3；后续拓扑工具补充",
+    "status": "planned",
+    "sections": [
+      "闭形式、恰当形式与上同调",
+      "同伦不变性",
+      "Mayer--Vietoris序列",
+      "圆周与球面的上同调计算"
+    ]
+  },
+  {
+    "id": "10-connections",
+    "title": "联络、平行移动与曲率",
+    "source": "周第3章",
+    "status": "planned",
+    "sections": [
+      "仿射联络与局部系数",
+      "平行移动与测地线方程",
+      "挠率、曲率与Bianchi恒等式",
+      "张量丛上的诱导联络"
+    ]
+  },
+  {
+    "id": "11-riemannian",
+    "title": "黎曼度量与Levi--Civita联络",
+    "source": "周4.1及4.3",
+    "status": "planned",
+    "sections": [
+      "黎曼度量与度量存在性",
+      "Koszul公式与基本定理",
+      "曲率张量的对称性",
+      "截面曲率、Ricci曲率与标量曲率"
+    ]
+  },
+  {
+    "id": "12-geodesics",
+    "title": "测地线、完备性与变分",
+    "source": "周4.2及4.4",
+    "status": "planned",
+    "sections": [
+      "指数映射、法坐标与Gauss引理",
+      "长度与能量的第一变分",
+      "Hopf--Rinow定理",
+      "Jacobi场、共轭点与第二变分"
+    ]
+  },
+  {
+    "id": "13-submanifold-geometry",
+    "title": "子流形几何与活动标架",
+    "source": "周4.5",
+    "status": "planned",
+    "sections": [
+      "Gauss与Weingarten公式",
+      "Gauss--Codazzi--Ricci方程",
+      "活动标架与Cartan结构方程",
+      "极小子流形及基础例子"
+    ]
+  },
+  {
+    "id": "14-hodge-gauss-bonnet",
+    "title": "Hodge理论与Gauss--Bonnet定理",
+    "source": "周4.6至4.7",
+    "status": "planned",
+    "sections": [
+      "Hodge星算子与余微分",
+      "椭圆估计与Hodge分解的证明依赖",
+      "Poincare对偶与调和形式",
+      "曲面Gauss--Bonnet及高维推广"
+    ]
+  },
+  {
+    "id": "15-lie-groups",
+    "title": "李群、李代数与齐性空间",
+    "source": "周第5章",
+    "status": "planned",
+    "sections": [
+      "李群、左不变向量场与李代数",
+      "指数映射与群同态",
+      "伴随表示与Killing形式",
+      "齐性流形与黎曼对称空间"
+    ]
+  },
+  {
+    "id": "16-bundles",
+    "title": "主丛、相伴丛与丛联络",
+    "source": "周第6章",
+    "status": "planned",
+    "sections": [
+      "向量丛同态与拉回丛",
+      "主丛与相伴向量丛",
+      "联络形式、水平提升与曲率",
+      "Hopf丛与规范变换"
+    ]
+  },
+  {
+    "id": "17-complex",
+    "title": "复流形与Kahler几何",
+    "source": "周第7章",
+    "status": "planned",
+    "sections": [
+      "复结构与全纯坐标",
+      "Hermite度量与Kahler形式",
+      "复流形上的联络与曲率",
+      "可积性、球面复结构问题的准确边界"
+    ]
+  },
+  {
+    "id": "18-characteristic",
+    "title": "示性类与Chern--Weil理论",
+    "source": "周第8章",
+    "status": "planned",
+    "sections": [
+      "不变多项式与Chern--Weil构造",
+      "Chern类、Pontryagin类与Euler类",
+      "联络无关性与传递形式",
+      "示性数与怪球专题"
+    ]
+  },
+  {
+    "id": "19-spin",
+    "title": "Clifford代数与旋量几何",
+    "source": "周第9章",
+    "status": "planned",
+    "sections": [
+      "Clifford代数的构造与表示",
+      "Spin群及其双覆盖",
+      "旋量丛与Dirac算子",
+      "校准与几何应用"
+    ]
+  },
+  {
+    "id": "20-index-gauge",
+    "title": "指标定理、规范场与进阶专题",
+    "source": "周第10章",
+    "status": "planned",
+    "sections": [
+      "椭圆算子、符号与Fredholm指标",
+      "Atiyah--Singer定理及证明所需分析工具",
+      "Yang--Mills泛函与规范理论",
+      "Seiberg--Witten方程及适用条件"
+    ]
+  },
+  {
+    "id": "21-lorentz",
+    "title": "Lorentz几何与因果结构",
+    "source": "梁；具体章页待逐项核对",
+    "status": "planned",
+    "sections": [
+      "Lorentz度量与时间定向",
+      "类时、类空和零向量",
+      "因果曲线与全局双曲性",
+      "Lorentz测地线与曲率约定"
+    ]
+  },
+  {
+    "id": "22-einstein",
+    "title": "广义相对论的几何基础",
+    "source": "梁；具体章页待逐项核对",
+    "status": "planned",
+    "sections": [
+      "等效原理、自由落体与测地偏离",
+      "应力能量张量与Einstein方程",
+      "Einstein--Hilbert变分与边界条件",
+      "牛顿极限及守恒律"
+    ]
+  },
+  {
+    "id": "23-spacetimes",
+    "title": "典型时空与物理应用",
+    "source": "梁；参考文件的上下册覆盖待核实",
+    "status": "planned",
+    "sections": [
+      "Minkowski时空与加速坐标",
+      "Schwarzschild解与坐标奇性",
+      "FLRW时空与宇宙学方程",
+      "黑洞与奇性定理的条件和证明依赖"
+    ]
+  }
+]
