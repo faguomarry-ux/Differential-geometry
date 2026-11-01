@@ -1,0 +1,65 @@
+曲面在每一点给出一个切平面。反过来，先指定随点变化的切平面，是否总能找到与它们处处相切的曲面？一维的答案由流盒给出，高维则需要相容条件。
+\begin{definition}[光滑分布与积分子流形]
+秩$k$的光滑分布（smooth distribution）$D$是在每点指定$k$维子空间$D_p\subset T_pM$，并要求每点附近有光滑场$X_1,\ldots,X_k$逐点构成$D$的基。写$\Gamma(D)$表示取值于$D$的光滑向量场，局部版本同样使用。若对所有局部截面$X,Y$有$[X,Y]\in\Gamma(D)$，称$D$对合（involutive）。
+维数为$k$的浸入$\iota:L\to M$若满足$\dd\iota_q(T_qL)=D_{\iota(q)}$，称为积分流形；若$\iota$还单射，称为积分子流形。本节的局部积分片均是嵌入子流形。
+\end{definition}
+局部标架存在时，任意截面都可唯一写作$f^iX_i$，系数光滑：选标架分量矩阵的一个非零$k$阶小行列式，在邻域上求逆即可。由命题\ref{prop:lie-bracket}，检验对合性只需检查$[X_i,X_j]$是否落在$D$，无需逐一检查所有截面。
+\begin{theorem}[Frobenius局部坐标定理]\label{thm:frobenius}
+设$D$是$M^n$上常秩$k$的光滑分布，$0\leq k\leq n$。下列三条件等价：
+\begin{enumerate}[label=(\roman*),nosep]
+\item $D$对合；
+\item 每点有局部坐标$(u^1,\ldots,u^k,v^1,\ldots,v^{n-k})$，使$D$由$\partial_{u^1},\ldots,\partial_{u^k}$张成；
+\item 每点都有经过它的$k$维积分流形。
+\end{enumerate}
+在(ii)的乘积坐标盒内，固定$v$得到嵌入积分片；任意积分流形在每个点的充分小邻域上落在唯一这样的片中。
+\end{theorem}
+\begin{proof}
+\textbf{(i)推出(ii)：先改造标架，再造坐标。}取$p$附近标架$Z_1,\ldots,Z_k$及环境坐标$x^1,\ldots,x^n$。重排$x$可使标架的前$k$行分量矩阵在$p$可逆，并缩小邻域使其处处可逆。用该矩阵的逆对标架作光滑线性组合，得到
+\[
+ Y_i=\partial_{x^i}+\sum_{\alpha=k+1}^n
+ a_i^\alpha(x)\partial_{x^\alpha},\qquad 1\leq i\leq k.
+\]
+于是$D$在每点由这些$Y_i$张成。因$Y_i(x^j)=\delta_i^j$（$j\leq k$），有$[Y_i,Y_j](x^\ell)=0$（$\ell\leq k$），即该括号的前$k$个分量为零。另一方面，对合性使$[Y_i,Y_j]=c^rY_r$。比较前$k$个分量得每个$c^r=0$，故$Y_i$两两交换。此处原标架$Z_i$未必交换，不能直接把它们当成坐标基。
+
+平移坐标使$p=0$，取横截片$\sigma(v)=(0,\ldots,0,v^1,\ldots,v^{n-k})$。设$\Phi^{(i)}$为$Y_i$的局部流，定义
+\[
+ H(u,v)=\Phi^{(1)}_{u^1}\circ\cdots\circ
+ \Phi^{(k)}_{u^k}(\sigma(v)).
+\]
+由定理\ref{thm:local-flow}可缩小到统一的参数盒使复合光滑有定义。定理\ref{thm:commuting-flows}使各流局部交换且相互保持相应向量场，从而
+\[
+ \dd H(\partial_{u^i})=Y_i\circ H.
+\]
+在$(0,0)$处，$DH$的列为$Y_1(p),\ldots,Y_k(p),\partial_{x^{k+1}},\ldots,\partial_{x^n}$；其分量矩阵具有对角块$I_k,I_{n-k}$，所以可逆。逆映射定理给出局部坐标$H^{-1}$，在其中$D$恰由前$k$个坐标场张成。$k=0$时任何坐标均可，$k=n$时横截片是单点，构造仍成立。
+
+\textbf{(ii)推出(i)与(iii)。}坐标场两两交换，$D$的任意两个截面由前$k$个坐标场线性组合，括号的乘积公式说明结果仍为它们的组合，因此对合。固定$v=c$的切空间由这些坐标场张成，所以是$k$维嵌入积分片，每点都在一个片上。
+
+\textbf{(iii)推出(i)。}给定$p$及经过它的积分浸入$\iota:L\to M$，在其某个原像点附近限制为嵌入，以子流形卡表示像为$(w^1,\ldots,w^k,0,\ldots,0)$。$D$的任意局部截面$X,Y$在这个像上都相切，所以其法向分量在像上为零。法向分量沿切方向的导数也为零；将此代入李括号坐标式，$[X,Y]$的全部法向分量仍为零。在$p$处便得$[X,Y]_p\in D_p$。因$p$任意，$D$对合。
+
+\textbf{局部唯一性。}在(ii)的坐标盒中，积分浸入$\iota$满足$\dd(v^\alpha\circ\iota)=0$。限制到源上连通的凸坐标邻域，沿线段积分可知各$v^\alpha\circ\iota$为常数。故像落在唯一的$v=c$积分片中。再比较维数，$u\circ\iota$的微分为同构，由逆映射定理该局部像是积分片的开子集。因此经过同一点的积分片在缩小后相同，即局部积分片的芽唯一。
+\end{proof}
+\begin{corollary}[局部第一积分]\label{cor:first-integrals}
+对合的常秩$k$分布在每点附近可写为
+\[
+ D=\ker\dd v,\qquad v=(v^1,\ldots,v^{n-k}),\quad
+ \operatorname{rank}\dd v=n-k.
+\]
+反之任意浸没$v$的核分布都是对合的，其纤维的连通局部片是积分片。
+\end{corollary}
+\begin{proof}
+Frobenius坐标中投影到$v$即可。反向在浸没坐标中核由其余坐标场张成；或者对$X,Y\in\ker\dd v$计算$[X,Y]v^\alpha=X(Yv^\alpha)-Y(Xv^\alpha)=0$。核的光滑标架由投影正规形给出，积分片由正则值定理得到。
+\end{proof}
+\begin{example}[可积与不可积的平面场]
+在$\R^3$上，$D=\operatorname{span}(\partial_x+y\partial_z,\partial_y+x\partial_z)$是$\ker\dd(z-xy)$，两基场的括号为零。其积分曲面是$z-xy=c$；局部可使用$(u,v,w)=(x,y,z-xy)$作Frobenius坐标。
+与此相对，例\ref{ex:bracket-rectangle}中的
+\[
+ E=\operatorname{span}(\partial_x,\partial_y+x\partial_z)
+\]
+为光滑常秩二分布，然而$[X,Y]=\partial_z\notin E$：若$\partial_z=a\partial_x+b(\partial_y+x\partial_z)$，比较$x,y$分量迫使$a=b=0$，与$z$分量矛盾。故任意点都不存在二维积分曲面。四段流的剩余位移显示了无法封闭成曲面的障碍。
+\end{example}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/integral-plaques}
+\caption{原创示意：$z-xy=c$的三个局部积分片（$c=-1.8,0,1.8$，$|x|,|y|\leq0.75$）。每片的切空间由$\partial_x+y\partial_z$与$\partial_y+x\partial_z$张成；右图为$(u,v,w)=(x,y,z-xy)$坐标中的平行片$w=c$。采用斜投影，仅表达局部叶片与横截参数，不表示等距变换。}
+\label{fig:integral-plaques}
+\end{figure}
+本定理要求常秩与局部光滑标架。若只指定任意点态子空间，或允许秩跳跃，就不能直接套用。局部积分片可作为叶状结构的局部模型；最大连通叶的整体构造、叶空间的拓扑与奇异分布理论另属后续专题，本章不据局部唯一性宣称叶总为嵌入或叶空间总为流形。例\ref{ex:irrational-immersion}已经提示了全局拓扑的差别。

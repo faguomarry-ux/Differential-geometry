@@ -1,0 +1,88 @@
+先约定分段光滑曲线$c:[a,b]\to M$的长度为$L(c)=\int_a^b|\dot c|_g\,\dd t$。积分按有限分段相加，允许驻点和常值段；速度不为零时可作弧长重参数化。关于长度距离与能量的详细讨论在下一节，以下局部结论只用此积分。
+
+\begin{definition}[指数映射的自然定义域]\label{def:exponential-domain}
+令$\gamma_v$为初值$(p,v)$的极大测地线，$I_v$为其含零的极大时间区间。定义
+\[
+ \mathcal D=\{(p,v)\in TM:1\in I_v\},\qquad
+ \exp_p(v)=\gamma_v(1),\quad v\in\mathcal D_p=\mathcal D\cap T_pM.
+\]
+不预先假设测地线完备；$\mathcal D_p$一般只是切空间中包含零的开子集。
+\end{definition}
+
+\begin{theorem}[指数映射与法坐标]\label{thm:normal-coordinates}
+$\mathcal D\subset TM$开且包含零截面，$(p,v)\mapsto\exp_pv$光滑。每个$\mathcal D_p$关于零星形，且在有定义的时间上$\exp_p(tv)=\gamma_v(t)$。微分$(\dd\exp_p)_0$为恒等映射，故$\exp_p$把零附近某开球微分同胚到$p$的邻域。
+
+以$T_pM$的正交归一基识别其为$\R^n$，用$\exp_p^{-1}$得到的坐标称以$p$为中心的黎曼法坐标。在该坐标中
+\[
+ x^i(\gamma_v(t))=tv^i,\qquad
+ g_{ij}(p)=\delta_{ij},\quad \Gamma^k_{ij}(p)=0,\quad \partial_k g_{ij}(p)=0.
+\]
+第一式只针对从中心出发、在法坐标域内的径向测地线，不说所有测地线都成为直线。
+\end{theorem}
+\begin{proof}
+第10章的测地喷流是$TM$上的光滑向量场。第5章极大局部流的定义域开且流映射光滑，因此取时间1后投影到底空间便得前两项。零初速度的解为常值，故零截面在定义域内。唯一性及仿射重参数化给$\gamma_{av}(t)=\gamma_v(at)$，在两边共同定义的含零区间成立；$0\leq a\leq1$时，$[0,a]\subset I_v$，所以$av\in\mathcal D_p$。该缩放式亦给$\exp_p(tv)=\gamma_v(t)$。
+
+沿切空间直线$sw$在零处求导，
+\[
+ (\dd\exp_p)_0w=\left.\frac{\dd}{\dd s}\right|_0\exp_p(sw)
+ =\dot\gamma_w(0)=w.
+\]
+逆映射定理给局部微分同胚，缩小为星形球。径向直线的坐标表达随定义而来。原点的度量矩阵等于所选基的Gram矩阵，故为$I$。将$x(t)=tv$代入测地线方程，在$t=0$得$\Gamma^k_{ij}(p)v^iv^j=0$对所有$v$成立。无挠给下槽对称，极化推出每个$\Gamma^k_{ij}(p)=0$；再由$\nabla g=0$得$\partial_k g_{ij}(p)=0$。
+\end{proof}
+
+稍后需要基点也变化。映射$\mathcal F(p,v)=(p,\exp_pv)$在每个$(p,0)$的微分可逆：局部丛坐标中为$(a,b)\mapsto(a,a+b)$。所以在对角线$(p,p)$附近，两相近端点有光滑依赖端点的短测地线。这里仅用逆映射定理得到局部结论，不假定全局唯一最短线。
+
+\begin{lemma}[二维参数的导数交换]\label{lem:variation-commutation}
+对光滑$F(s,t)$，记$S=\partial_sF$、$T=\partial_tF$，把$D_s,D_t$按沿映射的局部系数定义。则
+\[
+ D_sT=D_tS,\qquad (D_sD_t-D_tD_s)W=R(S,T)W
+\]
+对任意沿$F$的光滑向量场$W$成立，即使$F$不是浸入也成立。
+\end{lemma}
+\begin{proof}
+在坐标中，$D_sW^k=\partial_sW^k+\Gamma^k_{ij}(F)(\partial_sF^i)W^j$。对$W=T$与$W=S$相减，混合偏导抵消，剩余$\Gamma^k_{ij}(S^iT^j-T^iS^j)$，由无挠为零。再展开两次导数：含$\partial_sW,\partial_tW$的一阶项相消，$\partial_s\partial_tF$项相消，余项为
+\[
+ S^iT^jW^m\bigl(\partial_i\Gamma^k_{jm}-\partial_j\Gamma^k_{im}
+ +\Gamma^k_{i\ell}\Gamma^\ell_{jm}-\Gamma^k_{j\ell}\Gamma^\ell_{im}\bigr),
+\]
+正是第10章的$R(S,T)W$。计算按局部截面系数进行，无须将$S,T,W$延成底空间向量场。
+\end{proof}
+
+\begin{theorem}[Gauss引理]\label{thm:gauss-lemma}
+对$v\in\mathcal D_p$及$w\in T_pM$，用切空间的自然线性识别理解微分的输入，则
+\[
+ g_{\exp_pv}\bigl((\dd\exp_p)_v v,(\dd\exp_p)_v w\bigr)=g_p(v,w).
+\]
+在指数映射为微分同胚的星形球内，径向单位向量长为1，并与指数像中的同半径球面正交。
+\end{theorem}
+\begin{proof}
+取$F(s,t)=\exp_p(t(v+sw))$、$0\leq t\leq1$；定义域开及紧时间段的ODE依赖保证小$s$时有定义。各$t$曲线是测地线，速度平方恒为$|v+sw|_p^2$。在$s=0$上，利用交换引理，
+\[
+ \partial_t g(T,S)=g(T,D_tS)=g(T,D_sT)
+ =\tfrac12\partial_s|T|^2=g_p(v,w).
+\]
+在$t=0$，$S=0$，因此$g(T,S)=t\,g_p(v,w)$。取$t=1$，$T=(\dd\exp_p)_v v$、$S=(\dd\exp_p)_v w$，即得公式。令$w=v$得径向长度；令$w\perp v$得球面正交。$v=0$时也由零点微分恒等直接成立。
+\end{proof}
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/gauss-radial}
+\caption{左侧在切空间中以同半径圆标出$v$，输入向量$v,w$视为附着在该点；右侧在$q=\exp_pv$的切空间画其微分像，图中$\dd\exp_p$均在$v$处取值。径向长度保持、径向与角向正交，但角向长度可变，所以整个指数映射不必等距。}
+\label{fig:gauss-radial}
+\end{figure}
+
+\Needspace{17\baselineskip}
+\begin{proposition}[径向测地线的最短性]\label{prop:radial-minimizing}
+取$\rho>0$使$\exp_p$在包含$\overline B_{2\rho}(0)$的开集上为微分同胚，记$U_\rho=\exp_p B_\rho(0)$。若$q=\exp_pv$、$|v|<\rho$，则径向段的长度为$|v|$，并在所有连接$p,q$的分段光滑曲线中最短。除去保持方向的重参数化及常值停顿，这条最短曲线唯一。
+\end{proposition}
+\begin{proof}
+在$U_\rho\setminus\{p\}$，把曲线写成$\alpha(t)=\exp_p(r(t)u(t))$，$|u(t)|=1$。Gauss引理给
+\[
+ |\dot\alpha|^2=(r')^2+
+ \bigl|(\dd\exp_p)_{ru}(r\dot u)\bigr|^2\geq(r')^2.
+\]
+对所有避开$p$的分段积分得$L\geq\int|r'|\geq r(\text{终})-r(\text{始})$。若曲线反复经过$p$，对$r>\varepsilon$的各子段先用此式，再令$\varepsilon\downarrow0$，仍得从$p$到$q$的长度至少$|v|$。等号要求角向导数为零且径向不倒退，因微分可逆，像必沿同一射线单调前进。
+
+还要排除离开法邻域的全局捷径。任意离开$U_\rho$的曲线，第一次到达边界时到达某个$\exp_p(\rho u)$；闭球在更大微分同胚域内，故这个边界描述有效。前段长度至少$\rho>|v|$。因此更短或等长竞争曲线不可能离开$U_\rho$，前述等号分析适用。径向段自身速度常为$|v|$（参数取$[0,1]$），长度正为$|v|$。
+\end{proof}
+
+“局部最短”在这里有明确半径与竞争曲线范围。它不推出一条测地线无论延长多久都最短，也不推出任意两个远点之间有最短线。

@@ -1,0 +1,70 @@
+\begin{theorem}[紧支Stokes定理]\label{thm:stokes}
+设$M$为定向光滑$n$维流形，允许光滑边界，$n\geq1$。令$j:\partial M\hookrightarrow M$，边界取定义\ref{def:boundary-orientation}的外向首位定向。对任意$\omega\in\Omega_c^{n-1}(M)$，
+\[
+ \int_M\dd\omega=\int_{\partial M}j^*\omega.
+\]
+边界为空时右端为零；$M$紧时每个光滑$(n-1)$形式均满足紧支假设。无需假设$M$是另一流形中的子域。
+\end{theorem}
+\begin{proof}
+\textbf{第一步：全空间中的局部公式。}在$\R^n$写紧支形式
+\[
+ \omega=\sum_{i=1}^n(-1)^{i-1}a_i\,
+ \dd x^1\wedge\cdots\wedge\widehat{\dd x^i}\wedge\cdots\wedge\dd x^n.
+\]
+帽号表示删去该因子。外微分时，$\partial_j a_i$在$j\ne i$时因重复因子消失；$\dd x^i$移过$i-1$项的符号与前面的$(-1)^{i-1}$抵消，得到
+\[
+ \dd\omega=\left(\sum_i\partial_i a_i\right)\dd x^1\wedge\cdots\wedge\dd x^n.
+\]
+逐坐标应用Fubini与基本定理。每条线上$a_i$在两端均为零，故$\int_{\R^n}\partial_i a_i\,\dd^n x=0$，从而$\int\dd\omega=0$。
+
+\textbf{第二步：半空间中的局部公式。}取$x^n=r\geq0$，以标准$n$维定向积分。对$i<n$，积分仍在$x^i\in\R$的两端相消；对$i=n$有
+\[
+ \int_{\mathbb H^n}\partial_r a_n\,\dd^{n-1}x'\dd r
+ =-\int_{\R^{n-1}}a_n(x',0)\,\dd^{n-1}x'.
+\]
+另一方面，$j^*\omega=(-1)^{n-1}a_n(x',0)\dd x^1\wedge\cdots\wedge\dd x^{n-1}$。边界相对自然顺序的定向符号为$(-1)^n$，故
+\[
+ \int_{\partial\mathbb H^n}j^*\omega
+ =(-1)^n(-1)^{n-1}\int a_n(x',0)\,\dd^{n-1}x'
+ =-\int a_n(x',0)\,\dd^{n-1}x'.
+\]
+两端相同。$n=1$时这就是$\int_0^\infty a_1'(r)\dd r=-a_1(0)$，原点作为边界带负号。若局部定向是标准的$\varepsilon$倍，两边同时乘$\varepsilon$，所以公式适用于一切定向卡。紧支于某相对开集的形式可在半空间的该开集之外光滑延零，因而此计算也覆盖任意边界卡。
+
+\textbf{第三步：用单位分解拼接。}取从属于坐标覆盖的$\rho_i$。由于$\omega$紧支，只有有限个$\rho_i\omega$非零，且每项紧支于一张卡中。自然性$\dd F^*=F^*\dd$及前两步给出
+\[
+ \int_M\dd(\rho_i\omega)=\int_{\partial M}j^*(\rho_i\omega).
+\]
+求和，左侧由$\sum_i\rho_i\omega=\omega$及线性成为$\int_M\dd\omega$，右侧成为$\int_{\partial M}j^*\omega$。等价地，乘法法则中的$\sum_i\dd\rho_i\wedge\omega$因$\dd(\sum_i\rho_i)=0$消失，不能在单个局部项中擅自丢掉它。$j^*\omega$的支集包含于紧集$\partial M\cap\operatorname{supp}\omega$，故边界积分确实有定义。
+\end{proof}
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/stokes-halfspace}
+\caption{二维半空间$x^2=r\geq0$的局部计算。外向为$-\partial_r$，诱导边界正向为$+\partial_{x^1}$；$\omega=a_1\dd r-a_2\dd x^1$的边界迹是$-a_2\dd x^1$。正负号由定向和微积分共同决定。原创示意。}
+\label{fig:stokes-halfspace}
+\end{figure}
+
+\begin{example}[从Stokes恢复Green公式]
+平面光滑有界闭域$D$取$\dd x\wedge\dd y$定向。对在$D$邻域光滑的$P,Q$，令$\omega=P\dd x+Q\dd y$，则
+\[
+ \int_{\partial D}(P\dd x+Q\dd y)
+ =\int_D(\partial_xQ-\partial_yP)\dd x\dd y.
+\]
+外边界逆时针，孔洞边界顺时针。取$P=-y/2,Q=x/2$，被积二形式为$\dd x\wedge\dd y$，故边界积分等于面积；圆环内外两圈的差为$\pi b^2-\pi a^2$。多边形有角点，不直接满足本章的光滑边界假设；分片光滑版本需另作延拓或分割证明。
+\end{example}
+
+\begin{example}[三维通量与散度]
+对$\R^3$标准体积$\nu=\dd x\wedge\dd y\wedge\dd z$及$X=X^1\partial_x+X^2\partial_y+X^3\partial_z$，
+\[
+ \iota_X\nu=X^1\dd y\wedge\dd z-X^2\dd x\wedge\dd z+X^3\dd x\wedge\dd y,
+ \qquad \dd\iota_X\nu=(\partial_iX^i)\nu.
+\]
+将其用于紧光滑区域$B$，得$\int_{\partial B}\iota_X\nu=\int_B\operatorname{div}X\,\nu$。若另选欧氏度规和外单位法向$N$，限制到边界后$\iota_X\nu=\langle X,N\rangle\iota_N\nu$，因为$X$的切向分量与其余$n-1$个边界切向量线性相关；这才恢复通常的通量写法。
+\end{example}
+
+\begin{corollary}[无边紧流形上的恰当形式]\label{cor:exact-integral-zero}
+若$M$紧、无边且定向，$\alpha=\dd\beta$为顶次恰当形式，则$\int_M\alpha=0$。因此非空的这类流形上的正体积形式不可能恰当。
+\end{corollary}
+\begin{proof}
+对$\beta$应用Stokes，边界为空给出零。正体积形式积分严格为正，矛盾。对非紧$M$，必须要求原形式$\beta$紧支才能直接应用这个论证；仅$\dd\beta$紧支不够。
+\end{proof}
+第7章的角形式在穿孔平面闭而不恰当，与此处结论相容：若圆周在穿孔平面内真是某个光滑有向曲面的唯一边界，其积分应为零；平面圆盘经过删去的原点，不能作为该空间中的曲面。本章未建立一般奇异链上的积分与Stokes，也未证明非紧可积形式的无穷远边界版本，相关推广不得省略假设。

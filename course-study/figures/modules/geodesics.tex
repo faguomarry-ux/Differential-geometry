@@ -1,0 +1,52 @@
+% Chapter 12: tangent inputs, the metric equality step, scalar Jacobi models.
+\DGDeclareDiagram{gauss-radial}{%
+ \begin{scope}[shift={(-2.6,-.8)}]
+  \draw[dg/guide] (0,0) circle (1.4);
+  \draw[dg/guide] (0,0)--(0,1.4);
+  \DGPoint[below]{0,0}{$0$}
+  \DGPoint[below left]{0,1.4}{$v$}
+  \draw[dg/vector] (0,1.4)--(0,2.8) node[left,midway] {$v$};
+  \draw[dg/secondary,->] (0,1.4)--(1,1.4) node[above,midway] {$w$};
+  \draw[dg/guide] (0,1.6)--(.2,1.6)--(.2,1.4);
+  \node at (0,-1.9) {$T_pM\quad(w\perp v)$};
+ \end{scope}
+ \draw[dg/map] (-.7,.8)--(.7,.8) node[midway,above] {$\exp_p$};
+ \DGPoint[below left]{2.3,.6}{$q=\exp_pv$}
+ \draw[dg/vector] (2.3,.6)--(2.3,2) node[left,midway] {$\dd\exp_p(v)$};
+ \draw[dg/secondary,->] (2.3,.6)--(3.05,.6) node[right] {$\dd\exp_p(w)$};
+ \draw[dg/guide] (2.3,.8)--(2.5,.8)--(2.5,.6);
+ \node at (2.3,-.75) {$T_qM$};
+ \node at (0,-3.4) {$g_q(\dd\exp_p(v),\dd\exp_p(w))=g_p(v,w)=0$};}
+\DGDeclareDiagram{hopf-rinow-step}{%
+ \draw[dg/guide] (0,0) circle (1.4);
+ \draw[dg/guide] (1.4,0) circle (.8);
+ \draw[dg/vector] (0,0)--(1.4,0) node[midway,below] {$\varepsilon$};
+ \draw[dg/vector] (1.4,0)--(2.2,0) node[midway,below] {$\delta$};
+ \draw[dg/guide] (2.2,0)--(4.5,0) node[midway,below] {$r-\varepsilon-\delta$};
+ \draw[dg/secondary] (0,0)..controls(.2,.9)and(.65,1.15)..(40:1.4)
+  ..controls(2,1.5)and(3.8,1.1)..(4.5,0);
+ \DGPoint[below left]{0,0}{$p$}\DGPoint[above right]{1.4,0}{$x$}
+ \DGPoint[above right]{2.2,0}{$y$}\DGPoint[right]{4.5,0}{$q$}
+ \DGPoint[above]{40:1.4}{$x_j$}
+ \node at (2.9,1.65) {$L(c_j)\downarrow r$};
+ \node at (1.7,-2.15) {$d(p,x)+d(x,q)=r$};
+ \node at (1.7,-2.8) {$d(p,y)+d(y,q)=r$};}
+\DGDeclareDiagram{jacobi-models}{%
+ \begin{scope}[shift={(-3.9,0)},x=.9cm,y=.75cm]
+  \draw[dg/axis] (0,0)--(3.5,0) node[right] {$t$};
+  \draw[dg/axis] (0,-.15)--(0,3.6) node[above] {$s_K$};
+  \draw[dg/curve,domain=0:3.14159265,samples=65] plot (\x,{sin(\x r)});
+  \draw[dg/secondary] (0,0)--(3.14159265,3.14159265);
+  \draw[dg/guide] (0,1)--(.1,1) node[left] {$1$};
+  \DGPoint[below]{3.14159265,0}{$\pi$}
+  \node at (1.5,.55) {$K=1$};\node at (1.85,2.9) {$K=0$};
+ \end{scope}
+ \begin{scope}[shift={(1.4,0)},x=.9cm,y=.2cm]
+  \draw[dg/axis] (0,0)--(3.5,0) node[right] {$t$};
+  \draw[dg/axis] (0,-.5)--(0,13) node[above] {$s_{-1}$};
+  \draw[dg/normal,domain=0:3.14159265,samples=65] plot (\x,{(exp(\x)-exp(-\x))/2});
+  \draw[dg/guide] (0,10)--(.1,10) node[left] {$10$};
+  \node[below] at (3.14159265,0) {$\pi$};
+  \node at (1.6,10.8) {$K=-1$};
+ \end{scope}
+ \node at (.2,-1) {$s_1=\sin t,\quad s_0=t,\quad s_{-1}=\sinh t$};}

@@ -1,0 +1,28 @@
+% Chapter 10: frame covariance, transport and an explicitly ordered loop.
+\DGDeclareDiagram{connection-frame-change}{%
+ \node (a) at (-2.4,1) {$s$};\node (b) at (2.4,1) {$\dd s+\omega s$};
+ \node (c) at (-2.4,-1) {$s'=G^{-1}s$};\node (d) at (2.4,-1) {$\dd s'+\omega's'$};
+ \draw[dg/map] (a)--(b) node[midway,above] {$D$};
+ \draw[dg/map] (c)--(d) node[midway,below] {$D'$};
+ \draw[dg/map] (a)--(c) node[midway,left] {$G^{-1}$};
+ \draw[dg/map] (b)--(d) node[midway,right] {$G^{-1}$};
+ \node at (0,-2) {$\omega'=G^{-1}\omega G+G^{-1}\dd G$};}
+\DGDeclareDiagram{parallel-transport}{%
+ \draw[dg/curve] (-2,0)..controls(-1,-1.1)and(1,-1.1)..(2,0);
+ \draw[dg/fiber] (-2,-.15)--(-2,2.3);\draw[dg/fiber] (2,-.15)--(2,2.3);
+ \draw[dg/vector] (-2,0)--(-2,1.2) node[left] {$v$};
+ \draw[dg/vector] (2,0)--(2,1.7) node[right] {$P^\gamma v$};
+ \draw[dg/map] (-1.85,1.2)..controls(-.6,2)and(.7,2.1)..(1.85,1.7)
+ node[midway,above] {$P^\gamma_{b\leftarrow a}$};
+ \DGPoint[below left]{-2,0}{$\gamma(a)$}\DGPoint[below right]{2,0}{$\gamma(b)$}
+ \node[above] at (-2,2.3) {$E_{\gamma(a)}$};\node[above] at (2,2.3) {$E_{\gamma(b)}$};
+ \node at (0,-1.3) {$D_tV=0,\qquad V(a)=v,\quad V(b)=P^\gamma v$};}
+\DGDeclareDiagram{connection-loop}{%
+ \draw[dg/guide] (0,0) rectangle (3,1.8);
+ \draw[dg/vector] (.2,0)--(2.8,0) node[midway,below] {$e^{-\varepsilon A}$};
+ \draw[dg/vector] (3,.15)--(3,1.65) node[midway,right] {$e^{-\delta B}$};
+ \draw[dg/secondary,->] (2.8,1.8)--(.2,1.8) node[midway,above] {$e^{\varepsilon A}$};
+ \draw[dg/secondary,->] (0,1.65)--(0,.15) node[midway,left] {$e^{\delta B}$};
+ \DGPoint[below left]{0,0}{$p$}
+ \node at (1.5,-1) {$P_{\Box}=e^{\delta B}e^{\varepsilon A}e^{-\delta B}e^{-\varepsilon A}$};
+ \node at (1.5,-1.7) {$P_{\Box}=I-\varepsilon\delta[A,B]+O((|\varepsilon|+|\delta|)^3)$};}

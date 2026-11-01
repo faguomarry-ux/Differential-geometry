@@ -1,0 +1,58 @@
+仅列出各点的切空间还不能讨论“速度随点光滑变化”。需要给所有切向量组成的集合一个与坐标相容的拓扑及光滑结构；这也是向量丛的第一个例子。
+\begin{definition}[切丛与余切丛的集合]
+定义不交并及投影
+\[
+ TM=\bigsqcup_{p\in M}T_pM,\quad \pi:TM\to M,\quad v_p\mapsto p;
+ \qquad T^*M=\bigsqcup_{p\in M}T_p^*M.
+\]
+余切丛投影记为$\pi^*$，此处星号表示余切投影名称，不表示线性对偶。不同基点的向量即使坐标相同，也属于不同纤维（fiber），不能直接相加。
+\end{definition}
+\begin{theorem}[切丛与余切丛的光滑构造]\label{thm:tangent-bundle}
+若$\dim M=n$，则$TM,T^*M$自然为$2n$维Hausdorff、第二可数光滑流形。对卡$x:U\to x(U)$，纤维坐标映射为
+\begin{align*}
+ \widetilde x:\pi^{-1}(U)&\to x(U)\times\R^n,
+ &v_p=v^i\partial_i|_p&\mapsto(x(p),v),\\
+ \widetilde x^*:(\pi^*)^{-1}(U)&\to x(U)\times\R^n,
+ &\alpha_p=\alpha_i\dd x^i|_p&\mapsto(x(p),\alpha).
+\end{align*}
+若$y=h\circ x$为换卡，两种过渡分别为
+\[
+ (u,v)\mapsto(h(u),Dh(u)v),\qquad
+ (u,\alpha)\mapsto(h(u),Dh(u)^{-\mathsf T}\alpha).
+\]
+投影光滑，每个纤维上的加法、数乘在这些坐标中为通常线性运算。
+\end{theorem}
+\begin{proof}
+由坐标基与对偶基定理，上述映射均为集合双射。坐标换元定理\ref{thm:tangent-coordinate}给出过渡式；$Dh(u)$可逆且光滑，逆转置的矩阵元素由余子式除以非零行列式表达，因而光滑，反向过渡同理。
+在$TM$上定义：$A$开，当且仅当对每张卡$x$，$\widetilde x(A\cap\pi^{-1}(U))$在$x(U)\times\R^n$中开。此规则由任意并和有限交的坐标像检验构成拓扑。过渡映射为同胚，故任意坐标开集的逆像也满足该开集规则；由此$\pi^{-1}(U)$开且$\widetilde x$确为同胚，给出局部欧氏性。$T^*M$完全同样构造。
+证明Hausdorff性：若两个向量的基点不同，先在$M$取不交开邻域，再取其投影原像将它们分开。若基点相同但向量不同，用同一纤维坐标域内的两个不交欧氏邻域分开；这些邻域在总空间中也开。第二可数性需要可数张卡覆盖：从$M$的可数基出发，对每个包含于某卡域的基成员选一张包含它的卡，该可数族覆盖$M$。每个相应纤维坐标域同胚于欧氏开集，有可数基；将这些基合并得到总空间的可数基。
+因此这些坐标构成$2n$维光滑图册，取其极大扩充。投影在坐标中为$(u,v)\mapsto u$，故光滑。纤维运算为$(u,v,w)\mapsto(u,v+w)$、$(a,u,v)\mapsto(u,av)$，其坐标表达光滑，且过渡在纤维中线性，故运算与换卡相容。
+\end{proof}
+\begin{definition}[局部平凡化与光滑截面]
+在$U$上，$v_p\mapsto(p,(v^1,\ldots,v^n))$给出$\pi^{-1}(U)\simeq U\times\R^n$，并在每条纤维上线性同构，称局部平凡化（local trivialization）。光滑截面（smooth section）是光滑映射$s:M\to TM$且$\pi\circ s=\operatorname{id}_M$；即每个点选一个切向量并光滑变化，也称光滑向量场。余切丛的光滑截面称光滑一形式（one-form）。
+\end{definition}
+\begin{corollary}[截面的坐标判别与总切映射]\label{cor:tangent-sections}
+局部截面$X=X^i\partial_i$光滑当且仅当各$X^i$光滑；$\alpha=\alpha_i\dd x^i$的光滑性同理。零截面光滑。若$F:M\to N$光滑，则
+\[
+ TF:TM\to TN,\qquad v_p\mapsto\dd F_pv_p
+\]
+光滑，且$\pi_N\circ TF=F\circ\pi_M$。光滑一形式可沿任意光滑$F$拉回为光滑一形式。
+\end{corollary}
+\begin{proof}
+截面在纤维坐标中为$u\mapsto(u,X^1(u),\ldots,X^n(u))$，故按光滑映射的坐标定义得判别；取全部分量为零即得零截面。总切映射的坐标表示为$(u,v)\mapsto(\widehat F(u),D\widehat F(u)v)$，故光滑，投影等式由基点直接得到。若$\alpha=\alpha_a\dd y^a$，拉回一形式的分量为
+\[
+ (F^*\alpha)_i(u)=\alpha_a(F(x^{-1}(u)))\,\partial_i\widehat F^a(u),
+\]
+是光滑函数；逐点定义与坐标无关性由上一节的对偶拉回给出。
+\end{proof}
+\begin{example}[圆周切丛的全局平凡化]
+对$p=(x,y)\in S^1$，考虑$e_p=(-y,x)$。由曲线$(\cos(t+\theta),\sin(t+\theta))$的速度可知$e_p$是非零切向量，且在局部角坐标中即为$\partial_\theta$。每个$v_p$唯一写为$a e_p$，映射$(p,a)\mapsto a e_p$在局部角坐标中为$(\theta,a)\mapsto(\theta,a)$，反向同样光滑，故$TS^1\simeq S^1\times\R$。一个全局非零向量场不要求圆周有全局实坐标卡；角坐标只需局部存在。
+\end{example}
+一般切丛只保证局部平凡，不能从此推出全局乘积。
+球面切丛非平凡等全局结论需要另行证明，本章不援引尚未建立的拓扑障碍。余切丛的自然辛形式与丛的一般理论留到微分形式和向量丛章节。习题4.8练习上述构造与截面判别。
+\begin{figure}[htbp]
+\centering
+\input{course-study/figures/bundle-trivialization}
+\caption{原创示意：一维流形的局部切丛画为$U\times\mathbb R$。竖线表示不同基点的纤维，橙线为一个截面，投影忘掉竖直分量。图只表达局部平凡化，不声称一般切丛有全局乘积结构。}
+\label{fig:bundle-trivialization}
+\end{figure}

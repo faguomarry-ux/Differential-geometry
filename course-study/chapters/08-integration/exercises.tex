@@ -1,0 +1,73 @@
+\Needspace{15\baselineskip}
+\section{积分与Stokes习题及详细解答}
+习题8.2改述梁书上册第二版第5章原题8（印刷页131/PDF147），增加定义域与定向核查。习题8.4、8.5分别以原书5.3的边界定向说明与Green公式为主题改编，不是章末原题；其余5题为原创补充。全部解答由本工程编写。
+
+来源分类见\texttt{references/EXERCISES.md}。
+
+\Needspace{12\baselineskip}
+\subsection*{习题8.1：有限截断与非紧障碍}
+设$C$紧且包含于开集$O\subset M$。直接用有限多个小球截断构造$\chi\in C_c^\infty(M)$，使其在$C$附近为$1$且支集包含于$O$。若只知$C$闭，能否仍要求$\chi$紧支？
+\begin{proof}[解答]
+每个$p\in C$选$W_p\Subset V_p\Subset O$及$b_p\in[0,1]$，在$W_p$上为$1$且紧支于$V_p$。用$W_{p_1},\ldots,W_{p_m}$覆盖$C$，令$\chi=1-\prod_{i=1}^m(1-b_{p_i})$。每个因子属于$[0,1]$，所以$0\leq\chi\leq1$；在$\bigcup_iW_{p_i}$中至少一个因子为零，故$\chi=1$；在所有$\operatorname{supp}b_{p_i}$之外$\chi=0$，支集紧且包含于$O$。若$M=\R,C=\R,O=\R$，任何在$C$附近为$1$的函数都恒为$1$，不可能紧支。紧性不是可任意删去的条件。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题8.2：球坐标的三形式}
+改述梁书第5章原题8。取$x=r\sin\theta\cos\phi,y=r\sin\theta\sin\phi,z=r\cos\theta$。将$\dd r\wedge\dd\theta\wedge\dd\phi$写成$\dd x\wedge\dd y\wedge\dd z$的倍数，并说明等式在哪些坐标域有效，以及径向坐标为何不能跨过原点使用。
+\begin{proof}[解答]
+记$P$为上述参数映射。其三列是$P_r,P_\theta,P_\phi$，其中$P_r$为径向单位向量，$P_\theta$长度$r$，$P_\phi$长度$r\sin\theta$；直接计算叉积$P_\theta\times P_\phi=r^2\sin\theta P_r$，故$\det DP=r^2\sin\theta$。于是
+\[
+ P^*(\dd x\wedge\dd y\wedge\dd z)
+ =r^2\sin\theta\,\dd r\wedge\dd\theta\wedge\dd\phi.
+\]
+在$r>0,0<\theta<\pi$且$\phi$限制到长度小于$2\pi$的开区间的单射坐标域上，可以反解，得到$\dd r\wedge\dd\theta\wedge\dd\phi=(r^2\sin\theta)^{-1}\dd x\wedge\dd y\wedge\dd z$。其系数为正，故$(r,\theta,\phi)$在该域保定向。$r=0$和极轴上行列式退化，$r,\theta,\phi$不再构成坐标；公式的分母不能在那里定义。角度跨支切线也须换卡，不是只补一个函数值就能修复。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题8.3：Möbius带为何不可定向}
+令$M$为$\R\times(-1,1)$按$(t,u)\sim(t+2\pi,-u)$取商的开Möbius带。若它有处处非零的光滑二形式，拉回到覆盖空间后会满足什么条件？由此给出矛盾。
+\begin{proof}[解答]
+覆盖空间上的拉回可写$f(t,u)\dd t\wedge\dd u$，$f$光滑且处处非零。甲板变换$T(t,u)=(t+2\pi,-u)$满足$\pi\circ T=\pi$，故
+\[
+ f(t,u)\dd t\wedge\dd u
+ =T^*(f\dd t\wedge\dd u)
+ =-f(t+2\pi,-u)\dd t\wedge\dd u.
+\]
+在$u=0$有$f(t+2\pi,0)=-f(t,0)$。若$f(0,0)\ne0$，连续函数$f(t,0)$在$[0,2\pi]$两端异号，中值定理迫使某处为零，矛盾。由命题\ref{prop:orientation-volume}，$M$不可定向。这里用的是二形式的变换行列式，不是说Möbius带没有任何非零函数或局部二形式。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题8.4：区间与圆环的边界符号}
+以梁书5.3边界定向说明为主题改编。对正向区间$[a,b]$验证Stokes就是基本定理。再对标准定向圆环$A=\{a\leq\sqrt{x^2+y^2}\leq b\}$，$0<a<b$，说明两条边界为何反向，并计算角形式$\eta=(-y\dd x+x\dd y)/(x^2+y^2)$的总边界积分。
+\begin{proof}[解答]
+区间在$b$端外向为$+\partial_x$，故边界号$+1$；在$a$端外向为$-\partial_x$，故号$-1$。零维积分给$\int_{\partial[a,b]}f=f(b)-f(a)=\int_a^b f'(x)\dd x$。
+对圆环，令$e_r=(\cos\theta,\sin\theta)$、$e_\theta=(-\sin\theta,\cos\theta)$，则$\det(e_r,e_\theta)=1$。外圆的外向为$e_r$，正切为$e_\theta$；内圆的外向为$-e_r$，正切须为$-e_\theta$。沿任意逆时针圆，$\eta$的参数拉回为$\dd\theta$，所以外圈积分$2\pi$、内圈积分$-2\pi$，总和为零。这也由$\dd\eta=0$及Stokes得到，但分别先算两圈能检验内边界符号。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题8.5：Green公式的两边核查}
+以梁书5.3的平面Green公式为出发点，新增计算：$D=\{x^2+y^2\leq1\}$取标准定向，$\omega=-y^3\dd x+x^3\dd y$。分别直接算$\int_D\dd\omega$和$\int_{\partial D}\omega$。
+\begin{proof}[解答]
+外微分给$\dd\omega=3(x^2+y^2)\dd x\wedge\dd y$。极坐标积分为$\int_0^{2\pi}\int_0^1 3r^3\dd r\dd\theta=3\pi/2$。圆周按逆时针参数$(\cos t,\sin t)$，拉回为$(\sin^4t+\cos^4t)\dd t$。由$\sin^4t+\cos^4t=1-\tfrac12\sin^2(2t)$及$\int_0^{2\pi}\sin^2(2t)\dd t=\pi$，边界积分也为$2\pi-\pi/2=3\pi/2$。若圆周反向则变成$-3\pi/2$，不再与原定向的区域积分相等。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题8.6：球面上的通量}
+在$\R^3$令$X=x\partial_x+y\partial_y+z\partial_z$、$\nu=\dd x\wedge\dd y\wedge\dd z$。对半径$R>0$的闭球$B_R$，用Stokes求$\int_{\partial B_R}\iota_X\nu$，再用外单位法向检查。
+\begin{proof}[解答]
+$\operatorname{div}X=3$，因此$\dd\iota_X\nu=3\nu$，Stokes给出$3\operatorname{Vol}(B_R)=3(4\pi R^3/3)=4\pi R^3$。球面上$N=X/R$，所以$\langle X,N\rangle=R$，诱导面积形式为$\iota_N\nu$，积分是$R\operatorname{Area}(S_R^2)=R(4\pi R^2)=4\pi R^3$。两种算法一致，且不受第2章形算子$S=-\dd N$使外法向主曲率为负的影响；通量使用的是体积和外向定向，并未使用曲率号差。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题8.7：为什么要求原形式紧支}
+取$M=[0,\infty)$，定向为$\dd r$。选光滑$\chi$使$\chi=0$在$[0,1]$上，$\chi=1$在$[2,\infty)$上。证明$\dd\chi$紧支，但$\int_M\dd\chi\ne\int_{\partial M}\chi$。这是否与Stokes矛盾？
+\begin{proof}[解答]
+$\operatorname{supp}\dd\chi\subset[1,2]$，且基本定理给$\int_0^\infty\chi'(r)\dd r=1$。边界只有$r=0$，号为$-1$，其积分$-\chi(0)=0$。原形式是零次函数$\chi$，其支集包含$[2,\infty)$而非紧集，故不满足定理\ref{thm:stokes}的假设。只要求$\dd\omega$紧支会漏掉无穷远项；在$[0,T]$上正确公式为$\int_0^T\chi'=\chi(T)-\chi(0)=1$（$T\geq2$）。因此这是真正说明假设必要性的例子。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题8.8：球面面积形式没有全局原形式}
+令$j:S^2\hookrightarrow\R^3$为单位球面，取外向定向，$\sigma=j^*(x\dd y\wedge\dd z-y\dd x\wedge\dd z+z\dd x\wedge\dd y)$。证明$\sigma$闭且局部恰当，却没有全局一形式$\alpha$使$\dd\alpha=\sigma$。
+\begin{proof}[解答]
+球面维数为二，任何三形式均为零，所以$\dd\sigma=0$。第7章Poincare引理给每个小坐标球上的一形式原形式。另一方面，$\sigma$在外向正基上为正，且为单位球面面积形式，$\int_{S^2}\sigma=4\pi$（亦可用习题8.6取$R=1$）。若存在全局$\alpha$，由于$S^2$紧且无边，Stokes会给$\int_{S^2}\dd\alpha=0$，与$4\pi$矛盾。局部原形式无法总在交叠上直接拼成全局原形式；单位分解拼接时会产生$\dd\rho_i\wedge\alpha_i$余项，第9章将把这种障碍组织成上同调。
+\end{proof}

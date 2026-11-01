@@ -1,0 +1,34 @@
+第一基本形式测量沿曲面的运动；第二基本形式测量曲面离开切平面的弯曲。以下在同一曲面片上选定单位法向
+$n=(X_u\times X_v)/|X_u\times X_v|$。改变法向会改变带符号曲率。
+\begin{definition}[形算子与第二基本形式]
+由$|n|^2=1$知$\dd n$取值于切平面。形算子（shape operator）定义为$S=-\dd n$，即$S(X_u)=-n_u$、$S(X_v)=-n_v$。第二基本形式（second fundamental form）为
+\[
+ II(V,W)=\langle S(V),W\rangle,
+ \qquad II=e\,\dd u^2+2f\,\dd u\,\dd v+h\,\dd v^2,
+\]
+其中$e=\langle X_{uu},n\rangle$、$f=\langle X_{uv},n\rangle$、$h=\langle X_{vv},n\rangle$。用$h$而非$g$记最后一个系数，避免与度量矩阵混淆。
+\end{definition}
+\begin{theorem}[自伴性、主曲率与法曲率]\label{thm:shape}
+$S$相对于$I$自伴，其矩阵为$g^{-1}b$，其中$b=\left(\begin{smallmatrix}e&f\\f&h\end{smallmatrix}\right)$。它有一组正交归一特征向量，特征值$k_1,k_2$称主曲率（principal curvatures）。Gauss曲率和平均曲率分别为
+\[
+ K=\det S=\frac{eh-f^2}{EG-F^2},\qquad
+ H=\tfrac12\operatorname{tr}S=\frac{Ge-2Ff+Eh}{2(EG-F^2)}.
+\]
+沿单位切向量$V=\cos\alpha\,e_1+\sin\alpha\,e_2$的法曲率为
+$k_n(V)=II(V,V)=k_1\cos^2\alpha+k_2\sin^2\alpha$。
+\end{theorem}
+\begin{proof}
+对$\langle n,X_j\rangle=0$求$i$导数，得到$-\langle n_i,X_j\rangle=\langle n,X_{ij}\rangle=b_{ij}$。混合偏导相等，故$b_{ij}=b_{ji}$，这既验证定义中的系数，也说明$S$自伴。在基$X_u,X_v$中，$g[S]=b$，即$[S]=g^{-1}b$。
+在切平面用Gram--Schmidt法选择正交归一基，$S$的矩阵是实对称$2\times2$矩阵$\left(\begin{smallmatrix}a&c\\c&d\end{smallmatrix}\right)$。特征多项式判别式为$(a-d)^2+4c^2\geq0$，故有实特征值；不同特征值的特征向量由自伴性正交，重根时$a=d,c=0$，任意正交基均可。归一后得到主方向。求$g^{-1}b$的行列式与迹给出$K,H$。在主方向基中展开$II(V,V)$便得Euler法曲率公式。
+\end{proof}
+若$c(s)$是曲面上的单位速曲线，$\langle c',n\rangle=0$求导得$\langle c'',n\rangle=II(c',c')$，故其法向加速度只由切方向决定。若空间曲率$\kappa>0$，$c''=\kappa N$，所以$k_n=\kappa\langle N,n\rangle$；空间曲率$\kappa$本身未必等于法曲率。
+\begin{example}[平面、球面与鞍面]
+平面法向恒定，$S=0$。半径$R$的球面取外法向$n=X/R$，则$S=-I/R$，故$k_1=k_2=-1/R$、$H=-1/R$、$K=1/R^2$。这与附录规定的正球面Gauss曲率一致；负的主曲率来自$S=-\dd n$及外法向的共同选择。
+对图像$X(u,v)=(u,v,(u^2-v^2)/2)$取向上法向，原点有$g=I$、$b=\operatorname{diag}(1,-1)$，故$K=-1,H=0$。沿两条坐标轴弯曲符号相反。
+\end{example}
+\begin{figure}[htbp]
+\centering
+\input{course-study/figures/normal-sections}
+\caption{原创示意：鞍面原点的两个主法截面，分别位于$y=0$和$x=0$的平面内。两图均以向上法向为正，曲线各有$z=x^2/2$、$z=-y^2/2$，有符号法曲率分别为$1,-1$。}
+\end{figure}
+法向反转时$S,II,k_i,H$均变号而$K$不变。习题2.6--2.7验证图像公式与定向效应。

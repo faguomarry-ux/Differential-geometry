@@ -1,0 +1,60 @@
+\begin{definition}[张量的型别与分量]
+对有限维$V$，定义
+\[
+ T^r_s(V)=V^{\otimes r}\otimes(V^*)^{\otimes s},\qquad T^0_0(V)=\R.
+\]
+其元素称$(r,s)$型张量（tensor of type $(r,s)$）。由上一节的求值同构，可将它等价视为$(V^*)^r\times V^s$上的逐槽线性实函数：上标槽输入协向量，下标槽输入向量。基下有唯一展开
+\[
+ T=T^{i_1\cdots i_r}{}_{j_1\cdots j_s}
+ e_{i_1}\otimes\cdots\otimes e_{i_r}\otimes
+ e^{j_1}\otimes\cdots\otimes e^{j_s}.
+\]
+分量通过在相应槽中代入对偶基和原基得到；维数为$(\dim V)^{r+s}$（零次张量约定维数一）。
+\end{definition}
+等价性的证明可逐个基张量进行：上述基张量在基输入元组上给出Kronecker符号乘积，这些乘积构成全部逐槽线性形式的基。因此不是把“有若干指标的数组”直接当作无坐标定义。
+\begin{theorem}[张量换基律]\label{thm:tensor-transform}
+若$e'_a=e_iP^i{}_a$，$P$可逆，则
+\[
+ T'^{a_1\cdots a_r}{}_{b_1\cdots b_s}
+ =(P^{-1})^{a_1}{}_{i_1}\cdots(P^{-1})^{a_r}{}_{i_r}
+ P^{j_1}{}_{b_1}\cdots P^{j_s}{}_{b_s}
+ T^{i_1\cdots i_r}{}_{j_1\cdots j_s}.
+\]
+逆变分量乘$P^{-1}$，协变分量乘$P$。对于流形坐标变换$y=y(x)$，记$J^a{}_i=\partial y^a/\partial x^i$，则切空间新基对应$P=J^{-1}$。
+\end{theorem}
+\begin{proof}
+由第1章对偶换基式，$e'^a=(P^{-1})^a{}_i e^i$。分量$T'$是在张量的上槽依次输入$e'^{a_1},\ldots,e'^{a_r}$、下槽输入$e'_{b_1},\ldots,e'_{b_s}$后求值。逐槽线性使各$P$或$P^{-1}$因子提出，给出公式。坐标情形由$\partial/\partial y^a=(J^{-1})^i{}_a\partial/\partial x^i$得到。
+\end{proof}
+\begin{definition}[张量积与缩并]
+两个混合型张量的积先作普通张量积，再将所有$V$因子保持原顺序排到前面、所有$V^*$因子保持原顺序排到后面，得到型别相加的张量；这里的重新排序通过上一节的交换同构实现，无额外符号。
+对$r,s\geq1$，缩并（contraction）$C^a_b:T^r_s(V)\to T^{r-1}_{s-1}(V)$在纯张量上定义为：将第$b$个协向量作用于第$a$个向量，乘所得标量，再删去这两个因子，其余因子顺序保留。
+\end{definition}
+\begin{theorem}[缩并的良定义与基无关性]\label{thm:contraction}
+缩并是与基无关的线性映射。在分量上，它把一个上标和一个下标置成同一指标并求和。例如
+\[
+ (C^1_1T)^{i_2\cdots i_r}{}_{j_2\cdots j_s}
+ =\sum_{a=1}^{\dim V}T^{a i_2\cdots i_r}{}_{a j_2\cdots j_s}.
+\]
+特别地，$V\otimes V^*\simeq\operatorname{End}(V)$下缩并即迹，且$C(v\otimes\lambda)=\lambda(v)$。不指定额外双线性形式时，没有这种自然的两个上标或两个下标缩并。
+\end{theorem}
+\begin{proof}
+对各向量与协向量，定义中的输出是逐槽线性的：被删去的两个槽通过双线性配对$\lambda(v)$进入标量，其余槽线性进入剩余张量。因此多因子泛性质给出唯一线性映射，定义本身没有用基。
+将$T$按基展开，配对$e^b(e_a)=\delta^b_a$只留下两个指标相等的项，即得分量公式。换基时，被缩并两槽出现的逆矩阵与矩阵相消，剩余槽恰按低一型别的变换律变换。对算子$A$，其张量为$A^i{}_j e_i\otimes e^j$，缩并为$\sum_i A^i{}_i$，即迹。最后自然配对只接受一个$V$和一个$V^*$，两个同型槽之间尚无指定的配对，不能自行求和当成不变量。习题6.2专门核对$(2,1)$型的换基求和。
+\end{proof}
+\begin{example}[双线性形式、升降指标与迹]
+双线性形式$g\in T^0_2(V)$在基下为$g_{ij}$。若$g$非退化，$g^\flat:V\to V^*$、$g^\flat(v)=g(v,\cdot)$为同构；对称时其逆用矩阵$(g^{ij})=(g_{ij})^{-1}$表示。于是$v_i=g_{ij}v^j$、$\lambda^i=g^{ij}\lambda_j$。这些升降指标操作依赖选定的$g$，并非张量定义自动附带的等同。习题6.3给出完整的非退化性论证。
+在$V=\R^2$中，$B=e^1\otimes e^1+e^2\otimes e^2$为协变二阶张量。若$e'_1=2e_1,e'_2=e_2$，其矩阵从$I$变为$\operatorname{diag}(4,1)$，对角和从$2$变为$5$，说明直接相加$B_{11}+B_{22}$不是自然缩并。若另指定$g$，$g^{ij}B_{ij}$才是缩并得到的标量。
+\end{example}
+\begin{proposition}[协变拉回与型别边界]\label{prop:covariant-pullback}
+线性$A:V\to W$对协变张量定义
+\[
+ (A^*T)(v_1,\ldots,v_s)=T(Av_1,\ldots,Av_s).
+\]
+该拉回保持张量积及复合。若$A$可逆，则也可将任意混合型张量拉回：向量因子用$A^{-1}$，协向量因子用$A^*$。一般非可逆$A$不由这些数据给出任意混合型张量的同型拉回。
+\end{proposition}
+\begin{proof}
+协变定义逐槽线性，因此是$T^0_s(V)$的元素；代入纯张量可检验积与复合公式，任意张量再按基线性延拓。可逆时，在$r$个向量因子上取$A^{-1}$、$s$个对偶因子上取$A^*$的张量积，即得混合型定义。不可逆时$A^{-1}$不存在，因而不能把协向量的自然拉回无条件推广到所有型别。
+\end{proof}
+\begin{example}[普通偏导不自动成为张量]
+在半轴$x>0$取$X=\partial_x$，换坐标$y=x^2$。新分量为$X^y=2\sqrt y$，所以$\partial_yX^y=1/\sqrt y$；旧坐标中$\partial_xX^x=0$。若“分量偏导”是$(1,1)$型张量，一维时上、下换元因子应相消，两者须相等，矛盾。联络将来要补偿这种换坐标时出现的额外项；这里不提前引入尚未定义的协变导数。
+\end{example}

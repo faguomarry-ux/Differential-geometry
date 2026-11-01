@@ -1,0 +1,66 @@
+曲线的几何性质应与走过它的速度分开。以下$I$为开区间，曲线取值于带标准内积、标准定向的$\R^3$；平面曲线视为第三坐标恒零的特例。
+\begin{definition}[正则曲线与弧长]
+$C^k$映射$\gamma:I\to\R^3$若满足$\gamma'(t)\ne0$，称为正则参数曲线（regular parametrized curve）。固定$t_0\in I$，弧长参数定义为
+\[
+ s(t)=\int_{t_0}^t|\gamma'(u)|\,\dd u.
+\]
+它可以取负值；$t_1<t_2$间的弧长为$s(t_2)-s(t_1)$。这里只讨论局部几何，不要求$\gamma$单射。
+\end{definition}
+\begin{theorem}[弧长参数与长度不变性]\label{thm:arc-length}
+若$\gamma$为$C^k$正则曲线、$k\geq1$，则$s$是$I$到某开区间$J$的$C^k$微分同胚。$\widehat\gamma(s)=\gamma(t(s))$满足$|\widehat\gamma'(s)|=1$。任意$C^1$微分同胚重参数化保持曲线段长度。
+\end{theorem}
+\begin{proof}
+$s'(t)=|\gamma'(t)|>0$，故$s$严格递增；由逆映射定理\ref{thm:inverse}，各点附近都有$C^k$逆，局部逆因单射而拼成全局逆，且像$J$开。链式法则给出$\widehat\gamma'=\gamma'/|\gamma'|$。若$t=\phi(u)$为重参数化，则$|(\gamma\circ\phi)'(u)|=|\gamma'(\phi(u))||\phi'(u)|$；$\phi'$连续非零，在区间上同号，单变量积分换元（反向时交换端点）即得相同长度。
+\end{proof}
+\begin{definition}[Frenet标架、曲率与挠率]
+设$\gamma$为$C^3$单位速曲线，在曲率（curvature）$\kappa=|\gamma''|>0$的区间内定义
+\[
+ T=\gamma',\quad N=\frac{T'}{\kappa},\quad B=T\times N,
+ \qquad \tau=\langle N',B\rangle.
+\]
+$(T,N,B)$称Frenet标架，$\tau$称挠率（torsion）。本章用导数对弧长求导；对任意原参数求导时明确写$t$。
+\end{definition}
+\begin{theorem}[Frenet--Serret公式及参数公式]\label{thm:frenet}
+在上述区间内，
+\[
+ T'=\kappa N,\qquad N'=-\kappa T+\tau B,\qquad B'=-\tau N.
+\]
+任意$C^3$正则参数下，在$\gamma'\times\gamma''\ne0$处有
+\[
+ \kappa=\frac{|\gamma'\times\gamma''|}{|\gamma'|^3},\qquad
+ \tau=\frac{\det(\gamma',\gamma'',\gamma''')}{|\gamma'\times\gamma''|^2}.
+\]
+右端的导数均对该参数求导。
+\end{theorem}
+\begin{proof}
+$|T|^2=1$给出$\langle T,T'\rangle=0$，故标架正交归一且正向。第一式是定义。对$\langle N,T\rangle=0$求导得$\langle N',T\rangle=-\kappa$，对$|N|^2=1$求导得$\langle N',N\rangle=0$，剩余分量正是$\tau$，得到第二式。对$B=T\times N$求导，代入前两式及$T\times B=-N$，得到第三式。
+对一般参数令$v=\dd s/\dd t=|\gamma'|$，则
+\[
+ \gamma'=vT,\quad \gamma''=v'T+v^2\kappa N,
+\]
+所以$\gamma'\times\gamma''=v^3\kappa B$。再对第二式求$t$导数，$\gamma'''$沿$B$的分量为$v^3\kappa\tau$。用标量三重积计算分子得$v^6\kappa^2\tau$，而分母为$v^6\kappa^2$，故两参数公式成立。
+\end{proof}
+\begin{figure}[htbp]
+\centering
+\input{course-study/figures/frenet-circle}
+\caption{原创示意：半径$R$的圆在最右点的Frenet标架。$T$沿逆时针方向，$N$指向圆心，$B$垂直纸面向外。箭头仅表示方向，不表示曲率数值。}
+\end{figure}
+\begin{example}[圆、螺旋线与退化点]
+对$\gamma(t)=(a\cos t,a\sin t,bt)$，$a>0$、$b\in\R$，有
+\[
+ |\gamma'|=\sqrt{a^2+b^2},\quad
+ \kappa=\frac{a}{a^2+b^2},\quad \tau=\frac{b}{a^2+b^2}.
+\]
+事实上$\gamma'\times\gamma''=(ab\sin t,-ab\cos t,a^2)$，三重积为$a^2b$，代入上式即可。$b=0$时为圆，$\tau=0$；$b\ne0$时挠率测出离开平面的扭转。直线有$\kappa=0$，其Frenet法向、挠率按本定义均未定义，不能把公式中的零分母解释为零挠率。
+\end{example}
+本节的平面性判别及反向参数练习见习题2.1--2.3。
+
+在平面曲线的非零曲率点，圆心沿主法向、半径为$1/\kappa$的圆称密切圆；例如图\ref{fig:osculating-parabola}中的抛物线在原点与该圆有相同的单位切向量及弧长二阶导数。这是局部二阶接触，不表示整条曲线为圆。
+\begin{figure}[htbp]
+\centering
+\input{course-study/figures/osculating-parabola}
+\caption{原创示意：$y=x^2/2$在原点的曲率为$1$，密切圆圆心为$(0,1)$、半径为$1$。两条曲线在该点相切，但离开该点后分离。构图主题参考TikZ.net的Osculating Circle，坐标与公式由本书重新计算。}
+\label{fig:osculating-parabola}
+\end{figure}
+
+由给定$\kappa,\tau$重建曲线的基本定理需要常微分方程存在唯一性，本章不以未证明的ODE工具宣称完成该定理。

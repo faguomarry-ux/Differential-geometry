@@ -15,9 +15,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y latexmk texlive-xetex texlive-lang-chinese texlive-latex-extra texlive-fonts-recommended texlive-science
       - run: python3 scripts/check-sources.py
+      - name: Build diagram gallery and check parameter isolation
+        run: python3 scripts/build-figures.py
       - run: latexmk -r latexmkrc main.tex
       - uses: actions/upload-artifact@v4
         with:
           name: differential-geometry-book
-          path: build/main.pdf
+          path: |
+            build/main.pdf
+            build/figures-gallery.pdf
           if-no-files-found: error

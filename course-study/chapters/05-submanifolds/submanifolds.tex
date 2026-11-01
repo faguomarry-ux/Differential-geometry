@@ -1,0 +1,53 @@
+线性映射的单射、满射分别刻画参数是否冗余与方程是否独立。将这些条件施加于每一点的切映射，便得到浸入和浸没；嵌入还必须控制整体拓扑。
+\begin{definition}[浸入、浸没与嵌入]
+设$F:M^m\to N^n$光滑。若每个$\dd F_p$单射，称$F$为浸入（immersion）；若每个$\dd F_p$满射，称为浸没（submersion）。若$F$为浸入且是到其像$F(M)$（赋予$N$的子空间拓扑）的同胚，称为光滑嵌入（embedding）。
+子集$S\subset N^n$称为$k$维嵌入子流形，若每个$p\in S$有$N$的坐标卡$(U,y)$满足
+\[
+ y(U\cap S)=y(U)\cap(\R^k\times\{0\}).
+\]
+这里$S$取子空间拓扑及这些卡诱导的光滑结构。浸入子流形则须给出本身的流形结构与单射浸入$\iota:S\to N$，不要求其拓扑等于像的子空间拓扑。
+\end{definition}
+\begin{theorem}[局部正规形与嵌入的像]\label{thm:immersion-submersion}
+浸入在每一点附近可写为$(u^1,\ldots,u^m)\mapsto(u^1,\ldots,u^m,0,\ldots,0)$；浸没可写为$(u^1,\ldots,u^m)\mapsto(u^1,\ldots,u^n)$。每个浸入限制到充分小的源邻域都是嵌入。光滑嵌入的像为嵌入子流形，反之嵌入子流形的包含映射为光滑嵌入。
+\end{theorem}
+\begin{proof}
+在流形坐标中使用定理\ref{thm:constant-rank}。浸入的秩为源维数，浸没的秩为目标维数，故得到相应正规形。浸入正规形在小开盒上有连续逆（投影到前$m$个坐标），其逆也光滑，因而限制为嵌入。
+
+若$F$为嵌入，在$p$处先选上述源邻域$V$与目标正规形邻域$U$。因$F:M\to F(M)$是同胚，$F(V)$在$F(M)$相对开，故有目标开集$O$使$O\cap F(M)=F(V)$。把$U$缩到$U\cap O$，排除了$V$以外的其他像分支。再缩成适当的坐标开盒，像便恰为其中的坐标平面。这证明整个像满足子流形定义。反过来，子流形坐标之间的过渡是环境光滑过渡在坐标平面上的限制，故光滑；子空间的Hausdorff性和第二可数性从环境遗传。包含映射的矩阵为$\binom{I_k}{0}$，且本来就是到其像的同胚，故为嵌入。
+\end{proof}
+\begin{definition}[正则值]
+对光滑$F:M^m\to N^n$，若$p$处$\dd F_p$满射，称$p$为正则点。若$F^{-1}(q)$中每一点都是正则点，称$q\in N$为正则值（regular value）。空原像时该条件真；此时下述结论按空子流形理解。
+\end{definition}
+\begin{theorem}[正则值定理与切空间]\label{thm:regular-value}
+若$q$为$F:M^m\to N^n$的正则值且$F^{-1}(q)\ne\varnothing$，则$S=F^{-1}(q)$是$m-n$维嵌入子流形。在包含映射的微分所给的识别下，
+\[
+ T_pS=\ker\dd F_p\subset T_pM\qquad(p\in S).
+\]
+\end{theorem}
+\begin{proof}
+满秩小行列式在邻域上仍非零，因此$F$在$p$附近是浸没。应用上一命题并令$q$的坐标为零，$F$的表达为投影，原像就是前$n$个坐标为零的平面。由此得到子流形卡，包含映射的微分将其切空间送到前$n$个分量为零的空间，恰为该投影的核。各卡的光滑兼容性由环境换卡保证，故局部构造拼成所断言的子流形。
+\end{proof}
+\begin{example}[球面、矩阵群与奇异方程]
+$F(x)=|x|^2$在$F^{-1}(R^2)$（$R>0$）上微分为$v\mapsto2\langle x,v\rangle$，故球面维数为$n-1$且$T_xS_R^{n-1}=x^\perp$。这与习题4.6的直接构造相容。
+对$G(A)=A^{\mathsf T}A$，把值域取为对称矩阵空间$\operatorname{Sym}_n$。在$A\in O(n)=G^{-1}(I)$处，
+\[
+ \dd G_A(H)=A^{\mathsf T}H+H^{\mathsf T}A.
+\]
+给定对称$B$，取$H=AB/2$便得到$\dd G_A(H)=B$，故$O(n)$是$n(n-1)/2$维子流形，$T_AO(n)=\{AK:K^{\mathsf T}=-K\}$。若误把值域取为所有矩阵，满射条件就不成立。
+另一方面，$h(x,y)=xy$的零点集是两坐标轴，原点处不能成为一维子流形：任意小邻域去掉原点都有四条局部分支，而一维流形坐标区间只有两条。$g(t)=t^3$的零点集却是零维子流形，尽管$0$不是正则值；正则值条件是充分条件。
+\end{example}
+\begin{proposition}[紧源与嵌入]\label{prop:compact-embedding}
+从紧流形到Hausdorff流形的单射浸入必为嵌入。
+\end{proposition}
+\begin{proof}
+它是到其像的连续双射。紧空间的闭集仍紧，其像在Hausdorff空间中闭，因此逆映射连续。再用浸入假设即得嵌入。
+\end{proof}
+\begin{example}[单射浸入的逆不一定连续]\label{ex:irrational-immersion}
+把$\R/2\pi\mathbb Z$记为$S^1$，取无理数$\alpha$。映射
+\[
+ \gamma:\R\longrightarrow S^1\times S^1,\qquad
+ t\longmapsto([t],[\alpha t])
+\]
+为单射浸入：同像迫使$t-s=2\pi k$且$\alpha k$为整数，故$k=0$；速度在局部角坐标中是$(1,\alpha)$。它不是嵌入。事实上，把$0,\alpha,\ldots,N\alpha$的小数部分放进$N$个等分区间，抽屉原理给出$1\leq q\leq N$使$q\alpha$到某整数的距离至多$1/N$。当$N\to\infty$可取子列$q_j\to\infty$，否则有限个非零$q$到整数的正距离不能趋零。因此$\gamma(2\pi q_j)\to\gamma(0)$，而$2\pi q_j$不趋于零；到像的逆不连续。无需预先证明整条轨道稠密，就可识别这一拓扑障碍。
+\end{example}
+本节的正则值和浸入计算见习题5.1--5.2。一般横截原像定理、Sard定理与嵌入存在定理不在本节证明范围内。

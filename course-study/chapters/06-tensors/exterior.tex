@@ -1,0 +1,92 @@
+张量积保留变量的次序。描述有向面积或体积时，还希望交换两个输入便变号；外代数将这一要求编码为商关系。为避免归一化混淆，先区分商空间中的外积与普通协变张量的交替投影。
+\begin{definition}[张量代数与外代数]
+令$V^{\otimes0}=\R$，张量代数为直和
+\[
+ \mathcal T(V)=\bigoplus_{k\geq0}V^{\otimes k},
+\]
+乘法为因子串接。直和中的每个元素只有有限个非零齐次分量。令$I$为由所有$v\otimes v$生成的双边理想，定义外代数（exterior algebra）$\Lambda V=\mathcal T(V)/I$，其$k$次齐次部分记为$\Lambda^kV$，乘法记为$\wedge$。
+\end{definition}
+\begin{theorem}[外代数的基与泛性质]\label{thm:exterior-universal}
+若$\dim V=n$、基为$e_1,\ldots,e_n$，则$\Lambda^kV$的基为
+\[
+ e_{i_1}\wedge\cdots\wedge e_{i_k},\qquad i_1<\cdots<i_k.
+\]
+因此$\dim\Lambda^kV=\binom nk$，$k>n$时为零，$\Lambda^0V=\R$。任何交替的$k$重线性映射$b:V^k\to W$唯一分解为从$\Lambda^kV$到$W$的线性映射。外积结合，并对齐次元素满足
+\[
+ \xi\wedge\eta=(-1)^{pq}\eta\wedge\xi,
+ \qquad\xi\in\Lambda^pV,\ \eta\in\Lambda^qV.
+\]
+\end{theorem}
+\begin{proof}
+生成理想的关系齐次，故商代数仍按次数分级。由$(v+w)\wedge(v+w)=0$及$v\wedge v=w\wedge w=0$，得到$v\wedge w=-w\wedge v$。于是任何基单项式可通过相邻交换排成递增指标；若指标重复，则移到相邻后为零。这证明所列单项式张成。
+
+为证独立，对递增指标组$J=(j_1,\ldots,j_k)$定义行列式形式
+\[
+ b_J(v_1,\ldots,v_k)=\det(e^{j_a}(v_b))_{a,b=1}^k.
+\]
+其在$V^{\otimes k}$上的线性延拓对任何含相邻相同向量的纯张量为零，因此杀死理想$I$的$k$次部分，下降为$\Lambda^kV$上的线性泛函。在递增基单项式上取值为$\delta_{IJ}$，所以它们独立。这里若有非递增或重复的指标，由行列式的符号和重复列为零处理；并未预设待证的基结论。
+
+同理，任意交替$b$的张量积线性延拓杀死相邻重复向量，故杀死$I$的相应齐次部分，给出因子分解；因纯外积张成而唯一。结合律从商代数的乘法继承。将$p$个一次因子与$q$个一次因子交换共需$pq$次相邻交换，因此在纯齐次单项式上得符号$(-1)^{pq}$，再由双线性性推广。
+\end{proof}
+对$V^*$应用上一定理，通过行列式求值将$\Lambda^k(V^*)$与第1章的交替$k$形式空间自然同构。下文仍写$\Lambda^kV^*$，不再区分这两个已经识别的模型。这个识别使用的是完整行列式，不能漏掉阶乘。
+\begin{definition}[对称化与交替化]
+对$k$重协变张量$T$，定义
+\begin{align*}
+ (\operatorname{Sym}_kT)(v_1,\ldots,v_k)
+ &=\frac1{k!}\sum_{\sigma\in S_k}T(v_{\sigma(1)},\ldots,v_{\sigma(k)}),\\
+ (\operatorname{Alt}_kT)(v_1,\ldots,v_k)
+ &=\frac1{k!}\sum_{\sigma\in S_k}\operatorname{sgn}(\sigma)
+ T(v_{\sigma(1)},\ldots,v_{\sigma(k)}).
+\end{align*}
+零次情形二者均为恒等。此处二者是普通张量空间中的线性算子，交替化的像与上述交替形式空间相同。
+\end{definition}
+\begin{proposition}[投影与外积的归一化]\label{prop:alt-normalization}
+$\operatorname{Sym}_k$与$\operatorname{Alt}_k$分别投影到对称和交替张量子空间，均满足幂等性。若$\alpha\in\Lambda^pV^*$、$\beta\in\Lambda^qV^*$，则在形式模型中
+\[
+ \alpha\wedge\beta=\frac{(p+q)!}{p!q!}
+ \operatorname{Alt}_{p+q}(\alpha\otimes\beta).
+\]
+特别地，$\lambda\wedge\mu=\lambda\otimes\mu-\mu\otimes\lambda$，而
+$\operatorname{Alt}_2(\lambda\otimes\mu)=\tfrac12\lambda\wedge\mu$。
+\end{proposition}
+\begin{proof}
+将一个置换作用于求和式，相当于重新编号全部置换；不带符号时和保持，带符号时提出该置换的符号。因此像分别对称和交替。若输入已经对称，每个对称化求和项相同；若输入已经交替，每个带符号求和项也相同。于是相应算子在像上为恒等，得到幂等性。
+
+对于外积，先对基外积验证。若$\alpha=e^{i_1}\wedge\cdots\wedge e^{i_p}$、$\beta=e^{j_1}\wedge\cdots\wedge e^{j_q}$，将两个行列式展开再交替化，结果为全部$p+q$个协向量的行列式乘$p!q!/(p+q)!$；因组内置换均由各自的交替性抵消符号，真正不同的项恰是保持两组内部次序的洗牌。乘以所列系数后得到合并的外积。按基双线性延拓即得一般结论。这也与第1章定理\ref{thm:alternating}的$1/(p!q!)$全排列求和完全一致。
+\end{proof}
+对二阶协变张量，有$T=\operatorname{Sym}_2T+\operatorname{Alt}_2T$，两子空间交为零；但$k\geq3$时不能据此声称仅对称与全交替两部分已穷尽全部张量。习题6.5检验归一化及偶次外积的边界。
+\begin{proposition}[外积拉回与内插]\label{prop:exterior-pullback}
+对线性$A:V\to W$，协变拉回满足$A^*(\alpha\wedge\beta)=A^*\alpha\wedge A^*\beta$。对$v\in V$定义内插（interior product）
+\[
+ (\iota_v\alpha)(v_2,\ldots,v_p)=\alpha(v,v_2,\ldots,v_p),
+ \qquad\iota_v c=0\quad(c\in\R).
+\]
+则$\iota_v^2=0$且
+\[
+ \iota_v(\alpha\wedge\beta)
+ =(\iota_v\alpha)\wedge\beta+(-1)^p\alpha\wedge\iota_v\beta.
+\]
+\end{proposition}
+\begin{proof}
+拉回与交替化逐项交换，且保持普通张量积；应用上一命题的公式便得外积拉回式。内插后仍交替；连续插入两次相同$v$，交替性给出零。
+若$\alpha=\lambda_1\wedge\cdots\wedge\lambda_p$，按行列式的第一列展开可得
+\[
+ \iota_v\alpha=\sum_{a=1}^p(-1)^{a-1}\lambda_a(v)
+ \lambda_1\wedge\cdots\wedge\widehat\lambda_a\wedge\cdots\wedge\lambda_p.
+\]
+对$\alpha\wedge\beta$中的全部一次因子套用此式，插入落在前$p$因子的项组成第一项，落在后$q$因子的项先跨过$p$个因子而多出$(-1)^p$，组成第二项。纯外积张成，故线性延拓成立；零次情形按定义也相容。帽号表示删去相应因子。
+\end{proof}
+\begin{example}[偶次形式的平方未必为零]
+奇数次齐次形式$\alpha$满足$\alpha\wedge\alpha=-\alpha\wedge\alpha$，在实数域上即为零。偶数次则未必：在$\R^4$上取
+\[
+ \omega=e^1\wedge e^2+e^3\wedge e^4,
+ \qquad \omega\wedge\omega=2e^1\wedge e^2\wedge e^3\wedge e^4\ne0.
+\]
+因此$\omega$不能写成两个一次形式的单个外积，后者平方因出现重复因子而必为零。不要把“所有张量是纯张量”或“所有二形式都可分解”混作定义的一部分。
+\end{example}
+顶次外幂$\det V=\Lambda^nV$是一维空间。若$A:V\to V$线性，将$Ae_1,\ldots,Ae_n$按基展开并利用重复因子为零，得到
+\[
+ (\Lambda^nA)(e_1\wedge\cdots\wedge e_n)
+ =\det(A)\,e_1\wedge\cdots\wedge e_n.
+\]
+这给出行列式的无坐标解释。它将来连接体积形式、定向与积分；本章不由这一点预先宣称所有流形都存在全局非零体积形式。

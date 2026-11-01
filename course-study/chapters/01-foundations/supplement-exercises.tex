@@ -1,0 +1,38 @@
+\section{分析与代数补充习题及解答}
+以下习题1.17--1.22为本书原创补充，不对应梁书原题编号；接续前节的16题编号。
+\Needspace{8\baselineskip}
+\subsection*{习题1.17：链式法则与全微分}
+设$f(x,y)=(x^2-y,xy)$、$g(u,v)=u^2+v$。求$D(g\circ f)(1,2)$，并解释本章只有偏导的反例为什么不能使用链式法则。
+\begin{proof}[解答]
+$f(1,2)=(-1,2)$，$Df(1,2)=\left(\begin{smallmatrix}2&-1\\2&1\end{smallmatrix}\right)$，$Dg(-1,2)=(-2,1)$，故乘积为$(-2,3)$。直接展开$g\circ f=(x^2-y)^2+xy$并求偏导也得到此值。反例在原点的两个偏导数虽存在，但全微分不存在，缺少定理\ref{thm:euclidean-chain}的可微假设。
+\end{proof}
+\Needspace{8\baselineskip}
+\subsection*{习题1.18：隐函数的两种坐标}
+对$F(x,y)=x^2+y^2-1$，求$(0,1)$附近$y=\varphi(x)$的导数；说明为何$(1,0)$附近不能采用同样的因变量，并给出可用坐标。
+\begin{proof}[解答]
+在$(0,1)$，$F_y=2$，故$\varphi(x)=\sqrt{1-x^2}$，且$\varphi'(x)=-x/\sqrt{1-x^2}$，$\varphi'(0)=0$。在$(1,0)$，$F_y=0$，同一$x$在任意小圆弧附近可能对应正、负两个$y$，故不能把整个邻域的圆弧写成$y$的单值图像。但$F_x=2$，可写$x=\sqrt{1-y^2}$，其在$y=0$的导数为零。
+\end{proof}
+\Needspace{8\baselineskip}
+\subsection*{习题1.19：常秩正规形}
+设$f(x,y)=(x+y,(x+y)^2)$。求其秩并显式构造定理\ref{thm:constant-rank}的坐标变换。
+\begin{proof}[解答]
+$Df=\left(\begin{smallmatrix}1&1\\2(x+y)&2(x+y)\end{smallmatrix}\right)$，第一行非零、两列相同，故处处秩一。取$\Phi(x,y)=(u,v)=(x+y,y)$，其逆为$(u-v,v)$；取$\Psi(s,t)=(s,t-s^2)$，其逆为$(s,t+s^2)$。于是$\Psi\circ f\circ\Phi^{-1}(u,v)=(u,0)$。所有映射均光滑，这里无需仅用存在性陈述。
+\end{proof}
+\Needspace{8\baselineskip}
+\subsection*{习题1.20：对偶换基}
+在$\R^2$中取$e'_1=e_1$、$e'_2=e_1+e_2$。求新对偶基，并计算$v=e_1+2e_2$与$\lambda=3e^1-e^2$的新坐标和配对值。
+\begin{proof}[解答]
+$P=\left(\begin{smallmatrix}1&1\\0&1\end{smallmatrix}\right)$、$P^{-1}=\left(\begin{smallmatrix}1&-1\\0&1\end{smallmatrix}\right)$，故$e'^1=e^1-e^2$、$e'^2=e^2$。向量的新列坐标为$(-1,2)^{\mathsf T}$，协向量为$(3,2)^{\mathsf T}$。配对在新坐标中为$-3+4=1$，在旧坐标中为$3-2=1$，一致。
+\end{proof}
+\Needspace{8\baselineskip}
+\subsection*{习题1.21：外积的符号}
+设$\alpha=e^1+2e^2$、$\beta=e^2+e^3$，展开$\alpha\wedge\beta$，计算其在$(e_2,e_3)$上的值，并计算$\alpha\wedge\alpha$。
+\begin{proof}[解答]
+双线性展开得$\alpha\wedge\beta=e^1\wedge e^2+e^1\wedge e^3+2e^2\wedge e^3$，故指定元组上的值为$2$。一形式交换时变号，$\alpha\wedge\alpha=-\alpha\wedge\alpha$，实数域中$2\ne0$，所以为零。二形式的自外积却不一定为零，例如在$\R^4$中$(e^1\wedge e^2+e^3\wedge e^4)^2=2e^1\wedge e^2\wedge e^3\wedge e^4$。
+\end{proof}
+\Needspace{8\baselineskip}
+\subsection*{习题1.22：体积拉回与退化}
+设$A:\R^n\to\R^n$线性，证明$A^*(e^1\wedge\cdots\wedge e^n)=\det A\,e^1\wedge\cdots\wedge e^n$，并解释不可逆时为何拉回为零。
+\begin{proof}[解答]
+由定理\ref{thm:alternating}，最高次交替形式空间一维；在$(e_1,\ldots,e_n)$上求值，左边等于$\det(e^i(Ae_j))=\det A$，即为比例系数。若$A$不可逆，秩小于$n$，任意$n$个像向量线性相关，交替形式在它们上取值为零；这也从$\det A=0$得到。
+\end{proof}

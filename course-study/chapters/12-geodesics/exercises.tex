@@ -1,0 +1,128 @@
+\Needspace{15\baselineskip}
+\section{测地线与变分习题及详细解答}
+习题12.1改述梁书上册第二版第3章原题9，12.2改述原题10，两题均见印刷页85（PDF第101页）。
+
+12.3把正文定理3-3-8（印刷75/PDF91）的径向坐标结论练习化并增加说明，不另造原题号。12.4–12.8为原创补充。全部解答由本工程按既定联络与曲率符号重写。
+
+\Needspace{12\baselineskip}
+\subsection*{习题12.1：非仿射参数与常速}
+改述原题9。设正则曲线满足$D_t\dot c=\alpha(t)\dot c$，构造使其成为仿射测地线的参数。证明非恒定测地线的两个仿射参数只差$at+b$，并在正定度量下证明弧长参数为仿射参数。
+\begin{proof}[解答]
+令新参数$s=s(t)$，$s'>0$。链式法则给
+\[
+ D_s\frac{\dd c}{\dd s}
+ =\frac1{(s')^2}\left(D_t\dot c-\frac{s''}{s'}\dot c\right).
+\]
+取$s''/s'=\alpha$，即在任意给定区间内选
+\[
+ s'(t)=C\exp\left(\int_{t_0}^t\alpha(u)\,\dd u\right)>0,
+ \qquad s(t)=s_0+\int_{t_0}^t s'(u)\,\dd u,
+\]
+得到到其像区间的光滑微分同胚，方程变为零加速度。这不保证像区间为整个$\R$。若$t$本来仿射，则保持零加速度要求$s''=0$，正则性使$s'=a\ne0$，所以$s=at+b$，允许$a<0$时还可反向。
+
+度量相容给$\partial_t|\dot\gamma|^2=2g(D_t\dot\gamma,\dot\gamma)=0$，非恒定测地线速度为某个$c>0$。弧长$\ell=ct+\ell_0$与$t$为仿射关系，所以也是仿射参数。常值曲线没有可逆弧长参数；Lorentz零测地线的“长度参数”也不能按此构造，本题仅讨论正定度量的正则曲线。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题12.2：球面方程与大圆}
+改述原题10。在半径$a$球面的坐标度量$a^2(\dd\theta^2+\sin^2\theta\,\dd\phi^2)$下写出测地线方程，并验证配匀速参数的大圆为测地线。说明反向分类为何也成立。
+\begin{proof}[解答]
+第11章已求系数，代入得
+\[
+ \ddot\theta-\sin\theta\cos\theta\,\dot\phi^2=0,
+ \qquad \ddot\phi+2\cot\theta\,\dot\theta\dot\phi=0.
+\]
+赤道$\theta=\pi/2$、$\phi=ct+\phi_0$满足两式；绕球心的正交变换保持诱导度量及Levi--Civita联络，所以每条大圆的匀速参数都是测地线。给定$p$及非零$v\in T_pS^2(a)$，平面$\operatorname{span}\{p,v\}$与球面相交为大圆，选适当方向和速度即有该初值；测地线初值唯一性说明所有非恒定球面测地线都在这种大圆上。常值曲线另计，不能称作一个大圆。
+
+还可直接写出$\gamma(t)=\cos(|v|t/a)p+(a/|v|)\sin(|v|t/a)v$。它在球面上，初值为$p,v$，环境二阶导数为$-(|v|^2/a^2)\gamma$，与切空间正交；第11章切向投影联络等于Levi--Civita，所以其内蕴加速度为零。坐标极点处使用此全局公式，不把含$\cot\theta$的卡公式强行代入。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题12.3：法坐标究竟拉直哪些线}
+梁书定理3-3-8的文内主题改编。证明法坐标中从中心$p$出发的仿射测地线为$x(t)=tv$，并据此推出$\Gamma(p)=0$。这是否说明所有测地线都为坐标直线、整个邻域都平坦？
+\begin{proof}[解答]
+缩放初值的唯一性给$\gamma_v(t)=\exp_p(tv)$，因此用$\exp_p^{-1}$取坐标就得到$tv$。对任意$v$代入坐标测地线方程，在$t=0$有$\Gamma^k_{ij}(p)v^iv^j=0$；无挠使下槽对称，取$v=e_i$及$e_i+e_j$即可逐项得零。
+
+只在中心得到系数为零。以球面法坐标为例，从中心出发的大圆成为径向直线，但第11章已独立算出$K=a^{-2}\ne0$，所以不可能在整个邻域$\Gamma=0$。不经过中心的测地线也没有在上述论证中被拉直。一般非坐标平行标架与法坐标的“中心零”亦不同，不能与第10章整个邻域的平坦性混淆。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题12.4：下确界不达到的平坦例子}
+原创。在$M=\R^2\setminus\{0\}$取欧氏度量，$p=(-1,0)$、$q=(1,0)$。求$d(p,q)$，证明没有最短曲线，并判断两种完备性。
+\begin{proof}[解答]
+任意路径的欧氏长度至少弦长2。对$0<\varepsilon<1$，沿$x$轴从$p$到$(-\varepsilon,0)$，绕上半圆半径$\varepsilon$，再沿轴到$q$，总长
+\[
+ L_\varepsilon=2-2\varepsilon+\pi\varepsilon
+ =2+(\pi-2)\varepsilon\longrightarrow2.
+\]
+故$d(p,q)=2$。若达到等号，写速度为$(x',y')$，则$\int\sqrt{(x')^2+(y')^2}\geq\int x'=2$取等号，必有$y'=0$、$x'\geq0$几乎处处。连续性与分段光滑性使路径在$x$轴单调从$-1$到1，必经过删点，矛盾。
+
+序列$(1/j,0)$沿正轴的距离为$|1/j-1/k|$，是Cauchy却在$M$无极限，所以距离不完备。测地线$\gamma(t)=(1-t,0)$在$t=1$撞删点，不能延拓，亦不测地完备。曲率恒零仍不排除这些现象；失败来自流形的缺口。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题12.5：无共轭点也可能有多条最短线}
+原创。对周长$2\pi a$的圆周，计算两点距离、指数映射、对跖点的最短线数及Jacobi场，解释它与指标引理不矛盾。
+\begin{proof}[解答]
+用局部弧长坐标$s$，度量为$\dd s^2$、联络系数为零。取初点弧长为0，切空间识别为$\R$，则$\exp_p(v)$为$v$模$2\pi a$的圆周点；若终点代表为$s$，
+\[
+ d(p,q)=\min_{k\in\mathbb Z}|s+2\pi ak|.
+\]
+为说明此式，对任意路径沿有限坐标弧逐段选连续角度，交叠只差$2\pi a$的整数倍；由起点值固定逐段拼成实线提升。提升终点为$s+2\pi ak$，长度等于提升在实线的长度，至少该绝对值；单调弧实现各候选，故取其最小值。
+
+当$q$对跖于$p$，两个候选为$\pm\pi a$，有顺逆两条最短半圆；超过半圆的弧不再最短。可是维数1使$R=0$，平行单位场$T$下Jacobi场为$(A+Bt)T$，不能在两个不同时刻为零而非零。因此没有共轭点，指数微分处处非零。端点零场的$I=\int|V'|^2>0$与两条远处不同的最短线并不矛盾：正定指标型不提供全局路径唯一性。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题12.6：三个常曲率Jacobi模型}
+原创。在维数$n\geq2$的常截面曲率$K$模型中，沿单位速度测地线取平行单位法向场$E$。求初值
+\[
+ J(0)=0,\qquad D_tJ(0)=E(0)
+\]
+对应的Jacobi场。在球面$S^2(a)$据此求从一点出发的首次共轭距离和指数映射的角向微分。
+\begin{proof}[解答]
+第11章曲率模型给$R(E,T)T=KE$。写$J=s_K E$，得到$s_K''+Ks_K=0$、$s_K(0)=0,s_K'(0)=1$，故
+\[
+ s_K(t)=\begin{cases}
+ \sin(\sqrt Kt)/\sqrt K,&K>0,\\
+ t,&K=0,\\
+ \sinh(\sqrt{-K}t)/\sqrt{-K},&K<0.
+ \end{cases}
+\]
+正曲率时首次正零为$\pi/\sqrt K$；零与负曲率时无正零。球面$K=a^{-2}$给$s_K(t)=a\sin(t/a)$，所以首次共轭距离为$\pi a$，即对跖点，二维重数1。对$w\perp v$，$|v|=1$，命题\ref{prop:conjugate-exponential}给
+\[
+ (\dd\exp_p)_{tv}w=\frac{a\sin(t/a)}tP_{t\leftarrow0}w.
+\]
+径向单位输入仍被送为$T(t)$，所以只在角向退化；$t\to0$时系数趋1。该公式给局部微分的奇异性，不能仅凭它就推论所有全局最短性的分类。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题12.7：球面第二变分的精确阈值}
+原创。沿$S^2(a)$的一段单位速度大圆$\gamma:[0,b]\to S^2(a)$，取平行单位法向$E$与$V(t)=\sin(\pi t/b)E(t)$。计算$I(V,V)$，判断$b>\pi a$与$b=\pi a$的区别。
+\begin{proof}[解答]
+曲率项为$a^{-2}|V|^2$，所以
+\[
+ I(V,V)=\int_0^b\left(\frac{\pi^2}{b^2}\cos^2\frac{\pi t}b
+ -\frac1{a^2}\sin^2\frac{\pi t}b\right)\dd t
+ =\frac b2\left(\frac{\pi^2}{b^2}-\frac1{a^2}\right).
+\]
+若$b>\pi a$，指标负，第二变分给相同端点的更短曲线。若$b=\pi a$，指标为零，$V$与球面角向Jacobi场成比例；此时两端为对跖点，半大圆仍最短。为验证后一句而不预设球面距离公式，令$\theta$为点到起点径向的球心夹角。球面极坐标度量给任意路径$|\dot c|\geq a|\theta'|$；绕开坐标极点分段后取极限，起终夹角为0与$\pi$，所以长度至少$\pi a$，大圆半弧达到等号。
+
+零二阶变化本身不能证明或否定最短；本例的最短性来自另一个长度下界。若取同一大圆更长一段，首次共轭点进入内部，便落入本章“不再最短”定理的范围。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题12.8：开半平面为何可以完备}
+原创。在$\mathbb H^2=\{(x,y):y>0\}$取$g=y^{-2}(\dd x^2+\dd y^2)$。证明其长度距离完备，推出测地完备，并验证$\gamma(t)=(0,e^t)$为单位速度测地线。
+\begin{proof}[解答]
+任意曲线满足$L\geq\int|y'|/y\geq|\log y_1-\log y_0|$。若$(x_j,y_j)$为$d$-Cauchy序列，则$\log y_j$为实数Cauchy序列，所以晚期$0<m\leq y_j\leq M<\infty$。
+
+对晚期两点，取长度小于$\delta$的连接路径，其中$\delta$可随它们的距离趋零（用下确界取$L<d+\varepsilon$）。从起点到路径任一点仍有$|\log y-\log y_j|\leq\delta$，故沿途$y\leq Me^\delta$，从而
+\[
+ |x_j-x_k|\leq\int|x'|\leq Me^\delta\int\frac{|x'|}{y}
+ \leq Me^\delta\delta.
+\]
+因此$x_j$亦为实数Cauchy序列，且极限点$(x,y)$满足$y>0$。在该点的紧坐标小球上度量与欧氏度量一致有界，命题\ref{prop:distance-topology}或直接直线长度上界说明$d((x_j,y_j),(x,y))\to0$。故完备，Hopf--Rinow给测地完备。
+
+由第11章共形公式，非零系数为$\Gamma^x_{xy}=\Gamma^x_{yx}=-1/y$、$\Gamma^y_{xx}=1/y$、$\Gamma^y_{yy}=-1/y$。对$\gamma$，$x'=0,y'=y,y''=y$，故$y''-(y')^2/y=0$，另一方程也为零，且$|\dot\gamma|=y'/y=1$。它在$t\to-\infty$趋向边界，但需要无限弧长；“坐标域是欧氏开集”不能决定其黎曼完备性。
+\end{proof}

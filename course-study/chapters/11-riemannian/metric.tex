@@ -1,0 +1,58 @@
+\begin{definition}[黎曼度量]\label{def:riemannian-metric}
+$M$上的黎曼度量是光滑对称$(0,2)$型张量场$g$，使每个$g_p$正定，即$v\ne0$时$g_p(v,v)>0$。称$(M,g)$为黎曼流形，记$|v|_g=\sqrt{g(v,v)}$。非零向量夹角由$\cos\theta=g(u,v)/(|u|_g|v|_g)$定义；Cauchy--Schwarz不等式保证其值在$[-1,1]$中。
+\end{definition}
+
+在坐标卡中，$g=g_{ij}\dd x^i\otimes\dd x^j$，$(g_{ij})$为光滑正定对称矩阵。换坐标$y=y(x)$时
+\[
+ g'_{ab}=g_{ij}\frac{\partial x^i}{\partial y^a}\frac{\partial x^j}{\partial y^b},
+ \qquad (g'_{ab})=J^{\mathsf T}(g_{ij})J,\quad J=\frac{\partial x}{\partial y}.
+\]
+这里两个下槽均按协变规律改变。矩阵元素不能在每张任意坐标卡中都指定为$\delta_{ij}$；必须满足交叠相容式。每点可选正交归一基，只是逐纤维的线性代数结论。
+
+\begin{theorem}[度量的存在与凸性]\label{thm:metric-existence}
+每个本章意义下的光滑流形都有黎曼度量。若$g,h$为两个度量，$0\leq t\leq1$，则$g_t=(1-t)g+th$是光滑一族度量；更一般，度量的局部有限非负加权和在每点至少有一个正权重时仍正定。
+\end{theorem}
+\begin{proof}
+取坐标覆盖$\{U_\alpha\}$及第8章构造的光滑单位分解$\{\rho_\alpha\}$，满足$\operatorname{supp}\rho_\alpha\subset U_\alpha$。在$U_\alpha$拉回欧氏内积，得到$g_\alpha=\sum_i\dd x_\alpha^i\otimes\dd x_\alpha^i$。令
+\[
+ g=\sum_\alpha\rho_\alpha g_\alpha,
+\]
+其中每项在卡外延为零。支集条件保证任意卡外点的某个邻域上该项恒零，所以零延拓光滑；局部有限性使总和光滑。固定$p$及$0\ne v\in T_pM$，所有非零权重项的$g_\alpha(v,v)$严格正，而权重和为1，故$g_p(v,v)>0$。同样的逐点论证给出加权和结论及$g_t$的正定性，参数光滑性直接可见。
+\end{proof}
+
+这一构造不选定全局标架，也不要求流形可定向。正定矩阵的凸性是关键；固定不定符号的非退化矩阵集合一般不凸，因此不能照此声称每个流形都有指定符号的伪黎曼度量。
+
+\Needspace{17\baselineskip}
+\begin{proposition}[局部正交标架与升降指标]\label{prop:orthonormal-musical}
+每点邻域上都有光滑$g$正交归一标架。映射$\flat:TM\to T^*M$、$v^\flat=g(v,\cdot)$为光滑丛同构，其逆记$\sharp$。在坐标中
+\[
+ (v^\flat)_i=g_{ij}v^j,\qquad (\alpha^\sharp)^i=g^{ij}\alpha_j,
+ \qquad(g^{ij})=(g_{ij})^{-1}.
+\]
+对$f\in C^\infty(M)$，梯度$\operatorname{grad}_g f=(\dd f)^\sharp$由$g(\operatorname{grad}_g f,X)=Xf$唯一确定。
+\end{proposition}
+\begin{proof}
+从坐标基逐步作Gram--Schmidt：$u_k=\partial_k-\sum_{a<k}g(\partial_k,e_a)e_a$，$e_k=u_k/\sqrt{g(u_k,u_k)}$。线性无关性保证每步分母正，正函数的平方根光滑，所以所得标架光滑。逆矩阵由伴随矩阵除以正行列式给出，其系数光滑；非退化性保证$\flat$可逆。梯度结论是把协向量$\dd f$代入此同构。
+\end{proof}
+
+正交标架一般不是坐标基。例如平面极坐标的$e_1=\partial_r$、$e_2=r^{-1}\partial_\theta$满足$[e_1,e_2]=-r^{-1}e_2$，所以即使度量在此标架的矩阵恒为$I$，也不能据此断言联络矩阵为零。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/metric-unit-balls}
+\caption{同一二维向量空间的两种内积。采用相同坐标比例，$g_0=I$的单位圆与$g_1=\operatorname{diag}(4,1)$的单位椭圆不同；这不是流形在环境空间中的形状。}
+\label{fig:metric-unit-balls}
+\end{figure}
+
+\Needspace{17\baselineskip}
+\begin{proposition}[拉回度量]\label{prop:pullback-metric}
+若$F:M\to N$光滑且$h$为$N$的黎曼度量，则
+\[
+ (F^*h)_p(u,v)=h_{F(p)}(\dd F_pu,\dd F_pv)
+\]
+为光滑半正定对称张量；它正定当且仅当$F$为浸入。若$F$为微分同胚且$F^*h=g$，称$F$为等距映射；若仅为局部微分同胚并满足此式，称局部等距映射。
+\end{proposition}
+\begin{proof}
+光滑性与对称性来自张量拉回。$h(\dd Fv,\dd Fv)=0$恰当$\dd Fv=0$，所以逐点正定等价于$\ker\dd F_p=0$。这也解释为何任意光滑映射的拉回未必是度量：常映射的拉回恒为零。
+\end{proof}
+
+在$\R^3$中半径$a>0$的球面取包含映射的拉回度量，球坐标卡$0<\theta<\pi$上为$a^2(\dd\theta^2+\sin^2\theta\,\dd\phi^2)$。柱面取$a^2\dd\theta^2+\dd z^2$，局部坐标$u=a\theta$使它成为$\dd u^2+\dd z^2$；球面与柱面的内蕴曲率不能由两者都在三维空间中弯曲来判断。长度、长度距离及其拓扑和极值性质在第12章系统建立。

@@ -1,0 +1,53 @@
+\section{线性代数、对偶与多重线性}
+切向量的坐标变化是线性的，协向量则以相反的方式变化。下面只讨论有限维实向量空间；基的存在与有限维矩阵消元作为线性代数基础。
+\begin{definition}[对偶与拉回]
+$V$的对偶空间（dual space）为$V^*=\operatorname{Hom}(V,\R)$。若$e_1,\ldots,e_n$为基，其对偶基$e^1,\ldots,e^n$由$e^i(e_j)=\delta^i_j$定义。线性映射$A:V\to W$的拉回为$A^*:W^*\to V^*$，$A^*\lambda=\lambda\circ A$。
+\end{definition}
+\begin{theorem}[对偶、换基与秩]\label{thm:dual-basis}
+每个$\lambda\in V^*$唯一写为$\sum_i\lambda(e_i)e^i$。若新基$e'_j=\sum_i e_iP^i{}_j$，则
+\[
+ e'^j=\sum_i(P^{-1})^j{}_i e^i,\qquad
+ v'=P^{-1}v,\qquad \lambda'=P^{\mathsf T}\lambda.
+\]
+后两式中$v,\lambda$均为各自在旧基、旧对偶基下的列坐标。若$\dim V=n$，则$\dim\ker A+\operatorname{rank}A=n$；并且$(B\circ A)^*=A^*\circ B^*$。
+\end{theorem}
+\begin{proof}
+在$v=\sum_i v^ie_i$上求值，$\lambda(v)=\sum_i v^i\lambda(e_i)$，得到第一式及唯一性。将所给$e'^j$作用于$e'_k$，得到$\sum_i(P^{-1})^j{}_iP^i{}_k=\delta^j_k$，因此确为新对偶基。等式$\sum_i e_iv^i=\sum_j e'_jv'^j$给出$v=Pv'$；而$\lambda'_j=\lambda(e'_j)=\sum_iP^i{}_j\lambda_i$给出协向量公式。二者保证$\lambda'^{\mathsf T}v'=\lambda^{\mathsf T}v$。
+取核的基并补成$V$的基。补入的向量在$A$下的像张成像空间；若它们的线性组合像为零，该组合属于核，与基的线性无关性矛盾。故这些像是像空间的基，得到维数公式。最后对任意$\mu\in Z^*$，两边均将它送到$\mu\circ B\circ A$，故拉回复合公式成立。
+\end{proof}
+\begin{definition}[多重线性、张量积与交替形式]
+$k$重线性形式是$T:V^k\to\R$，对每个变量分别线性；这样的空间记为$(V^*)^{\otimes k}$。若交换任意两个变量都变号，称交替形式（alternating form），其空间记为$\Lambda^kV^*$；$\Lambda^0V^*=\R$。更一般的张量积$V\otimes W$可构造为由形式符号$v\otimes w$生成、模去两个变量中线性关系所得的向量空间；由此构造，每个双线性映射唯一因子分解为从$V\otimes W$出发的线性映射。
+\end{definition}
+\begin{theorem}[分量展开与外积]\label{thm:alternating}
+每个$k$重线性形式由$T(e_{i_1},\ldots,e_{i_k})$唯一决定。$\Lambda^kV^*$有基
+\[
+ e^{i_1}\wedge\cdots\wedge e^{i_k},\qquad 1\leq i_1<\cdots<i_k\leq n,
+\]
+其中该基形式在$v_1,\ldots,v_k$上的值是矩阵$(e^{i_a}(v_b))_{a,b}$的行列式。故$\dim\Lambda^kV^*=\binom nk$，$k>n$时为零。
+对$\alpha\in\Lambda^pV^*$、$\beta\in\Lambda^qV^*$，取外积约定
+\begin{align*}
+ &(\alpha\wedge\beta)(v_1,\ldots,v_{p+q})\\
+ &\quad=\frac1{p!q!}\sum_{\sigma\in S_{p+q}}\operatorname{sgn}(\sigma)
+ \alpha(v_{\sigma(1)},\ldots,v_{\sigma(p)})
+ \beta(v_{\sigma(p+1)},\ldots,v_{\sigma(p+q)}).
+\end{align*}
+则$\alpha\wedge\beta=(-1)^{pq}\beta\wedge\alpha$，外积可结合，且任意线性映射的拉回保持外积。
+\end{theorem}
+\begin{proof}
+把每个变量按基展开，逐个使用线性性，即得
+\[
+ T(v_1,\ldots,v_k)=\sum_{i_1,\ldots,i_k}T(e_{i_1},\ldots,e_{i_k})v_1^{i_1}\cdots v_k^{i_k}.
+\]
+交替形式在有两个相同基向量时取值零；其余有序指标由递增指标及排列符号唯一确定。上述行列式形式在递增基元组上恰取Kronecker值，故构成基。
+在外积定义中，同一组内部的$p!q!$个排列由交替性抵消符号后贡献相同，所以它等于保持各组内部顺序的洗牌排列之和。互换两组要让$p$个元素各跨过$q$个元素，符号为$(-1)^{pq}$。三组的两种括号方式都枚举保持三组内部顺序的全部洗牌，每个恰出现一次，符号相同，故满足结合律。定义拉回为将所有变量先作用$A$；将其代入求和式，逐项得到$A^*(\alpha\wedge\beta)=A^*\alpha\wedge A^*\beta$。
+\end{proof}
+\begin{example}[行列式与面积形式]
+在$\R^2$上，$(\dd x\wedge\dd y)((a,b),(c,d))=ad-bc$。若线性变换矩阵为$A$，则$A^*(\dd x\wedge\dd y)=\det A\,\dd x\wedge\dd y$。负行列式改变定向，零行列式压扁面积。这里$\dd x,\dd y$先指坐标线性函数；后面将解释它们作为微分形式的逐点意义。
+\end{example}
+\begin{figure}[htbp]
+\centering
+\input{course-study/figures/exterior-area}
+\caption{原创示意：按$(v,w)$次序张成的平行四边形有正定向，$\dd x\wedge\dd y$取值为有向面积$ad-bc$；交换两个向量会改变符号。}
+\label{fig:exterior-area}
+\end{figure}
+欧氏内积可以通过$v\mapsto\langle v,\cdot\rangle$识别$V,V^*$，但这种识别需要指定内积；对偶空间本身的定义不需要内积。习题1.20--1.22练习换基、外积和退化性。

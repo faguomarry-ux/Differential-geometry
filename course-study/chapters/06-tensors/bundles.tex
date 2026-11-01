@@ -1,0 +1,101 @@
+逐点张量还需具备随基点光滑变化的规则。向量丛（vector bundle）用局部乘积和纤维中的线性过渡同时表达这两层要求；第4章的切丛、余切丛正是特例。
+\begin{definition}[光滑实向量丛]
+秩$k$的光滑实向量丛为光滑投影$\pi:E\to M$，每条纤维$E_p=\pi^{-1}(p)$具有$k$维实向量空间结构，且每点附近存在微分同胚
+\[
+ \phi_\alpha:\pi^{-1}(U_\alpha)\longrightarrow U_\alpha\times\R^k
+\]
+保持基点并在每个纤维上线性。称$\phi_\alpha$为局部平凡化，总空间$E$按全书约定是Hausdorff、第二可数流形。秩零时允许零空间纤维。光滑截面为满足$\pi\circ s=\operatorname{id}_M$的光滑映射$s:M\to E$。
+\end{definition}
+\Needspace{5\baselineskip}
+局部标架$e_{\alpha1},\ldots,e_{\alpha k}$由$e_{\alpha i}(p)=\phi_\alpha^{-1}(p,\varepsilon_i)$给出，其中$\varepsilon_i$是$\R^k$标准基。截面$s=e_{\alpha i}s_\alpha^i$光滑当且仅当全部系数光滑，因为其局部表达为$p\mapsto(p,s_\alpha(p))$。
+\begin{theorem}[过渡函数与拼接构造]\label{thm:bundle-gluing}
+局部平凡化满足
+\[
+ \phi_\beta\phi_\alpha^{-1}(p,v)=(p,g_{\beta\alpha}(p)v),
+ \qquad g_{\beta\alpha}:U_\alpha\cap U_\beta\to\operatorname{GL}(k,\R)
+\]
+光滑，且在重叠处满足
+\[
+ g_{\alpha\alpha}=I,\quad g_{\alpha\beta}=g_{\beta\alpha}^{-1},\quad
+ g_{\gamma\alpha}=g_{\gamma\beta}g_{\beta\alpha}.
+\]
+反之，在光滑流形$M$的开覆盖上给定这些光滑矩阵函数及相容条件，就可构造一个向量丛，局部过渡恰为这些函数。固定这些局部识别时，所得丛在丛同构意义下唯一。
+\end{theorem}
+\begin{proof}
+正向由纤维线性性得到矩阵形式；矩阵每列是光滑过渡映射作用于固定标准基的结果，所以系数光滑。恒等、逆及复合条件由$\phi_\gamma\phi_\alpha^{-1}=(\phi_\gamma\phi_\beta^{-1})(\phi_\beta\phi_\alpha^{-1})$得到。注意矩阵次序是从$\alpha$坐标出发，先到$\beta$，再到$\gamma$。
+
+反向取不交并$\bigsqcup_\alpha U_\alpha\times\R^k$，规定
+\[
+ (p,v)_\alpha\sim(p,w)_\beta\quad\Longleftrightarrow\quad
+ w=g_{\beta\alpha}(p)v.
+\]
+三个相容条件分别保证自反、对称、传递，因此得到商集合$E$及投影$\pi([p,v])=p$。每个固定$\alpha$的映射$j_\alpha:(p,v)\mapsto[p,v]_\alpha$单射。给$E$商拓扑。局部开集$O\subset U_\alpha\times\R^k$在任意另一块中的等价原像由光滑可逆过渡送来，仍开，所以$j_\alpha(O)$在商中开。因此$j_\alpha$为到$\pi^{-1}(U_\alpha)$的同胚，逆给出所需平凡化。
+
+不同基点的两个总空间点由基空间的Hausdorff性分开；相同基点的不同点在同一平凡化中由不交欧氏邻域分开，因块像开，这些也是总空间开邻域。故$E$为Hausdorff。$M$的第二可数性给出该覆盖的可数子覆盖：对可数基中每个包含于某个$U_\alpha$的成员，选一个这样的$U_\alpha$即可。对应的可数个局部乘积各有可数基，它们的并是$E$的可数基。结合基空间坐标与纤维坐标，过渡光滑，故$E$为$\dim M+k$维光滑流形。
+
+同一纤维中不同代表之间通过可逆线性$g$转换，所以向量空间结构一致，平凡化纤维线性。若另一丛有相同的局部识别，就将$[p,v]_\alpha$送到其$\alpha$平凡化的逆像；相容条件保证良定义，各块上为微分同胚，故得到全局丛同构。
+\end{proof}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/bundle-cocycle}
+\caption{原创示意：固定三重交叠中的同一基点$p$，纤维坐标沿$\alpha\to\beta\to\gamma$的变换必须与直接$\alpha\to\gamma$相同，即$g_{\gamma\alpha}=g_{\gamma\beta}g_{\beta\alpha}$。图只画同一纤维的三种坐标表达，不是三条不同纤维。}
+\label{fig:bundle-cocycle}
+\end{figure}
+\begin{proposition}[截面拼接、换平凡化与全局标架]\label{prop:bundle-sections}
+局部光滑系数$f_\alpha:U_\alpha\to\R^k$给出全局光滑截面当且仅当$f_\beta=g_{\beta\alpha}f_\alpha$。若局部坐标另换为$v'_\alpha=h_\alpha v_\alpha$，其中$h_\alpha:U_\alpha\to\operatorname{GL}(k,\R)$光滑，则过渡矩阵变为
+\[
+ g'_{\beta\alpha}=h_\beta g_{\beta\alpha}h_\alpha^{-1}.
+\]
+$E$平凡（即与$M\times\R^k$丛同构）当且仅当存在$k$个全局光滑截面在每点组成纤维的基。
+\end{proposition}
+\begin{proof}
+同一点的两种代表相等恰由拼接关系刻画，故得到截面的充要条件，光滑性可在每个局部乘积中检验。将$v_\alpha=h_\alpha^{-1}v'_\alpha$代入$v'_\beta=h_\beta g_{\beta\alpha}v_\alpha$得到换平凡化公式。
+若有全局标架$s_1,\ldots,s_k$，定义$(p,a)\mapsto\sum_i a^is_i(p)$。局部标架下该映射的纤维矩阵光滑可逆，逆矩阵也光滑，故是全局丛同构。反之，把平凡丛的常值基截面经同构移回即得全局标架。秩零时为空标架，结论相同。
+\end{proof}
+截面空间$\Gamma(E)$是$C^\infty(M)$上的模，可逐点相加和乘函数。上一定理没有断言任意丛都有全局标架；局部线性代数不能替代全局拼接条件。
+\Needspace{15\baselineskip}
+\begin{example}[Möbius线丛]\label{ex:mobius-line}
+在$\R\times\R$上作等同$(t,a)\sim(t+2\pi,-a)$，投影到$S^1=\R/2\pi\mathbb Z$，得到实线丛$L$。在长度小于$2\pi$的基空间角区间上选一个角提升，便得到局部乘积；角提升相差$2\pi m$时纤维坐标乘$(-1)^m$，故过渡光滑且满足相容条件。定理\ref{thm:bundle-gluing}保证这是光滑秩一丛。
+若它有全局无零截面，拉回到实线便给出光滑函数$a(t)$满足$a(t+2\pi)=-a(t)$且处处非零。但连续函数从$a(0)$走到$-a(0)$必过零，矛盾。因此没有全局标架，$L$不平凡。这个证明只用中间值定理，无需提前使用特征类。
+\end{example}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/mobius-gluing}
+\caption{原创拼接示意：Möbius线丛将$(0,a)$与$(2\pi,-a)$等同。蓝曲线画系数$a(t)=\cos(t/2)$，端点按反号关系拼接为全局截面，但它在$t=\pi$为零。两端橙色箭头表示纤维坐标方向的反向识别；矩形只是截取有限纤维范围的基本域，并非丛在三维空间中的等距嵌入。}
+\label{fig:mobius-gluing}
+\end{figure}
+\begin{theorem}[丛的代数运算与张量场]\label{thm:tensor-bundles}
+对同一底流形上的秩$m,n$丛$E,F$，逐点定义$E^*,E\oplus F,E\otimes F,\Lambda^kE$，可自然赋予向量丛结构，秩分别为$m,m+n,mn,\binom mk$。若原纤维坐标过渡为$g_{\beta\alpha},h_{\beta\alpha}$，新过渡分别为
+\[
+ g_{\beta\alpha}^{-\mathsf T},\quad
+ \operatorname{diag}(g_{\beta\alpha},h_{\beta\alpha}),\quad
+ g_{\beta\alpha}\otimes h_{\beta\alpha},\quad
+ \Lambda^k g_{\beta\alpha}.
+\]
+特别地，
+\[
+ T^r_sM=(TM)^{\otimes r}\otimes(T^*M)^{\otimes s}
+\]
+是张量丛，其光滑截面称张量场。$\Lambda^kT^*M$的光滑截面称微分$k$形式。
+\end{theorem}
+\begin{proof}
+在各原平凡化中选择对偶基、直和基、张量积基或递增外积基。坐标变换即所列矩阵：对偶坐标按逆转置变化；直和按块变化；张量积逐因子变化；外幂矩阵的系数是原矩阵相应小行列式。因逆矩阵光滑，其余系数为原系数的多项式，故全都光滑可逆。各运算保持复合，故满足相同的相容条件。例如$(AB)^{-\mathsf T}=A^{-\mathsf T}B^{-\mathsf T}$，顺序与纤维坐标复合一致；$\Lambda^k(AB)=(\Lambda^kA)(\Lambda^kB)$可在纯外积上验证。应用拼接定理得到丛结构及其唯一性，各点的秩由已证明的线性代数维数公式给出。
+
+对$TM$使用坐标标架，便得到上一节的张量分量换元律；对$T^*M$得到一形式的规律。截面在每张卡中光滑等价于分量光滑，不同卡间按相同过渡相容，所以得到无坐标的张量场与微分形式定义。
+\end{proof}
+逐点张量积、缩并、外积及内插的分量为局部分量的有限和与乘积，因此将光滑截面送到光滑截面；基无关性保证局部结果拼接。对$F:M\to N$，协变场可用$\dd F_p$逐点拉回，分量为光滑函数与$DF$的有限乘积，故仍光滑。更一般地，拉回丛$F^*E=\{(p,e):F(p)=\pi(e)\}$在$F^{-1}(U_\alpha)$上有自然平凡化，过渡为$g_{\beta\alpha}\circ F$，拼接定理保证其丛结构。原截面$s$给出截面$p\mapsto(p,s(F(p)))$。这与把任意向量场直接拉回成源流形向量场是不同的目标空间。
+\Needspace{10\baselineskip}
+\begin{proposition}[常秩丛映射的核与像]\label{prop:bundle-constant-rank}
+设$A:E\to F$为覆盖同一$M$的光滑丛映射（各纤维上线性），且各$A_p$秩恒为$r$。则$\ker A$与$\operatorname{im}A$分别为秩$m-r$与$r$的光滑子丛。若秩跳跃，不能直接得此结论。
+\end{proposition}
+\begin{proof}
+在局部标架中$A$是光滑矩阵。选一个$r$阶可逆子块并重排行列，写作
+\[
+ A(p)=\begin{pmatrix}B&C\\D&E\end{pmatrix},\qquad B\text{可逆}.
+\]
+取可逆光滑矩阵
+\[
+ L=\begin{pmatrix}B^{-1}&0\\-DB^{-1}&I\end{pmatrix},\qquad
+ R=\begin{pmatrix}I&-B^{-1}C\\0&I\end{pmatrix}.
+\]
+直接相乘得$LAR=\operatorname{diag}(I_r,E-DB^{-1}C)$。秩恒为$r$迫使右下块为零。因此在改造后的源、目标标架中，核由源的后$m-r$个基截面张成，像由目标的前$r$个基截面张成。这些局部线性子空间本身由点态核与像唯一确定，在重叠处相同；局部标架过渡光滑，故构成子丛。$r=0$时映射为零，结论直接成立；其余块为空的端点情况同样处理。
+\end{proof}
+第5章的光滑常秩分布因而可视为$TM$的子丛，其积分条件仍需李括号判别。下一章在$\Lambda^kT^*M$截面上建立外微分；本章不从逐点外代数运算推断$d$的存在，也不预设每个向量丛都有全局平凡化、度规或联络。

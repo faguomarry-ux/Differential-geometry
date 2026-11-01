@@ -1,0 +1,80 @@
+局部原形式在交叠上的不相容，是把局部计算拼成全局计算时要保存的数据。Mayer--Vietoris序列把全域、两个开块及其交的上同调连成一个正合序列；连接映射恰好记录这种拼接障碍。
+\begin{definition}[正合序列与本节符号]
+线性映射序列$A\xrightarrow{f}B\xrightarrow{g}C$在$B$处正合（exact），指$\operatorname{im}f=\ker g$。设$M=U\cup V$为两个开集的并，$W=U\cap V$，规定
+\[
+ r(\omega)=(\omega|_U,\omega|_V),\qquad
+ q(\alpha,\beta)=\alpha|_W-\beta|_W.
+\]
+后面的连接映射$\delta$始终对应这个差的顺序。改变差的顺序会改变连接映射的号，不能在公式和计算间混用。
+\end{definition}
+
+\begin{lemma}[形式复形的短正合序列]\label{lem:mv-short}
+对每个次数$k$，有短正合序列
+\[
+ 0\longrightarrow\Omega^k(M)\xrightarrow{r}
+ \Omega^k(U)\oplus\Omega^k(V)\xrightarrow{q}\Omega^k(W)
+ \longrightarrow0,
+\]
+且$r,q$与$\dd$交换。
+\end{lemma}
+\begin{proof}
+形式在开覆盖上由限制唯一确定，故$r$单射；$q(\alpha,\beta)=0$恰好说两者在交叠相同，由形式的局部拼接得到唯一全局形式，所以$\ker q=\operatorname{im}r$。
+
+证明$q$满射需要第8章的单位分解。取$\rho_U+\rho_V=1$，$\operatorname{supp}\rho_U\subset U$、$\operatorname{supp}\rho_V\subset V$。若先得到多项从属分解，将指定给同一开集的各项相加；局部有限性保证和光滑，所涉闭支集的局部有限并仍闭，因此和的支集不越出对应开集。这里的两函数未必紧支，也无此要求。
+
+对$\gamma\in\Omega^k(W)$，令
+\[
+ a=(\rho_V\gamma)^{\mathrm{ext}}\in\Omega^k(U),\qquad
+ b=(-\rho_U\gamma)^{\mathrm{ext}}\in\Omega^k(V),
+\]
+其中上标表示在各自定义域内、交叠之外延零。例如$p\in U\setminus V$时，$p\notin\operatorname{supp}\rho_V$，邻域中$\rho_V$恒为零，故$a$延零光滑，即使$\gamma$在交叠边缘无界也无妨。$b$同理。在$W$上$a-b=(\rho_V+\rho_U)\gamma=\gamma$，故$q$满射。限制与外微分交换，所以$r,q$均为上链映射。
+\end{proof}
+注意：满射给出的$a,b$通常不闭。若它们总能闭，就会抹掉所需的连接映射以及非平凡的全局上同调。
+
+\begin{proposition}[连接映射的构造]\label{prop:mv-connecting}
+给定闭$k$形式$\gamma$于$W$，取任意提升$q(a,b)=\gamma$。则$\dd a,\dd b$可拼成全局闭$(k+1)$形式$\eta$，并可定义
+\[
+ \delta:H^k(W)\to H^{k+1}(M),\qquad\delta[\gamma]=[\eta].
+\]
+它与提升、代表元及构造提升所用单位分解无关。用上一引理的提升时，
+\[
+ \eta|_U=\dd(\rho_V\gamma)^{\mathrm{ext}},\qquad
+ \eta|_V=-\dd(\rho_U\gamma)^{\mathrm{ext}}.
+\]
+在$W$上二者共同等于$\dd\rho_V\wedge\gamma=-\dd\rho_U\wedge\gamma$。
+\end{proposition}
+\begin{proof}
+$\dd\gamma=0$给$\dd a|_W-\dd b|_W=0$，所以两者相容并唯一拼成$\eta$。其微分在$U,V$均为零，故全局为零。
+
+若换提升为$(a',b')$，差在$\ker q$中，故由短正合性为$r(\xi)$，$\xi\in\Omega^k(M)$。于是新拼接形式与$\eta$的差为$\dd\xi$，上同调类不变。若将$\gamma$改为$\gamma+\dd\lambda$（$k\geq1$），选$q(c,d)=\lambda$，则$(a+\dd c,b+\dd d)$提升新代表元，外微分仍为$(\dd a,\dd b)$，故类不变。$k=0$时没有负次数的$\lambda$，只需前一种检查。任一单位分解只是给出一种提升，已经涵盖在提升无关性中。提升可按线性组合相加，故$\delta$线性。
+\end{proof}
+
+\Needspace{17\baselineskip}
+\begin{theorem}[Mayer--Vietoris长正合序列]\label{thm:mayer-vietoris}
+对开覆盖$M=U\cup V$，上述$r,q,\delta$诱导长正合序列
+\begin{align*}
+ 0&\longrightarrow H^0(M)\xrightarrow{r_*}H^0(U)\oplus H^0(V)
+ \xrightarrow{q_*}H^0(W)\xrightarrow{\delta}H^1(M)\longrightarrow\cdots,\\
+ \cdots&\longrightarrow H^k(M)\xrightarrow{r_*}H^k(U)\oplus H^k(V)
+ \xrightarrow{q_*}H^k(W)\xrightarrow{\delta}H^{k+1}(M)\longrightarrow\cdots.
+\end{align*}
+\end{theorem}
+\begin{proof}
+分别检查三类位置；所有形式均为全域或相应开块上的光滑形式，不加紧支限制。
+
+\textbf{在$H^k(U)\oplus H^k(V)$处。}来自同一全局闭形式的限制相同，故$\operatorname{im}r_*\subset\ker q_*$。反向，设$\alpha,\beta$闭且$q_*([\alpha],[\beta])=0$。当$k\geq1$，有$\alpha|_W-\beta|_W=\dd\gamma$。取$q(a,b)=\gamma$，则$\alpha-\dd a,\beta-\dd b$闭且在$W$上相同，可拼成全局闭形式$\omega$；它限制后的类分别是$[\alpha],[\beta]$。当$k=0$，零类只能是零函数，故$\alpha|_W=\beta|_W$，直接拼接即可。
+
+\textbf{在$H^k(W)$处。}若$[\gamma]=q_*([\alpha],[\beta])$且$\alpha,\beta$闭，以$(\alpha,\beta)$为提升即可得到$\delta[\gamma]=0$。反向，取$q(a,b)=\gamma$并将$\dd a,\dd b$拼成$\eta$。若$\delta[\gamma]=0$，则$\eta=\dd\xi$，$\xi\in\Omega^k(M)$。令$\alpha=a-\xi|_U,\beta=b-\xi|_V$，它们闭且$q(\alpha,\beta)=\gamma$。所以$\ker\delta\subset\operatorname{im}q_*$。
+
+\textbf{在$H^{k+1}(M)$处。}$\delta[\gamma]$的代表元在$U,V$分别为$\dd a,\dd b$，故限制类均为零，得到$\operatorname{im}\delta\subset\ker r_*$。反向，若全局闭形式$\eta$满足$\eta|_U=\dd a,\eta|_V=\dd b$，则$\gamma=a|_W-b|_W$闭；以$(a,b)$为提升得到$\delta[\gamma]=[\eta]$。这证明所有正次数的该位置正合。最左端$H^0(M)$的单射来自局部常值函数由覆盖上的限制唯一确定，补足序列起点。
+\end{proof}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/mv-connecting}
+\caption{连接映射的构造：先将交叠闭形式$\gamma$提升为不必闭的$(a,b)$，再微分；$\dd a,\dd b$相容，故来自全局闭形式$\eta$。箭头$r$为限制，不把它画成任意局部数据的全局延拓。原创示意。}
+\label{fig:mv-connecting}
+\end{figure}
+
+\begin{example}[为什么圆周的交叠必须记住两个分支]
+取$U=S^1\setminus\{(-1,0)\}$、$V=S^1\setminus\{(1,0)\}$。两块都是开弧，但$W$是上下两个不相交开弧，故$H^0(W)=\R^2$。若按“每块可收缩”把交叠也误记为一个点，就会丢掉一维余核。具体矩阵及连接映射的积分符号将在下一节和习题9.5中核对。
+\end{example}
+本节没有假定上同调有限维，也不要求开覆盖成员紧致。正合性只给核与像的关系，不能把任意长正合序列直接拆成各项的无条件直和分解。

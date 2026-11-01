@@ -1,0 +1,254 @@
+[
+  {
+    "id": "roadmap",
+    "title": "阅读依赖路线",
+    "chapter": "frontmatter",
+    "provenance": "既有路线图模块化"
+  },
+  {
+    "id": "subspace-topology",
+    "title": "子空间的相对开弧",
+    "chapter": "01",
+    "provenance": "梁上册第二版图1-4改绘，印刷页7/PDF23"
+  },
+  {
+    "id": "compact-cover",
+    "title": "闭区间的有限子覆盖",
+    "chapter": "01",
+    "provenance": "原创；只画选定的有限子族"
+  },
+  {
+    "id": "implicit-graph",
+    "title": "隐函数的局部图像",
+    "chapter": "01",
+    "provenance": "原创；单位圆上方正则图像"
+  },
+  {
+    "id": "exterior-area",
+    "title": "外积与有向面积",
+    "chapter": "01",
+    "provenance": "原创；行列式与正定向"
+  },
+  {
+    "id": "frenet-circle",
+    "title": "圆的Frenet标架",
+    "chapter": "02",
+    "provenance": "既有原创图模块化"
+  },
+  {
+    "id": "osculating-parabola",
+    "title": "抛物线与密切圆",
+    "chapter": "02",
+    "provenance": "原创；参考tikz.net密切圆的构图主题，公式重新计算"
+  },
+  {
+    "id": "surface-patch",
+    "title": "参数曲面与切平面",
+    "chapter": "02",
+    "provenance": "原创；参考tikz.net坐标及向量分层画法"
+  },
+  {
+    "id": "normal-sections",
+    "title": "鞍面的主法截面",
+    "chapter": "02",
+    "provenance": "既有原创图模块化"
+  },
+  {
+    "id": "atlas-transition",
+    "title": "图册的换卡映射",
+    "chapter": "03",
+    "provenance": "原创交换图；抽象流形不依赖环境空间"
+  },
+  {
+    "id": "stereographic",
+    "title": "立体投影的二维截面",
+    "chapter": "03",
+    "provenance": "既有原创图模块化"
+  },
+  {
+    "id": "tangent-equivalence",
+    "title": "同速曲线代表同一切向量",
+    "chapter": "04",
+    "provenance": "原创；两条曲线使用同一参数速度"
+  },
+  {
+    "id": "polar-tangent",
+    "title": "极坐标基与单位基",
+    "chapter": "04",
+    "provenance": "既有原创图模块化；半径和角度可配置"
+  },
+  {
+    "id": "tangent-map",
+    "title": "切映射把速度送到速度",
+    "chapter": "04",
+    "provenance": "原创；剪切映射的显式计算"
+  },
+  {
+    "id": "bundle-trivialization",
+    "title": "切丛的局部纤维与截面",
+    "chapter": "04",
+    "provenance": "原创；只画一维局部模型"
+  },
+  {
+    "id": "flow-box",
+    "title": "非零向量场的流盒",
+    "chapter": "05",
+    "provenance": "原创；$X=\\partial_x+x\\partial_y$的显式流盒，换坐标不等距"
+  },
+  {
+    "id": "bracket-loop",
+    "title": "李括号与绕行剩余位移",
+    "chapter": "05",
+    "provenance": "原创；依次沿$X,Y,-X,-Y$运动，$s=t=1$"
+  },
+  {
+    "id": "integral-plaques",
+    "title": "Frobenius局部积分片",
+    "chapter": "05",
+    "provenance": "原创；$z-xy=c$的鞍面片及拉直坐标，采用斜投影"
+  },
+  {
+    "id": "tensor-universal",
+    "title": "张量积的泛性质",
+    "chapter": "06",
+    "provenance": "原创；双线性映射$b$唯一经由$\\tau$分解为线性映射"
+  },
+  {
+    "id": "bundle-cocycle",
+    "title": "同一纤维的过渡函数相容性",
+    "chapter": "06",
+    "provenance": "原创；$g_{\\gamma\\alpha}=g_{\\gamma\\beta}g_{\\beta\\alpha}$，箭头按坐标变化排序"
+  },
+  {
+    "id": "mobius-gluing",
+    "title": "反号拼接与Möbius线丛的截面",
+    "chapter": "06",
+    "provenance": "原创；$(0,a)\\sim(2\\pi,-a)$，$a(t)=\\cos(t/2)$的截面必过零"
+  },
+  {
+    "id": "forms-pullback",
+    "title": "拉回与外微分交换",
+    "chapter": "07",
+    "provenance": "原创；任意光滑映射满足$\\dd F^*=F^*\\dd$，无可逆性假设"
+  },
+  {
+    "id": "radial-homotopy",
+    "title": "星形域上的径向同伦",
+    "chapter": "07",
+    "provenance": "原创；$H(t,x)=tx$，空间输入变为$tv$，时间方向为$x$"
+  },
+  {
+    "id": "angular-obstruction",
+    "title": "局部角微分与全局积分障碍",
+    "chapter": "07",
+    "provenance": "原创；穿孔平面的角形式闭而不恰当，逆时针圆周积分$2\\pi$"
+  },
+  {
+    "id": "partition-unity",
+    "title": "三个非负权函数的单位分解",
+    "chapter": "08",
+    "provenance": "原创；三角函数恒等式给出有限权函数和为1，不声称紧支从属任意覆盖"
+  },
+  {
+    "id": "boundary-orientation",
+    "title": "圆环的外向首位边界定向",
+    "chapter": "08",
+    "provenance": "原创；外圆逆时针、内圆顺时针，N均指向圆环外"
+  },
+  {
+    "id": "stokes-halfspace",
+    "title": "半空间Stokes公式的边界符号",
+    "chapter": "08",
+    "provenance": "原创；二维$r\\geq0$，外向为负$r$方向，边界正向为正$x$方向"
+  },
+  {
+    "id": "radial-retract",
+    "title": "穿孔空间的径向形变收缩",
+    "chapter": "09",
+    "provenance": "原创；正半径插值使内外点都收缩到单位圆，轨迹避开原点"
+  },
+  {
+    "id": "mv-connecting",
+    "title": "Mayer--Vietoris连接映射的构造",
+    "chapter": "09",
+    "provenance": "原创；先提升交叠闭形式，再微分并拼接；$q(a,b)=a-b$"
+  },
+  {
+    "id": "sphere-mv-cover",
+    "title": "球面两极开覆盖与赤道收缩",
+    "chapter": "09",
+    "provenance": "原创；交叠删去两极，形变收缩到赤道，不使用闭半球作开覆盖"
+  },
+  {
+    "id": "connection-frame-change",
+    "title": "换标架与协变导数的相容性",
+    "chapter": "10",
+    "provenance": "原创；$e'=eG$时系数与协变导数都按$G^{-1}$变换"
+  },
+  {
+    "id": "parallel-transport",
+    "title": "沿曲线的纤维平行移动",
+    "chapter": "10",
+    "provenance": "原创；线性同构由平行方程决定，示意长度无度量含义"
+  },
+  {
+    "id": "connection-loop",
+    "title": "常矩阵联络的矩形移动次序",
+    "chapter": "10",
+    "provenance": "原创；依次沿正$x$、正$y$、负$x$、负$y$走，乘积从右往左作用"
+  },
+  {
+    "id": "metric-unit-balls",
+    "title": "两种内积的单位圆与单位椭圆",
+    "chapter": "11",
+    "provenance": "原创；同一坐标比例下I与diag(4,1)的单位集合"
+  },
+  {
+    "id": "metric-transport",
+    "title": "保持长度和夹角的平行移动",
+    "chapter": "11",
+    "provenance": "原创；不同纤维分别选正交归一表示，不声明端点无关"
+  },
+  {
+    "id": "sectional-trace",
+    "title": "三维Ricci曲率的截面求和",
+    "chapter": "11",
+    "provenance": "原创；包含同一单位方向的两个截面，不代表流形中的实际曲面"
+  },
+  {
+    "id": "gauss-radial",
+    "title": "Gauss引理的径向与角向微分",
+    "chapter": "12",
+    "provenance": "原创；输入附着于v，微分像在exp(v)的切空间；角向长度可变"
+  },
+  {
+    "id": "hopf-rinow-step",
+    "title": "Hopf–Rinow的小球面等号延伸",
+    "chapter": "12",
+    "provenance": "原创；近似最短线取紧子列，距离等号迫使接头无角"
+  },
+  {
+    "id": "jacobi-models",
+    "title": "三种常曲率Jacobi模型",
+    "chapter": "12",
+    "provenance": "原创；$\\sin t$、$t$、$\\sinh t$，横轴同为$[0,\\pi]$，右图纵轴单独缩放"
+  },
+  {
+    "id": "submanifold-acceleration",
+    "title": "浸入曲线的加速度正交分解",
+    "chapter": "13",
+    "provenance": "原创；抛物线变速参数在零点的精确数据，切法轴等比例"
+  },
+  {
+    "id": "adapted-frame-block",
+    "title": "适配标架的联络分块",
+    "chapter": "13",
+    "provenance": "原创；混合求导块为$\\beta$和$-\\beta^{\\mathsf T}$，列指标表示被求导基向量"
+  },
+  {
+    "id": "mean-curvature-balance",
+    "title": "主方向弯曲向量与平均曲率",
+    "chapter": "13",
+    "provenance": "原创；同一法空间内平移排列，$\\mathbf H$为平均而非总和；逐点示意"
+  }
+]

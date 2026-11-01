@@ -1,0 +1,91 @@
+两个方向上的运动次序可能不同。李括号（Lie bracket）刻画这种差别的一阶无穷小结构，而不是对不同点的切向量直接作差。
+\begin{definition}[向量场的李括号]
+对同一开集上的光滑向量场$X,Y$，定义
+\[
+ [X,Y]f=X(Yf)-Y(Xf).
+\]
+符号顺序固定为先写$XY-YX$。这与梁书2.2.2定义10的对易子约定相同。
+\end{definition}
+\begin{proposition}[坐标式与代数性质]\label{prop:lie-bracket}
+李括号仍为光滑向量场。若$X=a^i\partial_i$、$Y=b^i\partial_i$，则
+\[
+ [X,Y]=(a^j\partial_jb^i-b^j\partial_ja^i)\partial_i.
+\]
+它是实双线性、反对称的，并满足Jacobi恒等式以及
+\[
+ [X,[Y,Z]]+[Y,[Z,X]]+[Z,[X,Y]]=0,
+\]
+\[
+ [fX,gY]=fg[X,Y]+fX(g)Y-gY(f)X.
+\]
+\end{proposition}
+\begin{proof}
+展开$X(Yf)$与$Y(Xf)$，二阶项分别为$a^jb^i\partial_j\partial_i f$和$b^ja^i\partial_j\partial_i f$，重命名指标并用混合偏导交换后二者抵消，剩下所列一阶算子。其系数光滑且满足点态Leibniz法则，因此为光滑向量场。定义只涉及函数作用，不依赖坐标，局部公式自动相容。反对称性和实双线性直接由算子交换子得到。把Jacobi左边展开为十二个三重复合算子，每个排列各以相反符号出现一次，故为零。最后一式对任意函数$h$展开$fX(gYh)-gY(fXh)$，收集$XYh-YXh$及系数的一阶导数即可。
+\end{proof}
+李括号通常不是函数双线性的；例如$[\partial_x,x\partial_y]=\partial_y$。特别地，它不是只由$X_p,Y_p$决定的逐点运算：在原点，$Y=x\partial_y$和零场取值相同，却与$\partial_x$有不同括号。习题5.3核查这些区别。
+\Needspace{10\baselineskip}
+\begin{proposition}[相关向量场的括号]\label{prop:related-bracket}
+设$F:M\to N$光滑，$X_1,X_2$与$Y_1,Y_2$分别$F$相关，即$\dd F(X_i)=Y_i\circ F$。则$[X_1,X_2]$与$[Y_1,Y_2]$也$F$相关。特别地，微分同胚保持李括号。
+\end{proposition}
+\begin{proof}
+对$N$上的局部函数$h$，相关性等价于$X_i(h\circ F)=(Y_i h)\circ F$。连续使用两次并相减，得到
+\[
+ [X_1,X_2](h\circ F)=([Y_1,Y_2]h)\circ F.
+\]
+局部函数的微分区分切向量，因此得到所需相关性。对微分同胚可写成$F_*[X_1,X_2]=[F_*X_1,F_*X_2]$。
+\end{proof}
+\begin{lemma}[沿流比较向量场的符号]\label{lem:bracket-flow}
+设$\Phi$为$X$的局部流。将$Y_{\Phi_t(p)}$拉回到固定的$T_pM$，记
+\[
+ A_t(p)=\dd(\Phi_{-t})_{\Phi_t(p)}Y_{\Phi_t(p)}.
+\]
+则在定义域内
+\[
+ \frac{\dd}{\dd t}A_t(p)
+ =\dd(\Phi_{-t})_{\Phi_t(p)}[X,Y]_{\Phi_t(p)}.
+\]
+因此在$t=0$导数为$[X,Y]_p$；若改用固定目标点的推前$(\Phi_t)_*Y$，零时导数的符号相反。
+\end{lemma}
+\begin{proof}
+先在$p$处取坐标，记$X=a^i\partial_i,Y=b^i\partial_i$。流方程与光滑性给出
+\[
+ \Phi_t(p)=p+ta(p)+o(t),\quad
+ D\Phi_t(p)=I+tDa(p)+o(t).
+\]
+后一式由对初值求导的变分方程得到。$D\Phi_{-t}(\Phi_t(p))=D\Phi_t(p)^{-1}$，故$A_t(p)$的展开为
+\[
+ (I-tDa(p))(b(p)+tDb(p)a(p))+o(t)
+ =b(p)+t(Db\,a-Da\,b)(p)+o(t).
+\]
+这证明零时公式。任意$t$处用流复合律写
+\[
+ A_{t+h}(p)=\dd(\Phi_{-t})_{\Phi_t(p)}
+ \bigl(\dd(\Phi_{-h})_{\Phi_h(q)}Y_{\Phi_h(q)}\bigr),\qquad q=\Phi_t(p),
+\]
+括号内对$h$在零求导，再套零时公式便得一般式。固定$q$的推前是$\dd\Phi_t|_{\Phi_{-t}(q)}Y_{\Phi_{-t}(q)}=A_{-t}(q)$，因此符号反转。
+\end{proof}
+\Needspace{12\baselineskip}
+\begin{theorem}[括号为零与局部流交换]\label{thm:commuting-flows}
+对开集上的光滑场$X,Y$，下列条件等价：$[X,Y]=0$；$X$的局部流保持$Y$；两者的局部流在每点附近、充分小的时间内交换，即
+\[
+ \Phi_s\circ\Psi_t=\Psi_t\circ\Phi_s.
+\]
+这里每个复合须有定义；结论不声称在未经检查的任意大时间矩形上成立。
+\end{theorem}
+\begin{proof}
+若$[X,Y]=0$，引理\ref{lem:bracket-flow}说明$A_s(p)$为常量$Y_p$，即$\dd\Phi_s(Y_p)=Y_{\Phi_s(p)}$。这是流保持$Y$。
+若保持，固定足够小的$s$，曲线$t\mapsto\Phi_s(\Psi_t(p))$的导数等于其所在点的$Y$值，初值为$\Phi_s(p)$。ODE唯一性使它等于$\Psi_t(\Phi_s(p))$，故局部交换。反之，若交换，对$t$在零求导即得保持性，再由引理在$s=0$求导得到$[X,Y]=0$。所有推导可先缩小到统一的小时间和空间邻域，避免定义域越界。
+\end{proof}
+\begin{example}[交换矩形的剩余位移]\label{ex:bracket-rectangle}
+在$\R^3$取$X=\partial_x$、$Y=\partial_y+x\partial_z$。其流为
+\[
+ \Phi_s(x,y,z)=(x+s,y,z),\qquad
+ \Psi_t(x,y,z)=(x,y+t,z+xt).
+\]
+依次沿$X$走$s$、沿$Y$走$t$、沿$X$走$-s$、沿$Y$走$-t$，终点为$(x,y,z+st)$。故与约定$[X,Y]=\partial_z$一致。次序倒置会改变符号；只写“四边绕行”而不写次序不足以确定括号方向。
+\end{example}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/bracket-loop}
+\caption{原创示意：例\ref{ex:bracket-rectangle}从原点取$s=t=1$，按箭头依次走$X,Y,-X,-Y$，终点$q=(0,0,1)$。灰虚线表示剩余位移$st\partial_z$；空间采用斜投影，画面中的线段长度不直接代表欧氏距离。}
+\label{fig:bracket-loop}
+\end{figure}

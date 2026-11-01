@@ -1,0 +1,107 @@
+\section{多元微分与链式法则}
+坐标变换必须能够复合，而几何对象的变换律由复合的微分决定。本节在有限维欧氏空间中工作；实数的完备性、单变量微积分基本定理和连续函数在闭区间上可积作为已有分析基础，不在本书重新构造实数。
+\begin{definition}[全微分与光滑映射]
+设$U\subseteq\R^n$开，$f:U\to\R^m$。若存在一个线性映射$A$使
+\[
+ f(a+h)=f(a)+Ah+r(h),\qquad \lim_{h\to0}\frac{|r(h)|}{|h|}=0,
+\]
+称$f$在$a$可微（differentiable），记$Df(a)=A$。$C^1$表示处处可微且$Df$连续；递归定义$C^k$，所有阶均成立时称光滑（smooth）或$C^\infty$。线性映射用算子范数$\|A\|=\sup_{|v|=1}|Av|$度量。
+\end{definition}
+微分唯一：若$A,B$均满足定义，对任意$v$代入$h=tv$、除以$|t|$并令$t\to0$，得到$(A-B)v=0$。同一展开还给出$|f(a+h)-f(a)|\leq\|A\||h|+o(|h|)$，所以可微蕴含连续。微分的矩阵是Jacobi矩阵，其第$j$列为沿第$j$个坐标方向的偏导数。
+\begin{theorem}[连续偏导判别]\label{thm:continuous-partials}
+若$f$的全部一阶偏导数在$U$上存在且连续，则$f$为$C^1$，并且$Df(a)h=\sum_j\partial_j f(a)h_j$。
+\end{theorem}
+\begin{proof}
+取以$a$为中心、包含于$U$的小开立方体。将$a+h$与$a$之间的增量按坐标依次相减。第$j$项由单变量微积分基本定理为
+\[
+ h_j\int_0^1\partial_j f(a+h_1e_1+\cdots+h_{j-1}e_{j-1}+t h_je_j)\,\dd t.
+\]
+减去$\sum_jh_j\partial_j f(a)$，余项范数至多为$\sum_j|h_j|\varepsilon(h)$。由有限多个偏导数的连续性，可取$\varepsilon(h)\to0$。又$\sum_j|h_j|\leq\sqrt n|h|$，故余项为$o(|h|)$。矩阵各项连续蕴含$Df$连续。
+\end{proof}
+\begin{theorem}[链式法则]\label{thm:euclidean-chain}
+设$f:U\subseteq\R^n\to V\subseteq\R^m$在$a$可微，$g:V\to\R^\ell$在$b=f(a)$可微，其中$U,V$开。则
+\[
+ D(g\circ f)(a)=Dg(f(a))\circ Df(a).
+\]
+特别地，$C^k$映射的复合仍为$C^k$，$1\leq k\leq\infty$。
+\end{theorem}
+\begin{proof}
+写$f(a+h)=b+Ah+r(h)$及$g(b+k)=g(b)+Bk+s(k)$，其中$r(h)=o(|h|)$、$s(k)=o(|k|)$。令$k=Ah+r(h)$，则$|k|\leq C|h|$（$h$充分小时），且$k\to0$。复合的余项是$Br(h)+s(k)=o(|h|)$；当$k=0$时约定$s(0)=0$，同一估计成立。这证明微分公式。若$f,g$为$C^1$，公式右侧连续。更高阶情形对矩阵乘积逐项使用乘积法则并归纳；乘积法则本身由$(u+\Delta u)(v+\Delta v)-uv$的展开得到。
+\end{proof}
+\begin{example}[只有偏导不够]
+令$f(0,0)=0$，在其他点令$f(x,y)=xy/\sqrt{x^2+y^2}$。原点两偏导均为零；若全微分存在，它只能为零。但沿$(t,t)$有$f(t,t)=|t|/\sqrt2$，从而$|f(t,t)|/|(t,t)|=1/2$。余项条件失败，故$f$在原点不可微。
+\end{example}
+\begin{example}[极坐标的局部信息]
+$P(r,\theta)=(r\cos\theta,r\sin\theta)$满足
+\[
+ DP=\begin{pmatrix}\cos\theta&-r\sin\theta\\\sin\theta&r\cos\theta\end{pmatrix},
+ \qquad \det DP=r.
+\]
+因此$r>0$时可望在小邻域反解坐标；$r=0$退化。即使$r>0$，$\theta$的周期性也阻止它在整个定义域上单射。局部反解的依据由下一节给出。
+\end{example}
+本节练习见习题1.17；以下各节的补充题统一置于章末，并附解答。
+
+\section{逆映射、隐映射与常秩定理}
+要把方程的解集视为曲面，必须把非退化的线性信息提升为真实的局部坐标。这里给出欧氏版本的证明，不提前使用流形上的结论。
+\begin{lemma}[压缩映射原理的欧氏闭集版本]\label{lem:contraction}
+设$E\subseteq\R^n$非空且闭，$T:E\to E$满足$|T(x)-T(z)|\leq q|x-z|$，其中$0\leq q<1$。则$T$有唯一不动点。
+\end{lemma}
+\begin{proof}
+从任意$x_0\in E$迭代$x_{j+1}=T(x_j)$，则$|x_{j+1}-x_j|\leq q^j|x_1-x_0|$。对$k>j$求和得
+$|x_k-x_j|\leq q^j|x_1-x_0|/(1-q)$，故为Cauchy列。实数完备性逐坐标给出极限$x$，闭性保证$x\in E$。Lipschitz估计说明$T$连续，取极限得$T(x)=x$。两不动点的距离至多为自身的$q$倍，只能为零。
+\end{proof}
+\begin{theorem}[逆映射定理]\label{thm:inverse}
+设$U\subseteq\R^n$开，$f:U\to\R^n$为$C^k$，$1\leq k\leq\infty$。若$Df(a)$可逆，则存在$a$的开邻域$U_0$和$f(a)$的开邻域$V_0$，使$f:U_0\to V_0$双射，其逆$h$为$C^k$，且
+\[
+ Dh(y)=[Df(h(y))]^{-1}.
+\]
+\end{theorem}
+\begin{proof}
+平移并左乘$Df(a)^{-1}$，可先设$a=f(a)=0$、$Df(0)=I$。由连续性选择$r>0$，使闭球$\overline B_r\subset U$，且在该球上$\|Df(x)-I\|\leq q<1$。沿线段积分得到
+\[
+ |(f(x)-x)-(f(z)-z)|\leq q|x-z|.
+\]
+于是$|f(x)-f(z)|\geq(1-q)|x-z|$，所以$f$在球上单射。对$|y|<(1-q)r$，$T_y(x)=y+x-f(x)$是闭球到自身的压缩映射，因为
+$|T_y(x)|\leq|y|+q r<r$。引理\ref{lem:contraction}给出唯一$x=h(y)$，且该点在开球内。
+
+取$V_0=B_{(1-q)r}$、$U_0=B_r\cap f^{-1}(V_0)$，则二者开，$f:U_0\to V_0$双射，且
+$|h(y)-h(y')|\leq(1-q)^{-1}|y-y'|$。对$x=h(y)$和$\Delta x=h(y+\Delta y)-h(y)$，
+\[
+ \Delta y=Df(x)\Delta x+o(|\Delta x|).
+\]
+$\|Df(x)-I\|<1$保证$Df(x)$可逆：若$Df(x)v=0$则$|v|\leq q|v|$，故核为零，有限维同维线性映射即为双射。因此解得
+$\Delta x=Df(x)^{-1}\Delta y+o(|\Delta y|)$，用到了上面的Lipschitz估计。逆矩阵由余子式除以非零行列式给出，是矩阵元素的光滑函数；所以$Dh$连续。若$f$为$C^k$，对$Dh=(Df\circ h)^{-1}$逐级使用链式法则，归纳得到$h\in C^k$。最后撤销平移与线性变换即得一般情形。
+\end{proof}
+\begin{theorem}[隐映射定理]\label{thm:implicit}
+设$F:U\subseteq\R^p\times\R^q\to\R^q$为$C^k$，$F(a,b)=0$，且$D_yF(a,b)$可逆。则存在$a,b$的开邻域$A,B$及唯一$C^k$映射$\varphi:A\to B$，使$U$中限制于$A\times B$的零点集恰为$\{(x,\varphi(x)):x\in A\}$。其微分为
+\[
+ D\varphi(x)=-[D_yF(x,\varphi(x))]^{-1}D_xF(x,\varphi(x)).
+\]
+\end{theorem}
+\begin{proof}
+考虑$G(x,y)=(x,F(x,y))$，其微分为对角块$I,D_yF$的块三角矩阵，故在$(a,b)$可逆。由定理\ref{thm:inverse}，$G$在开邻域$W$与$Z$间有$C^k$逆。由于第一分量保持$x$，$G^{-1}(x,0)=(x,\varphi(x))$定义在$a$的某开邻域上。先取乘积邻域$A'\times B\subset W$，再缩小$A\subset A'$，使$(x,0)\in Z$且$\varphi(x)\in B$。于是图像上的点均为零点；反之，若$(x,y)\in A\times B$为零点，$G$在$W$上的单射性迫使$y=\varphi(x)$。缩小邻域可使$D_yF$处处可逆。对$F(x,\varphi(x))=0$用链式法则，再解线性方程即得导数公式。
+\end{proof}
+\begin{theorem}[常秩定理]\label{thm:constant-rank}
+设$f:U\subseteq\R^n\to\R^m$为$C^k$，并在$a$的某邻域上恒有$\operatorname{rank}Df=r$。则存在定义域和陪域中以$a,f(a)$为中心的$C^k$局部坐标，使$f$的表示为
+\[
+ (u_1,\ldots,u_n)\longmapsto(u_1,\ldots,u_r,0,\ldots,0).
+\]
+这里$0\leq r\leq\min(n,m)$，$1\leq k\leq\infty$。
+\end{theorem}
+\begin{proof}
+若$r>0$，重排输入和输出坐标，使$\partial(f_1,\ldots,f_r)/\partial(x_1,\ldots,x_r)$在$a$可逆。映射
+$\Phi(x)=(f_1(x),\ldots,f_r(x),x_{r+1},\ldots,x_n)$的微分可逆，故可用作局部坐标。在这些坐标中$f\circ\Phi^{-1}(u)=(u_1,\ldots,u_r,h(u))$。Jacobi矩阵前$r$行是$(I_r\ 0)$；恒秩$r$迫使$\partial h/\partial u_j=0$（$j>r$），否则相应列在前$r$列之外增加秩。缩小为乘积开盒，沿后$n-r$个坐标线段积分，得$h(u)=h(u_1,\ldots,u_r)$。
+在陪域作坐标变换$\Psi(y)=(y_1,\ldots,y_r,y_{r+1}-h_1(y_1,\ldots,y_r),\ldots,y_m-h_{m-r}(y_1,\ldots,y_r))$；其逆通过加回$h$显式给出。于是$\Psi\circ f\circ\Phi^{-1}=(u_1,\ldots,u_r,0)$。最后平移前$r$个坐标以将中心置零。$r=0$时，$Df=0$，在凸小球上沿线段积分说明$f$常值，平移输出即可；$r=m$时无需后续陪域修正。
+\end{proof}
+\begin{example}[球面与假设的边界]
+对$F(x,y,z)=x^2+y^2+z^2-1$，在$z\ne0$处可局部解为$z=\pm\sqrt{1-x^2-y^2}$。在赤道上$D_zF=0$，不能解为此种图像，但至少$x,y$之一非零，可改选因变量。相反，$f(t)=t^3$在零点的微分为零、附近非零，秩不恒定；它虽为同胚，逆$t^{1/3}$在零点不可微。这同时说明单点秩的信息不能替代常秩假设。
+\end{example}
+练习与解答见习题1.18--1.19。
+\begin{figure}[htbp]
+\centering
+\input{course-study/figures/implicit-graph}
+\caption{原创示意：$F=x^2+y^2-1$在$p=(0,1)$附近可解为上半圆图像。蓝线只表示所选邻域内的解；整条圆周不能写成单个$y(x)$图像，绿色箭头给出该点切方向。}
+\label{fig:implicit-graph}
+\end{figure}
+
+常微分方程的局部存在、唯一性与有限维参数光滑依赖在第5章定理\ref{thm:ode-local}中证明；其证明在本节压缩迭代的基础上展开，不依赖后文的Frobenius定理。

@@ -1,0 +1,70 @@
+\begin{definition}[沿曲线的协变导数]\label{def:derivative-along-curve}
+设$\gamma:I\to M$光滑，$V(t)\in E_{\gamma(t)}$为沿曲线的光滑截面。在局部标架下写$V=e_a(\gamma(t))v^a(t)$，定义
+\[
+ D_tV=e_a(\gamma(t))\left(\dot v^a+
+ \omega^a{}_b(\dot\gamma)v^b\right).
+\]
+若$D_tV=0$，称$V$沿$\gamma$平行（parallel）。对切丛亦写$D_tV=\nabla_{\dot\gamma}V$，但此式按沿曲线截面理解，不要求$V$来自某个邻域向量场。
+\end{definition}
+换标架时$v'=G(\gamma)^{-1}v$，利用上一节的$\omega'$公式和$\frac{\dd}{\dd t}G(\gamma)=\dd G(\dot\gamma)$，直接得到$\dot v'+\omega'(\dot\gamma)v'=G^{-1}(\dot v+\omega(\dot\gamma)v)$。因此定义无关标架。它适用于自交、驻点及常值曲线；在常值曲线上只剩固定纤维中向量的通常导数。若$V=s\circ\gamma$来自局部截面，则$D_tV=(\nabla_{\dot\gamma}s)\circ\gamma$，与原联络相容。
+
+\begin{theorem}[平行移动的存在与基本性质]\label{thm:parallel-transport}
+对紧区间$[a,b]$上的分段光滑曲线$\gamma$及$v\in E_{\gamma(a)}$，存在唯一连续、分段光滑的平行截面$V$，满足$V(a)=v$。由此定义线性同构
+\[
+ P^\gamma_{b\leftarrow a}:E_{\gamma(a)}\to E_{\gamma(b)},\qquad v\mapsto V(b).
+\]
+它满足恒等、拼接和逆向性质：
+\[
+ P^\gamma_{t\leftarrow s}P^\gamma_{s\leftarrow r}=P^\gamma_{t\leftarrow r},
+ \qquad P^{\bar\gamma}_{b\leftarrow a}=(P^\gamma_{b\leftarrow a})^{-1},
+\]
+其中$\bar\gamma(t)=\gamma(a+b-t)$在同一个$[a,b]$上反向走；保持方向的光滑重参数化不改变移动。光滑有限维曲线族的平行移动局部光滑依赖于参数及初值。
+\end{theorem}
+\begin{proof}
+单块中方程是$\dot v=-A(t)v$，$A(t)=\omega(\dot\gamma(t))$。第5章定理\ref{thm:ode-local}给局部存在唯一性与光滑参数依赖。若$\|A(t)\|\leq C$，Gronwall引理给$|v(t)|\leq|v(s)|e^{C|t-s|}$。在有限端点前解因而有界，且$|\dot v|\leq C|v|$有界，所以存在端点极限；以该极限为新初值可延拓，排除有限时刻爆破。故在线性方程系数定义的整个紧子区间都有解。
+
+对一般曲线，紧时间区间可有限分割，使每小段的像位于一个平凡化域中；逐段解方程并在端点换标架。局部定义相容和唯一性保证选择分割不影响结果。解对初值线性，因为方程齐次且唯一；逆向解同一方程恢复原初值，所以移动可逆。沿相邻时间段拼接解，由唯一性得复合式。重参数化$\gamma(\phi(u))$时导数整体乘$\phi'(u)$，故平行方程保持，得到重参数化结论。
+
+参数光滑依赖先在一个给定参数值附近取上述有限分割，缩小参数邻域后仍能使用同一组块，再逐段应用ODE参数定理。此陈述针对具有固定有限分段的有限维光滑曲线族，不在此建立无限维路径空间上的光滑结构。
+\end{proof}
+这里$P^\gamma_{t\leftarrow s}$的上下标为该路径参数的终点与起点；对反向路径，其源纤维为$E_{\gamma(b)}$、目标为$E_{\gamma(a)}$，所以确实是原移动的逆。
+固定$p$，所有以$p$为起终点的分段光滑闭路移动组成$\operatorname{GL}(E_p)$的子群，称holonomy群（闭路平行移动群）。恒定路径给单位，路径拼接给乘积，反向给逆。若用一条从$p$到$q$的路径比较基点，两群通过该路径的移动共轭。因此“闭路移动非平凡”是联络的几何性质，不是所选标架造成的假象。
+\begin{figure}[htbp]
+\centering\input{course-study/figures/parallel-transport}
+\caption{沿给定曲线的线性同构由平行方程决定。两条竖线示意不同基点的纤维，向量长度仅用于排版，不表示移动保持或改变某个已选度量；本章尚未选度规。原创示意。}
+\label{fig:parallel-transport}
+\end{figure}
+
+\begin{example}[平行不等于分量恒定]
+平面中恒定向量$V=\partial_x$沿半径$r=R$的圆周平行。其极坐标分量是$v^r=\cos\theta$、$v^\theta=-\sin\theta/R$，均随$\theta$变化。代入$D_\theta v^r=\partial_\theta v^r-Rv^\theta$及$D_\theta v^\theta=\partial_\theta v^\theta+v^r/R$，两者都为零。只有在沿该曲线的平行标架中，平行截面的系数才恒定。
+\end{example}
+
+\begin{definition}[仿射测地线]
+切丛联络$\nabla$的仿射参数测地线（affinely parametrized geodesic）是满足$D_t\dot\gamma=0$的光滑曲线；局部方程为
+\[
+ \ddot x^k+\Gamma^k_{ij}(x)\dot x^i\dot x^j=0.
+\]
+此定义包括常值曲线；在尚无度规时，不把测地线解释为最短曲线。
+\end{definition}
+
+\begin{theorem}[测地线初值、喷流与参数]\label{thm:affine-geodesics}
+给定$(p,v)\in TM$，存在唯一局部测地线满足$\gamma(0)=p,\dot\gamma(0)=v$，并光滑依赖初值；解可延拓为唯一极大开区间上的解。若$v\ne0$，其速度在定义域中处处非零。仿射重参数化$t=au+b$（$a\ne0$）保持方程；对非恒定测地线，正则重参数化保持仿射测地线方程当且仅当$\phi''=0$。测地线只依赖$\Gamma^k_{(ij)}$，不能单独确定挠率。
+\end{theorem}
+\begin{proof}
+将方程写成$TM$中的一阶系统$\dot x^k=v^k$、$\dot v^k=-\Gamma^k_{ij}(x)v^iv^j$。对坐标变化$y=y(x)$，链式法则及系数变换律给
+\[
+ \ddot y^a+\Gamma'^a_{bc}\dot y^b\dot y^c
+ =\frac{\partial y^a}{\partial x^k}
+   \bigl(\ddot x^k+\Gamma^k_{ij}\dot x^i\dot x^j\bigr),
+\]
+其中$\ddot y$的坐标二阶项与$\Gamma'$中的逆坐标二阶项相消；这也可由恒等$y(x(y))=y$求两次导数验证。所以该一阶系统定义$TM$上的光滑向量场。第5章ODE与极大积分曲线理论给初值、光滑依赖和极大延拓。若某时刻速度为零，其后与常值曲线有相同初值，由唯一性反向追溯会使原解恒定，矛盾。
+
+对$\widetilde\gamma(u)=\gamma(\phi(u))$，链式法则给
+\[
+ D_u\dot{\widetilde\gamma}=(\phi')^2D_t\dot\gamma+\phi''\dot\gamma.
+\]
+非恒定解的速度非零，所以右端在原解为测地线时为零恰要求$\phi''=0$。最后，反对称系数与$v^iv^j$缩并为零，方程只看到对称部分。
+\end{proof}
+\begin{example}[测地线不一定在所有时间存在]
+在$M=(0,1)$取$\Gamma=0$，$x(t)=1/2+t$的极大区间是$(-1/2,1/2)$；联络系数光滑且曲率为零，并未阻止曲线离开流形。平行移动沿每条已经给定的紧时间路径都能完成，不表示测地线对任意时间均有定义。完备性、指数映射及长度变分留到第12章。
+\end{example}

@@ -1,0 +1,32 @@
+% Chapter 9: explicit radial deformation and the Mayer--Vietoris construction.
+\DGDeclareDiagram{radial-retract}{%
+ \draw[dg/curve] (0,0) circle (1.3);
+ \draw[dg/guide] (0,0)--(25:2.5);\draw[dg/guide] (0,0)--(145:1.8);
+ \draw[dg/vector] (25:2.4)--(25:1.3);
+ \draw[dg/secondary,->] (145:.5)--(145:1.3);
+ \DGPoint[above right]{25:2.4}{$x$}
+ \DGPoint[below right]{25:1.3}{$r(x)$}
+ \DGPoint[below left]{145:.5}{$y$}
+ \DGPoint[above left]{145:1.3}{$r(y)$}
+ \draw[dg/open] (0,0) circle (2pt);\node[below] at (0,0) {$0$};
+ \node at (0,-1.75) {$H_t(x)=\bigl((1-t)+t/|x|\bigr)x$};}
+\DGDeclareDiagram{mv-connecting}{%
+ \node (a) at (-2.3,1) {$(a,b)$};\node (b) at (2.3,1) {$\gamma\in Z^k(W)$};
+ \node (c) at (-2.3,-1) {$(\dd a,\dd b)$};\node (d) at (2.3,-1) {$\eta\in Z^{k+1}(M)$};
+ \draw[dg/map] (a)--(b) node[midway,above] {$q$};
+ \draw[dg/map] (a)--(c) node[midway,left] {$\dd$};
+ \draw[dg/map] (d)--(c) node[midway,below] {$r$};
+ \node at (0,-2) {$\delta[\gamma]=[\eta],\qquad q(a,b)=\gamma$};}
+\DGDeclareDiagram{sphere-mv-cover}{%
+ \draw[dg/curve] (0,0) circle (1.65);
+ \draw[dg/curve] (-1.65,0) arc (180:360:1.65 and .42);
+ \draw[dg/guide] (1.65,0) arc (0:180:1.65 and .42);
+ \draw[dg/guide] (-1.35,.95) arc (180:360:1.35 and .25);
+ \draw[dg/guide] (-1.35,-.95) arc (180:360:1.35 and .25);
+ \draw[dg/secondary,->] (-.65,.85)--(-.8,.13);
+ \draw[dg/secondary,->] (.65,-.9)--(.8,-.22);
+ \DGPoint[above]{0,1.65}{$N$}\DGPoint[below]{0,-1.65}{$S$}
+ \node[right] at (1.95,.9) {$U=S^n\setminus\{S\}$};
+ \node[right] at (1.95,.3) {$V=S^n\setminus\{N\}$};
+ \node[right] at (1.95,-.5) {$W\simeq S^{n-1}\times(-1,1)$};
+ \node[below] at (0,-2.25) {$W\text{ 保持两极删除，收缩到赤道 }S^{n-1}$};}

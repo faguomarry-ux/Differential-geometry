@@ -1,0 +1,105 @@
+\begin{definition}[挠率与曲率]\label{def:torsion-curvature}
+切丛联络的挠率（torsion）为$T(X,Y)=\nabla_XY-\nabla_YX-[X,Y]$。任意向量丛联络的曲率（curvature）为
+\[
+ R^E(X,Y)s=\nabla_X\nabla_Ys-\nabla_Y\nabla_Xs-\nabla_{[X,Y]}s.
+\]
+切丛上省略上标$E$。$T=0$称无挠；$R^E=0$称联络平坦（flat）。这里平坦按曲率定义；对允许挠率的切丛，不预先把它等同于“存在坐标使全部$\Gamma$为零”。
+\end{definition}
+
+\begin{proposition}[张量性与分量]\label{prop:curvature-tensor}
+$T$对两个输入均为$C^\infty(M)$线性，是$\Lambda^2T^*M\otimes TM$截面；$R^E$对$X,Y,s$均为函数线性，且对$X,Y$反对称，所以$R^E\in\Omega^2(M;\operatorname{End}E)$。坐标切标架中
+\begin{align*}
+ T^k{}_{ij}&=\Gamma^k_{ij}-\Gamma^k_{ji},\\
+ R(\partial_i,\partial_j)\partial_k&=R^\ell{}_{kij}\partial_\ell,\\
+ R^\ell{}_{kij}&=\partial_i\Gamma^\ell_{jk}-\partial_j\Gamma^\ell_{ik}
+ +\Gamma^\ell_{im}\Gamma^m_{jk}-\Gamma^\ell_{jm}\Gamma^m_{ik}.
+\end{align*}
+\end{proposition}
+\begin{proof}
+例如$[fX,Y]=f[X,Y]-Y(f)X$，恰抵消$\nabla_Y(fX)$中的额外项，故$T(fX,Y)=fT(X,Y)$；反对称性给另一输入的线性。
+
+对曲率的截面输入展开两重Leibniz，第一项给
+\[
+ \nabla_X\nabla_Y(fs)=f\nabla_X\nabla_Ys+X(f)\nabla_Ys
+ +Y(f)\nabla_Xs+X(Y(f))s.
+\]
+减去交换项和$\nabla_{[X,Y]}(fs)$，一阶项抵消，零阶余项为$(XY-YX-[X,Y])(f)s=0$。对方向$fX$，第二项产生$-Y(f)\nabla_Xs$，括号项产生相反的一项，亦相消；另一方向用反对称性。局部系数光滑，所以这些函数线性映射确为所列光滑张量。
+
+在坐标基中$[\partial_i,\partial_j]=0$，挠率式直接得到。计算$\nabla_{\partial_i}(\Gamma^m_{jk}\partial_m)$，分别对系数和标架求导，再减去$i,j$交换式，即得曲率分量。一般非坐标标架还须保留括号项，不能只把偏导换成方向导数就结束。
+\end{proof}
+
+\begin{proposition}[结构方程]\label{prop:cartan-structure}
+矩阵值形式的乘法约定为$(\alpha\wedge\beta)^a{}_b=\sum_c\alpha^a{}_c\wedge\beta^c{}_b$。若$\omega$为$E$的联络矩阵，则曲率矩阵为
+\[
+ \Omega=\dd\omega+\omega\wedge\omega,
+ \qquad R^E(X,Y)(e_b)=e_a\Omega^a{}_b(X,Y).
+\]
+换标架$e'=eG$时$\Omega'=G^{-1}\Omega G$。在切丛标架$e_a$及其对偶余标架$\theta^a$中，挠率形式为
+\[
+ \Theta^a=\dd\theta^a+\omega^a{}_b\wedge\theta^b,
+ \qquad T(X,Y)=e_a\Theta^a(X,Y).
+\]
+若$[e_i,e_j]=c^k{}_{ij}e_k$且$\nabla_{e_i}e_j=\Gamma^a_{ij}e_a$，则$T^a{}_{ij}=\Gamma^a_{ij}-\Gamma^a_{ji}-c^a{}_{ij}$。
+\end{proposition}
+\begin{proof}
+对局部系数列向量$s$，算子$\nabla_X=X+\omega(X)$。两次复合后，作用在$s$上的一阶项抵消，余下矩阵是
+\[
+ X(\omega(Y))-Y(\omega(X))-\omega([X,Y])
+ +\omega(X)\omega(Y)-\omega(Y)\omega(X),
+\]
+恰为$\Omega(X,Y)$。曲率已经证明为内禀的端同态，因此将输入、输出标架同时换为$e'$，矩阵自然为$G^{-1}\Omega G$；这也可将$\omega'$代入验证。
+
+对切丛，先在标架$(e_i,e_j)$求值：$\dd\theta^a(e_i,e_j)=-c^a{}_{ij}$，而$(\omega^a{}_b\wedge\theta^b)(e_i,e_j)=\Gamma^a_{ij}-\Gamma^a_{ji}$。和为$T$的分量；两端均为张量，故对任意$X,Y$成立。对偶列$\theta$换标架为$G^{-1}\theta$，相应$\Theta'=G^{-1}\Theta$，表达式与几何对象相容。
+\end{proof}
+
+\Needspace{17\baselineskip}
+\begin{theorem}[一般联络的Bianchi恒等式]\label{thm:bianchi-forms}
+切丛联络的挠率与曲率满足第一结构形式的Bianchi恒等式
+\[
+ D\Theta:=\dd\Theta+\omega\wedge\Theta=\Omega\wedge\theta.
+\]
+任意向量丛联络的曲率满足第二Bianchi恒等式
+\[
+ D\Omega:=\dd\Omega+\omega\wedge\Omega-\Omega\wedge\omega=0.
+\]
+矩阵乘法次序按定义保留，无须度规或无挠假设。若$T=0$，第一式推出$\sum_{\mathrm{cyc}}R(X,Y)Z=0$；有挠时不能直接删去左端。协变张量形式及挠率修正将在下一节完整写出。
+\end{theorem}
+\begin{proof}
+由$\Theta=\dd\theta+\omega\wedge\theta$和次数为一的乘法法则，
+\begin{align*}
+ \dd\Theta+\omega\wedge\Theta
+ &=\dd\omega\wedge\theta-\omega\wedge\dd\theta
+   +\omega\wedge\dd\theta+\omega\wedge\omega\wedge\theta\\
+ &=(\dd\omega+\omega\wedge\omega)\wedge\theta=\Omega\wedge\theta.
+\end{align*}
+对曲率有$\dd\Omega=\dd\omega\wedge\omega-\omega\wedge\dd\omega$，所以
+\begin{align*}
+ \dd\Omega+\omega\wedge\Omega-\Omega\wedge\omega
+ &=\dd\omega\wedge\omega-\omega\wedge\dd\omega
+   +\omega\wedge(\dd\omega+\omega\wedge\omega)\\
+ &\quad-(\dd\omega+\omega\wedge\omega)\wedge\omega=0.
+\end{align*}
+这是结合律下的逐项抵消，不曾交换矩阵次序。$T=0$时$\Theta=0$，在$(X,Y,Z)$上求$\Omega\wedge\theta$的值，即为$R(X,Y)Z+R(Y,Z)X+R(Z,X)Y$，从而得到循环恒等式。
+\end{proof}
+
+\begin{theorem}[平坦性与局部平行标架]\label{thm:flat-parallel-frame}
+向量丛联络满足$R^E=0$，当且仅当每点附近存在平行标架，即$\nabla_Xe_a=0$对所有$X,a$成立。在这种邻域内，平行移动只依赖端点。对切丛，进一步有$T=0$时才可由此取局部坐标，使坐标标架平行、全部$\Gamma$为零。
+\end{theorem}
+\begin{proof}
+平行标架中$\omega=0$，结构方程立刻给$\Omega=0$。反向，在坐标盒内把$E$平凡化，写$\omega=A_i(x)\dd x^i$。在总空间上定义水平向量场
+\[
+ H_i=\partial_{x^i}-(A_i(x)v)^a\partial_{v^a}.
+\]
+直接对坐标函数求括号可得$[H_i,H_j]=-(\Omega_{ij}(x)v)^a\partial_{v^a}$，因此平坦时各$H_i$交换。它们的流在底空间平移相应坐标，纤维部分解线性方程；将底空间盒缩小后，有限段流对任意初始纤维向量都存在。由第5章“括号为零则局部流交换”的定理，从盒中心沿各坐标方向依次移动，得到与次序无关的映射$(x,v_0)\mapsto(x,P(x)v_0)$。线性ODE使$P(x)$线性且可逆，并光滑依赖$x$；交换流给$\partial_iP=-A_iP$。于是$P$的各列定义$r$个线性无关平行截面。
+
+平行标架中沿任意曲线的系数恒定，所以该盒内的移动只取决于端点。对切丛平行标架，有$T(e_i,e_j)=-[e_i,e_j]$；无挠时标架交换，以交换流构造坐标，其坐标向量就是$e_i$。反向，坐标标架平行必同时使$T,R$为零。仅曲率为零时可能存在不交换的平行标架，不能据此断言有平行坐标基。
+\end{proof}
+
+\begin{example}[一点的系数与整个邻域的平坦性]
+在$\R^2$取唯一非零系数$\Gamma^2_{22}=x^1$。它无挠，且原点所有系数为零，但$R(\partial_1,\partial_2)\partial_2=\partial_2$。因此在一点消去系数不等于在邻域内消去曲率。另一方面，平坦只保证局部平行标架；穿孔平面上的平坦线丛联络仍可有非平凡绕圈移动，见习题10.5。
+\end{example}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/connection-loop}
+\caption{常矩阵联络$\omega=A\dd x+B\dd y$沿矩形的移动次序。按$+x,+y,-x,-y$走，作用于列向量的总矩阵从右往左依次相乘，其首个非平凡项为$-\varepsilon\delta[A,B]$。这是明确的矩阵模型，不以图替代一般曲率定理。原创示意。}
+\label{fig:connection-loop}
+\end{figure}

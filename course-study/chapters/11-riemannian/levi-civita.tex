@@ -1,0 +1,116 @@
+\begin{definition}[度量相容]
+切丛联络$\nabla$与$g$相容，是指第10章诱导张量联络满足$\nabla g=0$，即
+\[
+ Xg(Y,Z)=g(\nabla_XY,Z)+g(Y,\nabla_XZ).
+\]
+坐标式为$\partial_i g_{jk}-\Gamma^a_{ij}g_{ak}-\Gamma^a_{ik}g_{ja}=0$。相容性与无挠是两个不同条件。
+\end{definition}
+
+\begin{theorem}[黎曼几何基本定理与Koszul公式]\label{thm:levi-civita}
+给定黎曼度量$g$，存在唯一无挠且与$g$相容的切丛联络，称Levi--Civita联络。它由以下Koszul公式确定：
+\begin{align*}
+ 2g(\nabla_XY,Z)={}&Xg(Y,Z)+Yg(Z,X)-Zg(X,Y)\\
+ &-g(X,[Y,Z])+g(Y,[Z,X])+g(Z,[X,Y]).
+\end{align*}
+\end{theorem}
+\begin{proof}
+先证必要性。写出相容性对$(X,Y,Z)$、$(Y,Z,X)$及$(Z,X,Y)$的三个式子，将前两式相加并减第三式。用$\nabla_XY-\nabla_YX=[X,Y]$消去反向导数，恰得上式。因此任何合格联络的$\nabla_XY$与所有$Z$的内积已确定；$g$非退化，故唯一。
+
+再证存在。记右端为$K(X,Y,Z)$，不预先假定它来自联络。它对各槽实线性。对光滑函数$f$直接代入括号的Leibniz式，得到
+\begin{align*}
+ K(X,Y,fZ)&=fK(X,Y,Z),\\
+ K(fX,Y,Z)&=fK(X,Y,Z),\\
+ K(X,fY,Z)&=fK(X,Y,Z)+2X(f)g(Y,Z).
+\end{align*}
+第一式中额外项依次为$X(f)g(Y,Z)+Y(f)g(X,Z)-Y(f)g(X,Z)-X(f)g(Y,Z)=0$。第二式中$Y(f)g(Z,X)-Z(f)g(X,Y)$与两个括号的相反项抵消；第三式中$Y$槽带来的导数相消后只留下两份$X(f)g(Y,Z)$。因此$K(X,Y,\cdot)/2$是光滑一形式，经$\sharp$定义光滑向量场$\nabla_XY$。后两式给出联络的函数线性与Leibniz规则，故确为全局联络。
+
+交换前两槽，直接整理得
+\[
+ K(X,Y,Z)-K(Y,X,Z)=2g([X,Y],Z),
+\]
+所以$T=0$。交换后两槽并相加，得到
+\[
+ K(X,Y,Z)+K(X,Z,Y)=2Xg(Y,Z),
+\]
+所以$\nabla g=0$。这完成存在性，不需要预先挑选某个全局坐标系来拼接系数。
+\end{proof}
+
+\begin{corollary}[Christoffel公式]\label{cor:metric-christoffel}
+在坐标基中，Levi--Civita联络满足
+\[
+ \Gamma^k_{ij}=\frac12g^{k\ell}
+ (\partial_i g_{j\ell}+\partial_j g_{i\ell}-\partial_\ell g_{ij}).
+\]
+\end{corollary}
+\begin{proof}
+Koszul公式中的坐标括号都为零，故$2g_{k\ell}\Gamma^k_{ij}=\partial_i g_{j\ell}+\partial_j g_{i\ell}-\partial_\ell g_{ij}$，乘逆矩阵即可。公式只在坐标基中如此简化；一般正交标架须保留括号项。
+\end{proof}
+
+例如$g=\dd r^2+r^2\dd\theta^2$给出$\Gamma^r_{\theta\theta}=-r$、$\Gamma^\theta_{r\theta}=\Gamma^\theta_{\theta r}=1/r$，与第10章通过坐标变换得到的系数相同。非零系数不代表曲率非零。
+
+\Needspace{17\baselineskip}
+\begin{proposition}[相容性与等距平行移动]\label{prop:metric-transport}
+对任意切丛联络，$\nabla g=0$当且仅当沿每条光滑曲线的平行移动保持内积。相容联络沿曲线满足
+\[
+ \frac{\dd}{\dd t}g(V,W)=g(D_tV,W)+g(V,D_tW).
+\]
+特别地，Levi--Civita仿射测地线的速度范数为常数。
+\end{proposition}
+\begin{proof}
+对沿曲线任意$V,W$在坐标中求导，减去右端，剩余正是$(\nabla_{\dot\gamma}g)(V,W)$，所以相容时式子成立。平行场使右端为零，内积保持。
+
+反之，在$p$取任意$u,v,w\in T_pM$，选曲线满足$\dot\gamma(0)=u$，沿其平行延拓$v,w$为$V,W$。由假设$g(V,W)$恒定，前述坐标计算得$(\nabla_u g)(v,w)=0$。三个向量任意，所以$\nabla g=0$。最后对$V=W=\dot\gamma$用$D_t\dot\gamma=0$即得速度平方导数为零；常值曲线也包含在内。
+\end{proof}
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/metric-transport}
+\caption{在起终点分别用正交归一基表示二维切空间。相容联络的平行移动同时保持两向量的长度与夹角，图中两单位圆表示不同纤维；图示不声称有沿所有路径一致的全局识别。}
+\label{fig:metric-transport}
+\end{figure}
+
+\begin{proposition}[等距映射、常数缩放与乘积]\label{prop:metric-naturality}
+局部等距映射保持Levi--Civita联络及其曲率，因而保持带仿射参数的测地线。正数常量$c$的缩放$\widetilde g=cg$不改变Levi--Civita联络及$(1,3)$型曲率。乘积度量$g_1\oplus g_2$的联络在来自两个因子的提升场上分别为各因子的联络，混合导数为零。
+\end{proposition}
+\begin{proof}
+先将局部等距映射限制为某邻域的微分同胚，把目标联络拉回：
+\[
+ \widehat\nabla_XY=(\dd F)^{-1}(\nabla^N_{F_*X}F_*Y).
+\]
+它满足联络规则；相容性由$F^*h=g$，无挠性由$F_*[X,Y]=[F_*X,F_*Y]$给出。因此由唯一性$\widehat\nabla=\nabla^M$。代入曲率和沿曲线导数的定义得其余保持性质。
+
+常数缩放时Koszul等式两边同乘$c$，故联络相同；曲率的定义只涉及联络，因而相同。对乘积，提升场来自不同因子时括号为零，混合内积为零，同因子内积对另一因子求导也为零。代入Koszul得到混合导数为零、同因子导数为原联络。一般场再用联络规则从提升局部标架扩展，不能误把依赖两组变量的一般场的系数导数删掉。
+\end{proof}
+
+\subsection*{体积与标量微分算子}
+若$M$已定向，令$d=\det(g_{ij})>0$。在正向卡中定义$\mathrm{vol}_g=\sqrt d\,\dd x^1\wedge\cdots\wedge\dd x^n$。换卡时$d'=(\det J)^2d$，而正向换卡的Jacobian为正，故这些形式拼成全局正体积形式；不可定向时仍有局部密度，但本章不将其当全局顶次形式积分。
+
+\begin{proposition}[散度与Laplace算子]\label{prop:metric-divergence}
+记$\operatorname{div}_gX=\operatorname{tr}(Y\mapsto\nabla_YX)$，取符号约定$\Delta_g f=\operatorname{div}_g\operatorname{grad}_g f$。则
+\begin{align*}
+ \Gamma^i_{ik}&=\partial_k\log\sqrt d,\\
+ \operatorname{div}_gX&=\frac1{\sqrt d}\partial_i(\sqrt d\,X^i),\\
+ \Delta_g f&=\frac1{\sqrt d}\partial_i(\sqrt d\,g^{ij}\partial_j f)
+ =g^{ij}(\partial_i\partial_j f-\Gamma^k_{ij}\partial_k f).
+\end{align*}
+在定向流形上还满足$\dd(\iota_X\mathrm{vol}_g)=(\operatorname{div}_gX)\mathrm{vol}_g$。若$f,h$光滑且至少一个紧支，则
+\[
+ \int_M f\Delta_g h\,\mathrm{vol}_g
+ =-\int_M g(\operatorname{grad}_g f,\operatorname{grad}_g h)\,\mathrm{vol}_g.
+\]
+\end{proposition}
+\begin{proof}
+在Christoffel公式中缩并上下$i$，第一、第三项重命名哑指标后抵消，得$\Gamma^i_{ik}=\tfrac12g^{ij}\partial_k g_{ij}$。行列式按列求导，余子式公式给$\partial_k d=d\,g^{ij}\partial_k g_{ji}$，于是得到第一式。取$\nabla X$的迹并用乘积法则即得第二式；代入梯度分量得第三式前半。又因$\nabla g=0$，$\nabla\operatorname{grad}h$的迹等于$\nabla\dd h$的度量迹，从第10章Hessian分量式得到后半。
+
+对$\iota_X\mathrm{vol}_g$逐项外微分，只有缺少的$\dd x^i$方向存活，各项符号抵消后给
+\[
+ \partial_i(\sqrt d X^i)\dd x^1\wedge\cdots\wedge\dd x^n.
+\]
+再取$X=f\operatorname{grad}h$，用散度的乘积规则得
+\[
+ \operatorname{div}(f\operatorname{grad}h)
+ =g(\operatorname{grad}f,\operatorname{grad}h)+f\Delta h.
+\]
+$f$紧支时$X$紧支，$h$紧支时$\operatorname{grad}h$紧支，故两种情形均可用第8章紧支Stokes，得到积分等式。
+\end{proof}
+
+本书的$\Delta$在欧氏卡中是$\sum_i\partial_i^2$，所以$\int f\Delta f\leq0$。谱论中也常把其负号称为Laplace算子，比较公式时须先核对约定。这里尚未证明任何椭圆估计或Hodge分解。

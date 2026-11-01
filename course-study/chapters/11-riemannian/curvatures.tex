@@ -1,0 +1,110 @@
+\begin{definition}[截面曲率]\label{def:sectional-curvature}
+设$n\geq2$，$\sigma\subset T_pM$为二维线性子空间，取任意基$u,v$，定义
+\[
+ K_p(\sigma)=\frac{g(R(u,v)v,u)}{g(u,u)g(v,v)-g(u,v)^2}.
+\]
+分母是正的Gram行列式，即该平行四边形的面积平方。$K$与$\sigma$的定向无关。
+\end{definition}
+\begin{proof}[良定义性]
+若$u'=au+bv$、$v'=cu+dv$，$ad-bc\ne0$，方向反对称给$R(u',v')=(ad-bc)R(u,v)$，末二槽反对称又给
+\[
+ g(R(u',v')v',u')=(ad-bc)^2g(R(u,v)v,u).
+\]
+Gram行列式在同一换基下也乘$(ad-bc)^2$，故比值不变。特别地，正交归一基下$K(\sigma)=\mathcal R(e_1,e_2,e_2,e_1)$。
+\end{proof}
+
+\begin{proposition}[常截面值的代数公式]\label{prop:constant-curvature-model}
+固定$p$，所有二维平面的截面曲率都等于$k$，当且仅当
+\[
+ R(u,v)w=k\bigl(g(v,w)u-g(u,w)v\bigr).
+\]
+这里$k$先是该点的数；各点相同截面值时可写为函数$k(p)$，其全局常数性尚须证明。
+\end{proposition}
+\begin{proof}
+右侧降指标后满足两种反对称、成对交换及代数Bianchi（逐项两两抵消），代入$(u,v,v,u)$得$k$乘Gram行列式，因而截面值为$k$。反之，用真实曲率减去此模型张量，所有截面二次值为零，命题\ref{prop:curvature-polarization}说明其差为零。
+\end{proof}
+
+\Needspace{17\baselineskip}
+\begin{definition}[Ricci曲率与标量曲率]\label{def:ricci-scalar}
+定义$\Ric(X,Y)=\operatorname{tr}(Z\mapsto R(Z,X)Y)$，再用度量取迹得$\mathrm{Scal}=\operatorname{tr}_g\Ric$。坐标及正交归一标架表达为
+\begin{align*}
+ \Ric_{jk}&=R^i{}_{kij},&\quad \mathrm{Scal}&=g^{jk}\Ric_{jk},\\
+ \Ric(X,Y)&=\sum_a g(R(e_a,X)Y,e_a),&
+ \mathrm{Scal}&=\sum_{a,b}\mathcal R(e_a,e_b,e_b,e_a).
+\end{align*}
+Ricci定义中的第一个迹是线性变换的迹，不先要求度量；但此处的对称性及后续截面解释使用Levi--Civita条件。
+\end{definition}
+
+\begin{proposition}[缩并、方向平均与缩放]\label{prop:ricci-traces}
+$\Ric$为光滑对称$(0,2)$型张量。若$|u|=1$，补成正交归一基$e_1=u,e_2,\ldots,e_n$，则
+\[
+ \Ric(u,u)=\sum_{a=2}^n K(\operatorname{span}\{u,e_a\}),\qquad
+ \mathrm{Scal}=2\sum_{a<b}K(\operatorname{span}\{e_a,e_b\}).
+\]
+若该点截面曲率均为$k$，则$\Ric=(n-1)kg$、$\mathrm{Scal}=n(n-1)k$。对常数缩放$\widetilde g=cg$，
+\[
+ \widetilde K=c^{-1}K,\quad \widetilde\Ric=\Ric,\quad
+ \widetilde{\mathrm{Scal}}=c^{-1}\mathrm{Scal},\quad \widetilde{\mathcal R}=c\mathcal R.
+\]
+\end{proposition}
+\begin{proof}
+曲率的张量性与迹的基无关性给$\Ric$的型别及光滑性。代数Bianchi给
+\[
+ \mathcal R(e_a,X,Y,e_a)-\mathcal R(e_a,Y,X,e_a)
+ =-\mathcal R(X,Y,e_a,e_a)=0,
+\]
+逐项相等，故对称。代入正交归一基，$a=1$项为零，其余各项恰为对应截面曲率；再对$u=e_b$求和，每个无序对出现两次。模型公式直接取迹给常截面值情形。
+
+缩放时$(1,3)$型$R$不变，故降指标的$\mathcal R$乘$c$，Gram行列式乘$c^2$，$K$除以$c$。Ricci为不依赖度量的同一变换之迹，不变；标量再乘逆度量，故除以$c$。特别注意“Ricci不变”说的是$(0,2)$张量，不是其相对新度量的特征值不变。
+\end{proof}
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/sectional-trace}
+\caption{三维切空间中固定单位方向$e_1$，Ricci值由两个包含它的正交截面曲率相加得到。图为线性空间的投影，不代表流形上两张实际曲面。一般$n$维为$n-1$项之和。}
+\label{fig:sectional-trace}
+\end{figure}
+
+\subsection*{二维、模型与乘积}
+当$n=2$时，每点只有一个二维平面，记其曲率为$K(p)$。模型公式逐点成立，从而
+\[
+ \Ric=Kg,\qquad \mathrm{Scal}=2K,\qquad
+ G:=\Ric-\tfrac12\mathrm{Scal}\,g=0.
+\]
+这不表示$K=0$，也不表示$K$恒定。对欧氏空间中的曲面，第2章的切向投影联络满足内积乘法式（法向部分与切向量正交），且由环境求导的$D_XY-D_YX=[X,Y]$可知无挠；基本定理说明它正是诱导度量的Levi--Civita联络。第2章Gauss方程给$g(R(u,v)v,u)=II(u,u)II(v,v)-II(u,v)^2$，故此处的$K$正好是$\det S$。半径$a$的球面因此$K=a^{-2}$、$\Ric=a^{-2}g$、$\mathrm{Scal}=2a^{-2}$；习题将独立用坐标验证，不借用第13章的一般子流形公式。平面及圆柱面$K=0$，圆柱面的外在弯曲不改变此结论。
+
+乘积度量的曲率在因子方向为因子曲率，混合方向为零，这是把命题\ref{prop:metric-naturality}的联络代入曲率定义的直接结果。例如$S^2(a)\times\R$中，球面切平面的$K=a^{-2}$，球面与实线各取一向量的平面$K=0$，因此该空间没有常截面曲率。相对正交基，Ricci特征值为$(a^{-2},a^{-2},0)$，标量为$2a^{-2}$；一个标量不足以保存各个平面方向的信息。当$n=1$时曲率因前两槽反对称恒零，Ricci和标量均零，但没有二维截面可供定义$K$。
+
+\Needspace{17\baselineskip}
+\begin{theorem}[缩并Bianchi与Einstein张量]\label{thm:contracted-bianchi}
+Levi--Civita联络满足
+\[
+ \nabla^i\Ric_{ij}=\frac12\partial_j\mathrm{Scal},\qquad
+ \nabla^iG_{ij}=0,\quad G=\Ric-\frac12\mathrm{Scal}\,g.
+\]
+这里$\nabla^i=g^{ik}\nabla_k$，协变导数包含所有张量槽的联络项。
+\end{theorem}
+\begin{proof}
+写$A_{abcd}=\mathcal R_{abcd}$。无挠的第二Bianchi与$\nabla g=0$给
+\[
+ \nabla_a A_{bcde}+\nabla_b A_{cade}+\nabla_c A_{abde}=0.
+\]
+将$a,d$用逆度量缩并。利用对称性，$g^{ad}A_{cade}=\Ric_{ce}$、$g^{ad}A_{abde}=-\Ric_{be}$，所以
+\[
+ \nabla^d A_{bcde}+\nabla_b\Ric_{ce}-\nabla_c\Ric_{be}=0.
+\]
+再缩并$b,e$；$g^{be}A_{bcde}=\Ric_{cd}$。由于$\nabla$与升降/缩并相容，前两项成为两份$\nabla^d\Ric_{cd}$，第三项为$-\partial_c\mathrm{Scal}$，于是得到第一式。$\nabla g=0$使$\nabla^i(\mathrm{Scal}\,g_{ij})=\partial_j\mathrm{Scal}$，从而第二式成立。整个推导是协变张量缩并，不需要把尚未构造的法坐标当先修。
+\end{proof}
+
+\begin{corollary}[Schur引理的维数条件]\label{cor:schur}
+若连通$n$维黎曼流形上$n\geq3$，且每点所有截面曲率相同，则此共同值在整个流形上为常数。
+\end{corollary}
+\begin{proof}
+共同值函数为$k=\mathrm{Scal}/(n(n-1))$，所以光滑。由$\Ric=(n-1)kg$及缩并Bianchi，
+\[
+ (n-1)\dd k=\frac{n(n-1)}2\dd k,
+ \qquad (n-1)(n-2)\dd k=0.
+\]
+维数条件给$\dd k=0$，故$k$局部常；连通性使它全局常。二维时系数为零，不能推出$K$恒定，习题给出反例。
+\end{proof}
+
+这里的$G$仅作为几何张量定义；广义相对论中的场方程、Lorentz符号及物理解释留第五部分。常曲率空间的整体分类、曲率比较与测地变分也未包含在本章证明范围内。

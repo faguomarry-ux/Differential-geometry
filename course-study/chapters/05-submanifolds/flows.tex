@@ -1,0 +1,100 @@
+向量场$X$是切丛的光滑截面，局部写作$X=a^i(x)\partial_i$；由第4章的截面判别，$X$光滑等价于各$a^i$光滑。对局部函数$f$，$Xf=a^i\partial_i f$。这与梁书2.2.2以“将光滑函数送到光滑函数”表述的定义相容；逆向可用局部坐标函数和第4章的截断恢复系数。
+\begin{definition}[积分曲线与完备性]
+开区间$I\subset\R$上的光滑曲线$c:I\to M$若满足$\dot c(t)=X_{c(t)}$，称为$X$的积分曲线（integral curve）。取$0\in I$并指定$c(0)=p$，即为初值问题。若每个初值的极大解都定义在整个$\R$，称$X$完备（complete）。零向量处的常值曲线也算积分曲线。
+\end{definition}
+在坐标中，这成为$\dot x=a(x)$。以下补证本章所需的ODE工具，光滑依赖只针对有限维初值和参数，不预设无限维隐映射定理。
+\begin{lemma}[积分不等式]\label{lem:gronwall}
+若连续非负函数$u$在$[0,T]$满足$u(t)\leq A+L\int_0^t u(s)\dd s$，其中$A,L\geq0$，则$u(t)\leq Ae^{Lt}$。
+\end{lemma}
+\begin{proof}
+先令$A>0$，置$v(t)=A+L\int_0^t u(s)\dd s$。则$v'\leq Lv$，所以$(e^{-Lt}v)'\leq0$，得到$v\leq Ae^{Lt}$及所需结论。$A=0$时将右边换为任意$\varepsilon>0$，最后令$\varepsilon\downarrow0$。反向时间用$t\mapsto-t$得到相同估计。
+\end{proof}
+\begin{theorem}[局部解与参数光滑依赖]\label{thm:ode-local}
+设$\Omega\subset\R^n$、$\Lambda\subset\R^\ell$开，$a:\Omega\times\Lambda\to\R^n$光滑。在任意$(p_0,\lambda_0)$附近，有$T>0$、初值邻域$V$与参数邻域$W$，使
+\[
+ \partial_t u(t,p,\lambda)=a(u(t,p,\lambda),\lambda),\qquad
+ u(0,p,\lambda)=p
+\]
+在$(-T,T)\times V\times W$有唯一局部解，且$u$对全部变量光滑。唯一性指任意两解在共同的含零时间区间上一致。
+\end{theorem}
+\begin{proof}
+\textbf{构造解。}在定义域内选紧乘积$\overline B(p_0,2r)\times\overline W$，令$M,L$分别控制$|a|$与$\|D_xa\|$。取$T$使$TM<r$、$TL<1$（若常数为零，相应限制自动满足）。对$p\in B(p_0,r)$，在连续路径空间中考虑
+\[
+ E_p=\{v\in C([-T,T],\R^n):\|v-p\|_\infty\leq r\},\quad
+ (\mathcal T_{p,\lambda}v)(t)=p+\int_0^t a(v(s),\lambda)\dd s.
+\]
+$E_p$对一致范数完备：一致Cauchy列逐点收敛于欧氏值函数，一致极限连续，闭球约束也保留。$\mathcal T$保持$E_p$并具有压缩常数$TL$。引理\ref{lem:contraction}的迭代与几何级数证明原样适用此完备空间，得到唯一不动点。积分基本定理使该不动点成为$C^1$解，再由方程对时间逐次求导得到时间光滑性。
+
+\textbf{唯一性与连续依赖。}任意两条从同一点出发的解先限制于共同的小坐标球，差的范数满足引理\ref{lem:gronwall}中$A=0$的估计，故相同；沿共同时间区间重复便得唯一性。若$C$控制$D_\lambda a$，不同数据的解满足
+\[
+ |u(t,p,\lambda)-u(t,q,\mu)|
+ \leq (|p-q|+TC|\lambda-\mu|)e^{L|t|}.
+\]
+估计同时控制整个时间段，并与$|\partial_tu|\leq M$一起给出联合连续性。
+
+\textbf{一阶参数导数。}将$z=(p,\lambda)$合记，候选导数$J=D_z u$必须满足
+\[
+ J(t)=P+\int_0^t\{A(s)J(s)+B(s)\}\dd s,
+\]
+其中$P=(I_n\ 0)$，$A(s)=D_xa(u(s,z),\lambda)$，$B(s)=(0\ D_\lambda a(u(s,z),\lambda))$。线性积分算子在同一时间段仍为压缩，故有唯一连续解$J$。其系数对$z$连续，用上一个差估计的同样证明可知$J$联合连续。
+取小增量$h$，记$\Delta u=u(\cdot,z+h)-u(\cdot,z)$。上一步给出$\|\Delta u\|_\infty\leq C_1|h|$。$Da$在所选紧集上一致连续，故积分式的Taylor余项一致为$o(|h|)$。减去$J(t)h$的方程，所得余差$R$满足
+\[
+ |R(t)|\leq o(|h|)+L\left|\int_0^t |R(s)|\dd s\right|.
+\]
+分别在正、负时间使用引理，得$\|R\|_\infty=o(|h|)$。因此$D_z u=J$，且该导数连续。
+
+\textbf{高阶导数。}为明确归纳步骤，对$z$的多重指标$\beta$形式微分积分方程：最高阶项总是
+\[
+ U_\beta(t)=P_\beta+\int_0^t
+ \{A(s)U_\beta(s)+R_\beta(s)\}\dd s.
+\]
+$|\beta|\geq2$时$P_\beta=0$；$R_\beta$是$a$的至多$|\beta|$阶导数与$u$的低于$|\beta|$阶导数的有限乘积之和，来自反复使用乘积和链式法则。假设已得$C^{k-1}$，先用这个线性方程构造每个$|\beta|=k$的连续候选。对$|\beta|=k-1$的方程作一阶差商，所有低阶项按归纳假设收敛；最高阶未知仍只以$A$线性出现。把差商减去候选，用$TL<1$或上述积分估计控制余差，便得差商在紧子邻域上一致收敛到候选。故$u$为$C^k$。从$k=2$归纳得到所有$z$导数。最后$\partial_tu=a(u,\lambda)$及其逐次微分给出所有含时间的混合导数连续，得到联合$C^\infty$性。
+\end{proof}
+非自治方程$\dot x=b(t,x,\lambda)$也可归入此定理。在扩大的空间中令
+\[
+ (\dot s,\dot x)=(1,b(s,x,\lambda)).
+\]
+第一分量的解为$s=s_0+t$，代入第二分量便恢复原方程。这使后续线性变分方程和时变方程可使用同一局部工具。
+\begin{theorem}[极大局部流]\label{thm:local-flow}
+每个光滑向量场$X$存在唯一光滑映射$\Phi:\mathcal D\to M$，其中$\mathcal D\subset\R\times M$开，且
+\[
+ \mathcal D\cap(\R\times\{p\})=I_p\times\{p\},\qquad
+ \Phi(t,p)=\Phi_t(p)
+\]
+为从$p$出发的极大积分曲线，$I_p$是含零的开区间。满足$\Phi_0(p)=p$；若$s\in I_p$，则
+\[
+ I_{\Phi_s(p)}=I_p-s,\qquad
+ \Phi_t(\Phi_s(p))=\Phi_{t+s}(p).
+\]
+固定$t$时，$\Phi_t:M_t\to M_{-t}$为微分同胚，$M_t=\{p:t\in I_p\}$，逆为$\Phi_{-t}$。
+\end{theorem}
+\begin{proof}
+坐标中的定理\ref{thm:ode-local}给出局部解；换卡时链式法则将其送成同一向量场方程的解，唯一性使它们相容。对固定$p$，所有含零解区间的并仍为含零开区间，在交上解相同，故拼成极大解。两条时间平移后的解有相同初值，唯一性和极大性给出区间平移关系及复合法则。
+
+还需证明$\mathcal D$开及光滑性。给定$t_0\in I_p$，连接$0$与$t_0$的解段紧。每个段上点附近都有统一短时间的光滑局部解。沿紧时间段取有限分割，使每一步都在一个这样的邻域中；逐步缩小初始点邻域，连续性保证邻近初值也能完成这些有限步。各步解映射的有限复合对初值光滑，最后一步的时间还可在$t_0$附近变化。因此$(t_0,p)$有乘积开邻域包含于$\mathcal D$，且$\Phi$在那里光滑。负$t_0$完全同理。$M_t$由开性得开，复合法则给出$\Phi_{-t}$是$\Phi_t$的两边逆，且二者光滑。
+\end{proof}
+\begin{example}[局部流不等于全局群]
+在$\R$上$X=x^2\partial_x$的解为$\Phi_t(p)=p/(1-tp)$。当$p>0$，极大区间为$(-\infty,1/p)$；当$p<0$，为$(1/p,\infty)$；$p=0$时为整个$\R$。统一的流定义域是$\{(t,p):1-tp>0\}$。代数表达式在分母为负处也有意义，却不能越过爆破时刻拼成含零的解。习题5.4进一步比较定义域。
+\end{example}
+\begin{proposition}[紧流形上的完备性]\label{prop:compact-complete}
+紧且无边界的光滑流形上，每个光滑向量场完备。
+\end{proposition}
+\begin{proof}
+局部解定理给每点一个初值邻域$V_j$和统一存在时间$(-\varepsilon_j,\varepsilon_j)$。紧致性允许取有限个$V_j$覆盖$M$，令$\varepsilon=\min_j\varepsilon_j>0$。若某极大区间有有限右端$b$，取$t\in I_p$满足$b-t<\varepsilon$。从$\Phi_t(p)$出发仍有长度$\varepsilon$的正向解，与旧解借唯一性拼接后越过$b$，矛盾。左端同理。
+\end{proof}
+\begin{theorem}[流盒定理]\label{thm:flow-box}
+若$X_p\ne0$，则$p$附近有坐标$(s,z^2,\ldots,z^n)$使$X=\partial_s$。
+\end{theorem}
+\begin{proof}
+先选以$p$为零点的坐标，经线性变换使$X_p=\partial_1|_p$。取横截片
+\[
+ \sigma(z)=(0,z^2,\ldots,z^n),\qquad H(s,z)=\Phi_s(\sigma(z)).
+\]
+在$(0,0)$处，$\partial_sH=X_p$，其余偏导为$\partial_2,\ldots,\partial_n$，故微分可逆。由逆映射定理缩小为微分同胚。流方程给出$\dd H(\partial_s)=X\circ H$，所以逆坐标中$X=\partial_s$。一维时横截片为单点，同一证明适用。
+\end{proof}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/flow-box}
+\caption{原创示意：$X=\partial_x+x\partial_y$的积分曲线为$y=z+x^2/2$。横截线$x=0$上的$z$标记不同曲线，沿曲线的流参数为$s=x$；右图在坐标$(s,z)=(x,y-x^2/2)$中将其拉直。两图坐标单位相同，非等距换坐标会改变曲线形状。}
+\label{fig:flow-box}
+\end{figure}
+若$X_p=0$，任何坐标变换仍把零向量送为零，不能把它变成非零坐标场。流盒只在非零点成立；它描述局部运动，也不保证轨道在整个流形中闭合或嵌入。

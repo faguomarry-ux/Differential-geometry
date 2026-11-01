@@ -1,0 +1,32 @@
+% Chapter 6: universal maps and transition data. All coordinates are local.
+\DGDeclareDiagram{tensor-universal}{%
+ \node (vw) at (-3,1.4) {$V\times W$};
+ \node (tensor) at (3,1.4) {$V\otimes W$};
+ \node (z) at (0,-.8) {$Z$};
+ \draw[dg/map] (vw)--(tensor) node[midway,above] {$\tau:(v,w)\mapsto v\otimes w$};
+ \draw[dg/map] (vw)--(z) node[midway,below left] {$b$};
+ \draw[dg/map,dashed] (tensor)--(z) node[midway,below right] {$\exists!\,\widetilde b$};
+ \node[below] at (0,-1.4) {$b=\widetilde b\circ\tau$};}
+\DGDeclareDiagram{bundle-cocycle}{%
+ \node[dg/box,text width=30mm] (a) at (-3,1.4) {$\alpha$坐标\\$v_\alpha$};
+ \node[dg/box,text width=30mm] (b) at (3,1.4) {$\beta$坐标\\$v_\beta$};
+ \node[dg/box,text width=30mm] (c) at (0,-1) {$\gamma$坐标\\$v_\gamma$};
+ \draw[dg/map] (a)--(b) node[midway,above] {$g_{\beta\alpha}(p)$};
+ \draw[dg/map] (b)--(c) node[midway,right=4pt] {$g_{\gamma\beta}(p)$};
+ \draw[dg/map] (a)--(c) node[midway,left=4pt] {$g_{\gamma\alpha}(p)$};
+ \node[below] at (0,-1.9) {$g_{\gamma\alpha}(p)=g_{\gamma\beta}(p)g_{\beta\alpha}(p)$};}
+\DGDeclareDiagram{mobius-gluing}{%
+ \fill[DGBlue!4] (0,-1.5) rectangle (6,1.5);
+ \draw[dg/guide] (0,-1.5) rectangle (6,1.5);
+ \draw[dg/axis] (-.4,0)--(6.8,0) node[right] {$t$};
+ \draw[dg/axis] (0,-1.85)--(0,1.95) node[above] {$a$};
+ \draw[dg/secondary,->] (0,-1.3)--(0,1.3);
+ \draw[dg/secondary,->] (6,1.3)--(6,-1.3);
+ \draw[dg/curve,domain=0:6,samples=80] plot (\x,{cos(30*\x)});
+ \DGPoint[above right]{0,1}{$(0,1)$}
+ \DGPoint[below left]{6,-1}{$(2\pi,-1)$}
+ \DGPoint[below right]{3,0}{$(\pi,0)$}
+ \node[above] at (3,1.6) {$a(t)=\cos(t/2)$};
+ \node[below] at (0,-1.6) {$0$};
+ \node[below] at (6,-1.6) {$2\pi$};
+ \node[below] at (3,-2.15) {两端按 $(0,a)\sim(2\pi,-a)$ 拼接};}

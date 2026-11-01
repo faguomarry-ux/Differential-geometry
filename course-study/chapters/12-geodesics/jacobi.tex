@@ -1,0 +1,145 @@
+\begin{definition}[Jacobi场]\label{def:jacobi-field}
+沿仿射测地线$\gamma$，满足
+\[
+ D_t^2J+R(J,T)T=0,\qquad T=\dot\gamma,
+\]
+的向量场称Jacobi场。这里$R(J,T)T$的第一个输入是$J$，交换前两个输入会改变方程的号。
+\end{definition}
+
+\begin{theorem}[测地变分与Jacobi初值]\label{thm:jacobi-variation}
+测地线族$F(s,t)$的变分场是Jacobi场。反之，沿一条紧参数段的任意Jacobi场都可由某个光滑测地线族实现。给定任意$A,B\in T_{\gamma(0)}M$，存在唯一Jacobi场满足$J(0)=A,D_tJ(0)=B$；其解空间维数为$2n$。
+\end{theorem}
+\begin{proof}
+各条$t$曲线为仿射测地线，所以$D_tT=0$。对$s$求导，并用引理\ref{lem:variation-commutation}，
+\[
+ 0=D_sD_tT=D_tD_sT+R(S,T)T=D_t^2S+R(S,T)T.
+\]
+在$s=0$限制即得Jacobi方程。
+
+沿$\gamma$选正交归一平行标架，把$J$的系数写成列向量$j$，方程为$j''+C(t)j=0$，其中$C$为光滑矩阵。这是线性系统，与第10章平行移动的延拓论证相同，在给定紧时间段上不会爆破：把$(j,j')$写成一阶线性系统，用Gronwall界延拓。因此任意两组初值有唯一解，初值空间为$2n$维。
+
+为实现该解，取$\alpha(s)$使$\alpha(0)=\gamma(0)$、$\alpha'(0)=A$，沿其用平行移动定义
+\[
+ v(s)=P^\alpha_{s\leftarrow0}\bigl(T(0)+sB\bigr),\qquad
+ F(s,t)=\exp_{\alpha(s)}(tv(s)).
+\]
+有$v(0)=T(0)$及$D_sv(0)=B$。紧时间段上的ODE参数依赖给一个统一小$s$区间；这里原测地线在包含该闭段的开区间上有定义。所得变分场的初值为$A$，由导数交换其初始协变导数为$B$。它已经满足Jacobi方程，唯一性使它等于指定的$J$。
+\end{proof}
+
+若$\gamma$为单位速度，则$f(t)=g(J,T)$满足$f''=0$，因为$g(R(J,T)T,T)=0$。所以切向Jacobi场为$(a+bt)T$；若一个Jacobi场在两个不同时刻为零，则其切向分量处处为零。这一点不要求测地线无自交。
+
+\Needspace{17\baselineskip}
+\begin{proposition}[指数微分与共轭点]\label{prop:conjugate-exponential}
+设$\gamma(t)=\exp_p(tv)$、$|v|=1$、$c>0$。若存在非零Jacobi场满足$J(0)=J(c)=0$，称参数时刻$c$与0沿$\gamma$共轭，重数为这样的Jacobi场空间维数。则它等价于$(\dd\exp_p)_{cv}$奇异，重数等于该微分的核维数，且不超过$n-1$。这是沿指定测地线、指定参数时刻的性质，不只由端点集合决定。
+\end{proposition}
+\begin{proof}
+取初值$J_w(0)=0,D_tJ_w(0)=w$，由变分$\exp_p(t(v+sw))$可得
+\[
+ J_w(t)=(\dd\exp_p)_{tv}(tw),\qquad
+ (\dd\exp_p)_{cv}(w)=\frac1cJ_w(c).
+\]
+所有在0为零的Jacobi场都由唯一的$w$得到。故核与两端为零的解空间同构；非零初始导数给非零场。微分在有限同维空间中可逆当且仅当核为零，所以等价于局部微分同胚。两端为零的场必法向，其初始导数也垂直于$v$，因此重数至多$n-1$。
+\end{proof}
+
+指数映射整体不单射与某点微分奇异是不同现象。圆周上指数映射绕圈不单射，却没有共轭点；球面上对跖点则使角向微分退化。法坐标范围内指数微分可逆，因此没有从中心出发的共轭时刻。
+
+\subsection*{第二变分与指标型}
+以下令$\gamma:[0,b]\to M$为单位速度测地线，$b>0$。对沿$\gamma$的连续、分段光滑场$V,W$定义
+\[
+ I(V,W)=\int_0^b\bigl(g(D_tV,D_tW)-g(R(V,T)T,W)\bigr)\,\dd t.
+\]
+称$I$为指标型（index form）；它不是整数值的Morse指标。由第11章曲率对称性，$g(R(V,T)T,W)=g(R(W,T)T,V)$，所以$I$为对称双线性型。其在$V(0)=V(b)=0$场上的符号控制固定端点的二阶变化。
+
+\Needspace{17\baselineskip}
+\begin{theorem}[固定端点的第二变分]\label{thm:second-variation}
+对$\gamma$的光滑固定端点变分，变分场为$V$，有
+\[
+ E''(0)=I(V,V),\qquad L''(0)=I(V^\perp,V^\perp),
+ \quad V^\perp=V-g(V,T)T.
+\]
+因此最短测地线必对所有光滑端点零场满足$I(V,V)\geq0$；若找到$I(V,V)<0$，则存在相同端点的邻近曲线更短。
+\end{theorem}
+\begin{proof}
+由第一变分，固定端点时$E'(s)=-\int g(S,D_tT)$。在$s=0$原曲线为测地线，故再次求导时含$D_sS$的项为零，而
+\[
+ D_sD_tT=D_t^2S+R(S,T)T.
+\]
+所以$E''(0)=-\int g(V,D_t^2V+R(V,T)T)$。积分分部且$V$两端为零，得到$I(V,V)$。
+
+令$h(s,t)=|\partial_tF|^2$，在$s=0$有$h=1$。对$\sqrt h$求两次导数，得到
+\[
+ L''(0)=E''(0)-\int_0^b g(D_tV,T)^2\,\dd t.
+\]
+写$V=fT+V^\perp$。因$D_tT=0$，$|D_tV|^2=(f')^2+|D_tV^\perp|^2$，且$g(D_tV,T)=f'$；曲率项只含$V^\perp$。两份$(f')^2$抵消，得长度公式。
+
+若$\gamma$最短，它在固定时间区间上也是能量最小，故$E''(0)\geq0$。反之，任意光滑端点零场都可用沿曲线指数实现为变分场；若$I(V,V)<0$，则$E'(0)=0$、小非零$s$时$E(F_s)<E(\gamma)=b/2$。能量比较给$L(F_s)^2\leq2bE(F_s)<b^2$，所以更短。由此无需再额外假设各条竞争曲线常速。
+\end{proof}
+
+对光滑场积分分部还给
+\[
+ I(V,W)=[g(D_tV,W)]_0^b
+ -\int_0^b g(D_t^2V+R(V,T)T,W)\,\dd t.
+\]
+若$V$仅分段光滑，在分割点$t_j$还须加
+$g(D_tV(t_j^-)-D_tV(t_j^+),W(t_j))$。这些接头项不能省略，它们正是内点共轭时刻破坏最短性的关键。
+
+\Needspace{17\baselineskip}
+\begin{theorem}[无共轭时的指标引理]\label{thm:index-lemma}
+若$(0,b]$内无与0共轭的时刻，则$I$在端点为零的非零连续分段光滑场上正定。更一般，给定$V(0)=0$及终值$V(b)$，存在唯一具有相同端值的Jacobi场$J$，且
+\[
+ I(V,V)\geq I(J,J),
+\]
+等号当且仅当$V=J$。此结论是指标型的极小性质，不单独宣称全局最短线唯一。
+\end{theorem}
+\begin{proof}
+沿$\gamma$用正交平行标架，记$C(t)w=R(w,T)T$的矩阵；由对称性$C^{\mathsf T}=C$。取矩阵Jacobi解
+\[
+ A''+CA=0,\qquad A(0)=0,\quad A'(0)=I.
+\]
+无共轭条件说明$A(t)$在$0<t\leq b$可逆。Wronskian满足
+\[
+ (A^{\mathsf T}A'-A'^{\mathsf T}A)'
+ =A^{\mathsf T}A''-A''^{\mathsf T}A=0,
+\]
+初始值为零，故$A^{\mathsf T}A'$对称。
+
+先取端点零的场，系数记$v$。在$t>0$写$v=Af$。还需检查$t=0$不是一个被漏掉的奇点：由微积分基本定理，$A(t)=tB(t)$，$B(t)=\int_0^1A'(st)\,\dd s$光滑且$B(0)=I$；同样$v(t)=tz(t)$，$z(0)=v'(0)$。所以$f=B^{-1}z$在0附近光滑延拓，分段情形逐段成立。
+
+展开$v'=A'f+Af'$，利用$A''=-CA$及Wronskian对称性，逐项整理为
+\[
+ |v'|^2-\langle Cv,v\rangle
+ =|Af'|^2+\frac{\dd}{\dd t}\langle Af,A'f\rangle.
+\]
+积分后的边界项在0为零（$Af=v=0$且$A'f$有界），在$b$为零（$v(b)=0$）；中间接头因$f$连续而相消。因此$I(V,V)=\int_0^b|Af'|^2\geq0$。等号给$t>0$各段$f'=0$，连续性使$f$恒定，而$A(b)$可逆及$v(b)=0$给$f(b)=0$，所以$V=0$。
+
+对一般终值，$J$的系数为$A(t)A(b)^{-1}v(b)$，存在唯一。令$W=V-J$，其两端为零；Jacobi方程及积分分部给$I(J,W)=0$，所以$I(V,V)=I(J,J)+I(W,W)$，前述正定性给结论及等号条件。
+\end{proof}
+
+该证明在固定紧段上使用有限维线性ODE及分段积分，没有预设路径空间的Hilbert流形理论。它也未用“无限维Hessian正定”直接推出函数在某个未定义拓扑中严格极小。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/jacobi-models}
+\caption{单位速度常截面曲率模型中，法向Jacobi场$J(t)=s_K(t)E(t)$，初值$J(0)=0,D_tJ(0)=E(0)$。两图横轴均为$[0,\pi]$，右图纵轴单独缩放。正曲率系数在$\pi$归零，平坦与负曲率模型不归零。纵轴画系数，不是流形中的实际轨迹。}
+\label{fig:jacobi-models}
+\end{figure}
+
+\Needspace{17\baselineskip}
+\begin{theorem}[内点共轭之后不再最短]\label{thm:conjugate-nonminimizing}
+若$0<c<b$且$c$与0沿$\gamma$共轭，则存在光滑端点零场$Z$使$I(Z,Z)<0$，因而$\gamma|_{[0,b]}$不是最短线。若只在终点$b$共轭，以上结论不能直接套用；球面到对跖点仍可最短。
+\end{theorem}
+\begin{proof}
+取非零Jacobi场$J$，$J(0)=J(c)=0$，并将它在$[c,b]$延为零，得到连续分段光滑场$V$。Jacobi积分分部给$I(V,V)=0$。取光滑端点零场$W$，使$W(c)=-D_tJ(c)$；可将$-D_tJ(c)$平行延拓后乘支于$(0,b)$、在$c$为1的光滑截断函数。唯一性使$D_tJ(c)\ne0$，否则在$c$值和导数同为零会使$J$恒零。接头项给
+\[
+ I(V,W)=g(D_tJ(c),W(c))=-|D_tJ(c)|^2<0.
+\]
+因此对足够小的$\eta>0$，
+\[
+ I(V+\eta W,V+\eta W)
+ =-2\eta|D_tJ(c)|^2+\eta^2I(W,W)<0.
+\]
+还须将这个有导数折角的场变成光滑场。在平行标架中，只在$c$附近长$O(\delta)$的小区间内平滑其系数，区间外保持原场及端点不变。具体可先将连续分段光滑系数作卷积，再用等于1的局部截断与原场拼接；系数误差为$O(\delta)$，导数误差在$L^2$中趋零，因为原导数分段有界，拼接产生的截断导数项也只在长$O(\delta)$区间内有界。故所得光滑$Z_\delta$一致趋于原场，且一阶导数$L^2$趋近。
+
+紧时间段上$C(t)$有界，Cauchy--Schwarz说明$I$对这种收敛连续，所以小$\delta$时仍有$I(Z_\delta,Z_\delta)<0$。第二变分定理于是构造真正光滑、固定端点的更短曲线。若$c=b$，所需$W(b)=-D_tJ(b)\ne0$与固定端点条件矛盾，这也解释为什么证明不能覆盖终点共轭情形。
+\end{proof}
+
+本章得到的是共轭与局部二阶变化的关系。割点还可能来自两条不同最短线相遇，未必是共轭点。一般割迹结构、Morse指标定理、Rauch比较、Bonnet--Myers及Cartan--Hadamard定理尚未证明；以下只在具体模型中计算相应现象。

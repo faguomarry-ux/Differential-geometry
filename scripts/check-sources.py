@@ -1,6 +1,8 @@
 """Check the book manifest and local TeX inputs; not a mathematical review."""
 import json
 import re
+import subprocess
+import sys
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
@@ -43,4 +45,5 @@ for ch in manifest:
                 errors.append(f'Missing planned section: {ch["id"]}: {title}')
 if errors:
     raise SystemExit('\n'.join(errors))
+subprocess.run([sys.executable, str(root / 'scripts/build-figures.py'), '--check-only'], check=True)
 print(f'OK: {len(manifest)} chapters, {len(seen)} reachable TeX files; mathematical correctness not checked.')

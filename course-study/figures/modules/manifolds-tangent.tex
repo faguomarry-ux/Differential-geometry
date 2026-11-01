@@ -1,0 +1,143 @@
+\DGDeclareDiagram{stereographic}{
+ \DGAssert{stereo angle must stay away from the north pole}{abs(1-sin(\DGStereoAngle))>.001}
+ \pgfmathsetmacro{\DGx}{cos(\DGStereoAngle)}
+ \pgfmathsetmacro{\DGy}{sin(\DGStereoAngle)}
+ \pgfmathsetmacro{\DGq}{\DGx/(1-\DGy)}
+ \DGAxes{-1.45}{\DGq+.35}{-1.25}{1.45}{$u$}{$t$}
+ \draw[dg/curve] (0,0) circle (1);
+ \coordinate (N) at (0,1);\coordinate (P) at (\DGx,\DGy);
+ \coordinate (Q) at (\DGq,0);
+ \draw[dg/secondary] (N)--(Q);\draw[dg/guide] (P)--(\DGx,0);
+ \DGPoint[above left]{N}{$N$}\DGPoint[above right]{P}{$P=(u,t)$}
+ \DGPoint[below]{Q}{$Q$}\node[below left] at (0,0) {$O$};
+ \node[below] at (\DGx,0) {$u$};
+}
+\DGDeclareDiagram{polar-tangent}{
+ \DGAssert{polar radius must be positive}{\DGPolarRadius>0}
+ \pgfmathsetmacro{\DGR}{\DGPolarRadius}\pgfmathsetmacro{\DGA}{\DGPolarAngle}
+ \DGAxes{-.45}{\DGR+1.6}{-.45}{\DGR+1}{$x$}{$y$}
+ \draw[dg/guide,domain=-15:115,samples=70] plot ({\DGR*cos(\x)},{\DGR*sin(\x)});
+ \coordinate (P) at (\DGA:\DGR);
+ \draw[dg/guide] (0,0)--(P) node[midway,above] {$r$};
+ \DGPoint[below left]{0,0}{$O$}\DGPoint[below]{P}{$p$}
+ \draw[dg/vector] (P)--++(\DGA:1) node[right] {$\partial_r$};
+ \draw[dg/vector] (P)--++({\DGA+90}:\DGR) node[above right] {$\partial_\theta$};
+ \draw[dg/normal] (P)--++({\DGA+90}:1) node[left] {$e_\theta$};
+}
+\DGDeclareDiagram{atlas-transition}{
+ % A commuting diagram: arrows are typed maps, not an ambient embedding.
+ \node[dg/box] (M) at (0,2.3) {$U\cap V\subset M$\\$p$};
+ \node[dg/box] (X) at (-3,0) {$\varphi(U\cap V)$\\$\varphi(p)$};
+ \node[dg/box] (Y) at (3,0) {$\psi(U\cap V)$\\$\psi(p)$};
+ \draw[dg/map] (M.south west)--(X.north) node[midway,left] {$\varphi$};
+ \draw[dg/map] (M.south east)--(Y.north) node[midway,right] {$\psi$};
+ \draw[dg/map] (X.east)--(Y.west) node[midway,above] {$\psi\circ\varphi^{-1}$};
+}
+\DGDeclareDiagram{tangent-equivalence}{
+ \DGAxes{-1.65}{1.85}{-.5}{1.75}{$x$}{$y$}
+ \draw[dg/secondary,domain=-1.25:1.25,samples=60] plot (\x,{\x*\x});
+ \draw[dg/curve] (-1.4,0)--(1.4,0) node[below right] {$\eta$};
+ \draw[dg/normal] (0,0)--(1,0) node[midway,above] {$v$};
+ \DGPoint[below left]{0,0}{$p$}\node[text=DGOrange] at (1.55,1.5) {$\gamma$};
+ \node[align=left,anchor=west] at (2.1,.9)
+  {$\gamma(t)=(t,t^2)$\\[4pt] $\eta(t)=(t,0)$\\[4pt] $\dot\gamma(0)=\dot\eta(0)=(1,0)$};
+}
+\DGDeclareDiagram{tangent-map}{
+ % Explicit example: F(x,y)=(x,y+x^2), gamma(t)=(1+t,0).
+ \begin{scope}[xshift=-3cm]
+  \DGAxes{-.4}{2.25}{-.5}{1.9}{$x$}{$y$}
+  \draw[dg/curve] (-.2,0)--(1.8,0) node[below] {$\gamma$};
+  \DGPoint[below]{1,0}{$p$}
+  \draw[dg/vector] (1,0)--(2,0) node[above] {$v$};
+ \end{scope}
+ \draw[dg/map] (-.2,1.1)--(1.15,1.1) node[midway,above] {$F$};
+ \begin{scope}[xshift=2cm,xscale=.85,yscale=.62]
+  \DGAxes{-.4}{2.25}{-.5}{4}{$u$}{$w$}
+  \draw[dg/curve,domain=-.2:1.85,samples=65] plot (\x,{\x*\x});
+  \DGPoint[below right]{1,1}{$F(p)$}
+  \draw[dg/vector] (1,1)--(2,3) node[right] {$\dd F_pv$};
+  \node at (1.5,4.15) {$F\circ\gamma$};
+ \end{scope}
+ \node[align=center] at (.2,-1) {$F(x,y)=(x,y+x^2),\quad v=(1,0),\quad \dd F_{(1,0)}v=(1,2)$};
+}
+\DGDeclareDiagram{bundle-trivialization}{
+ % One-dimensional local model only; no global triviality is claimed.
+ \fill[dg/patch] (-2.2,-.1) rectangle (2.2,2.2);
+ \draw[dg/curve] (-2.2,0)--(2.2,0) node[right] {$U$};
+ \foreach \q in {-1.5,-.5,.5,1.5}{\draw[dg/fiber] (\q,0)--(\q,2);}
+ \draw[dg/secondary,domain=-2:2,samples=55] plot (\x,{1+.35*sin(55*\x)});
+ \DGPoint[below]{-1.5,0}{$q$}
+ \DGPoint[below]{.5,0}{$p$}\DGPoint[above left]{.5,1.1616}{$s(p)$}
+ \node[above] at (-1.5,2.05) {$T_qM$};
+ \draw[dg/map] (3,1.7)--(3,.15) node[midway,right] {$\pi$};
+ \node[align=left,anchor=west] at (3.75,1.25)
+  {$\pi^{-1}(U)\simeq U\times\mathbb R$\\[4pt] $s:p\mapsto(p,s^1(p))$\\[4pt] $\pi\circ s=\operatorname{id}_U$};
+ \node[text=DGOrange] at (1.4,1.65) {$s$};
+ \node[below] at (-.8,-.5) {水平线：零截面；竖线：纤维};
+}
+\DGDeclareDiagram{roadmap}{
+ \node[dg/box] (a) at (0,0) {分析、代数与拓扑};
+ \node[dg/box] (b) at (0,-1.2) {流形、切空间与张量};
+ \node[dg/box] (c) at (-2.7,-2.5) {外微分、积分与上同调};
+ \node[dg/box] (d) at (2.7,-2.5) {联络、曲率与黎曼几何};
+ \node[dg/box] (e) at (-2.7,-3.9) {李群、丛与进阶专题};
+ \node[dg/box] (f) at (2.7,-3.9) {Lorentz几何与相对论};
+ \draw[dg/map] (a)--(b);\draw[dg/map] (b)--(c);\draw[dg/map] (b)--(d);
+ \draw[dg/map] (c)--(e);\draw[dg/map] (d)--(e);\draw[dg/map] (d)--(f);
+}
+% Chapter 5: fixed analytic models, reusable through the named diagram API.
+\DGDeclareDiagram{flow-box}{%
+ \begin{scope}[xshift=-3.15cm]
+  \DGAxes{-1.5}{1.6}{-1.15}{2.05}{$x$}{$y$}
+  \foreach \c in {-0.7,0,0.7}{
+   \draw[dg/curve,domain=-1.25:1.25,samples=45] plot (\x,{\c+\x*\x/2});
+   \draw[dg/vector] (.45,{\c+.45*.45/2})--(.85,{\c+.85*.85/2});}
+  \draw[dg/secondary] (0,-.95)--(0,1.75);
+  \node[above left] at (0,1.6) {$\sigma(z)$};
+  \node[below] at (0,-1.5) {$y=z+x^2/2$};
+ \end{scope}
+ \draw[dg/map] (-1.05,.7)--(.6,.7) node[midway,above] {$H^{-1}$};
+ \begin{scope}[xshift=2.65cm]
+  \DGAxes{-1.5}{1.6}{-1.15}{2.05}{$s$}{$z$}
+  \foreach \c in {-0.7,0,0.7}{
+   \draw[dg/curve] (-1.25,\c)--(1.25,\c);
+   \draw[dg/vector] (.45,\c)--(.85,\c);}
+  \draw[dg/secondary] (0,-.95)--(0,1.75);
+  \node[below] at (0,-1.5) {$X=\partial_s$};
+ \end{scope}}
+\DGDeclareDiagram{bracket-loop}{%
+ \begin{scope}[x={(2.8cm,0cm)},y={(1.5cm,1.25cm)},z={(0cm,2.2cm)}]
+  \draw[dg/axis] (0,0,0)--(1.45,0,0) node[right] {$x$};
+  \draw[dg/axis] (0,0,0)--(0,1.4,0) node[above right] {$y$};
+  \draw[dg/axis] (0,0,0)--(0,0,1.5) node[above] {$z$};
+  \draw[dg/vector] (0,0,0)--(1,0,0) node[midway,below] {$X$};
+  \draw[dg/normal] (1,0,0)--(1,1,1) node[midway,right] {$Y$};
+  \draw[dg/vector] (1,1,1)--(0,1,1) node[midway,above] {$-X$};
+  \draw[dg/normal] (0,1,1)--(0,0,1) node[midway,left] {$-Y$};
+  \draw[dg/secondary,densely dashed,->] (-.06,0,0)--(-.06,0,1)
+    node[midway,left=5pt] {$st\partial_z$};
+  \DGPoint[below left]{0,0,0}{$p$}
+  \DGPoint[left]{0,0,1}{$q$}
+ \end{scope}
+ \node[align=left,right] at (6,1.5) {$s=t=1$\\$[X,Y]=\partial_z$};}
+\DGDeclareDiagram{integral-plaques}{%
+ \begin{scope}[xshift=-2.9cm,x={(1.5cm,.1cm)},y={(.65cm,.65cm)},z={(0cm,.45cm)}]
+  % On |x|,|y| <= .75 this projection has positive Jacobian:
+  % .91+.675*x-.2925*y >= .184375; the projected grid never folds.
+  \foreach \c in {-1.8,0,1.8}{
+   \draw[dg/patch,fill=DGBlue!5] (-.75,-.75,{.5625+\c})--(.75,-.75,{-.5625+\c})--
+     (.75,.75,{.5625+\c})--(-.75,.75,{-.5625+\c})--cycle;
+   \foreach \a in {-.375,0,.375}{
+    \draw[dg/grid] (\a,-.75,{-.75*\a+\c})--(\a,.75,{.75*\a+\c});
+    \draw[dg/grid] (-.75,\a,{-.75*\a+\c})--(.75,\a,{.75*\a+\c});}}
+  \node[below] at (0,0,-3.8) {$z=xy+c$};
+ \end{scope}
+ \draw[dg/map] (-.5,0)--(.9,0) node[midway,above] {$H^{-1}$};
+ \begin{scope}[xshift=3.3cm,x={(1.5cm,.1cm)},y={(.65cm,.65cm)},z={(0cm,.45cm)}]
+  \foreach \c in {-1.8,0,1.8}{
+   \draw[dg/patch] (-.75,-.75,\c)--(.75,-.75,\c)--(.75,.75,\c)--(-.75,.75,\c)--cycle;
+   \foreach \a in {-.375,0,.375}{
+    \draw[dg/grid] (\a,-.75,\c)--(\a,.75,\c);
+    \draw[dg/grid] (-.75,\a,\c)--(.75,\a,\c);}}
+  \node[below] at (0,0,-3.8) {$w=c$};
+ \end{scope}}

@@ -1,0 +1,54 @@
+\begin{definition}[微分形式与局部分量]
+$M^n$上的光滑微分$k$形式（differential form）是$\Lambda^kT^*M$的光滑截面，其空间记为$\Omega^k(M)$。约定$\Omega^0(M)=C^\infty(M)$，$k<0$或$k>n$时为零空间。总空间$\Omega^\bullet(M)$按次数分级，乘法为逐点外积。
+在卡$(U,x)$中，每个形式唯一写为
+\[
+ \omega=\sum_{i_1<\cdots<i_k}a_{i_1\cdots i_k}
+ \dd x^{i_1}\wedge\cdots\wedge\dd x^{i_k}.
+\]
+系数为$\omega(\partial_{i_1},\ldots,\partial_{i_k})$。若对全部有序指标求和，则等价地写为
+\[
+ \omega=\frac1{k!}\omega_{i_1\cdots i_k}
+ \dd x^{i_1}\wedge\cdots\wedge\dd x^{i_k},
+ \qquad \omega_{i_1\cdots i_k}=\omega(\partial_{i_1},\ldots,\partial_{i_k}).
+\]
+\end{definition}
+\begin{proposition}[形式的局部判别与换卡]\label{prop:forms-local}
+形式光滑当且仅当上述递增指标系数光滑。若$y=y(x)$，则在新坐标中
+\[
+ \omega'_{a_1\cdots a_k}
+ =\omega_{i_1\cdots i_k}
+ \frac{\partial x^{i_1}}{\partial y^{a_1}}\cdots
+ \frac{\partial x^{i_k}}{\partial y^{a_k}}.
+\]
+相容的局部形式可唯一拼成全局形式；外积与内插将光滑形式送到光滑形式。
+\end{proposition}
+\begin{proof}
+由第6章外幂丛的构造，递增外积是局部光滑标架，截面判别即为各系数光滑。将$\partial_{y^a}=(\partial x^i/\partial y^a)\partial_{x^i}$逐槽代入，得到换卡式。全部有序指标式中的$k!$，来自每个递增指标组的$k!$个排列：分量与基外积的符号同时变化，乘积不变。
+若局部形式在交上相同，每点的取值便与选块无关，定义出全局截面；光滑性局部可检验，因此拼接光滑且唯一。外积和内插的局部系数为有限和与乘积，故也光滑。
+\end{proof}
+\begin{example}[同一个面积形式的不同坐标]
+在平面极坐标卡$r>0$上，$x=r\cos\theta,y=r\sin\theta$，于是
+\[
+ \dd x=\cos\theta\dd r-r\sin\theta\dd\theta,\qquad
+ \dd y=\sin\theta\dd r+r\cos\theta\dd\theta.
+\]
+利用外积展开，$\dd x\wedge\dd y=r\dd r\wedge\dd\theta$。系数$r$并不说明几何形式改变，而是表示两个坐标标架的差别。极坐标仅在选定角区间的卡中使用；$\theta$不是穿孔平面上的全局实函数，$\dd\theta$的局部表达可相容，却未必是某个全局实函数的微分。
+\end{example}
+\begin{definition}[沿曲线的一形式积分]
+设$\gamma:[a,b]\to M$分段光滑，$\alpha$为一形式，定义
+\[
+ \int_\gamma\alpha=\int_a^b\alpha_{\gamma(t)}(\dot\gamma(t))\dd t.
+\]
+每个光滑段分别积分后相加。这里使用单变量积分；在有限个坐标区间中计算的结果因逐点求值与选卡无关而一致。参数区间端点处只需相应单侧光滑延拓。
+\end{definition}
+\begin{proposition}[曲线积分与全微分]\label{prop:line-integral-exact}
+保持方向的分段光滑微分同胚重参数化不改变积分，反向参数化使其变号。若$\alpha=\dd f$，则
+\[
+ \int_\gamma\dd f=f(\gamma(b))-f(\gamma(a)).
+\]
+因此恰当一形式沿任意闭曲线积分为零。
+\end{proposition}
+\begin{proof}
+重参数化后速度乘参数导数，单变量换元公式给出两个方向的结论。对$\dd f$，链式法则将被积函数变为$(f\circ\gamma)'$，逐段用微积分基本定理，再将内部分段端点的函数值抵消，得到所列等式。这里没有调用尚未证明的Stokes定理。
+\end{proof}
+度规可把一形式与向量场联系起来，但本章的一形式、外积和曲线积分本来都不需要度规。局部系数与归一化练习见习题7.1。

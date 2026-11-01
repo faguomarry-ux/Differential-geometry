@@ -2,7 +2,7 @@
 
 使用 LaTeX 编写的中文学习整理工程，入口为 [`main.tex`](main.tex)，内容集中在 [`course-study/`](course-study/)。目标是用统一符号、完整证明、可复现的 TikZ 图及配套习题串起现代微分几何与广义相对论。
 
-**当前为 v0.2 基础扩充版，不是完整教材。** 已建立五部分、23章及两个附录的完整写作目录；第1章已写拓扑基础和梁书第1章全部16题改述及详细解答，分析与代数部分待补；第3章已写流形基础、主要例子、定理证明及6题解答。其余章节仍为明确标记的写作计划。编译成功不代表数学审稿通过。覆盖状态见 [PROGRESS](docs/PROGRESS.md)，下一步见 [TODO](docs/TODO.md)，变更见 [工作记录](docs/WORKLOG.md)。
+**当前为 v0.14 子流形几何与活动标架初稿，不是完整教材。** 已建立五部分、23章及两个附录的写作目录。第一部分（第1–2章）已写入拓扑、欧氏分析、对偶与外代数预备，以及曲线曲面、Frenet标架、基本形式、形算子和Gauss内蕴曲率的正文与证明；第1章保留梁书16题并新增6道原创补充题，第2章配8道原创题，均有解答及来源说明。第3章已有流形基础及6题解答；第4章现已补入曲线与导子模型、坐标变换、切映射与拉回、切丛及余切丛的正文证明和8题解答。第5章已补入子流形与正则值、ODE局部理论、极大局部流与流盒、李括号与流交换、Frobenius局部坐标证明及8道习题解答。第6章已补入张量积泛性质、混合型张量与缩并、外代数及阶乘约定、向量丛拼接及运算、Möbius线丛与常秩子丛证明，配3道梁书改述题和5道原创题及解答。第7章已补入微分形式局部表示、外微分构造与唯一性、拉回自然性、Cartan公式与交换关系、同伦算子及星形域Poincare引理，配8题解答和局部/全局反例。第8章已补入紧耗尽与单位分解、带边流形与外向首位定向、紧支顶次形式积分、换卡及选择无关性、Stokes局部证明与拼接，配8题解答及3幅原创图。第9章已补入de Rham上同调代数、光滑同伦不变性、Mayer–Vietoris连接映射及长正合性、圆周周期和所有球面计算，配8题解答及3幅原创图。第10章已补入一般联络及其换标架、平行移动与测地线初值、挠率与曲率、结构方程和含挠Bianchi、局部平坦性及张量丛诱导联络，配8题解答和3幅原创图。第11章已补入黎曼度量存在、Koszul与Levi–Civita基本定理、等距移动、曲率对称性、截面/Ricci/标量及缩并Bianchi和Schur引理，配8题详解及3幅原创图。第12章已补入指数映射/法坐标、Gauss引理与径向最短性、长度距离与第一变分、Hopf–Rinow完整等价、Jacobi场/共轭点、第二变分及指标引理，配8题详解与3幅原创图。第13章已补入法丛/第二基本形式、Gauss–Weingarten及Gauss–Codazzi–Ricci方程、活动标架与局部欧氏浸入重建、体积第一变分、极小图像及8题详解和3幅图。现有内容已配42个可复用TikZ图（含阅读路线），提供独立图册。第14–23章仍为写作计划。正文尚待独立数学审阅与补充来源逐页核对；第2章曲线重建、全局叶理论及高级分析工具仍待完成。编译成功不代表数学审稿通过。覆盖状态见 [PROGRESS](docs/PROGRESS.md)，下一步见 [TODO](docs/TODO.md)，变更见 [工作记录](docs/WORKLOG.md)。
 
 ## 主参考与范围
 
@@ -39,9 +39,23 @@ python scripts/check-sources.py
 latexmk -r latexmkrc main.tex
 ```
 
-输出 `build/main.pdf`。也可以在根目录对 `main.tex` 直接运行 XeLaTeX 至交叉引用稳定。根目录旧 `main.pdf` 是历史产物，不代表最新构建。GitHub Actions 自动编译并上传 PDF artifact；是否成功须查看对应提交的运行结果，不以 push 成功代替 CI 成功。当前不自动创建 Release。
+输出 `build/main.pdf`。也可以在根目录对 `main.tex` 直接运行 XeLaTeX 至交叉引用稳定。根目录旧 `main.pdf` 是历史产物，不代表最新构建。GitHub Actions 已配置编译主书和图册并上传双 PDF artifact；是否成功须查看对应提交的运行结果，不以 push 成功代替 CI 成功。当前不自动创建 Release。
 
 若 Python 不在 PATH 中，PowerShell 脚本支持 `-PythonCommand 'Python可执行文件的绝对路径'`。本机验证使用此参数调用已安装的 Python 运行时。
+
+第13章另提供可选的具体模型符号核算；使用含SymPy的Python环境执行 `python scripts/check-submanifold-models.py`。它核对余维二图像、法曲率、螺旋面、Clifford环面及图像变分等恒等式，不能替代一般证明或独立数学审阅；普通构建不依赖SymPy。
+
+## TikZ模块与图册
+
+统一入口为 `course-study/figures/dg-diagrams.tex`，支持 `\DGDiagram[局部选项]{图名}`，正文仍可输入一图一个 `.tex` 文件。42幅默认图的注册信息、参数、语义样式、新增方式及迁移说明见 [绘图模块文档](course-study/figures/README.md)，参考来源见 [图示来源](course-study/figures/SOURCES.md)。
+
+```powershell
+python scripts/build-figures.py
+# 或一并构建主书与图册
+powershell -ExecutionPolicy Bypass -File scripts/build.ps1 -WithFigureGallery
+```
+
+图册输出为 `build/figures-gallery.pdf`，包含42幅默认图和5个参数变体，并检查调用间参数隔离。无需书籍模板、外部图片或shell-escape；修改后仍须查看正文页面和图册，不能仅凭编译判断图形正确。
 
 ## 工程结构
 

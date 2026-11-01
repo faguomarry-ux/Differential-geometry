@@ -1,0 +1,72 @@
+\begin{definition}[两种完备性]
+$(M,d)$为完备距离空间，是指每个$d$-Cauchy序列在$M$中收敛。黎曼流形测地完备，是指每条极大仿射测地线的参数区间都是$\R$。后者等价于所有基点的指数映射都定义在整个切空间上：正向时间可由初速度缩放转到时间1，负向再反转初速度。
+\end{definition}
+
+\begin{lemma}[紧小球面上的等号点]\label{lem:hopf-rinow-step}
+设$r=d(p,q)>0$。取$0<\varepsilon<r$，足够小使$\exp_p$在更大闭球附近为微分同胚。则存在单位$u\in T_pM$，$x=\exp_p(\varepsilon u)$满足
+\[
+ d(p,x)=\varepsilon,\qquad d(x,q)=r-\varepsilon.
+\]
+此引理不要求完备，也未假定$p,q$间已有最短线。
+\end{lemma}
+\begin{proof}
+取$p$到$q$的近似最短曲线$c_j$，$L(c_j)\leq r+1/j$。$q$不在$U_\varepsilon=\exp_pB_\varepsilon$内，否则径向最短性给$d(p,q)<\varepsilon$。每条曲线第一次离开此球时到达$x_j\in\exp_pS_\varepsilon$，前段长度至少$\varepsilon$，所以
+\[
+ r\leq\varepsilon+d(x_j,q)\leq L(c_j)\leq r+1/j.
+\]
+球面$\exp_pS_\varepsilon$是紧集，取子列$x_j\to x$。距离函数由三角不等式为1-Lipschitz，所以$d(x,q)=r-\varepsilon$；球面点的径向距离为$\varepsilon$，得到所需结论。
+\end{proof}
+
+\Needspace{17\baselineskip}
+\begin{theorem}[Hopf--Rinow]\label{thm:hopf-rinow}
+连通、有限维、无边界黎曼流形上，下列条件等价：
+\begin{enumerate}[label=(\roman*),nosep]
+\item 长度距离$d$完备；
+\item 每个闭且$d$有界的子集都紧；
+\item 测地完备；
+\item 存在一个$p$使$\exp_p$定义在整个$T_pM$。
+\end{enumerate}
+在这些条件下，任意两点之间存在长度为其距离的最短测地线，且
+\[
+ \overline B_R(p)=\exp_p\{v\in T_pM:|v|\leq R\}.
+\]
+结论保证存在，不保证最短线唯一。
+\end{theorem}
+\begin{proof}
+\textbf{(i)$\Rightarrow$(iii)。}若某非常值极大测地线有有限右端$b$，其速度范数为常数$c>0$，所以$d(\gamma(t),\gamma(s))\leq c|t-s|$。完备性给$t\uparrow b$时$\gamma(t)\to q\in M$。具体地，先取任意$t_j\uparrow b$得Cauchy极限，再用同一估计得整个曲线趋向$q$。
+
+在$q$附近选紧含于一张卡的闭坐标球$K$，晚期曲线均在其内部。度量下界$g\geq\lambda I$使坐标速度$|\dot x|\leq c/\sqrt\lambda$，因此晚期相空间点$(x,\dot x)$位于$TM$的一个紧集。沿$t_j\uparrow b$取相空间收敛子列；在其极限附近，光滑喷流有统一存在时间$\delta>0$。足够晚的子列点满足$b-t_j<\delta/2$，从该点出发的解便越过$b$，由唯一性与原解相接，矛盾。有限左端同理。常值解本来就完备。
+
+\textbf{(iii)$\Rightarrow$(iv)。}任取$p$即可。接下来只假设(iv)，先证明从这个$p$出发能到达任意$q$的最短线，这是证明的主要步骤。
+
+设$r=d(p,q)>0$，用上一引理取$\varepsilon,u,x$，令$\gamma(t)=\exp_p(tu)$，$0\leq t\leq r$。它因(iv)有定义。起点的等号为$d(\gamma(\varepsilon),q)=r-\varepsilon$。设已有某个$t<r$满足
+\[
+ d(\gamma(t),q)=r-t.
+\]
+三角不等式及$\gamma$前段长度$t$立刻给$d(p,\gamma(t))=t$，所以前段已最短。在$\gamma(t)$处再次用小球面引理，取$0<\delta<r-t$及径向单位速度段$\eta$，其终点$y$满足$d(y,q)=r-t-\delta$。于是
+\[
+ r\leq d(p,y)+d(y,q)\leq t+\delta+r-t-\delta=r.
+\]
+所有不等式均为等号，拼接$\gamma|_{[0,t]}$与$\eta$得到$p$到$y$的最短线。无角引理使接头处速度相同，初值唯一性给$\eta(s)=\gamma(t+s)$。对$0\leq s\leq\delta$，再用三角不等式及这条拼接线的子段最短性，得到$d(\gamma(t+s),q)=r-t-s$。故等号能从$t$继续到一个右邻域。
+
+令$t_*$为所有满足在$[\varepsilon,t]$上等号恒成立的$t$的上确界。距离连续性使等号在$t_*$仍成立；若$t_*<r$，上一步还能延伸，矛盾。因此$t_*=r$，$d(\gamma(r),q)=0$，从而$\gamma(r)=q$且全段最短。$q=p$取常值段。
+
+\textbf{(iv)$\Rightarrow$(ii)。}刚证明从固定$p$出发的最短线存在，所以每个$d(p,q)\leq R$的点都为某个$|v|\leq R$的指数像；反向由径向段长度得$d(p,\exp_pv)\leq|v|$。因此闭距离球恰为切空间闭球的连续像。有限维闭球紧，所以闭距离球紧；任意闭有界集包含在某个这样的闭球中，因而也紧。
+
+\textbf{(ii)$\Rightarrow$(i)。}Cauchy序列有界，包含在一个紧闭球中，故有收敛子列；Cauchy性使整个序列趋于同一极限。等价性完成后，(i)又给所有基点的测地完备，可对任意新基点重复上面的径向延伸证明，得到任意两点之间的最短线及各基点的闭球公式。
+\end{proof}
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/hopf-rinow-step}
+\caption{Hopf--Rinow证明中的距离等号，而非预先画出一条已知最短线：近似最短路径先碰小球面，取紧子列得到$x$；再从已知最短径向段的端点向前取$y$。全程等号迫使接头无角，从而继续同一测地线。虚线只示意距离余量。}
+\label{fig:hopf-rinow-step}
+\end{figure}
+
+\begin{corollary}[紧流形与有界性]\label{cor:compact-riemannian-complete}
+紧的无边界黎曼流形逐连通分支测地完备；连通、完备且有界的黎曼流形紧。
+\end{corollary}
+\begin{proof}
+紧流形的每个连通分支闭且紧；在该分支上$d$诱导原拓扑，所以紧距离空间完备，适用Hopf--Rinow。第二项对整个流形用“闭有界集紧”即可。
+\end{proof}
+
+有限维、正定和无边界在证明中均有实际作用。带边区间中测地线可撞到边界，不定度量也没有这里的正长度距离；不能原封不动搬用此定理。完备性还不保证指数映射单射，圆周和球面将给出例子。

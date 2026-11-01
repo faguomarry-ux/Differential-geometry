@@ -1,0 +1,47 @@
+\begin{theorem}[Levi--Civita曲率的代数对称性]\label{thm:metric-curvature-symmetries}
+令$\mathcal R(X,Y,Z,W)=g(R(X,Y)Z,W)$。则
+\begin{align*}
+ \mathcal R(X,Y,Z,W)&=-\mathcal R(Y,X,Z,W),\\
+ \mathcal R(X,Y,Z,W)&=-\mathcal R(X,Y,W,Z),\\
+ \mathcal R(X,Y,Z,W)&=\mathcal R(Z,W,X,Y),\\
+ \mathcal R(X,Y,Z,W)+\mathcal R(Y,Z,X,W)+\mathcal R(Z,X,Y,W)&=0.
+\end{align*}
+后两式分别称成对交换对称性与代数Bianchi恒等式。
+\end{theorem}
+\begin{proof}
+第一式由曲率定义。由度量相容，诱导张量联络的曲率作用于$g$为零；第10章对偶与张量曲率公式给
+\[
+ 0=(R^{T^*\otimes T^*}(X,Y)g)(Z,W)
+ =-g(R(X,Y)Z,W)-g(Z,R(X,Y)W),
+\]
+这就是第二式。由无挠及第10章第一Bianchi，最后一式成立。
+
+成对交换只需代数，不用法坐标。固定四向量，记$A_{abcd}=\mathcal R(a,b,c,d)$。先用Bianchi和末二槽反对称性，再分别对$(b,c,d)$及$(c,a,d)$用Bianchi，得
+\begin{align*}
+ A_{abcd}&=A_{bcda}+A_{cadb}\\
+ &=2A_{cdab}+A_{dbac}+A_{adbc}.
+\end{align*}
+另一方面对$(d,b,a)$用Bianchi，$A_{dbac}+A_{badc}+A_{adbc}=0$，而两次反对称给$A_{badc}=A_{abcd}$。因此$A_{abcd}=2A_{cdab}-A_{abcd}$，即成对交换对称性。
+\end{proof}
+
+这些假设各有作用：对任意联络只有方向反对称总成立；$\nabla g=0$给末二槽反对称；无挠给右端为零的代数Bianchi；成对交换用到了后两者。相容但有挠的联络不能直接套用全套对称性。以正交归一标架记$\mathcal R_{ijkl}=g(R(e_i,e_j)e_k,e_l)$时，球面的$\mathcal R_{1221}$为正，$\mathcal R_{1212}$则为负。
+
+\begin{proposition}[截面二次值确定整个曲率]\label{prop:curvature-polarization}
+若四线性张量$A$满足上述代数对称性，且对任意$x,y$有$A(x,y,y,x)=0$，则$A=0$。因而同一内积空间上两个曲率张量若对所有二维平面有相同截面曲率，就完全相同。
+\end{proposition}
+\begin{proof}
+先将$x$替成$x+z$，减去各自的对角式。由成对交换及首末反对称，两个交叉项相等，故$A(x,y,y,z)=0$。再将$y$替成$y+w$得到
+\[
+ A(x,y,w,z)+A(x,w,y,z)=0.
+\]
+所以$A$对第二、第三槽也反对称；连同首二槽反对称，前三槽全交替。循环置换三个槽为偶置换，代数Bianchi于是成为$3A(x,y,w,z)=0$，得$A=0$。比较两个张量时取差；线性相关的$x,y$由反对称自动给零，独立向量的分子由截面曲率相等给零，故适用前述论证。
+\end{proof}
+
+\begin{proposition}[黎曼平坦的局部含义]\label{prop:riemannian-flat}
+黎曼度量的曲率为零，当且仅当每点附近有坐标使$g_{ij}=\delta_{ij}$。等价地，它局部等距于欧氏空间的开集。
+\end{proposition}
+\begin{proof}
+若$R=0$，第10章定理\ref{thm:flat-parallel-frame}给局部平行标架。先在一点选正交归一初始基，再作该构造；因$\nabla g=0$，平行标架的内积沿任意方向导数均为零，缩小到连通邻域后恒为$\delta_{ab}$。Levi--Civita无挠，所以$[e_a,e_b]=\nabla_{e_a}e_b-\nabla_{e_b}e_a=0$；第5章交换流构造坐标，使$e_a=\partial/\partial y^a$。于是在此坐标中$g_{ab}=\delta_{ab}$。反之度量坐标分量常为$I$时，Christoffel及曲率分量均为零。
+\end{proof}
+
+这一结论是邻域上的平坦性，不是只在一点让系数变简单。法坐标可在一点令$g_{ij}=\delta_{ij}$、$\Gamma^k_{ij}=0$，但二阶度量变化仍可携带曲率；法坐标的指数映射构造留第12章。

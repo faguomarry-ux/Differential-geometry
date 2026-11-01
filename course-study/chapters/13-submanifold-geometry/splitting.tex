@@ -1,0 +1,83 @@
+\subsection*{沿浸入求导，而非在自交像上选延拓}
+环境联络在$f^*T\bar M$上诱导沿$f$的联络，记$\bar\nabla_Xs$。若$y^A$为环境坐标、$s=s^A\partial_{y^A}|_f$，则
+\[
+ (\bar\nabla_Xs)^A=X(s^A)+\bar\Gamma^A_{BC}(f)X(f^B)s^C.
+\]
+第10章的换基规则保证其与坐标无关。它可以沿每条曲线由环境协变导数定义，故不要求$s$在整个自交像上有单值延拓。其曲率为$\bar R(\dd fX,\dd fY)s$，以下简记$\bar R(X,Y)s$。
+
+\begin{definition}[法丛与第二基本形式]\label{def:normal-second-form}
+法丛$NM\subset f^*T\bar M$的纤维为$N_pM=(\dd f(T_pM))^\perp$。用$\top,\perp$表示正交投影，定义
+\[
+ \nabla_XY=(\bar\nabla_XY)^\top,\qquad
+ B(X,Y)=(\bar\nabla_XY)^\perp,\qquad
+ \nabla_X^\perp\xi=(\bar\nabla_X\xi)^\perp.
+\]
+$B$称法丛值第二基本形式；$\nabla^\perp$称法联络。对法向场$\xi$定义形算子$A_\xi X=-(\bar\nabla_X\xi)^\top$。
+\end{definition}
+
+局部取切标架$u_i$，其Gram矩阵$g_{ij}$可逆，投影为$P^\top(s)=g^{ij}\bar g(s,u_i)u_j$，因而光滑。$P^\perp=I-P^\top$有常秩$r$；第6章常秩子丛结论给出$NM$的光滑结构，且
+\[
+ f^*T\bar M=TM\mathbin{\oplus^\perp}NM.
+\]
+法丛不一定有全局单位标架；本章只在小邻域选取局部标架。
+
+\begin{theorem}[正交分解与诱导联络]\label{thm:gauss-weingarten}
+$\nabla$为$g$的Levi--Civita联络，$\nabla^\perp$与法丛内积相容，$B\in\Gamma(\operatorname{Sym}^2T^*M\otimes NM)$。Gauss和Weingarten公式为
+\[
+ \bar\nabla_XY=\nabla_XY+B(X,Y),\qquad
+ \bar\nabla_X\xi=-A_\xi X+\nabla_X^\perp\xi,
+\]
+其中$g(A_\xi X,Y)=\bar g(B(X,Y),\xi)$。$A$对$X,\xi$均为函数线性，且每个$A_\xi$自伴。
+\end{theorem}
+\begin{proof}
+切向投影保留联络的方向线性和Leibniz规则。由环境度量相容，
+\[
+ Xg(Y,Z)=g(\nabla_XY,Z)+g(Y,\nabla_XZ),
+\]
+因为法向项与切向量正交。环境无挠给
+$\bar\nabla_X(\dd fY)-\bar\nabla_Y(\dd fX)=\dd f[X,Y]$：坐标式中混合偏导抵消，$\bar\Gamma$下槽对称。切投影说明$\nabla$无挠，由第11章唯一性即为Levi--Civita；法投影说明$B(X,Y)=B(Y,X)$。
+
+对函数$a,b$展开得$\bar\nabla_{aX}(bY)=ab\bar\nabla_XY+aX(b)Y$，最后一项法投影为零，所以$B(aX,bY)=abB(X,Y)$。对法向场同理，$\bar\nabla_X(a\xi)=X(a)\xi+a\bar\nabla_X\xi$中的首项切投影为零，故$A$张量性成立。对$\bar g(\xi,Y)=0$求导，
+\[
+ 0=\bar g(\bar\nabla_X\xi,Y)+\bar g(\xi,\bar\nabla_XY)
+   =-g(A_\xi X,Y)+\bar g(\xi,B(X,Y)).
+\]
+$B$对称给$A_\xi$自伴。最后对两法向场内积求导并投影，得到$\nabla^\perp$的度量相容性。
+\end{proof}
+
+\subsection*{曲线加速度、全测地与超曲面}
+沿$M$中曲线$c$，分解公式为
+\[
+ \bar D_t(\dd f\dot c)=\dd f(D_t\dot c)+B(\dot c,\dot c).
+\]
+在坐标中逐项对$\dot c^i\dd f(\partial_i)$求导即可得到，包括变速项。因此$M$的测地线在环境中一般有法向加速度。
+\begin{figure}[htbp]
+\centering\input{course-study/figures/submanifold-acceleration}
+\caption{加速度在切空间与法空间中的正交分解。图用平面曲线$F(u)=(u,u^2/2)$及$u(t)=t+t^2/2$在$t=0$的精确数据：环境加速度为$(1,1)$，切向、法向分量分别为$(1,0)$、$(0,1)$；该参数曲线不是内蕴测地线。}
+\label{fig:submanifold-acceleration}
+\end{figure}
+
+\begin{proposition}[全测地的局部判据]\label{prop:totally-geodesic}
+$B=0$当且仅当$M$的每条充分短测地线经$f$成为具有同一仿射参数的环境测地线。这时称$f$全测地。此结论不要求完备性，也不保证全局距离相等。
+\end{proposition}
+\begin{proof}
+正向由加速度分解立即得到。反向，对任意$p,v$取$M$的短测地线初值$(p,v)$，环境加速度为零给$B_p(v,v)=0$。由对称性和极化
+$2B(u,v)=B(u+v,u+v)-B(u,u)-B(v,v)$知$B=0$。这只比较局部微分方程，不声称其像在环境中实现任意两端点的距离下确界。
+\end{proof}
+
+当$r=1$，局部选单位法向$n$，则$\nabla^\perp_Xn=0$，因为它既在一维法空间中，又由$\bar g(n,n)=1$得与$n$正交。令$II(X,Y)=\bar g(B(X,Y),n)$，便有
+\[
+ B=II\,n,\quad A_n=S,\quad \bar\nabla_Xn=-SX,
+ \quad II(X,Y)=g(SX,Y).
+\]
+欧氏环境下恰为第2章的$S=-\dd n$。换$n$为$-n$时$II,S$变号，但$B$不变。在高余维，不同$A_\xi$未必交换，不能默认存在使它们同时对角化的主方向基。
+
+\begin{definition}[平均曲率向量]\label{def:mean-curvature-vector}
+对任意切空间正交归一基$(e_i)_{i=1}^m$，定义
+\[
+ \mathbf H=\frac1m\operatorname{tr}_g B
+ =\frac1m\sum_{i=1}^m B(e_i,e_i).
+\]
+正交换基消去交叉项，故与基无关。$\mathbf H=0$称极小浸入；$B=0$则为更强的全测地条件。
+\end{definition}
+超曲面上$\mathbf H=Hn$，$H=\operatorname{tr}S/m$；当$m=2$与第2章完全一致。球面$S^m(a)\subset\R^{m+1}$取外法向$n=f/a$时$S=-I/a$、$B=-gn/a$、$\mathbf H=-n/a$，向量指向球心。维数因子$m$将在体积变分中显式出现。

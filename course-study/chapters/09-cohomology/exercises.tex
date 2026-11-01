@@ -1,0 +1,87 @@
+\Needspace{15\baselineskip}
+\section{上同调习题及详细解答}
+习题9.1以梁书上册第二版第5章原题7（印刷页131/PDF147）为出发点，将原题的拓扑同胚条件加强为全局坐标微分同胚，并构造原函数；不据此声称已证明仅有拓扑同胚时的完整原题。习题9.5以Gualtieri公开讲义4.4例4.18后的留证任务为出发点，按本书差映射重写并核对符号；无梁书原题号。其余6题为原创补充，全部解答由本工程编写。
+
+来源与题号映射见\texttt{references/EXERCISES.md}。
+
+\Needspace{12\baselineskip}
+\subsection*{习题9.1：闭一形式与全局坐标}
+采用梁书第5章原题7的加强假设版本。设流形开集$O$有全局坐标微分同胚$x:O\to\R^n$，$\alpha=\alpha_i\dd x^i$。证明$\partial_j\alpha_i=\partial_i\alpha_j$当且仅当存在$f\in C^\infty(O)$使$\alpha=\dd f$，并给出$f$的积分公式。若坐标像只是任意欧氏开集，结论是否仍成立？
+\begin{proof}[解答]
+若$\alpha=\dd f$，混合偏导交换给出条件。反向，所列条件等价于$\dd\alpha=0$。令$\widetilde\alpha=(x^{-1})^*\alpha$，在星形域$\R^n$上取
+\[
+ \widetilde f(z)=\int_0^1\widetilde\alpha_{tz}(z)\dd t
+ =\int_0^1\alpha_i(x^{-1}(tz))z^i\dd t.
+\]
+第7章径向公式给$\dd\widetilde f=\widetilde\alpha$，故$f=\widetilde f\circ x$满足要求。这里$x^{-1}(0)$存在，整条线段均在坐标像中。若坐标像为穿孔平面，则角形式闭却不恰当，结论失败。仅拓扑同胚而非光滑坐标微分同胚也不允许在其下直接变换光滑形式；本题实际使用的是光滑坐标以及坐标像全为$\R^n$。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题9.2：代表元与外积}
+设$\alpha,\beta$分别为$p,q$次闭形式，$p,q\geq1$，$\xi,\zeta$次数分别为$p-1,q-1$。直接写出$(\alpha+\dd\xi)\wedge(\beta+\dd\zeta)-\alpha\wedge\beta$的一个原形式，并说明这如何证明上同调乘积良定义。
+\begin{proof}[解答]
+展开差为$\dd\xi\wedge\beta+\alpha\wedge\dd\zeta+\dd\xi\wedge\dd\zeta$。令
+\[
+ \Theta=\xi\wedge\beta+(-1)^p\alpha\wedge\zeta+\xi\wedge\dd\zeta.
+\]
+由$\dd\alpha=\dd\beta=\dd^2\zeta=0$，乘法法则逐项给$\dd\Theta$等于上述三项之和。特别是第二项中的$(-1)^p$抵消跨过$p$次形式产生的号；第三项不再需要额外系数。因此更换两个闭代表元只改变一个恰当形式，不改变外积类。这个结论不要求$\alpha,\beta$自身恰当。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题9.3：圆环上的完整判别}
+设$A=\{(x,y):a<\sqrt{x^2+y^2}<b\}$，$0<a<b$，$\alpha$为闭一形式。取任意$r_0\in(a,b)$的逆时针圆周$C_{r_0}$。证明$\alpha$恰当当且仅当$\int_{C_{r_0}}\alpha=0$，并说明为何一个周期在这里足够。
+\begin{proof}[解答]
+径向映射$r(x)=r_0x/|x|$给$A$到$C_{r_0}$的收缩，线性插值的半径$(1-t)|x|+tr_0$仍位于$(a,b)$，所以是光滑形变收缩。于是包含$i:C_{r_0}\hookrightarrow A$诱导同构$i^*:H^1(A)\to H^1(C_{r_0})$。缩放圆周到单位圆，再用定理\ref{thm:circle-cohomology}，知$[i^*\alpha]=0$恰好等价于所列周期为零。由$i^*$单射，这又等价于$[\alpha]=0$，即有全局原函数。必要性也可直接由全微分的端点公式得到。一个周期足够是因为已经证明这里$H^1$一维且周期给同构，并非任意流形都可照此判断。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题9.4：绕圈映射的拉回}
+对整数$m$，令$F_m:S^1\to S^1$满足$F_m(e^{it})=e^{imt}$。计算$F_m^*$在$H^0,H^1$上的作用，分别解释$m=0$及$m<0$。若$m\ne1$，能否有到恒等映射的光滑同伦？
+\begin{proof}[解答]
+整数性使$t$换成$t+2\pi$不改变映射，所以$F_m$良定义；正数幂、零次常值及负数幂在单位圆上均光滑。对圆周形式$\lambda$，用参数拉回得到$\pi^*F_m^*\lambda=m\dd t=\pi^*(m\lambda)$，故$F_m^*\lambda=m\lambda$。$H^1$上为实数乘$m$，$H^0$上的常函数拉回仍为自身，即恒等。$m=0$是常值映射，杀掉一次类却不杀掉零次常数；$m<0$使一次周期按负数$m$变化。若$m\ne1$且有到恒等映射的光滑同伦，同伦不变性会迫使其$H^1$拉回既为乘$m$又为恒等，矛盾。这里不必先建立一般映射度理论。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题9.5：连接映射的周期符号}
+沿正文圆周两开弧覆盖，取$U$删去左端点、$V$删去右端点，$W_+,W_-$分别为上、下开弧。设$\gamma$在两分支上分别为$c_+,c_-$。从$q=\alpha-\beta$构造$\delta[\gamma]$的代表元，求其逆时针周期，并给出$\delta(1,0)$与$[\lambda]$的关系。
+\begin{proof}[解答]
+选光滑$\chi:[-1,1]\to[0,1]$，在$x=-1$附近为$1$、在$x=1$附近为$0$，令$\rho_V=\chi(x)$、$\rho_U=1-\chi(x)$，限制在圆周上。它们的支集分别避开右、左端点，满足从属性。按命题\ref{prop:mv-connecting}，在$W$上连接形式是$\eta=\gamma\dd\rho_V$，在两个被删端点附近因$\dd\rho_V=0$延为零，得到全局光滑一形式。
+
+逆时针上弧从右端到左端，$\rho_V$由$0$变$1$；下弧从左端到右端，由$1$变$0$。基本定理给
+\[
+ \int_{S^1}\eta=c_+(1-0)+c_-(0-1)=c_+-c_-.
+\]
+因此$\delta(1,0)$周期为$1$，由圆周周期同构，它等于$[\lambda/(2\pi)]$，不是$[\lambda]$。对角常数$(c,c)$的连接类为零，与$q_*$的像吻合。若改变差映射顺序，则连接代表元及周期都应同时变号。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题9.6：穿孔三维空间的两个次数}
+求$H^1(\R^3\setminus\{0\})$和$H^2(\R^3\setminus\{0\})$。构造一个闭而不恰当的二形式，并解释为什么同一空间上的每个闭一形式却都恰当。
+\begin{proof}[解答]
+径向收缩$r(x)=x/|x|$给与$S^2$的同伦等价，所以$H^1=0,H^2=\R$。在穿孔空间令
+\[
+ \omega=\frac{x\dd y\wedge\dd z-y\dd x\wedge\dd z+z\dd x\wedge\dd y}
+ {(x^2+y^2+z^2)^{3/2}}.
+\]
+其外微分系数是向量函数$x/|x|^3$的欧氏散度，直接计算为$3|x|^{-3}-3|x|^{-5}(x^2+y^2+z^2)=0$，所以闭。限制到单位球面就是第8章面积形式，积分$4\pi$；若$\omega=\dd\beta$，在球面拉回后Stokes应给零，矛盾。另一方面$H^1=0$正是说所有闭一形式的类为零，故都有全局原函数。域缺一个点并不意味着每个正次数都有非零上同调；这里的障碍出现在二次。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题9.7：球面顶次类的归一化}
+在外向定向的$S^2$上，设$\sigma$为面积形式，$\omega$为任意光滑二形式。证明
+\[
+ [\omega]=\frac1{4\pi}\left(\int_{S^2}\omega\right)[\sigma],
+\]
+并由此判断零积分二形式是否恰当。该判断是否已对所有紧定向流形证明？
+\begin{proof}[解答]
+所有二形式在二维球面上自动闭。球面定理给积分$H^2(S^2)\to\R$为同构，而$\int\sigma=4\pi$。因此$\omega-(4\pi)^{-1}(\int\omega)\sigma$的积分为零，其类必为零，得到所列等式。特别地，$\int\omega=0$当且仅当$\omega$恰当。这是存在一个全局一形式原形式的结论，不声称上式本身已经写出该原形式。对所有紧连通定向流形的一般顶次积分同构，本章尚未证明；不能将球面上的维数计算扩展为一般证明。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题9.8：紧支与普通上同调的差别}
+定义$H_c^k(M)=\ker(\dd:\Omega_c^k\to\Omega_c^{k+1})/\dd\Omega_c^{k-1}$。证明实线上的积分诱导$H_c^1(\R)\simeq\R$，而$H^1(\R)=0$。为何这不违反光滑同伦不变性？
+\begin{proof}[解答]
+在实线上紧支一形式均形如$f(x)\dd x$，自动闭。紧支函数$g$满足$\int_\R\dd g=g(+\infty)-g(-\infty)=0$，所以积分在$H_c^1$上良定义。若$\int_\R f=0$，令$F(x)=\int_{-\infty}^x f(s)\dd s$。它在$f$支集左侧为零，在右侧等于总积分零，所以$F$紧支且光滑，$\dd F=f\dd x$。这证明积分的核恰是紧支恰当形式。取一个非负非零光滑紧支函数并除以其正积分，可得积分为$1$的代表元，故该泛函满射，因而为同构。
+
+普通上同调允许原函数不紧支；任意光滑$f$均有$G(x)=\int_0^x f(s)\dd s$，故$H^1(\R)=0$。实线确实光滑收缩到一点，但本章同伦不变性针对所有光滑形式的复形。一般拉回与同伦算子不保持紧支，不能把同一个论证移到$H_c$。本题只计算此例，未建立紧支上同调在适当映射下的完整理论。
+\end{proof}

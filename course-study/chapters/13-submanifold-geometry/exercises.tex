@@ -1,0 +1,114 @@
+\section{子流形几何习题及详细解答}
+13.1将梁书4.4注3的球面投影练习改述并扩展（印刷101/PDF117）；13.2将定理4-4-2的正则水平集主题练习化（印刷99/PDF115）。两题均为文内主题改编，不冒充章末题号。13.3--13.8为原创补充。已查看梁书第4章原题17（印刷104/PDF120），它讨论Lorentz类光超曲面，留到本书第21章的相应范围，不套入本章正定分解。
+
+\Needspace{12\baselineskip}
+\subsection*{习题13.1：球面投影与诱导度量的两个定义域}
+梁书4.4注3改述并扩展。在$\R^3\setminus\{0\}$球坐标中写出欧氏度量；对$S^2(a)$构造环境切空间上的正交投影$P$及退化双线性形式$h(v,w)=\langle Pv,Pw\rangle$。说明它与球面黎曼度量的关系，计算球面的$S,\mathbf H,K$。
+\begin{proof}[解答]
+欧氏度量为$\dd r^2+r^2\dd\theta^2+r^2\sin^2\theta\,\dd\phi^2$。球面外单位法向$n=\partial_r$，法余矢量$n^\flat=\dd r$，故
+\[
+ Pv=v-\langle v,n\rangle n,\quad
+ P^2=P,\quad\ker P=\R n,\quad\operatorname{im}P=TS^2(a),
+ \qquad h=\bar g-\dd r\otimes\dd r.
+\]
+$h$在环境三维切空间上有一维核；沿包含映射拉回后则为$a^2(\dd\theta^2+\sin^2\theta\,\dd\phi^2)$，在球面二维切空间上正定。不能把环境退化说成诱导球面度量退化。
+
+在笛卡儿坐标$n=F/a$，$\dd n(X)=X/a$，所以$S=-I/a$、$B=-gn/a$、$\mathbf H=-n/a$，Gauss式给$K=a^{-2}$。坐标极点改用其他卡；投影公式本身无极点奇性。换法向只改变标量$II,H$和$S$的符号，$B,\mathbf H,K$不变。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题13.2：正则水平集的Hessian公式}
+梁书定理4-4-2主题改编并扩展。设$(\bar M,\bar g)$上$\varphi$光滑，$M=\varphi^{-1}(c)$上$\operatorname{grad}\varphi\ne0$。取$n=\operatorname{grad}\varphi/|\operatorname{grad}\varphi|$，用环境Hessian表示$II$。若用$\psi=\rho(\varphi)$代替$\varphi$且$\rho'(c)\ne0$，几何量如何改变？
+\begin{proof}[解答]
+对切向$Y$有$Y\varphi=0$，故$\operatorname{grad}\varphi$正交于$TM$。记$q=|\operatorname{grad}\varphi|$，对切向$X,Y$有
+\[
+ \bar g(\bar\nabla_Xn,Y)=q^{-1}\operatorname{Hess}_{\bar g}\varphi(X,Y),
+ \qquad II(X,Y)=-q^{-1}\operatorname{Hess}_{\bar g}\varphi(X,Y).
+\]
+求导$q^{-1}$的项平行于$\operatorname{grad}\varphi$，与$Y$正交，故没有遗漏。亦可对$Y\varphi=0$求$X$导数得到同式。
+
+链式法则给$\operatorname{Hess}\psi=\rho'\operatorname{Hess}\varphi+\rho''\dd\varphi\otimes\dd\varphi$，最后一项在切向槽为零。$|\operatorname{grad}\psi|=|\rho'|q$，于是$n_\psi=\operatorname{sgn}(\rho')n$，$II_\psi=\operatorname{sgn}(\rho')II$，但$B=II\,n$不变。正则性仅保证附近同一水平集分支；若$\rho$在远处不单射，$\psi^{-1}(\rho(c))$可能另有分支。取$\varphi=|x|^2$在球面验证$II=-g/a$，排除整体符号错误。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题13.3：圆柱的内蕴平坦与外在弯曲}
+原创。对$F(\theta,z)=(a\cos\theta,a\sin\theta,z)$计算度量、第二基本形式、主曲率及平均曲率向量。哪些圆柱测地线也是环境直线？
+\begin{proof}[解答]
+$g=a^2\dd\theta^2+\dd z^2$。取外法向$n=(\cos\theta,\sin\theta,0)$及正交单位基$e_1=a^{-1}\partial_\theta,e_2=\partial_z$，则
+\begin{align*}
+ S&=\operatorname{diag}(-a^{-1},0),\qquad B(e_1,e_1)=-n/a,\\
+ B(e_1,e_2)&=B(e_2,e_2)=0,\qquad\mathbf H=-n/(2a),\qquad K=0.
+\end{align*}
+因此平坦不意味着全测地或极小。内蕴仿射测地线在局部提升角度后为$\theta=At+B,z=Ct+D$。环境加速度为$-aA^2n$，所以成为环境测地线当且仅当$A=0$，即直母线（含常值曲线）。圆周$C=0,A\ne0$虽是圆柱测地线，却不为欧氏直线；一般$A,C\ne0$给螺线。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题13.4：余维二的非平坦法丛}
+原创。令$F(x,y)=(x,y,(x^2-y^2)/2,xy)$。证明它是欧氏极小浸入，且在原点法丛曲率非零。用Ricci方程核对其符号。
+\begin{proof}[解答]
+设$q=1+x^2+y^2$，直接内积得$g=q(\dd x^2+\dd y^2)$。二维共形度量的Laplace为$q^{-1}(\partial_{xx}+\partial_{yy})$；四个分量均为欧氏调和函数，故$\Delta_gF=0$，由命题\ref{prop:laplace-immersion}，$\mathbf H=0$。$q>0$保证全域浸入。
+
+原点切基为标准$e_1,e_2$，法基为$n_1=e_3,n_2=e_4$；二阶导数的法分量给
+\[
+ A_{n_1}=\begin{pmatrix}1&0\\0&-1\end{pmatrix},\qquad
+ A_{n_2}=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad
+ [A_{n_1},A_{n_2}]=\begin{pmatrix}0&2\\-2&0\end{pmatrix}.
+\]
+故$\langle R^\perp(e_1,e_2)n_1,n_2\rangle=-2$，法联络不平坦；两个形算子不能同时对角化。Gauss式给$K=\langle n_1,-n_1\rangle-|n_2|^2=-2$，$|B|^2=4$，恰有$2K=-|B|^2$。这是真正的极小曲面，不能从极小性推断法丛平坦。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题13.5：Clifford环面的环境依赖}
+原创。令$F(u,v)=2^{-1/2}(\cos u,\sin u,\cos v,\sin v)$，两参数均模$2\pi$。证明它在单位$S^3$中极小、内蕴平坦，在$\R^4$中却不极小，并说明紧性障碍为何不矛盾。
+\begin{proof}[解答]
+$|F|=1$，$g=(\dd u^2+\dd v^2)/2$。在$S^3$内的单位法向为
+\[
+ n=2^{-1/2}(\cos u,\sin u,-\cos v,-\sin v).
+\]
+它与$F,F_u,F_v$正交。$n_u=F_u$、$n_v=-F_v$，且这些导数切于$S^3$，故$S$的两个特征值为$-1,1$，平均值零，$F$在$S^3$内极小。环境截面曲率为1，Gauss式给$K=1-1=0$，与常系数度量一致。
+
+在$\R^4$中，单位球面有$B^{S^3}(X,Y)=-g(X,Y)F$。连续应用两层Gauss分解，环面的欧氏第二基本形式为$B^{\R^4}=B^{S^3\text{内}}-gF$，取一半迹得$\mathbf H_{\R^4}=-F\ne0$。也可从$\Delta_gF=2(F_{uu}+F_{vv})=-2F$核对。紧致无边界欧氏极小浸入不存在的命题要求欧氏环境，此例的极小环境是弯曲的$S^3$。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题13.6：螺旋面不是平面却处处极小}
+原创。对$c\ne0$，令$F(u,v)=(u\cos v,u\sin v,cv)$。计算$g,II,H,K$，并验证$u=0$不导致参数奇性。
+\begin{proof}[解答]
+取$W=\sqrt{u^2+c^2}$，有$g=\dd u^2+W^2\dd v^2$，
+$n=(c\sin v,-c\cos v,u)/W$。直接求二阶导数得
+\[
+ II_{uu}=II_{vv}=0,\qquad II_{uv}=II_{vu}=-c/W.
+\]
+因此$\operatorname{tr}_gII=0$，处处极小；而
+\[
+ K=\frac{\det II}{\det g}=-\frac{c^2}{(u^2+c^2)^2}<0.
+\]
+相对正交基$\partial_u,W^{-1}\partial_v$，$S$非对角项为$-c/W^2$，特征值为$\pm c/W^2$（作为无序对）；二者互相抵消但不为零，所以不全测地。由于$W\geq|c|>0$，在$u=0$时$F_v=(0,0,c)$仍非零且与$F_u$独立。若令$c=0$，这一结论失效，不能将退化参数当同一个正则例子。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题13.7：球面活动标架的符号核对}
+原创。在$S^2(a)$非极点坐标卡取$\theta^1=a\dd\theta$、$\theta^2=a\sin\theta\dd\phi$，求切联络矩阵、曲率矩阵和外法向混合块，逐项验证环境欧氏曲率为零。
+\begin{proof}[解答]
+由$\dd\theta^1=0$、$\dd\theta^2=(\cot\theta/a)\theta^1\wedge\theta^2$及无挠、斜对称条件，得到
+\[
+ \omega^1{}_2=-\cos\theta\,\dd\phi,\qquad
+ \omega^2{}_1=\cos\theta\,\dd\phi,\qquad
+ \Omega^1{}_2=\sin\theta\,\dd\theta\wedge\dd\phi
+             =a^{-2}\theta^1\wedge\theta^2.
+\]
+其余由斜对称决定，故$\Omega^1{}_2(e_1,e_2)=\langle R(e_1,e_2)e_2,e_1\rangle=K=a^{-2}$。这里列指标为被求导的向量，不与另一种常见行指标约定混用。
+
+外法向使$\beta=(-\theta^1/a,-\theta^2/a)$，$\tau=0$。于是$(\beta^{\mathsf T}\wedge\beta)^1{}_2=a^{-2}\theta^1\wedge\theta^2=\Omega^1{}_2$，切块$\bar\Omega_{TT}=0$；$\dd\beta+\beta\wedge\omega=0$由无挠结构方程成立；法块$\beta\wedge\beta^{\mathsf T}=0$。因此全部环境曲率块为零。曲率形式的符号若与本题相反，应先检查指标次序和$R$定义，而非改变球面正截面曲率。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题13.8：局部相容不等于全局单值重建}
+原创。在$M=\R/(2\pi\mathbb Z)$上给$g=\dd s^2$，令$E$为平凡单位法线丛、法联络平凡且$B=0$。验证三组欧氏相容方程，证明局部能浸入$\R^2$，但不存在全局实现这些数据的浸入。指出基本定理证明中的障碍。
+\begin{proof}[解答]
+一维切丛曲率为零，平凡法联络亦平坦，$B,A,\nabla B$全部为零，所以三组条件均成立。小弧上的$F(s)=(s,0)$是局部等距实现。
+
+若全局实现存在，取覆盖参数$s\in\R$，因$B=0$且内蕴$\partial_s$平行，Gauss式给$F''(s)=0$，所以$F(s)=p+sv$，$|v|=1$。但周期性要求$F(s+2\pi)=F(s)$，即$2\pi v=0$，矛盾。
+
+此例$TM\oplus E$的平坦联络已有全局平行标架，障碍不是法丛绕行，而是重建一形式$\alpha=(\dd s,0)$的周期$\int_{S^1}\alpha=(2\pi,0)$非零，闭而不恰当。因此局部相容不能省去积分的全局条件；连通或局部唯一性也不能代替它。
+\end{proof}

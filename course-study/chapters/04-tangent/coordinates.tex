@@ -1,0 +1,51 @@
+曲线模型给出几何意义，坐标基将它转成可计算的分量。这里及以下重复的上下指标在其维数范围内求和；仅在需要澄清时写出求和号。
+\begin{definition}[坐标基与余切空间]
+坐标切向量$\partial_i|_p=(\partial/\partial x^i)|_p$定义为点导子
+\[
+ \partial_i|_p(f)=\partial_i(f\circ x^{-1})(x(p)).
+\]
+余切空间（cotangent space）为$T_p^*M=(T_pM)^*$。局部光滑函数$f$在$p$的微分（differential）为协向量$\dd f_p(v)=v(f)$。对坐标函数写$\dd x^i|_p$；定义只依赖函数芽。把局部函数的“微分”和映射的“切映射”联系起来的证明见下一节。
+\end{definition}
+\begin{theorem}[坐标基、对偶基与换坐标]\label{thm:tangent-coordinate}
+$\{\partial_i|_p\}_{i=1}^n$为$T_pM$的基，$\{\dd x^i|_p\}_{i=1}^n$为对偶基。于是
+\[
+ v=v^i\partial_i|_p,\quad v^i=v(x^i),\qquad
+ \alpha=\alpha_i\dd x^i|_p,\quad\alpha_i=\alpha(\partial_i|_p).
+\]
+若另一张卡为$y=(y^1,\ldots,y^n)$，在重叠点处有
+\begin{align*}
+ \left.\frac{\partial}{\partial x^i}\right|_p
+ &=\frac{\partial y^a}{\partial x^i}(p)
+ \left.\frac{\partial}{\partial y^a}\right|_p,
+ &\dd y^a|_p&=\frac{\partial y^a}{\partial x^i}(p)\,\dd x^i|_p,\\
+ v_y^a&=\frac{\partial y^a}{\partial x^i}(p)v_x^i,
+ &(\alpha_y)_a&=\frac{\partial x^i}{\partial y^a}(p)(\alpha_x)_i.
+\end{align*}
+所有偏导均表示过渡映射的偏导，不能把同名点坐标和欧氏变量混淆。
+\end{theorem}
+\begin{proof}
+定理\ref{thm:derivation-model}给出坐标向量张成切空间。若$c^i\partial_i|_p=0$，将其作用于$x^j$，得到$c^j=0$，故线性无关。由$\dd x^i|_p(\partial_j|_p)=\delta^i_j$得对偶性及协向量展开。
+对任意局部函数$f$，欧氏链式法则给出
+\[
+ \partial_i(f\circ x^{-1})(x(p))
+ =\frac{\partial y^a}{\partial x^i}(p)
+ \partial_a(f\circ y^{-1})(y(p)),
+\]
+这证明基变换。对$\dd y^a(v)=v(y^a)$使用导子展开即得余切基变换；把$v$、$\alpha$分别在两组基中展开并比较系数，使用正反Jacobi矩阵互逆，便得到分量变换。因而$\alpha_i v^i$在换坐标后不变，它是同一实数$\alpha(v)$。
+\end{proof}
+\begin{example}[极坐标基不是单位基]\label{ex:polar-tangent}
+在平面的一个极坐标卡内，$r>0$，$x=r\cos\theta,y=r\sin\theta$。由上述变换律，
+\begin{align*}
+ \partial_r&=\cos\theta\,\partial_x+\sin\theta\,\partial_y,\\
+ \partial_\theta&=-r\sin\theta\,\partial_x+r\cos\theta\,\partial_y,\\
+ \dd r&=\cos\theta\,\dd x+\sin\theta\,\dd y,\\
+ \dd\theta&=-\frac{\sin\theta}{r}\,\dd x+\frac{\cos\theta}{r}\,\dd y.
+\end{align*}
+标准欧氏度量下$|\partial_r|=1$、$|\partial_\theta|=r$。若改用单位角向量$e_\theta=\partial_\theta/r$，其对偶协向量应为$r\,\dd\theta$，不能把$e_\theta$和$\dd\theta$当成对偶基。这里的$\theta$只在所选卡内为单值光滑函数。
+\end{example}
+\begin{figure}[htbp]
+\centering
+\input{course-study/figures/polar-tangent}
+\caption{原创示意：在$r=2,\theta=0$的点，坐标向量$\partial_r$和$\partial_\theta$的欧氏长度分别为$1,2$。灰色虚线圆表示角坐标线，蓝色箭头表示该点的两个坐标切向量；坐标轴按同一比例绘制。}
+\end{figure}
+习题4.3练习分量变换，习题4.5用配对检验余切计算。

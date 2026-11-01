@@ -1,0 +1,71 @@
+\begin{theorem}[圆周的周期与上同调]\label{thm:circle-cohomology}
+对逆时针定向的单位圆，记$\lambda=(x\dd y-y\dd x)|_{S^1}$。则
+\[
+ H^k(S^1)=\begin{cases}\R,&k=0,1,\\0,&\text{其余次数},\end{cases}
+ \qquad [\alpha]\longmapsto\frac1{2\pi}\int_{S^1}\alpha
+\]
+是$H^1(S^1)$到$\R$的同构，将$[\lambda]$送为$1$。其上同调代数由单位和一次元$e=[\lambda]$生成，$e^2=0$。
+\end{theorem}
+\begin{proof}
+圆周连通，故$H^0=\R$，高于一次的形式为零。每个一形式因维数为一均闭。令$\pi:\R\to S^1$，$\pi(t)=(\cos t,\sin t)$。这是局部微分同胚，$\pi^*\alpha=f(t)\dd t$且$f$光滑、$2\pi$周期。又$\pi^*\lambda=\dd t$。
+取$a=(2\pi)^{-1}\int_0^{2\pi}f(t)\dd t$，令
+\[
+ h(t)=\int_0^t(f(s)-a)\dd s.
+\]
+由于$f-a$在任一长度$2\pi$区间上的积分为零，$h(t+2\pi)=h(t)$。故$h$下降为$S^1$上的光滑函数$g$；光滑性可在$\pi$的局部逆上检验。$\pi^*(\alpha-a\lambda)=\dd h=\pi^*\dd g$，而满射局部微分同胚的拉回在形式层单射，所以$\alpha=a\lambda+\dd g$。这证明每个类由一个$a$确定。反向，$\int\dd g=0$而$\int\lambda=2\pi$，所以不同$a$给不同类。平方因二形式为零而为零，得到代数描述。
+\end{proof}
+
+\begin{example}[用Mayer--Vietoris复核圆周]
+沿上一节的两开弧覆盖，以$W$的上、下分支为顺序，长序列缩为
+\[
+ 0\longrightarrow\R\xrightarrow{c\mapsto(c,c)}\R^2
+ \xrightarrow{(a,b)\mapsto(a-b,a-b)}\R^2
+ \xrightarrow{\delta}H^1(S^1)\longrightarrow0.
+\]
+中间映射矩阵为$\left(\begin{smallmatrix}1&-1\\1&-1\end{smallmatrix}\right)$，秩为一，像是对角线。因此$H^1(S^1)\simeq\R^2/\{(c,c)\}$，维数一。与周期定理比较时还须固定符号：按本章$q=\alpha-\beta$，习题9.5证明交叠常数$(c_+,c_-)$满足$\int_{S^1}\delta(c_+,c_-)=c_+ -c_-$。仅维数相同并不能自动确定某个连接类对应$+\lambda$还是$-\lambda$。
+\end{example}
+
+\begin{lemma}[球面两极覆盖的交叠]\label{lem:sphere-overlap}
+对$n\geq1$，令$N=(0,\ldots,0,1),S=-N$，$U=S^n\setminus\{S\}$、$V=S^n\setminus\{N\}$。两块各微分同胚于$\R^n$，而$W=U\cap V$光滑形变收缩到赤道$S^{n-1}$。
+\end{lemma}
+\begin{proof}
+立体投影及其光滑逆已在第3章构造，所以$U,V$的正次数上同调为零。对$W$内的点写$x=(x',z)$，$-1<z<1$，$x'\ne0$，则
+\[
+ x=\bigl(\sqrt{1-z^2}\,u,z\bigr),\qquad u=x'/|x'|\in S^{n-1}.
+\]
+该式及其逆给$W\simeq S^{n-1}\times(-1,1)$的微分同胚。保持$u$不变，将$z$变为$(1-t)z$，即得赤道收缩。在满足$|(1-t)z|<1$的开集中公式仍光滑，故有本章要求的开邻域延拓；$t\in[0,1]$时这一不等式始终成立。$n=1$时$u\in S^0=\{-1,1\}$，交叠正好是两个分支，不能合并。
+\end{proof}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/sphere-mv-cover}
+\caption{球面的两极开覆盖及交叠收缩。图示为二维球面：$U$删去南极，$V$删去北极，交叠含赤道且沿纬度收缩到赤道；不是把闭半球当作开覆盖。橙色箭头为收缩方向。原创示意。}
+\label{fig:sphere-mv-cover}
+\end{figure}
+
+\begin{theorem}[所有正维球面的计算]\label{thm:sphere-cohomology}
+对$n\geq1$，
+\[
+ H^k(S^n)=\begin{cases}\R,&k=0\text{或}k=n,\\0,&\text{其余次数}.\end{cases}
+\]
+若$S^n$取定向，积分$H^n(S^n)\to\R$是同构。取积分为$1$的顶次类$u$，其上同调代数由$1,u$生成且$u^2=0$，$\deg u=n$。$S^0$须另计：$H^0(S^0)=\R^2$，正次数全为零。
+\end{theorem}
+\begin{proof}
+$S^1$已证明。设$n\geq2$，使用上引理的覆盖。$U,V$连通且正次数上同调为零，$W$与连通的$S^{n-1}$同伦等价。长序列的低次部分是
+\[
+ 0\longrightarrow H^0(S^n)\longrightarrow\R^2
+ \xrightarrow{(a,b)\mapsto a-b}\R\longrightarrow H^1(S^n)
+ \longrightarrow0.
+\]
+减法映射满射、核为对角线，故$H^0(S^n)=\R$、$H^1(S^n)=0$。对$k\geq2$，相应一段为
+\[
+ 0\longrightarrow H^{k-1}(W)\xrightarrow{\delta}H^k(S^n)
+ \longrightarrow0,
+\]
+因为两侧来自$U,V$的$k-1$及$k$次群均为零。因此$H^k(S^n)\simeq H^{k-1}(S^{n-1})$。以$n=1$为起点归纳：只有$k=n$留下$\R$，其余$k\geq2$为零；高于维数也由形式为零直接验证。这一归纳没有在$k=1$处误用正次数消失，因为$H^0(U),H^0(V)$并不为零。
+
+取$\R^{n+1}$标准体积$\nu$、位置向量场$R=\sum_{i=1}^{n+1}x^i\partial_i$，$j:S^n\hookrightarrow\R^{n+1}$。$\sigma=j^*(\iota_R\nu)$是外向定向的正体积形式：球面上$R$就是外单位法向，在外向首位正基上求值为正。因球面紧、无边，积分在类上良定义，且$A=\int_{S^n}\sigma>0$。由已证明的$\dim H^n(S^n)=1$，非零线性泛函$\int$必为同构。取$u=[\sigma/A]$，得到积分为$1$的生成元。若反转定向，改取相应负号即可。$u^2$因$2n>n$为零，与$n$奇偶无关。$S^0$为两点，直接用零次分支命题计算；其乘法是$\R^2$上的逐分量乘法。
+\end{proof}
+
+\begin{example}[穿孔空间与环域的结果]
+对$m\geq2$，径向收缩和球面计算给$\R^m\setminus\{0\}$的上同调仅在$k=0,m-1$为$\R$。$m=2$时角形式生成$H^1$；$m\geq3$时$H^1=0$，所以每个闭一形式均有全局原函数，虽该域不是星形域。$m=1$时域为两条开半线，$H^0=\R^2$，正次数为零。平面圆环同样径向收缩到一条圆周，故闭一形式类由绕孔的一个周期确定。
+\end{example}
+圆周与球面只展示了几种完整计算；这里未由此声称所有流形上同调有限维，也未建立一般Kunneth公式、Poincare对偶或与奇异上同调的比较定理。

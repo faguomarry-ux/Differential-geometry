@@ -1,0 +1,88 @@
+\subsection*{体积元的微分}
+本节对不定向流形也使用体积：在坐标中取$\sqrt{\det g}\,|\dd x^1\cdots\dd x^m|$，换卡时按Jacobian行列式的绝对值变换，再用单位分解积分。这一体积密度无需定向；在定向卡上它与第8章的黎曼体积形式给出相同积分。这里只建立紧区域体积所需的密度表达，不发展一般密度丛理论。
+取光滑变分$f_t:M\to\bar M$，$f_0=f$，在紧区域上各$f_t$均为浸入。变分场$V=\partial_tf_t|_0$沿$f$取值，写$V=V^\top+V^\perp$；将切向部分经$\dd f$反识别为$M$的向量场。局部坐标下$g_{ij}(t)=\bar g(\partial_if_t,\partial_jf_t)$。环境无挠和度量相容给
+\[
+ \dot g_{ij}=\bar g(\bar\nabla_{\partial_i}V,\partial_jf)
+             +\bar g(\partial_if,\bar\nabla_{\partial_j}V).
+\]
+Jacobi行列式公式给$\partial_t\sqrt{\det g_t}|_0=\tfrac12\operatorname{tr}(g^{-1}\dot g)\sqrt{\det g}$。在一点取正交归一基，便得
+\[
+ \left.\partial_t\dd\mathrm{vol}_{g_t}\right|_0
+ =\left(\operatorname{div}_M V^\top-m\bar g(\mathbf H,V^\perp)\right)
+   \dd\mathrm{vol}_g.
+\]
+这里散度项来自$\sum_i g(\nabla_{e_i}V^\top,e_i)$，法项来自
+$\sum_i\bar g(\bar\nabla_{e_i}V^\perp,e_i)=-\sum_i\bar g(V^\perp,B(e_i,e_i))$。这一推导也固定了平均曲率的符号。
+
+\Needspace{19\baselineskip}
+\begin{theorem}[体积第一变分与极小性]\label{thm:first-volume-variation}
+设$\Omega\Subset M$为具有光滑边界的紧区域，$\nu$为$\partial\Omega$在$M$内的外单位余法向，则
+\[
+ \left.\frac{\dd}{\dd t}\operatorname{Vol}_{f_t^*\bar g}(\Omega)\right|_0
+ =-m\int_\Omega\bar g(\mathbf H,V^\perp)\,\dd\mathrm{vol}_g
+   +\int_{\partial\Omega}g(V^\top,\nu)\,\dd\mathrm{vol}_{\partial\Omega}.
+\]
+故$\mathbf H=0$当且仅当对所有具有紧支变分场、固定区域边界的局部变分，体积一阶导数为零。这里极小表示驻定，不直接表示达到体积最小值。
+\end{theorem}
+\begin{proof}
+在紧区域上可对积分号内求导，再对上面的体积元公式积分。若$M$定向，散度定理由第8章Stokes应用于$\iota_{V^\top}\dd\mathrm{vol}_g$得到；一般情形用局部定向图及单位分解，交叠时体积密度与外余法向通量同时相容，内部边界项相消，得到同一公式。因此不必给整个子流形选定向。
+
+若$\mathbf H=0$且$V$在边界为零，两项均零。反向，在任意小坐标域内取非负紧支函数$\chi$，令$V=\chi\mathbf H$。这种沿$f$的场可实现为$f_t(p)=\exp_{f(p)}^{\bar M}(tV_p)$；在支集外保持$f$，紧性和浸入微分的开条件保证共同的小时间内仍为浸入。第一变分为$-m\int\chi|\mathbf H|^2$。若所有这种变分都驻定，连续性给$\mathbf H=0$。该论证只用小时间指数映射，不要求环境完备。
+\end{proof}
+
+对$m=1$，$\mathbf H=B(T,T)$，极小曲线正好是内蕴单位速曲线在环境中零加速度的情形，即环境测地线。对高维，零迹只约束$B$的总和，不要求各方向的弯曲为零。
+\begin{figure}[htbp]
+\centering\input{course-study/figures/mean-curvature-balance}
+\caption{二维超曲面同一法空间中两个主方向的法向弯曲向量相加。左图$k_1=k_2=-1/a$给$\mathbf H=-n/a$；右图$k_1=1,k_2=-1$给该点$\mathbf H=0$而$B\ne0$。右图仅作逐点代数示意，不由一个点的零迹断言整张曲面极小。}
+\label{fig:mean-curvature-balance}
+\end{figure}
+
+\subsection*{欧氏坐标函数与紧性障碍}
+\begin{proposition}[浸入向量的Laplace方程]\label{prop:laplace-immersion}
+对欧氏浸入$F:M^m\to\R^N$，按第11章$\Delta=\operatorname{div}\operatorname{grad}$的约定逐分量有
+\[
+ \Delta F=m\mathbf H,\qquad
+ \Delta|F|^2=2m+2m\langle F,\mathbf H\rangle.
+\]
+因此$F$极小当且仅当全部欧氏坐标函数调和。不存在正维、紧致、无边界的欧氏极小浸入。
+\end{proposition}
+\begin{proof}
+函数Hessian的迹在局部正交归一标架中为
+\[
+ \Delta F=\sum_i\bigl(D_{e_i}(\dd F(e_i))-\dd F(\nabla_{e_i}e_i)\bigr)
+          =\sum_i B(e_i,e_i).
+\]
+逐分量的乘法法则给$\Delta|F|^2=2\sum_i|\dd F(e_i)|^2+2\langle F,\Delta F\rangle$；等距性使平方和为$m$。若紧致无边界且$\mathbf H=0$，对第二式积分，散度定理左端为零，右端为$2m\operatorname{Vol}(M)>0$，矛盾。不定向情形仍用体积密度版本；有边界时会产生边界通量，不能沿用矛盾。
+\end{proof}
+
+球面嵌入的$\mathbf H=-F/a^2$，所以$\Delta F=-mF/a^2$，与第11章Laplace符号一致。欧氏极小曲面有$\mathrm{Scal}=-|B|^2$；二维时$2K=-|B|^2$，故非全测地处$K<0$。
+
+\subsection*{极小图像方程及一个有限范围的最小性结论}
+设$u:U\subset\R^m\to\R$光滑，取图像$F(x)=(x,u(x))$及向上法向$n=(-Du,1)/W$，$W=(1+|Du|^2)^{1/2}$。直接计算
+\[
+ g_{ij}=\delta_{ij}+u_i u_j,\quad
+ g^{ij}=\delta_{ij}-\frac{u_i u_j}{W^2},\quad
+ II_{ij}=\frac{u_{ij}}{W},\quad
+ mH=\frac1W\left(\delta_{ij}-\frac{u_i u_j}{W^2}\right)u_{ij}.
+\]
+逆矩阵可乘回$g$验证；$II_{ij}$由$\langle\partial_{ij}F,n\rangle$给出。展开$\partial_i(u_i/W)$，恰有
+\[
+ mH=\operatorname{div}_{\R^m}\left(\frac{Du}{\sqrt{1+|Du|^2}}\right).
+\]
+所以极小图像方程为右端等于零。$m=2$时等价于
+\[
+ (1+u_y^2)u_{xx}-2u_xu_yu_{xy}+(1+u_x^2)u_{yy}=0.
+\]
+例如$u=xy$在原点有$H=0$，却在一般点给分子$-2xy$，故不为极小图像。
+
+设$\Omega\Subset U$边界光滑，$u$在其闭包光滑并满足此方程。此时它确实在具有同一边值的光滑图像中使面积最小：函数$L(p)=\sqrt{1+|p|^2}$的Hessian为
+\[
+ D^2L(p)=\frac{I}{\sqrt{1+|p|^2}}-
+ \frac{pp^{\mathsf T}}{(1+|p|^2)^{3/2}},
+\]
+对非零$q$有$q^{\mathsf T}D^2L(p)q\geq |q|^2/(1+|p|^2)^{3/2}>0$。沿$p$到$q$的线段积分得到凸性不等式$L(q)\geq L(p)+DL(p)\cdot(q-p)$。令$p=Du,q=Dv$并积分，若$v=u$在边界，则
+\[
+ \operatorname{Area}(v)-\operatorname{Area}(u)
+ \geq\int_\Omega\frac{Du}{W}\cdot D(v-u)=0,
+\]
+末步分部积分用了极小方程和零边值。这是固定图像类中的最小性，不据此宣称对所有浸入或所有拓扑类型的竞争者都有全局最小性。一般极小子流形的第二变分、稳定性和Plateau问题留待另行建立。

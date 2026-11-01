@@ -1,0 +1,80 @@
+一形式$\alpha=P\dd x+Q\dd y$是否等于$\dd f$，首先受到混合偏导交换的限制$\partial_xQ=\partial_yP$。外微分将这一条件推广为任意次数的坐标无关运算。
+\begin{theorem}[外微分的存在、性质与唯一性]\label{thm:exterior-derivative}
+每个开集$U\subset M$上有与限制相容的实线性映射
+\[
+ \dd:\Omega^k(U)\to\Omega^{k+1}(U),
+\]
+满足：对函数$f$，$\dd f$为第4章定义的微分；$\dd^2=0$；且对$\alpha\in\Omega^p(U)$、$\beta\in\Omega^q(U)$，
+\[
+ \dd(\alpha\wedge\beta)=\dd\alpha\wedge\beta+(-1)^p\alpha\wedge\dd\beta.
+\]
+满足这些性质并与限制相容的运算族唯一。在坐标中，它由
+\[
+ \dd\omega=\sum_{I\text{递增}}\dd a_I\wedge\dd x^I,
+ \qquad\dd a_I=\sum_j\partial_j a_I\dd x^j
+\]
+给出，其中$\dd x^I=\dd x^{i_1}\wedge\cdots\wedge\dd x^{i_k}$。
+\end{theorem}
+\begin{proof}
+\textbf{在坐标块上定义并计算。}由形式的基展开唯一性，该公式定义了实线性运算，并把光滑系数变成光滑系数。对函数就是已知微分。计算$\dd^2\omega$时，只有
+\[
+ \sum_{I,j,\ell}\partial_\ell\partial_j a_I\,
+ \dd x^\ell\wedge\dd x^j\wedge\dd x^I.
+\]
+$j=\ell$的项为零，$j\ne\ell$的两项由混合偏导相等和外积反对称性相消，所以平方为零。
+
+对单项式$\alpha=a\dd x^I,\beta=b\dd x^J$，$\dd(ab)=b\dd a+a\dd b$。将$\dd b$移过前$p$个一次因子会产生$(-1)^p$，故得到带符号乘法式；当外积含重复指标时，两边同样按反对称性为零。按双线性展开即得一般式。
+
+\textbf{证明换卡相容。}在同一交叠上取另一坐标$y$。用$x$坐标的运算记作$\dd_x$；已证$\dd_x^2=0$，故对每个坐标函数$y^a$有$\dd_x(\dd y^a)=0$。这里$\dd_x y^a=\dd y^a$由第4章的函数微分坐标无关性保证。将形式写成$\omega=\sum b_J\dd y^J$，用已证的乘法式得到
+\[
+ \dd_x\omega=\sum_J\dd b_J\wedge\dd y^J=\dd_y\omega.
+\]
+因此局部定义在交上一致，可唯一拼成全局形式，并自然与限制相容。全局的平方零和乘法式也由局部计算得到。
+
+\textbf{唯一性。}若$D$是另一个满足条件的运算族，在坐标开集上$Dx^i=\dd x^i$，故$D(\dd x^i)=D^2x^i=0$。反复使用带符号乘法式，得到$D(a_I\dd x^I)=\dd a_I\wedge\dd x^I$。所以每块上$D=\dd$，由限制相容性得到全局一致。这个论证没有假设任意局部坐标函数都能作为全局实函数，也没有提前使用单位分解。
+\end{proof}
+外微分把函数的微分推广到所有形式，但它不是把每个张量分量随意求偏导。形式的交替性消去了换卡时的二阶项；第6章已经给出普通向量分量偏导不构成张量的反例。
+\Needspace{18\baselineskip}
+\begin{example}[低次公式与非坐标余标架]\label{ex:d-coframe}
+在$\R^3$令$\alpha=P\dd x+Q\dd y+R\dd z$，并令
+\[
+ \beta=A\dd y\wedge\dd z+B\dd z\wedge\dd x+C\dd x\wedge\dd y.
+\]
+则
+\begin{align*}
+ \dd\alpha
+ &=(\partial_xQ-\partial_yP)\dd x\wedge\dd y\\
+ &\quad +(\partial_xR-\partial_zP)\dd x\wedge\dd z\\
+ &\quad +(\partial_yR-\partial_zQ)\dd y\wedge\dd z,\\
+ \dd\beta
+ &=(\partial_xA+\partial_yB+\partial_zC)\dd x\wedge\dd y\wedge\dd z.
+\end{align*}
+这些公式先是形式等式，未借度规把形式与向量场等同。
+若取平面上的余标架$\theta^1=\dd x,\theta^2=e^x\dd y$，则
+\[
+ \dd\theta^2=e^x\dd x\wedge\dd y=\theta^1\wedge\theta^2\ne0.
+\]
+因此对$\omega=a\theta^2$，有$\dd\omega=\dd a\wedge\theta^2+a\dd\theta^2$，不能漏掉第二项。只有坐标微分$\dd x^i$保证外微分为零。
+\end{example}
+\begin{definition}[闭形式与恰当形式]
+若$\dd\omega=0$，称$\omega$闭（closed）；若$\omega=\dd\eta$，称恰当（exact），也称正合或全微分形式。由$\dd^2=0$，恰当形式必闭。零形式闭等价于局部常值；在连通流形上才进一步为常数。按$\Omega^{-1}=0$约定，恰当零形式只有零函数。
+\end{definition}
+闭零形式局部常值，是因为在凸小坐标球内沿线段积分$\dd f=0$便得函数值不变；连通空间中局部常值函数的各个值域原像开闭，所以只能取一个值。正次数下“闭是否推出恰当”将在本章最后回答。
+\Needspace{12\baselineskip}
+\begin{proposition}[外微分的无坐标求值式]\label{prop:koszul-d}
+对$\omega\in\Omega^k(M)$及光滑场$X_0,\ldots,X_k$，有
+\begin{align*}
+ (\dd\omega)(X_0,\ldots,X_k)
+ &=\sum_{i=0}^k(-1)^i X_i\bigl(\omega(X_0,\ldots,\widehat X_i,\ldots,X_k)\bigr)\\
+ &\quad+\sum_{0\leq i<j\leq k}(-1)^{i+j}
+ \omega([X_i,X_j],X_0,\ldots,\widehat X_i,\ldots,\widehat X_j,\ldots,X_k).
+\end{align*}
+第二行的括号放在第一个槽，其他场保持原次序。$k=1$时即
+\[
+ \dd\alpha(X,Y)=X(\alpha(Y))-Y(\alpha(X))-\alpha([X,Y]).
+\]
+\end{proposition}
+\begin{proof}
+先检查右边对各$X_j$是函数线性的。将$X_j$换成$fX_j$，第一和式中$i\ne j$的求导会多出$X_i(f)$乘删去$X_i$后的形式值；第二和式用$[X_i,fX_j]=f[X_i,X_j]+X_i(f)X_j$及$[fX_j,X_i]=f[X_j,X_i]-X_i(f)X_j$展开。把插入的$X_j$从第一个槽移回它原来的位置，所需交换的符号使这些额外项逐一抵消。对$i=j$的项只有整体因子$f$。因此右边为$C^\infty$多重线性。交换两个相邻输入时，第一和式按删去位置重新编号，第二和式同时使用括号反对称性，整体变号，故它确实是交替形式的求值。
+现在只需在一组局部坐标基场上核对。坐标场的括号为零，第一和式就是分量系数的交替偏导，等于定理\ref{thm:exterior-derivative}的坐标定义。两侧均函数多重线性，故对所有场成立；$k=0$时退化为函数微分的定义。习题7.2用非坐标场检查括号项的必要性。
+\end{proof}

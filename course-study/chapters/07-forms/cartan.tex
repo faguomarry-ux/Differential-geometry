@@ -1,0 +1,89 @@
+\begin{definition}[形式的拉回]
+若$F:M\to N$光滑，对$\omega\in\Omega^k(N)$定义
+\[
+ (F^*\omega)_p(v_1,\ldots,v_k)
+ =\omega_{F(p)}(\dd F_pv_1,\ldots,\dd F_pv_k).
+\]
+零次时$F^*f=f\circ F$。它与第6章的协变张量拉回相同，不要求$F$单射、满射或局部可逆。
+\end{definition}
+\begin{theorem}[拉回与外微分的自然性]\label{thm:d-pullback}
+拉回保持次数、外积、恒等与反向复合，且
+\[
+ \dd(F^*\omega)=F^*(\dd\omega).
+\]
+因此闭形式与恰当形式均拉回为相应类型的形式。
+\end{theorem}
+\begin{proof}
+在局部坐标中$F^*(a_I\dd y^I)=(a_I\circ F)\dd F^{i_1}\wedge\cdots\wedge\dd F^{i_k}$，其中$F^a=y^a\circ F$。这些系数光滑，故拉回光滑。逐点的线性代数给出外积相容，链式法则给出反向复合。
+对上述局部项求外微分，乘法式中$\dd(\dd F^a)=0$，只剩
+\[
+ \dd(a_I\circ F)\wedge\dd F^{i_1}\wedge\cdots\wedge\dd F^{i_k}
+ =F^*(\dd a_I\wedge\dd y^I),
+\]
+用了函数微分的链式法则。按项相加即得自然性。目标任意点附近可取卡，利用$F$连续性在源上缩小，故这些局部计算覆盖全部$M$。最后若$\dd\omega=0$，自然性给$\dd F^*\omega=0$；若$\omega=\dd\eta$，则$F^*\omega=\dd F^*\eta$。
+\end{proof}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/forms-pullback}
+\caption{原创交换图：任意光滑映射$F:M\to N$使拉回与外微分交换。形式的拉回方向与$F$相反；图中没有假设$F$可逆，也没有用图表代替自然性的证明。}
+\label{fig:forms-pullback}
+\end{figure}
+对光滑向量场$X$，第6章逐点定义的内插$\iota_X:\Omega^k\to\Omega^{k-1}$是次数$-1$的带符号导子。它使形式少一个输入槽，却不求导系数。另一种运算是沿$X$的流比较形式。
+\begin{definition}[形式的Lie导数]
+设$\Phi_t$为$X$的极大局部流，定义
+\[
+ \mathcal L_X\omega=\left.\frac{\dd}{\dd t}\right|_{t=0}\Phi_t^*\omega.
+\]
+每点附近均有统一短时间的流，故可在固定开邻域中对光滑系数求导。所得形式局部相容，不需要$X$完备。拉回将$\Phi_t(p)$的形式放到固定的$T_pM$上，因此比较发生在同一纤维中。
+\end{definition}
+\begin{lemma}[Lie导数的局部生成规则]\label{lem:lie-forms}
+$\mathcal L_X$是次数零的实线性导子，满足
+\[
+ \mathcal L_Xf=Xf,\qquad\mathcal L_X(\dd f)=\dd(Xf),
+\]
+\[
+ \mathcal L_X(\alpha\wedge\beta)
+ =(\mathcal L_X\alpha)\wedge\beta+\alpha\wedge\mathcal L_X\beta.
+\]
+\end{lemma}
+\begin{proof}
+拉回保持外积，对$\Phi_t^*(\alpha\wedge\beta)=\Phi_t^*\alpha\wedge\Phi_t^*\beta$在零处求导即得乘法式。函数上由流的速度为$X$得到第一式。由自然性，$\Phi_t^*\dd f=\dd(f\circ\Phi_t)$，对$t$求导后可交换光滑混合偏导，得到第二式。实线性与次数保持由定义直接得到。局部形式由函数与$\dd x^i$生成，因此这些规则确定$\mathcal L_X$在所有形式上的值。
+\end{proof}
+\Needspace{12\baselineskip}
+\begin{theorem}[Cartan公式]\label{thm:cartan}
+对任意光滑场$X$和微分形式$\omega$，
+\[
+ \mathcal L_X\omega=\iota_X\dd\omega+\dd\iota_X\omega.
+\]
+对函数约定$\iota_Xf=0$，故公式也适用于零次形式。
+\end{theorem}
+\begin{proof}
+记右边算子为$D=\iota_X\dd+\dd\iota_X$。将外微分的带符号乘法式及内插的带符号乘法式依次代入$D(\alpha\wedge\beta)$。含$\dd\alpha\wedge\iota_X\beta$的交叉项符号分别为$(-1)^{p+1}$与$(-1)^p$，相消；含$\iota_X\alpha\wedge\dd\beta$的两项符号为$(-1)^p$与$(-1)^{p-1}$，也相消。其余项恰为
+\[
+ D\alpha\wedge\beta+\alpha\wedge D\beta.
+\]
+所以$D$是次数零导子。在函数上$Df=\iota_X\dd f=Xf$；在$\dd f$上由$\dd^2=0$得$D(\dd f)=\dd(Xf)$。它与引理\ref{lem:lie-forms}的$\mathcal L_X$在局部生成元$f,\dd x^i$上相同，故通过乘法规则对所有局部形式相同，继而全局相同。
+\end{proof}
+\begin{proposition}[求值式与Cartan交换关系]\label{prop:cartan-identities}
+对光滑场$Y_1,\ldots,Y_k$，
+\begin{align*}
+ (\mathcal L_X\omega)(Y_1,\ldots,Y_k)
+ &=X\bigl(\omega(Y_1,\ldots,Y_k)\bigr)\\
+ &\quad-\sum_{j=1}^k\omega(Y_1,\ldots,[X,Y_j],\ldots,Y_k).
+\end{align*}
+此外有
+\[
+ \mathcal L_X\dd=\dd\mathcal L_X,\qquad
+ \mathcal L_X\iota_Y-\iota_Y\mathcal L_X=\iota_{[X,Y]},
+\]
+\[
+ \mathcal L_X\mathcal L_Y-\mathcal L_Y\mathcal L_X=\mathcal L_{[X,Y]}.
+\]
+\end{proposition}
+\begin{proof}
+求值式右边在$Y_j$换成$fY_j$时，第一项多出$X(f)$乘形式值，括号项由$[X,fY_j]=X(f)Y_j+f[X,Y_j]$产生相反项，故函数多重线性；它也交替。在外积上展开求值，按槽位分组可见它满足次数零导子的乘法规则。函数上等于$Xf$，对$\dd f$及一个场$Y$，其值为$X(Yf)-[X,Y]f=Y(Xf)$，即$\dd(Xf)(Y)$。因此它与$\mathcal L_X$在局部生成元上一致，得到求值式。这也与第5章沿流拉回场的括号符号相容。
+
+第一交换关系直接由Cartan公式和$\dd^2=0$得到，两边都等于$\dd\iota_X\dd$。第二关系的左边是次数$-1$导子，这可用两种乘法式展开并消去交叉项验证；它在函数上为零，在$\dd f$上为$X(Yf)-Y(Xf)=[X,Y]f$，恰与$\iota_{[X,Y]}$相同。第三关系两边为次数零导子，在函数上都是$[X,Y]f$；在$\dd f$上，利用第一关系，两边都是$\dd([X,Y]f)$。再用局部生成元判别，得到两式对所有形式成立。
+\end{proof}
+\begin{example}[沿伸缩流的次数权重]
+在$\R^n$令$R=x^i\partial_i$，流为$\Phi_t(x)=e^tx$。因$\Phi_t^*\dd x^i=e^t\dd x^i$，常系数$k$形式满足$\mathcal L_R\omega=k\omega$。若系数$a(x)$是$m$次齐次函数，则$\mathcal L_R(a\dd x^I)=(m+k)a\dd x^I$。不能只对系数求方向导数而忽略基形式本身的变化。习题7.3、7.8检查Cartan公式中的两项与交换关系。
+\end{example}

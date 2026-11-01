@@ -1,0 +1,49 @@
+\begin{definition}[半空间与带边光滑结构]
+记$\mathbb H^n=\{(x^1,\ldots,x^{n-1},r)\in\R^n:r\geq0\}$。带边流形（manifold with boundary）是Hausdorff、第二可数空间，带有到$\mathbb H^n$相对开集的坐标卡，换卡及其逆在每点附近可延拓为欧氏光滑映射。局部函数、映射、微分形式的光滑性也按局部延拓定义。无边流形是边界为空的特例；本章不包含角点流形。
+\end{definition}
+用$r\geq0$而非梁书的$x^1\leq0$只是坐标选择，必须随之重算边界符号。延拓虽不唯一，其在半空间上的各阶导数唯一：先在$r>0$的稠密子集比较，再以连续性取$r\to0$。因此切空间仍为$n$维向量空间，不把它缩成向内半空间；第4、7章的局部微分和形式公式逐项延续到边界。
+
+\begin{proposition}[边界及其光滑结构]\label{prop:boundary-atlas}
+卡中$r=0$定义的点集与选卡无关，记为$\partial M$。它是无边的$(n-1)$维光滑流形，包含映射$j:\partial M\hookrightarrow M$是光滑嵌入。换卡$F$在边界的微分保持向内与向外的横截方向。
+\end{proposition}
+\begin{proof}
+换卡与逆的延拓满足链式法则；相互复合在半空间上为恒等，其导数在内部为恒等，连续取极限说明边界处$DF$可逆。若$F$将边界点$p$送到内部点$q$，其逆$G$在$q$的一个欧氏开球上取值于$\mathbb H^n$，而$G_n(q)=0$。故$G_n$在$q$局部极小，$DG_n(q)=0$，与$DG(q)$可逆矛盾。对逆映射作同一论证，得到边界与内部各自保持。
+
+在边界，$F_n(x',0)=0$，故$DF_n(v',0)=0$。从$F_n(x',r)\geq0$在$r\geq0$一侧成立，得$a=\partial_rF_n\geq0$；可逆性排除$a=0$。因此
+\[
+ DF=\begin{pmatrix}A&b\\0&a\end{pmatrix},\qquad a>0,
+\]
+且$A$可逆。限制到$r=0$的换卡为$(n-1)$维光滑换卡，这给出$\partial M$的图册。边界是闭子集，其拓扑为子空间拓扑，继承Hausdorff性与第二可数性；卡内包含为$x'\mapsto(x',0)$，是浸入和到像的同胚。末行说明$v^r$的符号在换卡后不变。
+\end{proof}
+
+\begin{definition}[定向与正定向卡]
+在$n\geq1$维实向量空间，两个有序基在过渡矩阵行列式为正时定义同一定向（orientation）。流形定向是切空间定向的局部连续选择。无边情形或$n\geq2$时，等价于可选与指定定向相合的图册；这样的卡称正定向卡，其交叠的换卡Jacobi行列式为正。给定定向后，处处在正基上取正值的顶次形式称正体积形式；这里不要求它来自度规。
+\end{definition}
+局部连续的选择在坐标卡上只能取两个离散符号中的一个；将卡缩小到符号恒定，并在需要时翻转一个坐标，即得正图册。反过来正图册给出的基定向在交叠上一致，故定义无关选卡。对半空间，$n\geq2$时可翻转一个切向坐标；$n=1$时图像$r\geq0$未必能给正基，改在该卡的积分中显式乘定向符号$\varepsilon=\pm1$。下文局部计算先取与标准坐标一致的定向，再乘$\varepsilon$，这也涵盖一维的两端。
+
+\begin{proposition}[顶次形式判别]\label{prop:orientation-volume}
+$M$可定向，当且仅当存在处处非零的光滑$n$形式。选定定向后，正体积形式存在；两个正体积形式之比是正的光滑函数。
+\end{proposition}
+\begin{proof}
+非零$n$形式在每个切空间上选出使其求值为正的有序基，局部系数的连续非零性保证选择连续。反向取与给定定向相合的局部顶次形式$\nu_\alpha$，以定理\ref{thm:partition-unity}构造$\nu=\sum_i\rho_i\nu_{\alpha(i)}$（乘积延零）。在任一正基上，各项非负且至少一项正，所以$\nu$处处非零；没有异号抵消。顶次外幂纤维一维，故$\tilde\nu=h\nu$唯一；局部系数相除说明$h$光滑且正。
+\end{proof}
+在连通流形上，两定向之差为连续的$\{+1,-1\}$值函数，因而恒定，所以可定向时恰有两个定向；不连通时各分支可独立选取。
+
+\begin{definition}[外向首位的边界定向]\label{def:boundary-orientation}
+在$p\in\partial M$，向量$N\in T_pM$若在半空间卡中满足$N^r<0$，称外向横截向量。规定$(v_1,\ldots,v_{n-1})$为$T_p\partial M$正基，当且仅当$(N,v_1,\ldots,v_{n-1})$为$T_pM$正基。此为外向首位（outward first）约定，无需单位法向或度规。
+\end{definition}
+若换$N$为另一个外向$\tilde N$，则$\tilde N=cN+W$，其中$c>0$、$W$切于边界，求行列式只乘$c$，所以定义无关选择。命题\ref{prop:boundary-atlas}保证它也无关半空间卡，且局部光滑。
+取标准体积$\nu=\dd x^1\wedge\cdots\wedge\dd x^{n-1}\wedge\dd r$及$N=-\partial_r$，边界正体积为
+\[
+ j^*(\iota_N\nu)=(-1)^n\dd x^1\wedge\cdots\wedge\dd x^{n-1}.
+\]
+一般卡若$\nu=h\dd x^1\wedge\cdots\wedge\dd r$，则诱导符号为$\operatorname{sgn}(h)(-1)^n$。因而边界坐标的自然顺序并非总为正定向。
+
+\begin{example}[区间、圆盘与不可定向带]
+对$[a,b]$取正向$\dd x$，两端为定向零维点，$b$赋号$+1$，$a$赋号$-1$。平面圆盘取$\dd x\wedge\dd y$，右端外向为$\partial_x$，边界正切为$\partial_y$，故圆周逆时针。圆环的内边界则顺时针。Möbius带的接缝变换$(t,u)\mapsto(t+2\pi,-u)$行列式为$-1$，无法沿中心圆连续选定向，详见习题8.3；因此本章的有向顶次形式积分不直接适用于它，密度积分另待补写。
+\end{example}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/boundary-orientation}
+\caption{圆环的外向首位定向：外圆逆时针、内圆顺时针。箭头$N$均指向圆环外部，包括内孔；$T$为诱导正切。原创示意。}
+\label{fig:boundary-orientation}
+\end{figure}

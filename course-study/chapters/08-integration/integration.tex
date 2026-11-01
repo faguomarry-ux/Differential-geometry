@@ -1,0 +1,57 @@
+\begin{definition}[单卡积分]
+设$M$已定向，$\omega\in\Omega_c^n(M)$的支集包含于一张连通卡$\varphi:U\to V\subset\mathbb H^n$。写
+\[
+ (\varphi^{-1})^*\omega=f(x)\,\dd x^1\wedge\cdots\wedge\dd x^n.
+\]
+若坐标基与$M$的定向相同，令$\varepsilon_\varphi=1$，否则为$-1$，并定义$\int_U\omega=\varepsilon_\varphi\int_V f(x)\,\dd^n x$。右端为通常的欧氏积分，$\dd^n x$是非负Lebesgue体积记号。$f$在$V$外的半空间部分延零；它紧支且在半空间上光滑，但在$r=0$外延零一般不光滑，定义积分不需要这种更强的光滑性。
+\end{definition}
+本章以连续紧支函数的多重积分为先修；半空间边界是欧氏零测集，故可在$r>0$上用换元，在$r=0$上按连续性解释边界迹。这个零测集的说明不表示边界形式的$(n-1)$维积分为零。
+
+\begin{proposition}[换卡与定向符号]\label{prop:integral-chart}
+同一紧支顶次形式若支集位于两卡的交中，两种单卡积分相同。
+\end{proposition}
+\begin{proof}
+令$y=F(x)$为换卡，目标表示为$g(y)\dd y^1\wedge\cdots\wedge\dd y^n$，则$x$表示系数为$g(F(x))\det DF(x)$。在每个连通交叠分支，坐标符号满足$\varepsilon_x\operatorname{sgn}\det DF=\varepsilon_y$，于是
+\[
+ \varepsilon_x\int g(F(x))\det DF(x)\,\dd^n x
+ =\varepsilon_y\int g(y)\,\dd^n y.
+\]
+这里欧氏换元使用$|\det DF|$，形式的变换使用带符号行列式，两者由$\varepsilon$衔接。交叠不连通时按分支应用，紧支性保证绝对可积；也可先以有限个符号恒定的小域细分。半空间情形先在内部换元，边界不改变$n$维积分。
+\end{proof}
+
+\Needspace{15\baselineskip}
+\begin{theorem}[全局紧支积分]\label{thm:global-integral}
+定向$n$维带边或无边流形上，存在与单卡积分相容的线性映射$\int_M:\Omega_c^n(M)\to\R$。以任一从属于坐标覆盖的单位分解，可定义为
+\[
+ \int_M\omega=\sum_i\int_{U_i}\rho_i\omega;
+\]
+该值与单位分解、坐标覆盖及其细分无关。
+\end{theorem}
+\begin{proof}
+记$C=\operatorname{supp}\omega$。局部有限的支集族与紧集只相遇有限次：取$C$的有限个局部有限邻域覆盖，即得有限成员的并。因此只有有限个$\rho_i\omega$非零，它们都紧支于相应卡内。
+
+若另选$\sigma_j$及卡$W_j$，利用$\sum_j\sigma_j=1$，两次分解给
+\[
+ \sum_i\int_{U_i}\rho_i\omega
+ =\sum_{i,j}\int_{U_i}\sigma_j\rho_i\omega
+ =\sum_{i,j}\int_{W_j}\sigma_j\rho_i\omega
+ =\sum_j\int_{W_j}\sigma_j\omega.
+\]
+中间的形式支集紧含于$U_i\cap W_j$；命题\ref{prop:integral-chart}允许换卡。所有和在$C$附近均有限，不涉及无穷级数换序。若$\omega$已紧支在单卡，用相同的细分论证可恢复单卡积分。线性可用同一单位分解计算而得。
+\end{proof}
+
+\begin{proposition}[反向、换元与正性]\label{prop:integral-properties}
+反转$M$的定向使积分变号。若$F:M\to N$为微分同胚，$\eta\in\Omega_c^n(N)$，且$F$保定向，则$\int_M F^*\eta=\int_N\eta$；若处处反定向，右端加负号。在正基上非负的顶次形式积分非负；若它在某点严格为正，则积分严格为正。
+\end{proposition}
+\begin{proof}
+反向使每张卡的$\varepsilon$变号。对$N$的坐标覆盖与单位分解拉回到$M$，逐卡使用命题\ref{prop:integral-chart}的行列式计算即得换元式；紧支性由$F^{-1}$连续保持紧集得到。正性逐卡归结为$f\geq0$。若某点系数正，连续性给出正下界的小内部球；边界点附近同样包含这样的内部小球。相应单位分解至少一项在某更小球上正，欧氏积分严格为正。不连通且$F$在不同分支的符号不同时，应逐分支加符号，不能只写统一的负号。
+\end{proof}
+
+\begin{example}[二形式的极坐标积分]
+令$\omega=\dd x\wedge\dd y$，圆环$A=\{a\leq\sqrt{x^2+y^2}\leq b\}$，$0<a<b$，取标准定向。$P(r,\theta)=(r\cos\theta,r\sin\theta)$满足$P^*\omega=r\dd r\wedge\dd\theta$，所以$\int_A\omega=\int_0^{2\pi}\int_a^b r\dd r\dd\theta=\pi(b^2-a^2)$。严格使用单卡定义时须避开一条射线并用角向单位分解拼接；不能把包含$0$和$2\pi$的矩形直接称作圆环的单张卡。射线是二维零测集，故常用的迭代积分仍给相同结果。
+\end{example}
+
+\begin{definition}[沿子流形及零维空间积分]
+若$i:S\to M$是定向$k$维流形的光滑浸入或嵌入，定义$\int_S i^*\alpha$，前提是$i^*\alpha$紧支或已另证绝对可积；$i$非适当时，$\alpha$紧支未必使拉回紧支。对定向零维流形，定向数据是每点的号$\varepsilon_p\in\{+1,-1\}$，紧支函数的积分定义为$\sum_p\varepsilon_p f(p)$。离散空间的紧集有限，所以求和有限。边界零维的号由外向首位约定赋予。
+\end{definition}
+积分依赖维数：一般不能把$n$形式直接在$(n-1)$维边界上积分；Stokes右端必须是$(n-1)$形式的拉回。也不能在不可定向流形上任意选卡符号后使用本定义，交叠的符号矛盾将使结果依赖选择。

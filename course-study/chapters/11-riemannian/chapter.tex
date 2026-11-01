@@ -1,18 +1,29 @@
 \chapter{黎曼度量与Levi--Civita联络}
 \label{ch:11-riemannian}
-\ChapterPlan{周4.1及4.3}{待撰写；以下为写作计划，不是已完成正文}
+\ChapterPlan{周4.1及4.3（本地页码待核对）；梁上册第二版3.2.2、3.4及第3章习题7、12、13、17；度量存在与截面曲率另作补充}{正文及证明初稿；附8题详解与3幅原创图，尚未独立数学审阅}
 
+第10章允许任意联络，因而平行移动不必保持长度。本章先在每个切空间选内积，再要求求导与内积相容；加上无挠条件，便从许多联络中唯一选出Levi--Civita联络。随后把联络曲率降为四阶协变张量，用其代数对称性理解不同的曲率缩并。
+
+全章流形均光滑、Hausdorff且第二可数，无边界，度量正定；积分公式另说明定向与紧支条件。保持第10章的方向槽位及$R(X,Y)Z=\nabla_X\nabla_YZ-\nabla_Y\nabla_XZ-\nabla_{[X,Y]}Z$。为避免降指标后的数组含义不明，专记
+\[
+ \mathcal R(X,Y,Z,W)=g(R(X,Y)Z,W).
+\]
+在此约定下，截面曲率的分子为$\mathcal R(u,v,v,u)$，球面取正曲率。这与第2章的$K=\det S$一致，不用改变形算子的符号。
+
+\Needspace{17\baselineskip}
 \section{黎曼度量与度量存在性}
-\PlannedSection
+\input{course-study/chapters/11-riemannian/metric}
 
+\Needspace{17\baselineskip}
 \section{Koszul公式与基本定理}
-\PlannedSection
+\input{course-study/chapters/11-riemannian/levi-civita}
 
+\Needspace{17\baselineskip}
 \section{曲率张量的对称性}
-\PlannedSection
+\input{course-study/chapters/11-riemannian/symmetries}
 
+\Needspace{17\baselineskip}
 \section{截面曲率、Ricci曲率与标量曲率}
-\PlannedSection
+\input{course-study/chapters/11-riemannian/curvatures}
 
-\section{例题、习题与解答计划}
-需配置概念判断题、坐标计算题、完整证明题及反例题；解答必须与题号对应。
+\input{course-study/chapters/11-riemannian/exercises}

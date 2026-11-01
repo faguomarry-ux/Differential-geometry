@@ -1,0 +1,95 @@
+\Needspace{15\baselineskip}
+\section{张量与向量丛习题及详细解答}
+习题6.2、6.3、6.4分别改述梁书上册第二版第2章习题14、15、22（印刷页53，PDF物理页69），并增加必要的计算或边界说明。其余5题为原创补充。原题号、来源类型及正文核对范围见\texttt{references/EXERCISES.md}；解答均由本工程编写。
+
+\Needspace{10\baselineskip}
+\subsection*{习题6.1：泛性质与不可分解张量}
+用泛性质证明$\operatorname{Hom}(V\otimes W,Z)$与双线性映射空间$\operatorname{Bil}(V,W;Z)$自然线性同构。取$V=W=\R^2$，证明$e_1\otimes e_1+e_2\otimes e_2$至少需要两个纯张量相加，并解释这为何不与“纯张量张成”矛盾。
+\begin{proof}[解答]
+将$L$送到$b_L(v,w)=L(v\otimes w)$，所得$b_L$双线性；反向由定理\ref{thm:tensor-universal}得到唯一$\widetilde b$。两者互逆，且加法、标量乘法都在生成元$v\otimes w$上逐项保持，故为线性同构。定义不选基，并且在输入、输出上线性复合与此对应相容，故称自然。
+所给张量已写为两个纯张量的和，所以至多需要两个。若只需一个，则对应矩阵为$vw^{\mathsf T}$，秩至多为一，却应等于秩二的单位矩阵，矛盾。因此恰需两个。张成只断言每个元素可写成有限线性组合，既不保证只需一个生成元，也不保证这种分解唯一。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题6.2：缩并与基的选择}
+改述梁书第2章习题14：对$(2,1)$型张量$T$，证明缩并第一个上标与下标所得向量不依赖基。请直接写出两套基之间的求和计算，而不只引用正文的无坐标定义。
+\begin{proof}[解答]
+设$e'_a=e_iP^i{}_a$，缩并所得旧分量为$u^j=\sum_iT^{ij}{}_i$。新分量根据张量换基律满足
+\begin{align*}
+ u'^b&=\sum_aT'^{ab}{}_a\\
+ &=\sum_{a,i,j,k}(P^{-1})^a{}_i(P^{-1})^b{}_jP^k{}_a T^{ij}{}_k\\
+ &=\sum_{i,j,k}(P^{-1})^b{}_j\delta^k_iT^{ij}{}_k
+ =\sum_j(P^{-1})^b{}_j u^j.
+\end{align*}
+故$u'=P^{-1}u$，两套分量代表同一向量，缩并与选基无关。
+\end{proof}
+
+\Needspace{10\baselineskip}
+\subsection*{习题6.3：度规诱导的对偶同构}
+改述梁书第2章习题15：设$g$为有限维实空间$V$上的对称非退化双线性形式，证明$g^\flat(v)=g(v,\cdot)$是$V\to V^*$的同构。给出逆映射的分量，说明正定性是否必要；若$g$退化又如何？
+\begin{proof}[解答]
+$g^\flat$的线性性来自$g$的第一槽线性。若$g^\flat(v)=0$，则$g(v,w)=0$对所有$w$成立，非退化性迫使$v=0$，故单射；有限维且$\dim V=\dim V^*$，所以满射。其矩阵在对称约定下为$(g_{ij})$，非退化等价于矩阵可逆；逆矩阵记为$(g^{ij})$，满足$g^{ij}g_{jk}=\delta^i_k$，因此$\lambda\mapsto g^{ij}\lambda_j e_i$为逆。
+正定性没有用于证明，例如$\operatorname{diag}(1,-1)$同样给出同构；但若退化，则存在非零$v$使$g(v,w)=0$对所有$w$成立，故$g^\flat$有非零核，不再可逆。与$V\simeq V^{**}$不同，$V\simeq V^*$在这里依赖额外选择的$g$。
+\end{proof}
+
+\Needspace{11\baselineskip}
+\subsection*{习题6.4：度规行列式不是标量}
+改述梁书第2章习题22：设$g$为流形上的协变二阶张量场，在两套坐标$x,y$中的矩阵分别为$G_x,G_y$，令$K=\partial x/\partial y$。证明$G_y=K^{\mathsf T}G_xK$及$\det G_y=(\det K)^2\det G_x$。以平面欧氏度量及$y^1=2x^1,y^2=x^2$核查。
+\begin{proof}[解答]
+坐标基满足$\partial_{y^a}=K^i{}_a\partial_{x^i}$，所以
+\[
+ (G_y)_{ab}=g(\partial_{y^a},\partial_{y^b})
+ =K^i{}_aK^j{}_b(G_x)_{ij}.
+\]
+这就是矩阵合同式；由行列式乘法性立即得到平方因子。特别地，分量行列式的数值一般依赖坐标，但非退化性和行列式的符号不变，因为$(\det K)^2>0$。
+给定例中$G_x=I$，$K=\operatorname{diag}(1/2,1)$，故$G_y=\operatorname{diag}(1/4,1)$，行列式从$1$变为$1/4$。这是同一个几何张量的两种矩阵，不是几何度量改变；也不能因此把$\det G$本身当作全局标量函数。
+\end{proof}
+
+\Needspace{11\baselineskip}
+\subsection*{习题6.5：交替化的系数与外积平方}
+在$\R^4$上取$T=e^1\otimes e^2$与$\omega=e^1\wedge e^2+e^3\wedge e^4$。求$\operatorname{Alt}_2T$，并用其在$(e_1,e_2)$上的值检验系数。再求$\omega\wedge\omega$和$\iota_{e_1}\omega$，判断$\omega$能否是单个$\lambda\wedge\mu$。
+\begin{proof}[解答]
+交替投影为$\tfrac12(e^1\otimes e^2-e^2\otimes e^1)$，作用于$(e_1,e_2)$为$1/2$；而$e^1\wedge e^2$在该元组上为$1$，因此不能丢掉阶乘约定。外积平方中的两个自身平方含重复因子为零，两个交叉项都是$e^1\wedge e^2\wedge e^3\wedge e^4$，因为交换两个二次块的符号为正。故
+\[
+ \omega\wedge\omega=2e^1\wedge e^2\wedge e^3\wedge e^4,
+ \qquad \iota_{e_1}\omega=e^2.
+\]
+若$\omega=\lambda\wedge\mu$，其平方含两次$\lambda$与$\mu$，由交替性必须为零，与上式矛盾。这个判别已足以否定本例的可分解性，不需要预先建立二形式的全部正规形理论。
+\end{proof}
+
+\Needspace{11\baselineskip}
+\subsection*{习题6.6：协变张量与形式的拉回}
+设$F:\R^2\to\R^2$，$(x,y)=F(u,v)=(u,v+u^2)$。求$F^*(\dd x\otimes\dd y)$和$F^*(\dd x\wedge\dd y)$。令$Z=a\partial_u+b\partial_v$，再计算其对第二个结果的内插。
+\begin{proof}[解答]
+由$\dd x$和$\dd y$的逐点对偶拉回，$F^*\dd x=\dd u$、$F^*\dd y=\dd v+2u\dd u$。因拉回保持相应的乘法，
+\begin{align*}
+ F^*(\dd x\otimes\dd y)&=\dd u\otimes\dd v+2u\dd u\otimes\dd u,\\
+ F^*(\dd x\wedge\dd y)&=\dd u\wedge\dd v.
+\end{align*}
+第二式的额外项因$\dd u\wedge\dd u=0$消失，第一式则不能消掉同样的普通张量积。内插的带符号乘法式给出
+\[
+ \iota_Z(\dd u\wedge\dd v)=a\dd v-b\dd u.
+\]
+将它作用于$A\partial_u+B\partial_v$得到$aB-bA$，与二形式直接作用于两向量的行列式一致。所有运算逐点且分量光滑，故结果确为光滑张量场或形式。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题6.7：Möbius线丛的平方与拉回}
+对例\ref{ex:mobius-line}中的$L$，证明$L\otimes L$平凡。再取$f:S^1\to S^1$、$f([t])=[2t]$，证明$f^*L$平凡。说明这些结论为什么不使$L$本身平凡。
+\begin{proof}[解答]
+在角提升$t$中，令$e_t=[t,1]$为纤维基。提升到$t+2\pi$时$e_{t+2\pi}=-e_t$，所以$e_{t+2\pi}\otimes e_{t+2\pi}=e_t\otimes e_t$。于是局部截面$e_t\otimes e_t$拼成全局光滑无零截面，秩一情形即给出全局标架，所以$L\otimes L$平凡。也可从过渡函数平方为一直接看出。
+对拉回丛定义$s([t])=([t],[2t,1])$。若将$t$改为$t+2\pi$，第二分量变为$[2t+4\pi,1]=[2t,1]$，两次反号相消，故定义与代表无关；局部表达光滑且处处非零，所以给出$f^*L$的全局标架。两种构造都消除了反号拼接，而原来的$L$仍受反周期系数的中间值障碍限制。不同丛的平凡性不能相互替代。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题6.8：常秩与跳秩的丛映射}
+在底空间$\R$的两个平凡秩二丛之间，分别给出矩阵
+\[
+ B(x)=\begin{pmatrix}1&x\\0&0\end{pmatrix},\qquad
+ A(x)=\begin{pmatrix}x&0\\0&1\end{pmatrix}.
+\]
+求核与像，检验它们何时构成光滑子丛。
+\begin{proof}[解答]
+$B$恒秩一，核由光滑无零截面$(-x,1)$张成，像由$(1,0)$张成，所以核与像均为平凡秩一子丛。这也直接展示了块消元证明中局部标架的含义。
+对$A$，若$x\ne0$，映射可逆，核为零，像为$\R^2$；在$x=0$，核为$\operatorname{span}(1,0)$，像为$\operatorname{span}(0,1)$。纤维维数在原点跳跃，不满足原点邻域上的固定秩局部平凡化要求，故点态核与点态像的整体都不是该邻域上的向量子丛。即使各纤维逐点都是线性子空间，也不足以定义光滑子丛。
+\end{proof}

@@ -1,0 +1,92 @@
+\subsection*{适配正交标架的分块联络}
+局部取切丛正交归一标架$e_i$和法丛正交归一标架$n_\alpha$，$1\leq i,j\leq m$、$1\leq\alpha,\beta\leq r$。记$\theta^i$为切余标架，定义一形式矩阵
+\[
+ \omega^i{}_j(X)=g(\nabla_Xe_j,e_i),\quad
+ \tau^\alpha{}_\beta(X)=\bar g(\nabla_X^\perp n_\beta,n_\alpha),\quad
+ \beta^\alpha{}_i(X)=\bar g(B(X,e_i),n_\alpha).
+\]
+这里$\beta$是矩阵名；其分量的上标$\alpha$是法向指标。于是
+\[
+ \bar\omega=\begin{pmatrix}\omega&-\beta^{\mathsf T}\\
+                   \beta&\tau\end{pmatrix},\qquad
+ \omega^{\mathsf T}=-\omega,\quad\tau^{\mathsf T}=-\tau,
+ \quad\beta^\alpha{}_i=h^\alpha_{ij}\theta^j,
+ \quad h^\alpha_{ij}=h^\alpha_{ji}.
+\]
+联络矩阵的列指标始终表示被求导的基向量，例如$\bar\nabla e_i=e_j\omega^j{}_i+n_\alpha\beta^\alpha{}_i$。这与第10章约定相同。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/adapted-frame-block}
+\caption{适配标架中，环境联络的对角块在切丛、法丛内求导，非对角块通过第二基本形式交换两类分量。上方块为$-\beta^{\mathsf T}$，负号由环境内积相容决定；此图表示联络分块，不将联络误当成逐纤维的线性映射。}
+\label{fig:adapted-frame-block}
+\end{figure}
+
+\begin{proposition}[结构方程的三块]\label{prop:adapted-structure-equations}
+令$\bar\Omega$为环境曲率形式沿$f$的拉回，分块下标$T,N$表示切、法输出与输入。则
+\begin{align*}
+ \dd\theta+\omega\wedge\theta&=0,\qquad \beta\wedge\theta=0,\\
+ \Omega&=\bar\Omega_{TT}+\beta^{\mathsf T}\wedge\beta,\\
+ \dd\beta+\tau\wedge\beta+\beta\wedge\omega&=\bar\Omega_{NT},\\
+ \Omega^\perp&=\bar\Omega_{NN}+\beta\wedge\beta^{\mathsf T},
+ \qquad\Omega^\perp=\dd\tau+\tau\wedge\tau.
+\end{align*}
+矩阵值形式的乘法按顺序进行，转置不交换楔积因子的先后。
+\end{proposition}
+\begin{proof}
+在切标架中，无挠给第一条切结构方程。由$h^\alpha_{ij}=h^\alpha_{ji}$，
+$\beta^\alpha{}_i\wedge\theta^i=h^\alpha_{ij}\theta^j\wedge\theta^i=0$。再将分块矩阵代入第10章已经证明的
+$\bar\Omega=\dd\bar\omega+\bar\omega\wedge\bar\omega$：左上块为$\Omega-\beta^{\mathsf T}\wedge\beta$，左下块为$\dd\beta+\tau\wedge\beta+\beta\wedge\omega$，右下块为$\Omega^\perp-\beta\wedge\beta^{\mathsf T}$。移项即得。
+
+例如切块在$(X,Y)$上为
+\[
+ (\beta^{\mathsf T}\wedge\beta)^i{}_j(X,Y)
+ =\sum_\alpha\bigl(\beta^\alpha{}_i(X)\beta^\alpha{}_j(Y)
+                 -\beta^\alpha{}_i(Y)\beta^\alpha{}_j(X)\bigr),
+\]
+即Gauss式的两项。交叉块包含$h$的导数和切、法联络修正，给Codazzi；法块给Ricci式。故这不是三组新增假设，而是同一环境结构方程在分解后的表达。
+\end{proof}
+
+\subsection*{由余标架求联络}
+给出正交余标架$\theta$后，可以先解$\dd\theta+\omega\wedge\theta=0$和$\omega^{\mathsf T}=-\omega$，再求曲率，而不必先计算坐标Christoffel符号。存在性由Levi--Civita联络保证；唯一性也可直接看出。若两个解之差为$\eta^i{}_j=a_{ijk}\theta^k$，斜对称给$a_{ijk}=-a_{jik}$，零楔积给$a_{ijk}=a_{ikj}$。因此
+\[
+ a_{ijk}=-a_{jik}=-a_{jki}=a_{kji}=a_{kij}=-a_{ikj}=-a_{ijk},
+\]
+所以$\eta=0$。这正是活动标架计算中“解无挠及度量相容条件”的代数依据；本章习题用球面完整演示其符号与混合块。
+
+\subsection*{相容条件为何足以在局部重建浸入}
+下面证明欧氏环境的反向结论。它只需第10章平坦联络的局部平行标架，以及第7章闭一形式的局部恰当性，不预先调用子流形存在定理。
+
+\Needspace{19\baselineskip}
+\begin{theorem}[欧氏子流形基本定理的局部形式]\label{thm:local-immersion-reconstruction}
+设$(M^m,g)$为黎曼流形，$E\to M$为带正定内积和相容联络$\nabla^E$的秩$r$向量丛，$B$为对称的$E$值二次协变张量。定义$A_\xi$由$g(A_\xi X,Y)=\langle B(X,Y),\xi\rangle$。若Gauss、Codazzi、Ricci三式对这些数据成立，且环境曲率项均取零，则每点有邻域$U$及等距浸入$F:U\to\R^{m+r}$，其法丛、法联络及第二基本形式在某个丛等距同构$E|_U\simeq NF$下恰为给定数据。缩小到连通邻域后，带该法丛识别的实现只差一个欧氏刚体运动。
+\end{theorem}
+\begin{proof}
+在$\mathcal E=TM\oplus E$上定义
+\[
+ \mathcal D_X(Y,\xi)=
+ \bigl(\nabla_XY-A_\xi X,\ B(X,Y)+\nabla_X^E\xi\bigr).
+\]
+方向线性及Leibniz规则由各项得到。对内积求导，混合项因$g(A_\xi X,Y)=\langle B(X,Y),\xi\rangle$成对抵消，所以$\mathcal D$相容。
+
+计算$\mathcal D$的曲率：作用在$(Z,0)$上的切、法两块，恰为前节证明中的Gauss和Codazzi左端减去右端；作用在$(0,\xi)$上的法块为Ricci式的差。三组条件使这三块为零；剩下的切法交叉块是另一交叉块的负伴随，因为相容联络的曲率是斜伴随算子，故亦零。于是$\mathcal D$平坦。
+
+由定理\ref{thm:flat-parallel-frame}，缩小到坐标球$U$后取$\mathcal D$平行正交归一标架。将其对应到$\R^{m+r}$的标准基，得到光滑丛等距映射$\Phi:\mathcal E|_U\to U\times\R^{m+r}$，满足
+\[
+ X(\Phi(s))=\Phi(\mathcal D_Xs).
+\]
+定义$\R^{m+r}$值一形式$\alpha(X)=\Phi(X,0)$。逐分量计算
+\begin{align*}
+ \dd\alpha(X,Y)
+ &=\Phi\bigl(\mathcal D_X(Y,0)-\mathcal D_Y(X,0)-([X,Y],0)\bigr)\\
+ &=\Phi\bigl(\nabla_XY-\nabla_YX-[X,Y],\ B(X,Y)-B(Y,X)\bigr)=0.
+\end{align*}
+把$U$取为坐标星形域，第7章Poincare引理逐分量给$F$使$\dd F=\alpha$。于是
+\[
+ \langle\dd F(X),\dd F(Y)\rangle=g(X,Y).
+\]
+正定性保证微分单射，$F$为等距浸入。$\Phi(0,E)$正好是$\dd F(TM)$的正交补；对$\dd F(Y)=\Phi(Y,0)$及$\Phi(0,\xi)$求导，$\mathcal D$定义正给所需的Gauss和Weingarten分解，因此所有法丛数据都被实现。
+
+若另有实现，其环境平凡丛给出另一个保持$\mathcal D$的正交平凡化$\widetilde\Phi$。两平凡化之比在连通$U$上为常正交矩阵$Q$：对任意平行截面，两边系数均恒定。故$\dd\widetilde F=Q\dd F$，从而$\widetilde F=QF+b$，$b$为常向量。这包括反射，不只限于保定向刚体运动。
+\end{proof}
+
+特别地，对超曲面取$E=U\times\R$、平凡法联络及$B(X,Y)=g(SX,Y)n$，Ricci条件自动成立；Gauss和Codazzi已足以局部实现。结论是局部浸入，不能由此推出全局嵌入：平坦联络在非单连通区域可能有绕行，闭一形式也可能不恰当，且局部浸入延拓后可能自交。

@@ -1,0 +1,72 @@
+\begin{definition}[长度距离与能量]\label{def:riemannian-distance}
+在连通$M$上，定义$d(p,q)=\inf L(c)$，下确界遍历从$p$到$q$的分段光滑曲线。对固定时间区间$[a,b]$、$a<b$，定义
+\[
+ E(c)=\frac12\int_a^b|\dot c|^2\,\dd t.
+\]
+长度与能量是两个泛函。长度在正则重参数化下不变，能量则依赖时间分配。
+\end{definition}
+
+\begin{proposition}[距离、拓扑与能量比较]\label{prop:distance-topology}
+$d$有限且是距离，其拓扑等于流形原拓扑。对任意固定区间上的分段光滑曲线，
+\[
+ L(c)^2\leq2(b-a)E(c),
+\]
+等号当且仅当速度范数几乎处处为常数。因此同区间上的常速长度最短线也使能量最小。
+\end{proposition}
+\begin{proof}
+从$p$可由分段光滑路径到达的点组成开集：到达一点后可在坐标球中接直线。其补集也开，否则一条短坐标线可把不可达点接到可达点。连通性使此集为整个$M$，所以$d<\infty$。反向与拼接给对称、三角不等式，非负显然。
+
+固定$p$的坐标球$\overline B_r(0)$紧含于一张卡，$x(p)=0$。正定性和紧致性给常数$0<\lambda\leq\Lambda$，在闭球内有
+\[
+ \lambda|\xi|^2\leq g_{ij}(x)\xi^i\xi^j\leq\Lambda|\xi|^2.
+\]
+任意从$p$离开此球的曲线，在第一次到球面前长度至少$\sqrt\lambda r$；留在球内到$x(q)$的曲线长度至少$\sqrt\lambda|x(q)|$。当$|x(q)|<r$，两类曲线合并给$d(p,q)\geq\sqrt\lambda|x(q)|$，而坐标直线给$d(p,q)\leq\sqrt\Lambda|x(q)|$。球外点的距离至少$\sqrt\lambda r$，所以距离非退化，且两种邻域系统相同。由此每点也有包含在紧坐标闭球内的小闭距离球；此结论还不说大闭球紧。
+
+最后，对函数$|\dot c|$与常数1用Cauchy--Schwarz得到能量不等式，等号为该函数几乎处处恒定。常速最短线$c$满足$E(c)=L(c)^2/(2(b-a))$，而任意竞争曲线$\eta$满足$E(\eta)\geq L(\eta)^2/(2(b-a))\geq E(c)$。
+\end{proof}
+
+\begin{definition}[变分与变分场]
+光滑变分为$F:(-\varepsilon,\varepsilon)\times[a,b]\to M$，$F(0,t)=\gamma(t)$；记$V(t)=\partial_sF(0,t)$。若$F(s,a)=\gamma(a)$且$F(s,b)=\gamma(b)$，称固定端点变分。此时$V(a)=V(b)=0$。
+\end{definition}
+
+每个沿$\gamma$的光滑$V$都能实现为变分场：取$F(s,t)=\exp_{\gamma(t)}(sV(t))$。零截面的指数定义域开、$[a,b]$紧，故可统一选小$\varepsilon$。零点微分为恒等给$\partial_sF(0,t)=V(t)$；若端点$V=0$，该变分确实固定端点。只需有限分段光滑时也可逐段应用。
+
+\Needspace{17\baselineskip}
+\begin{theorem}[能量与长度的第一变分]\label{thm:first-variation}
+对光滑变分$F$，记$T=\dot\gamma$、$V=\partial_sF|_{s=0}$。则
+\[
+ \left.\frac{\dd}{\dd s}\right|_0E(F(s,\cdot))
+ =[g(V,T)]_a^b-\int_a^b g(V,D_tT)\,\dd t.
+\]
+若$\gamma$正则、$v=|T|>0$、$U=T/v$，还满足
+\[
+ \left.\frac{\dd}{\dd s}\right|_0L(F(s,\cdot))
+ =[g(V,U)]_a^b-\int_a^b g(V,D_tU)\,\dd t.
+\]
+因此固定端点下能量驻定当且仅当为仿射测地线；正则曲线的长度驻定当且仅当弧长重参数化后为测地线。
+\end{theorem}
+\begin{proof}
+度量相容和$D_s\partial_tF=D_t\partial_sF$给
+\[
+ E'(0)=\int_a^b g(D_tV,T)\,\dd t.
+\]
+对$g(V,T)$积分分部即得第一式。速度在紧区间上有正下界时，足够小的变分仍正则，可对平方根求导，得到$L'(0)=\int g(D_tV,U)$，再积分分部得第二式。
+
+固定端点使边界项为零。任意紧支场均可实现为变分场，取$V=\chi D_tT$，其中$\chi\geq0$为任意内部紧支函数，得到能量驻定必使$D_tT=0$；反向代入即得。长度情形同理用$V=\chi D_tU$。由于$D_tU=vD_\ell U$，$\ell$为弧长，$D_tU=0$等价于单位速度参数下的测地线方程。非仿射重参数化不会改变长度，却可能改变能量驻定性。
+\end{proof}
+
+\Needspace{17\baselineskip}
+\begin{lemma}[最短折线不能有角]\label{lem:no-geodesic-corner}
+两条单位速度光滑曲线在连接点相接，若连接处左右速度$u,v$不同，则对连接点两侧足够短的弧段，可以保持两端点并缩短总长度。特别地，一条分段光滑、分段正则的长度最短线，经弧长参数化后是光滑测地线。
+\end{lemma}
+\begin{proof}
+取连接点$p$的坐标使$g_p$为欧氏内积。两侧距离连接时间$\delta$的坐标为$-\delta u+O(\delta^2)$与$\delta v+O(\delta^2)$。两原弧的总长为$2\delta$，坐标直线连接它们的长度为
+\[
+ \delta|u+v|_{g_p}+O(\delta^2).
+\]
+因为$u,v$均单位且不同，$|u+v|<2$，所以小$\delta$时严格缩短；若$u+v=0$，直线长度为$O(\delta^2)$，仍成立。该直线位于小卡中；若需光滑连接，可在两端任意小邻域磨光，长度改变可任意小，严格差额仍保留。
+
+长度最短线在每个光滑正则段内由第一变分得单位速度测地线，连接处不能有角，所以左右速度相同；测地线初值唯一性使相邻段是同一光滑解。常值停顿可先删去。更一般，若一条最短线有驻点，以其中一点为中心取上述法球，足够短子弧留在球内，径向最短性及等号唯一性使其像等于径向线；故在像的意义下仍是同一光滑测地线，不要求原有驻点参数本身正则。
+\end{proof}
+
+第一变分判别的是驻定，局部最短性由Gauss引理另证。一般测地线延长后可能失去最短性；长度距离的下确界在不完备流形上甚至可能不被任何曲线达到。

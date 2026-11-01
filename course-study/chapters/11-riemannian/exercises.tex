@@ -1,0 +1,136 @@
+\Needspace{15\baselineskip}
+\section{黎曼几何习题及详细解答}
+习题11.1、11.2、11.3、11.4分别改述并扩展梁书上册第二版第3章原题7、12、13、17，均在印刷85/PDF101；11.2所指的成对交换公式在印刷78/PDF94，解释在印刷79/PDF95。其余4题原创。全部解答按本书的曲率与方向槽位重写，原题号、增加部分及双页码另见\texttt{references/EXERCISES.md}。
+
+\Needspace{12\baselineskip}
+\subsection*{习题11.1：欧氏球坐标中的联络与散度}
+改述并扩展原题7。对$g=\dd r^2+r^2\dd\theta^2+r^2\sin^2\theta\,\dd\phi^2$，$r>0$、$0<\theta<\pi$，求全部非零Christoffel符号；再推出散度和$\Delta_g(r^2)$。区分坐标分量与单位标架分量。
+\begin{proof}[解答]
+度量及其逆均对角，非零偏导只有$\partial_r g_{\theta\theta}=2r$、$\partial_r g_{\phi\phi}=2r\sin^2\theta$、$\partial_\theta g_{\phi\phi}=2r^2\sin\theta\cos\theta$。代入Christoffel公式得
+\begin{align*}
+ \Gamma^r_{\theta\theta}&=-r,&\Gamma^r_{\phi\phi}&=-r\sin^2\theta,\\
+ \Gamma^\theta_{r\theta}=\Gamma^\theta_{\theta r}&=r^{-1},&
+ \Gamma^\theta_{\phi\phi}&=-\sin\theta\cos\theta,\\
+ \Gamma^\phi_{r\phi}=\Gamma^\phi_{\phi r}&=r^{-1},&
+ \Gamma^\phi_{\theta\phi}=\Gamma^\phi_{\phi\theta}&=\cot\theta.
+\end{align*}
+其余分量为零（在特殊角度有些列出的函数也可能取零）。这是同一欧氏平坦联络的不同坐标描述，不因系数非零而有曲率。
+
+行列式$d=r^4\sin^2\theta$，本卡$\sqrt d=r^2\sin\theta$，因此对$X=X^r\partial_r+X^\theta\partial_\theta+X^\phi\partial_\phi$，
+\[
+ \operatorname{div}X=\frac{\partial_r(r^2X^r)}{r^2}
+ +\frac{\partial_\theta(\sin\theta X^\theta)}{\sin\theta}
+ +\partial_\phi X^\phi.
+\]
+若改用单位标架$e_r=\partial_r$、$e_\theta=r^{-1}\partial_\theta$、$e_\phi=(r\sin\theta)^{-1}\partial_\phi$，写$X=\widehat X^re_r+\widehat X^\theta e_\theta+\widehat X^\phi e_\phi$，则$X^\theta=\widehat X^\theta/r$、$X^\phi=\widehat X^\phi/(r\sin\theta)$，得到通常含$1/r$和$1/(r\sin\theta)$的物理分量公式。$\operatorname{grad}(r^2)=2r\partial_r$，所以$\Delta(r^2)=r^{-2}\partial_r(2r^3)=6$，与笛卡儿坐标的$\Delta(x^2+y^2+z^2)$一致。公式不在坐标极点直接使用，但函数及其Laplace值在欧氏空间光滑延拓。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题11.2：成对交换需要什么假设}
+改述并扩展原题12。只用首二槽、末二槽反对称及代数Bianchi，证明四线性张量$A$的成对交换对称性；再说明只有两种反对称性时为何不足。
+\begin{proof}[解答]
+用简记$A_{abcd}=A(a,b,c,d)$，Bianchi两次展开给
+\[
+ A_{abcd}=A_{bcda}+A_{cadb}
+ =2A_{cdab}+A_{dbac}+A_{adbc}.
+\]
+而$A_{dbac}+A_{badc}+A_{adbc}=0$，两种反对称给$A_{badc}=A_{abcd}$，所以$2A_{abcd}=2A_{cdab}$。这完成原题所需代数证明；不使用一个不存在的“首末两槽随意交换”规则。
+
+反例取三维空间的对偶基，$\alpha=\varepsilon^1\wedge\varepsilon^2$、$\beta=\varepsilon^1\wedge\varepsilon^3$，令$A(x,y,z,w)=\alpha(x,y)\beta(z,w)$。它对首二槽、末二槽各反对称，但$A_{1213}=1$、$A_{1312}=0$，没有成对交换。其循环和在$(e_1,e_2,e_3,e_1)$上为$-1$，所以缺失的Bianchi条件确实不成立。该例为代数张量反例，不声称它是某个Levi--Civita曲率。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题11.3：球面的完整曲率与号差}
+改述并扩展原题13。对半径$a>0$的球面卡$g=a^2(\dd\theta^2+\sin^2\theta\,\dd\phi^2)$，求曲率算子、所有四协变曲率分量、Ricci与标量曲率，并核对缩放律。
+\begin{proof}[解答]
+非零系数为$\Gamma^\theta_{\phi\phi}=-\sin\theta\cos\theta$、$\Gamma^\phi_{\theta\phi}=\Gamma^\phi_{\phi\theta}=\cot\theta$。常量$a^2$在求逆和求导中抵消，与常数缩放不改联络一致。因为$[\partial_\theta,\partial_\phi]=0$，
+\begin{align*}
+ R(\partial_\theta,\partial_\phi)\partial_\phi
+ &=-\partial_\theta(\sin\theta\cos\theta)\partial_\theta
+   +\cos^2\theta\,\partial_\theta
+ =\sin^2\theta\,\partial_\theta,\\
+ R(\partial_\theta,\partial_\phi)\partial_\theta
+ &=\bigl(-\csc^2\theta+\cot^2\theta\bigr)\partial_\phi
+ =-\partial_\phi.
+\end{align*}
+因此按第10章的数组约定，独立非零分量可取$R^\theta{}_{\phi\theta\phi}=\sin^2\theta$、$R^\phi{}_{\theta\theta\phi}=-1$，交换最后两个方向槽取负。降指标时本书专用$\mathcal R$的槽序为方向、方向、输入、内积输入，故
+\[
+ \mathcal R_{\theta\phi\phi\theta}=\mathcal R_{\phi\theta\theta\phi}=a^2\sin^2\theta,
+ \quad
+ \mathcal R_{\theta\phi\theta\phi}=\mathcal R_{\phi\theta\phi\theta}=-a^2\sin^2\theta,
+\]
+其余为零。除以Gram行列式$a^4\sin^2\theta$得$K=a^{-2}$，于是
+\[
+ (\Ric_{ij})=\operatorname{diag}(1,\sin^2\theta)=a^{-2}(g_{ij}),
+ \qquad \mathrm{Scal}=2a^{-2}.
+\]
+$(1,3)$数组与$(0,2)$的Ricci坐标数组均不含$a$，四协变数组乘$a^2$，截面与标量除以$a^2$，四种行为相容。梁书以余矢量交换导数定义曲率，若比较其原题答案，先用第10章的负号及输入重排换到本书约定，不能只凭同一串指标判断正负。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题11.4：二维Einstein张量恒零}
+改述并扩展原题17：在二维黎曼流形证明$G=0$，说明它不迫使度量平坦。再判断一维时是否有同样的截面解释。
+\begin{proof}[解答]
+固定一点，正交归一基中所有曲率由$K=\mathcal R_{1221}$决定。取迹得$\Ric_{11}=\Ric_{22}=K$、$\Ric_{12}=0$，所以$\Ric=Kg$、$\mathrm{Scal}=2K$，从而$G=Kg-Kg=0$。本书模型公式也给同一结论。半径$a$的球面$K=a^{-2}>0$，即为$G=0$却不平坦的例子。
+
+原题允许广义黎曼度量；上述题面限定正定，另说明非退化不定情形的代数仍成立：二维空间的交替二形式空间一维，两对槽反对称使$A$为其张量平方的倍数；与$g$的常曲率模型比对得$\Ric=kg$、$\mathrm{Scal}=2k$，故$G=0$。这只补充逐点代数，不在此开展Lorentz几何。一维时方向反对称直接使$R=0$，故$G=0$，但不存在二维截面，不能写“所有截面曲率等于某个唯一的$K$”来解释。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题11.5：相容联络的非唯一性}
+原创。给定黎曼度量$g$及三形式$H$，以$g(A(X,Y),Z)=H(X,Y,Z)/2$定义$A$，令$\widehat\nabla_XY=\nabla_XY+A(X,Y)$，其中$\nabla$为Levi--Civita联络。证明$\widehat\nabla g=0$、$\widehat T(X,Y)=H(X,Y,\cdot)^\sharp$。在$\R^3$取$H=2\dd x\wedge\dd y\wedge\dd z$，计算一个非零挠率值。
+\begin{proof}[解答]
+$A$为光滑$(1,2)$张量，故加到联络后仍满足联络规则。两相容性式相减得
+\[
+ (\widehat\nabla_Xg)(Y,Z)
+ =-\tfrac12H(X,Y,Z)-\tfrac12H(X,Z,Y)=0.
+\]
+又$\nabla$无挠，所以$\widehat T(X,Y)=A(X,Y)-A(Y,X)=H(X,Y,\cdot)^\sharp$。在例子中$A(\partial_x,\partial_y)=\partial_z$、$A(\partial_y,\partial_x)=-\partial_z$，故$\widehat T(\partial_x,\partial_y)=2\partial_z\ne0$。这表明仅“与度量相容”不能保证唯一；基本定理的无挠条件不可删。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题11.6：共形变化与二维Schur反例}
+原创。设$\widetilde g=e^{2f}g$，证明
+\[
+ \widetilde\nabla_XY=\nabla_XY+X(f)Y+Y(f)X-g(X,Y)\operatorname{grad}_g f.
+\]
+在平面$g_0=\dd x^2+\dd y^2$上推出$K_{e^{2f}g_0}=-e^{-2f}(f_{xx}+f_{yy})$；取$f=x^2$说明二维Schur结论失败。
+\begin{proof}[解答]
+记右端的差为$B(X,Y)$。它对$X,Y$对称，故新联络无挠。又
+\begin{align*}
+ g(B(X,Y),Z)&=X(f)g(Y,Z)+Y(f)g(X,Z)-Z(f)g(X,Y),\\
+ g(Y,B(X,Z))&=X(f)g(Y,Z)+Z(f)g(X,Y)-Y(f)g(X,Z).
+\end{align*}
+两式相加为$2X(f)g(Y,Z)$，正好补偿$X(e^{2f})$项，所以新联络与$e^{2f}g$相容，由唯一性即为$\widetilde\nabla$。
+
+对平面记$a=f_x,b=f_y$，得到$\Gamma^1_{11}=a$、$\Gamma^2_{11}=-b$、$\Gamma^1_{12}=b$、$\Gamma^2_{12}=a$、$\Gamma^1_{22}=-a$、$\Gamma^2_{22}=b$，下槽交换项相同。计算$R(\partial_x,\partial_y)\partial_y$的第一分量：导数项为$-a_x-b_y$，二次项分别是$-a^2+b^2$及$-b^2+a^2$而抵消；第二分量的导数$b_x-a_y=0$及二次项也抵消。因此
+\[
+ R(\partial_x,\partial_y)\partial_y=-(f_{xx}+f_{yy})\partial_x,
+ \qquad K=-e^{-2f}(f_{xx}+f_{yy}).
+\]
+取$f=x^2$得到$K=-2e^{-2x^2}$，随点变化。每点当然只有一个二维截面，故“同一点各截面相同”在二维自动成立，却不能推出全局常数。作为号的再检查，$f=-\log y$、$y>0$给$K=-1$，而常数$f$给$K=0$。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题11.7：同一联络不决定同一度量}
+原创。在连通流形上，证明$g$的Levi--Civita联络也与$h=ug$相容（$u>0$光滑）当且仅当$u$为常数。再说明一般$h$若不限制为共形于$g$，即使共用Levi--Civita联络也未必是常数倍。
+\begin{proof}[解答]
+$\nabla(ug)=\dd u\otimes g$，因$\nabla g=0$。若它为零，对任意方向$X$及非零$Y$求值给$X(u)g(Y,Y)=0$，所以$\dd u=0$。函数局部常，连通时为一个正常数。反向由常数缩放的结论立即成立；不连通时只能逐分支常数。
+
+在$\R^2$上取$g=\dd x^2+\dd y^2$、$h=4\dd x^2+\dd y^2$。二者的笛卡儿分量都为常数，故同为标准平坦联络；但若$h=cg$，比较两个对角分量要求$c=4$且$c=1$，矛盾。两者单位椭圆正是图\ref{fig:metric-unit-balls}所示。因此“给定度量选出唯一联络”的逆命题不成立。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题11.8：标量零、Ricci零与平坦的区别}
+原创。在$S^2(1)\times\mathbb H^2$取乘积度量，第二因子用上半平面的$g_H=y^{-2}(\dd x^2+\dd y^2)$。求标量曲率，并判断该例是否Ricci平坦。再在四维欧氏向量空间给出非零代数曲率张量且Ricci迹为零，说明仅从曲率对称性和零Ricci不能推得全曲率为零。
+\begin{proof}[解答]
+上题的共形公式给第二因子$K=-1$，第一因子$K=1$。乘积Ricci在两个因子上分别为$g_S$及$-g_H$，混合项为零，故标量$2-2=0$，但Ricci并不为零。这先排除把“标量零”误当“Ricci零”的错误。
+
+再取正交基$e_1,\ldots,e_4$，定义对称的平面系数
+\[
+ k_{12}=k_{34}=1,\quad k_{13}=k_{24}=-1,\quad k_{14}=k_{23}=0.
+\]
+令$A_{ijji}=k_{ij}$（$i<j$），由两种反对称及成对交换确定同一无序对的其他值；当两个无序指标对不同时令其为零。这给一个四线性张量。对Bianchi，四个指标互异时各项为零；前三个互异而第四重复其中一个时仍各项为零；前三个有重复时两非零项由反对称抵消。因此它满足全部代数曲率对称性。
+
+其Ricci非对角项为零，对角项为$\sum_{j\ne i}k_{ij}$，逐行均为$1-1+0=0$，所以Ricci张量为零；但$A_{1221}=1$，故$A\ne0$。此题只构造逐点代数张量，没有构造Ricci平坦的流形，也不以此代替相应局部实现或整体存在定理。几何实例属于后续专题；本题已经证明不能仅靠这些代数恒等式推出平坦。
+\end{proof}

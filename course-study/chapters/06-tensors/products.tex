@@ -1,0 +1,59 @@
+双线性映射$b:V\times W\to Z$通常不是乘积空间上的线性映射：同时缩放两个输入会产生二次因子。张量积将“分别线性”改写成某个新空间上的一次线性，从而让定义不依赖选基。
+\begin{definition}[张量积的泛性质]
+向量空间$V,W$的张量积（tensor product）是一对$(V\otimes W,\tau)$，其中$\tau:V\times W\to V\otimes W$双线性，并满足：对任意向量空间$Z$及双线性$b:V\times W\to Z$，有唯一线性映射$\widetilde b:V\otimes W\to Z$使$b=\widetilde b\circ\tau$。写$\tau(v,w)=v\otimes w$，称为纯张量（pure tensor）。
+\end{definition}
+\begin{theorem}[张量积的构造、唯一性与基]\label{thm:tensor-universal}
+张量积存在，且在保持$\tau$的线性同构意义下唯一。若$e_1,\ldots,e_m$与$f_1,\ldots,f_n$分别为$V,W$的基，则$e_i\otimes f_j$为$V\otimes W$的基。因此$\dim(V\otimes W)=mn$，每个张量是有限个纯张量之和。
+\end{theorem}
+\begin{proof}
+令$F$为以集合$V\times W$为形式基的自由向量空间，即元素为有限和$\sum a_{v,w}[v,w]$。取子空间$R$，由如下元素张成：
+\begin{align*}
+ &[v+v',w]-[v,w]-[v',w],\quad [cv,w]-c[v,w],\\
+ &[v,w+w']-[v,w]-[v,w'],\quad [v,cw]-c[v,w].
+\end{align*}
+定义$V\otimes W=F/R$，$v\otimes w=[v,w]+R$。这些关系保证$\tau$双线性。给定$b$，按形式基定义$L([v,w])=b(v,w)$并线性延拓。双线性恰好保证$L$在$R$上为零，因此下降为$\widetilde b$。由于纯张量张成商空间，$\widetilde b$在它们上的值已经确定，故唯一。
+
+若$(Q,\sigma)$也有此性质，分别得到$A:V\otimes W\to Q$、$B:Q\to V\otimes W$，将纯张量送到相应的$\sigma(v,w)$并送回。复合$BA$与恒等映射在所有纯张量上相同，故由唯一性相等；$AB$同理。这证明同构及其唯一性。
+
+用基展开$v,w$，可见$e_i\otimes f_j$张成。为证独立性，固定$(a,b)$，双线性函数$(v,w)\mapsto e^a(v)f^b(w)$下降为商空间上的线性泛函。作用于$\sum c^{ij}e_i\otimes f_j=0$便得到$c^{ab}=0$。对所有$(a,b)$如此，故它们为基。零维因子时相应基为空，张量积为零空间，维数公式仍成立。
+\end{proof}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/tensor-universal}
+\caption{原创示意：双线性映射$b$唯一经由$\tau$分解成线性映射$\widetilde b$。这里$V\times W$表示双线性映射的输入集合，箭头$\tau,b$按分别线性理解，不要求它们对乘积向量空间同时线性；虚线箭头表示由泛性质唯一确定的线性映射。}
+\label{fig:tensor-universal}
+\end{figure}
+\begin{proposition}[映射、结合与交换同构]\label{prop:tensor-maps}
+线性映射$A:V\to V'$、$B:W\to W'$唯一诱导$A\otimes B$，满足
+\[
+ (A\otimes B)(v\otimes w)=Av\otimes Bw.
+\]
+张量积具有自然同构
+\[
+ (U\otimes V)\otimes W\simeq U\otimes(V\otimes W),\quad
+ V\otimes W\simeq W\otimes V,\quad \R\otimes V\simeq V.
+\]
+它们分别由去除括号、交换因子、标量乘法确定。诱导映射保持恒等与复合。
+\end{proposition}
+\begin{proof}
+$(v,w)\mapsto Av\otimes Bw$双线性，应用泛性质即得诱导映射。两个复合在纯张量上的值都是相应线性映射复合后的张量积，故相等。
+对结合同构，映射$(u,v,w)\mapsto u\otimes(v\otimes w)$逐槽线性；先按前两个变量使用泛性质，再对其结果与$w$使用泛性质，得到所需线性映射。反向按相反括号构造，两个复合在三因子纯张量上为恒等，因它们张成而为互逆。交换映射由$(v,w)\mapsto w\otimes v$给出，交换两次为恒等。最后$c\otimes v\mapsto cv$与$v\mapsto1\otimes v$互逆。
+\end{proof}
+由此可不写括号地使用多因子张量积；任意逐槽线性映射都唯一经由它分解。可用相同的形式符号商空间构造验证多因子泛性质，或按上述双因子过程归纳。
+\begin{example}[和张量不一定为纯张量]\label{ex:tensor-rank}
+在$\R^2\otimes\R^2$中，$T=e_1\otimes e_1+e_2\otimes e_2$不是纯张量。若$T=v\otimes w$，其分量矩阵为$vw^{\mathsf T}$，秩至多为一；$T$的矩阵是单位矩阵，秩为二，矛盾。相反，若非零分量矩阵秩一，取一个非零列$v$，所有列均为其倍数，便能将矩阵写成$vw^{\mathsf T}$，因此相应张量为纯张量。纯张量构成的集合通常不是线性子空间。
+\end{example}
+\begin{proposition}[对偶与线性算子]\label{prop:tensor-hom}
+有限维空间有不依赖选基的同构
+\[
+ V\simeq V^{**},\qquad
+ V^*\otimes W\simeq\operatorname{Hom}(V,W),\qquad
+ (V\otimes W)^*\simeq V^*\otimes W^*.
+\]
+第一映射是$v\mapsto(\lambda\mapsto\lambda(v))$；第二映射把$\lambda\otimes w$送到$v\mapsto\lambda(v)w$；第三同构由对偶张量在纯张量上的乘积配对确定。
+\end{proposition}
+\begin{proof}
+若$v\ne0$，某个基分量非零，相应对偶函数在$v$上不为零，故求值映射单射。两边同维，所以是同构；定义没有选择内积。
+第二映射由双线性性良定义。给定$A$，其逆像可写为$\sum_i e^i\otimes Ae_i$，因为该张量作用于$v=v^ie_i$得到$Av$。而$e^i\otimes f_j$对应通常的矩阵单位，线性独立，所以是同构；逆像表达虽用了基，同构本身并未使用基。
+最后定义$(\lambda\otimes\mu)(v\otimes w)=\lambda(v)\mu(w)$。基$e^i\otimes f^j$正好映为$e_i\otimes f_j$的对偶基，故得到第三个同构。这些结论使用有限维假设，不据此断言任意无限维线性算子都是有限秩张量。
+\end{proof}
+交换同构的存在不等于两个张量本来相等。在$V\otimes V$中，一般$v\otimes w\ne w\otimes v$。本章的普通张量交换没有符号；交替代数中的符号来自另加的商关系，见后节。习题6.1检验泛性质、维数与可分解性。

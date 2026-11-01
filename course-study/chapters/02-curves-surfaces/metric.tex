@@ -1,0 +1,37 @@
+曲面的长度来自切向量的内积，而不是参数平面上画出的网格。先采用参数曲面片，嵌入流形的全局定义留给第5章。
+\begin{definition}[正则曲面片与诱导度量]
+设$U\subseteq\R^2$开，$X:U\to\R^3$光滑，$X_u\times X_v\ne0$。称$X$为正则参数曲面片（regular surface patch），在$(u,v)$的切平面为$\operatorname{span}(X_u,X_v)$。其第一基本形式（first fundamental form）为
+\[
+ I=E\,\dd u^2+2F\,\dd u\,\dd v+G\,\dd v^2,\quad
+ E=\langle X_u,X_u\rangle,\ F=\langle X_u,X_v\rangle,\ G=\langle X_v,X_v\rangle.
+\]
+这里是对称双线性形式，$\dd u\,\dd v$按对称乘积理解，并非外积。若还要求$X$到其像为同胚，便是一个嵌入曲面片；一般浸入有自交时，切平面还依赖所选参数点。由常秩定理，每个正则参数片缩小后都是嵌入曲面片。
+\end{definition}
+\begin{theorem}[正定性、换参和长度]\label{thm:first-form}
+矩阵$g=\left(\begin{smallmatrix}E&F\\F&G\end{smallmatrix}\right)$正定，且$EG-F^2=|X_u\times X_v|^2>0$。若参数曲线$c(t)=(u(t),v(t))$，则像曲线长度为
+\[
+ L(X\circ c)=\int\sqrt{E\dot u^2+2F\dot u\dot v+G\dot v^2}\,\dd t.
+\]
+在换参$(u,v)=\phi(\xi,\eta)$下，$\widetilde g=(D\phi)^{\mathsf T}g(D\phi)$，因此此长度独立于正则参数的选择。
+\end{theorem}
+\begin{proof}
+对非零列向量$w=(a,b)^{\mathsf T}$，$w^{\mathsf T}gw=|aX_u+bX_v|^2>0$，其中严格不等号由两切向量线性无关得到。叉积恒等式$|A\times B|^2=|A|^2|B|^2-\langle A,B\rangle^2$给出行列式公式。链式法则给出$(X\circ c)'=X_u\dot u+X_v\dot v$，取平方并积分得长度。换参时$D(X\circ\phi)=DX\,D\phi$，两边取Gram矩阵得到变换律，代入速度后两端二次型相等，故长度相同。
+\end{proof}
+\begin{figure}[htbp]
+\centering
+\input{course-study/figures/surface-patch}
+\caption{原创示意：参数网格经$X$映为曲面上的两族坐标线。在$a=(0,0)$处，$X_u,X_v$张成淡绿色切平面，$n$是向上法向。此图采用固定斜投影，画面夹角不表示空间中的实际夹角。}
+\label{fig:surface-patch}
+\end{figure}
+两非零切向量$V,W$间夹角由$\cos\theta=I(V,W)/\sqrt{I(V,V)I(W,W)}$给出。面积密度为$\sqrt{EG-F^2}\,\dd u\,\dd v$；换参后乘以$|\det D\phi|$，这是对密度而非定向二形式的表述。曲面积分的定义和换元证明在积分章展开。
+\begin{example}[球面极坐标与坐标奇点]
+半径$R>0$的球面片
+\[
+ X(\theta,\phi)=(R\sin\theta\cos\phi,R\sin\theta\sin\phi,R\cos\theta)
+\]
+在$0<\theta<\pi$及长度小于$2\pi$的开$\phi$区间内正则，直接求导得$I=R^2\dd\theta^2+R^2\sin^2\theta\,\dd\phi^2$。两极处这一参数退化，说明的是坐标失效；球面本身仍可用图像坐标或立体投影覆盖。
+\end{example}
+\begin{example}[圆柱与平面的局部等距]\label{ex:cylinder-isometry}
+取$X(u,v)=(R\cos(u/R),R\sin(u/R),v)$，其中$u$在长度小于$2\pi R$的开区间内，$R>0$。计算得$E=G=1,F=0$，故与平面$(u,v,0)$有同一长度和夹角。展开圆柱只给出局部等距；整个圆柱有周期识别，不能由此断言它与整个平面全局等距。
+\end{example}
+本节练习见习题2.4--2.5。

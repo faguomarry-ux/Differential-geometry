@@ -1,0 +1,59 @@
+\begin{definition}[de Rham复形与上同调]\label{def:de-rham}
+第7章的$\dd^2=0$使
+\[
+ 0\longrightarrow\Omega^0(M)\xrightarrow{\dd}\Omega^1(M)
+ \xrightarrow{\dd}\cdots\xrightarrow{\dd}\Omega^n(M)\longrightarrow0
+\]
+成为上链复形（cochain complex）：相邻两个箭头复合为零。记闭形式空间与恰当形式空间分别为
+\[
+ Z^k(M)=\ker(\dd:\Omega^k\to\Omega^{k+1}),\qquad
+ B^k(M)=\operatorname{im}(\dd:\Omega^{k-1}\to\Omega^k).
+\]
+由于$B^k\subset Z^k$，定义de Rham上同调（de Rham cohomology）
+\[
+ H^k_{\mathrm{dR}}(M)=Z^k(M)/B^k(M).
+\]
+闭形式$\omega$的类记为$[\omega]$；两个闭形式代表同一类，当且仅当相差$\dd\alpha$。约定负次数形式为零，所以$B^0=0$；$k<0$或$k>n$时$H^k_{\mathrm{dR}}(M)=0$。下文简记$H^k(M)$，始终指普通实de Rham上同调。
+\end{definition}
+商空间中的零类意味着存在一个\emph{全局}原形式。所有形式局部恰当并不使这个商为零；局部原形式之间的差异必须能够相容消除，才会给出全局原形式。
+
+\begin{proposition}[零次上同调与分支]\label{prop:cohomology-zero}
+$H^0(M)$是局部常值函数的空间。若$\pi_0(M)$为连通分支集合，则
+\[
+ H^0(M)\simeq\prod_{C\in\pi_0(M)}\R.
+\]
+特别地，非空连通流形的$H^0$为$\R$。
+\end{proposition}
+\begin{proof}
+$\dd f=0$说明小坐标球内所有偏导为零。沿球内线段积分得到函数恒定，所以$f$局部常值。反过来局部常值函数的微分为零。流形局部道路连通，故连通分支为开集；局部常值函数在每个连通分支上恒定，而任意逐分支指定的实数给出光滑局部常值函数。$B^0=0$，无需再取非平凡的商。若分支无限多，每个分支上都可非零，所以是直积而非有限支撑直和。
+\end{proof}
+\begin{example}[维数不能从一张卡推断]
+可数离散零维流形$M=\{p_1,p_2,\ldots\}$的$H^0(M)$是所有实数列，已经无限维。对非空星形域$U\subset\R^n$，第7章Poincare引理则给$H^0(U)=\R$、$H^k(U)=0$（$k>0$）。一般流形即使每张小卡都如此，全局上同调也不必消失。
+\end{example}
+
+\begin{proposition}[外积下降到上同调]\label{prop:cohomology-product}
+若$\alpha\in Z^p(M),\beta\in Z^q(M)$，则
+$[\alpha]\,[\beta]=[\alpha\wedge\beta]$良定义，使$H^\bullet(M)$成为分次交换实代数，满足$ab=(-1)^{pq}ba$。单位为常函数$1$的类（$M$非空）。
+\end{proposition}
+\begin{proof}
+乘法法则给$\dd(\alpha\wedge\beta)=0$。若将$\alpha$改成$\alpha+\dd\xi$，乘积改变为$\dd\xi\wedge\beta=\dd(\xi\wedge\beta)$。若将$\beta$改成$\beta+\dd\zeta$，改变为$\alpha\wedge\dd\zeta=(-1)^p\dd(\alpha\wedge\zeta)$。依次改变两项，类仍不变。结合性、分配律、单位和分次交换律均由形式外积继承。因此奇数次数类$a$满足$a^2=-a^2$，实系数下推出$a^2=0$；偶数次数时不能据此推断平方为零。
+\end{proof}
+
+\begin{proposition}[拉回的反变性]\label{prop:cohomology-pullback}
+任意光滑$F:M\to N$诱导保次数的代数同态$F^*:H^\bullet(N)\to H^\bullet(M)$，定义为$F^*[\omega]=[F^*\omega]$，且$(G\circ F)^*=F^*\circ G^*$、$\operatorname{id}^*=\operatorname{id}$。微分同胚诱导同构。
+\end{proposition}
+\begin{proof}
+自然性$\dd F^*=F^*\dd$保证闭形式仍闭，且$F^*(\dd\alpha)=\dd(F^*\alpha)$，所以商空间上的映射与代表元无关。拉回保持外积；复合与恒等关系在形式层成立，故传到类上。若$F$有光滑逆，则其逆拉回恰好给$F^*$的逆。无需$F$单射、满射或满秩才能定义拉回。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\begin{proposition}[周期检验与顶次积分]\label{prop:cohomology-period}
+设$S$为紧、无边、定向的$k$维流形，$k\geq1$，$f:S\to M$光滑。则$[\omega]\mapsto\int_S f^*\omega$是$H^k(M)$上的良定义线性泛函。特别地，紧、无边、定向$n$维$M$上的顶次积分下降为$H^n(M)\to\R$。
+\end{proposition}
+\begin{proof}
+若$\omega$改为$\omega+\dd\alpha$，积分之差为$\int_S\dd(f^*\alpha)$，由第8章Stokes及$\partial S=\varnothing$等于零。$S$紧使原形式紧支，无需额外支集条件。线性来自积分线性。
+\end{proof}
+对一般紧连通定向流形，这个泛函非零：正体积形式给正积分。但此时尚未证明它必为同构，也未证明所有类均能由周期区分。后面会对球面用维数计算单独证明同构，不能以一般de Rham定理替代本章缺失的步骤。
+\begin{example}[穿孔平面上的非零类]
+第7章的$\eta=(-y\dd x+x\dd y)/(x^2+y^2)$闭，逆时针圆周周期为$2\pi$，所以$[\eta]\ne0$。周期不为零能够排除恰当；一次周期恰好为零通常不足以判定任意流形上的类为零。对圆周，单个基本周期就足够，须由后面的完整计算证明。
+\end{example}

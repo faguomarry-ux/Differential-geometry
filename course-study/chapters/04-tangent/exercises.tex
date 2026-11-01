@@ -1,0 +1,84 @@
+\section{切空间习题与详细解答}
+习题4.1--4.4将梁书上册第二版2.2.1的定义、文内命题与略证任务练习化，并增加具体计算或边界问题；不是该书章末原题。逐项出处见仓库\texttt{references/EXERCISES.md}。习题4.5--4.8为本书原创补充，全部解答由本工程编写。
+
+\Needspace{9\baselineskip}
+\subsection*{习题4.1：点导子的限制与反例}
+参照梁书印刷页20的定义2及定理2-2-1，证明点导子杀死常数，并说明全局函数在$p$附近相同时导子取值相同。判断$L(f)=f''(0)$是否为$\R$原点处的点导子。
+\begin{proof}[解答]
+由$D(1)=D(1\cdot1)=2D(1)$知$D(1)=0$，线性性给出$D(c)=0$。若全局函数$f,g$在$p$附近相同，令$h=f-g$，取引理\ref{lem:tangent-locality}构造的$\chi$，使$\chi(p)=1$且支集包含于$h=0$的开邻域。于是$h\chi=0$，故
+\[
+ 0=D(h\chi)=h(p)D(\chi)+\chi(p)D(h)=D(h),
+\]
+所以$D(f)=D(g)$。这个论证说明“局部性”从Leibniz法则和光滑截断推出，不是额外假设。
+对$L(f)=f''(0)$，虽有线性性且杀死常数，但取$f(t)=g(t)=t$，左边$L(fg)=2$，Leibniz右边$f(0)L(g)+g(0)L(f)=0$，故不是点导子。二阶导数含额外的交叉项，不能直接定义为切向量。
+\end{proof}
+
+\Needspace{9\baselineskip}
+\subsection*{习题4.2：曲线的切向量与重参数}
+补证梁书印刷页25定理2-2-4的曲线坐标展开式。若$\eta(s)=\gamma(\phi(s))$，$\phi(0)=0$，求$\dot\eta(0)$；比较$\phi(s)=2s,-s,s^2$。
+\begin{proof}[解答]
+设$x^i(t)=x^i(\gamma(t))$，对任意局部光滑$f$，链式法则给出
+\[
+ \dot\gamma(0)(f)=\left.\frac{\dd}{\dd t}(f\circ x^{-1})(x(\gamma(t)))\right|_0
+ =\dot x^i(0)\,\partial_i|_p(f).
+\]
+因此$\dot\gamma(0)=\dot x^i(0)\partial_i|_p$，作为导子的等式得到完整证明。再对$\gamma\circ\phi$应用单变量链式法则，得到$\dot\eta(0)=\phi'(0)\dot\gamma(0)$。三种$\phi$依次给出$2\dot\gamma(0),-\dot\gamma(0),0$。最后一种不在零点附近构成微分同胚重参数化；它可把非零速度变成零，不能用于保持正则性的弧长重参数化。
+\end{proof}
+
+\Needspace{10\baselineskip}
+\subsection*{习题4.3：换坐标与不变配对}
+参照梁书印刷页22--23定理2-2-3，在$\R^2$用$u=x$、$w=y+x^2$换坐标。在$p=(1,0)$，设$v=2\partial_x-\partial_y$、$\alpha=3\dd x+4\dd y$，分别求新分量并核对$\alpha(v)$。
+\begin{proof}[解答]
+过渡Jacobi矩阵为$J=\left(\begin{smallmatrix}1&0\\2x&1\end{smallmatrix}\right)$，故在$p$处$v$的新分量是$J(2,-1)^{\mathsf T}=(2,3)^{\mathsf T}$，即$v=2\partial_u+3\partial_w$。
+从逆变换$x=u,y=w-u^2$得到$\dd x=\dd u$、$\dd y=\dd w-2u\dd u$。因此在$u=1$处$\alpha=-5\dd u+4\dd w$。旧分量配对为$3\cdot2+4(-1)=2$，新分量配对为$(-5)2+4\cdot3=2$。
+完整的基变换是$\partial_x=\partial_u+2x\partial_w$、$\partial_y=\partial_w$。基与分量的公式须一起使用，不能把向量和协向量都直接乘同一个$J$。
+\end{proof}
+
+\Needspace{10\baselineskip}
+\subsection*{习题4.4：导子只读取一次数据}
+以梁书印刷页21--22定理2-2-2的坐标展开为出发点。令$\mathfrak m_p=\{f\in\mathcal E_p:f(p)=0\}$，$\mathfrak m_p^2$为所有有限和$\sum_j f_jg_j$组成的子空间，其中$f_j,g_j\in\mathfrak m_p$。证明每个导子杀死$\mathfrak m_p^2$，且$\mathfrak m_p/\mathfrak m_p^2$以$[x^i-x^i(p)]$为基，自然同构于$T_p^*M$。
+\begin{proof}[解答]
+若$f(p)=g(p)=0$，Leibniz法则给出$D(fg)=0$，线性性推广到有限和。对任意$h\in\mathfrak m_p$，一阶余项分解给出$h=(x^i-a^i)h_i$，其中$a=x(p)$、$h_i(p)=\partial_i(h\circ x^{-1})(a)$。将$h_i=h_i(p)+(h_i-h_i(p))$代入，后一个乘积因两因子均在$p$消失而属于$\mathfrak m_p^2$。故商空间由所给$n$个类张成。
+若$c_i(x^i-a^i)\in\mathfrak m_p^2$，对$\partial_j|_p$作用得到$c_j=0$，故这些类线性无关。映射$h\mapsto\dd h_p$在$\mathfrak m_p^2$上为零，下降为商空间到$T_p^*M$的线性映射，并将上述基送到对偶基$\dd x^i|_p$，故为同构。这解释了坐标展开证明中的一阶性质，不是把原书略去的步骤当作已证。
+\end{proof}
+
+\Needspace{10\baselineskip}
+\subsection*{习题4.5：拉回的方向与链式法则}
+设$F(x,y)=(u,w)=(x^2-y,xy)$，$p=(1,2)$，$f(u,w)=u^2+w$。计算$\dd F_p(2\partial_x-\partial_y)$、$F_p^*(\dd u+3\dd w)$及$\dd(f\circ F)_p$。
+\begin{proof}[解答]
+$F(p)=(-1,2)$，$D F_p=\left(\begin{smallmatrix}2&-1\\2&1\end{smallmatrix}\right)$。故指定向量的像分量为$(5,3)^{\mathsf T}$，即$5\partial_u+3\partial_w$，属于$T_{(-1,2)}\R^2$。
+全局表达为$F^*\dd u=2x\dd x-\dd y$、$F^*\dd w=y\dd x+x\dd y$。在$p$处，拉回$\dd u+3\dd w$得到$8\dd x+2\dd y$，属于$T_p^*\R^2$。该协向量作用于$(2,-1)$的值为$14$，等于目标协向量在$(5,3)$上的值$5+9$。
+最后$\dd f_{F(p)}=-2\dd u+\dd w$，故$\dd(f\circ F)_p=F_p^*\dd f_{F(p)}=-2\dd x+3\dd y$。与直接展开$(x^2-y)^2+xy$求导的结果相同。
+\end{proof}
+
+\Needspace{10\baselineskip}
+\subsection*{习题4.6：球面切空间的欧氏表示}
+设$S^n\subset\R^{n+1}$为单位球面、$n\geq1$，$\iota$为包含映射。证明$\dd\iota_p$将$T_pS^n$线性同构到$\{v\in\R^{n+1}:\langle v,p\rangle=0\}$。证明中不能预先使用下一章的正则值定理。
+\begin{proof}[解答]
+用标准坐标识别$T_p\R^{n+1}$与$\R^{n+1}$。设$\gamma$为过$p$的球面曲线。对恒等式$|\gamma(t)|^2=1$求导，得$\langle\gamma'(0),p\rangle=0$，故像包含于所给超平面。反之给定$v\perp p$，曲线
+\[
+ \gamma(t)=\frac{p+tv}{|p+tv|}=\frac{p+tv}{\sqrt{1+t^2|v|^2}}
+\]
+在零点附近光滑，且速度为$v$，所以所有正交向量都在像中。
+还需证明单射：选$p$的某个非零分量$p_j$，在附近用其余$n$个欧氏坐标作球面坐标。逆映射补回的第$j$分量为
+\[
+ \operatorname{sgn}(p_j)\sqrt{1-\sum_{i\ne j}x_i^2}.
+\]
+若$\dd\iota_p$的像为零，则这些坐标的速度分量全为零，由定理\ref{thm:tangent-curves}原切向量为零。于是单射成立。
+\end{proof}
+
+\Needspace{9\baselineskip}
+\subsection*{习题4.7：点态可逆与向量场推前}
+给出“处处切映射可逆但映射非全局单射”的例子，并证明在$F(t)=t^2$下不能将整个实线上的$\partial_t$推前成像集上的单值向量场。限制到$(0,\infty)$后情况如何？
+\begin{proof}[解答]
+$q:\R\to S^1$、$q(t)=(\cos t,\sin t)$满足$q'(t)=(-\sin t,\cos t)\ne0$，两边切空间均一维，故切映射处处可逆，但$q$具有$2\pi$周期，非单射。
+对$F(t)=t^2$，$\dd F_t(\partial_t)=2t\partial_y|_{t^2}$。在$t=1,-1$，同一目标点$y=1$得到相反向量；若有目标向量场$Y$与源向量场$F$相关，就必须同时有$Y_1=2\partial_y$和$Y_1=-2\partial_y$，矛盾。限制到$(0,\infty)$后，$F$是到$(0,\infty)$的微分同胚，可定义$Y_y=2\sqrt y\partial_y$，其系数在$y>0$光滑。该限制不能顺便扩张为包含零点的光滑推前构造。
+\end{proof}
+
+\Needspace{10\baselineskip}
+\subsection*{习题4.8：纤维坐标与截面}
+设平面上的光滑向量场$X=x\partial_x+y\partial_y$。在极坐标卡中写出其切丛坐标，验证光滑性；求一形式$\alpha=x\dd x+y\dd y$的极坐标表达，计算$\alpha(X)$。解释为何不同点处的相同分量不代表同一切向量。
+\begin{proof}[解答]
+在例\ref{ex:polar-tangent}中，$\partial_r=\cos\theta\partial_x+\sin\theta\partial_y$，所以$X=r\partial_r$。截面在切丛坐标中的表示为$(r,\theta)\mapsto(r,\theta,r,0)$，在$r>0$的卡域光滑。$\alpha=\dd((x^2+y^2)/2)=r\dd r$，故在余切丛坐标中为$(r,\theta,r,0)$，且$\alpha(X)=r^2=x^2+y^2$。
+这两个总空间坐标四元组虽写法相同，一个描述切向量，一个描述协向量，不能因此将两类对象直接等同。在同一个切丛内，还必须记录基点：$(p,v)$与$(q,v)$在$p\ne q$时属于不交的两条纤维；平凡化只提供在某卡内比较分量的办法，不给出一般流形上不同纤维的自然识别。
+\end{proof}

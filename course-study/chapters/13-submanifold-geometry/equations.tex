@@ -1,0 +1,94 @@
+给$B$求导时，值域用法联络，两个输入槽用切联络。具体定义
+\[
+ (\nabla B)(X;Y,Z)=\nabla_X^\perp(B(Y,Z))
+ -B(\nabla_XY,Z)-B(Y,\nabla_XZ).
+\]
+这是$T^*M\otimes\operatorname{Sym}^2T^*M\otimes NM$截面；若只对$B$的分量作普通偏导，会丢失三组联络项。法曲率取
+$R^\perp(X,Y)\xi=\nabla_X^\perp\nabla_Y^\perp\xi-\nabla_Y^\perp\nabla_X^\perp\xi-\nabla_{[X,Y]}^\perp\xi$。
+
+\Needspace{20\baselineskip}
+\begin{theorem}[三组相容方程]\label{thm:gauss-codazzi-ricci}
+对切向量场$X,Y,Z,W$和法向场$\xi,\eta$，有
+\begin{align*}
+ g(R(X,Y)Z,W)&=\bar g(\bar R(X,Y)Z,W)\\
+ &\quad+\bar g(B(X,W),B(Y,Z))-\bar g(B(Y,W),B(X,Z)),\\
+ (\bar R(X,Y)Z)^\perp&=(\nabla B)(X;Y,Z)-(\nabla B)(Y;X,Z),\\
+ \bar g(R^\perp(X,Y)\xi,\eta)&=\bar g(\bar R(X,Y)\xi,\eta)
+       +g([A_\xi,A_\eta]X,Y).
+\end{align*}
+其中$[A_\xi,A_\eta]=A_\xi A_\eta-A_\eta A_\xi$。三式依次为Gauss、Codazzi、Ricci方程；末式不是Ricci张量的缩并公式。
+\end{theorem}
+\begin{proof}
+在$\bar\nabla_X\bar\nabla_YZ$中先代入Gauss公式，再分别对切、法两部分求导，得到
+\begin{align*}
+ (\bar\nabla_X\bar\nabla_YZ)^\top
+   &=\nabla_X\nabla_YZ-A_{B(Y,Z)}X,\\
+ (\bar\nabla_X\bar\nabla_YZ)^\perp
+   &=B(X,\nabla_YZ)+\nabla_X^\perp(B(Y,Z)).
+\end{align*}
+减去$X,Y$交换项及$\bar\nabla_{[X,Y]}Z$。切向结果为
+\[
+ (\bar R(X,Y)Z)^\top=R(X,Y)Z-A_{B(Y,Z)}X+A_{B(X,Z)}Y.
+\]
+移项并与$W$取内积即得Gauss式。法向结果减去两份$\nabla B$后，剩下
+$B(\nabla_XY-\nabla_YX-[X,Y],Z)=0$，故得Codazzi式。
+
+再对$\xi$使用Weingarten公式，两次求导的法向部分为
+\[
+ (\bar\nabla_X\bar\nabla_Y\xi)^\perp
+ =-B(X,A_\xi Y)+\nabla_X^\perp\nabla_Y^\perp\xi.
+\]
+反对称化给
+\[
+ (\bar R(X,Y)\xi)^\perp
+ =R^\perp(X,Y)\xi-B(X,A_\xi Y)+B(Y,A_\xi X).
+\]
+后两项与$\eta$配对为
+$-g(A_\eta X,A_\xi Y)+g(A_\eta Y,A_\xi X)
+=-g([A_\xi,A_\eta]X,Y)$，整理即得第三式。整个推导在任意标架成立，不要求预先选择主方向。
+\end{proof}
+
+\begin{corollary}[截面曲率与欧氏缩并]\label{cor:submanifold-curvature-traces}
+若$u,v$正交归一，则
+\[
+ K_M(u,v)=\bar K(u,v)+\bar g(B(u,u),B(v,v))-|B(u,v)|^2.
+\]
+特别对欧氏浸入，令$|B|^2=\sum_{i,j}|B(e_i,e_j)|^2$，有
+\[
+ \Ric(X,X)=m\bar g(B(X,X),\mathbf H)-\sum_i|B(X,e_i)|^2,
+ \qquad\mathrm{Scal}=m^2|\mathbf H|^2-|B|^2.
+\]
+因此欧氏极小子流形的$\Ric\leq0$、$\mathrm{Scal}=-|B|^2\leq0$；不由此断言其每个截面曲率均非正。
+\end{corollary}
+\begin{proof}
+在Gauss式代入$(X,Y,Z,W)=(u,v,v,u)$即得首式。欧氏环境曲率为零，再将$(e_i,X,X,e_i)$代入并对$i$求和，第一项成为$\bar g(B(X,X),\sum_iB(e_i,e_i))$，第二项为所列平方和。再取$X=e_j$并求和，得到标量式。极小时去掉含$\mathbf H$项即可。维数大于2时，若干截面曲率的和非正，不足以逐项确定符号。
+\end{proof}
+
+\subsection*{超曲面、法平坦与环境曲率项}
+在常截面曲率$c$的环境中，$\bar R(X,Y)Z=c(\bar g(Y,Z)X-\bar g(X,Z)Y)$。对超曲面，在一点取$S$的正交特征基，$Se_i=k_i e_i$，于是
+\[
+ K_M(e_i,e_j)=c+k_i k_j\quad(i\ne j),\qquad
+ (\nabla_XS)Y=(\nabla_YS)X.
+\]
+后一式来自环境曲率的法向部分为零及$\nabla^\perp n=0$。一般环境中不能略去这一法向项。正球面外法向给$k_i=-1/a$，仍有$K=a^{-2}$；圆柱面一主曲率为零，故内蕴平坦。
+
+在欧氏环境中，Ricci方程说明
+\[
+ R^\perp=0\quad\Longleftrightarrow\quad
+ [A_\xi,A_\eta]=0\text{ 对所有法向量 }\xi,\eta.
+\]
+因为右式与所有$X,Y$配对为零等价于算子为零。有限组可交换自伴算子可同时正交对角化：先分解一个算子的特征空间，其余算子因交换保持各特征空间，再在这些空间内递归对角化。取法空间有限基即可应用。因此法平坦给逐点共同主方向；它不自动给一个处处光滑、甚至全局定义的主方向标架。超曲面的法联络局部单位标架中恒零，所以法曲率恒零；但全局法丛的平行绕行仍可能变号。
+
+\Needspace{16\baselineskip}
+\begin{proposition}[欧氏全脐超曲面的局部分类]\label{prop:umbilic-classification}
+设$m\geq2$，欧氏超曲面在连通邻域选有单位法向$n$且$S=\lambda I$。则$\lambda$为常数；$\lambda=0$时像局部为仿射超平面的开集，$\lambda\ne0$时为半径$1/|\lambda|$球面的开集。未假设完备时不能将开集改为整个球面或平面。
+\end{proposition}
+\begin{proof}
+Codazzi式给$(X\lambda)Y=(Y\lambda)X$。在任意点，给单位$X$选与之正交的单位$Y$，与$Y$取内积得$X\lambda=0$，故$\dd\lambda=0$。连通性给常数。
+
+若$\lambda=0$，则$\dd n=0$，$n=n_0$恒定，且$\dd\langle f,n_0\rangle=0$，故像在某仿射超平面中。若$\lambda\ne0$，则
+\[
+ \dd(f+\lambda^{-1}n)=\dd f+\lambda^{-1}\dd n=0,
+\]
+所以$C=f+\lambda^{-1}n$恒定，$|f-C|=1/|\lambda|$。两种情形中，$f$到相应$m$维超曲面的微分均为同维同构，逆映射定理说明它在每点附近是到开集的微分同胚。维数1时$S=\lambda I$对每条曲线自动成立，却不迫使曲率恒定。
+\end{proof}

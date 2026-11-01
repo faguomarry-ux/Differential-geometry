@@ -1,0 +1,39 @@
+\begin{definition}[光滑同伦与光滑同伦等价]
+光滑映射$F_0,F_1:M\to N$之间的光滑同伦（smooth homotopy）是$H:[0,1]\times M\to N$，在$[0,1]\times M$的某开邻域可光滑延拓，且$H(0,p)=F_0(p),H(1,p)=F_1(p)$。若$f:M\to N,g:N\to M$满足$g\circ f$光滑同伦于$\operatorname{id}_M$、$f\circ g$光滑同伦于$\operatorname{id}_N$，称$f,g$为光滑同伦等价。
+\end{definition}
+这里明确使用光滑同伦；从连续同伦推出光滑同伦还需逼近定理，本章不提前调用。所用的收缩和形变均会给出光滑公式及定义域。
+
+\begin{theorem}[光滑同伦不变性]\label{thm:cohomology-homotopy}
+若$F_0,F_1:M\to N$光滑同伦，则它们在所有次数上诱导相同的拉回。光滑同伦等价诱导de Rham上同调代数同构。
+\end{theorem}
+\begin{proof}
+由第7章定理\ref{thm:homotopy-operator}，$F_1^*\omega-F_0^*\omega=\dd K_H\omega+K_H\dd\omega$。对闭$k$形式，$k\geq1$时差为恰当形式$\dd K_H\omega$，所以两类相同。$k=0$时$K_H\omega=0$且$\dd\omega=0$，同一公式直接给$F_1^*\omega=F_0^*\omega$，没有负次数原形式。
+若$f,g$为光滑同伦等价，反变复合律给$f^*g^*=(g\circ f)^*=\operatorname{id}$和$g^*f^*=\operatorname{id}$，所以二者互逆，且保持外积。
+\end{proof}
+
+\begin{corollary}[光滑形变收缩]\label{cor:deformation-retract}
+设$i:A\hookrightarrow M$为子流形包含，$r:M\to A$光滑，$r\circ i=\operatorname{id}_A$。若$i\circ r$光滑同伦于$\operatorname{id}_M$，则$i^*:H^\bullet(M)\to H^\bullet(A)$与$r^*$互逆。若$M$光滑收缩到一点，则$H^0(M)=\R$且正次数上同调为零。
+\end{corollary}
+\begin{proof}
+首项直接用上一条定理。收缩到一点时取$A=\{p\}$；一点上的零形式为实数，正次数形式全为零，所以得到所列空间。此处未要求$M$具有全局星形坐标；收缩的光滑性才是使用的假设。
+\end{proof}
+
+\Needspace{20\baselineskip}
+\begin{example}[乘实线与径向形变]\label{ex:radial-retract}
+投影$\pi:M\times\R\to M$、零截面$i(p)=(p,0)$满足$\pi i=\operatorname{id}$，$H_t(p,s)=(p,(1-t)s)$将恒等映射光滑变到$i\pi$。因此$H^\bullet(M\times\R)\simeq H^\bullet(M)$。同理可处理$\R^m$因子。
+
+在$\R^{n+1}\setminus\{0\}$，令$r(x)=x/|x|$、$i:S^n\hookrightarrow\R^{n+1}\setminus\{0\}$。公式
+\[
+ H_t(x)=\bigl((1-t)+t/|x|\bigr)x
+\]
+给$\operatorname{id}$到$ir$的光滑同伦：$0\leq t\leq1$时括号严格正，轨迹不经过原点。由括号保持正的开集，得到所需开邻域延拓；不需要对所有$x$统一延长时间。故穿孔空间与单位球面的普通de Rham上同调同构。$n=0$时单位球面为两点，这一例子仍适用，但不能把它当成连通球面。
+\end{example}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/radial-retract}
+\caption{穿孔平面到单位圆的径向形变：内外两点都沿不经过原点的正半径移动到圆上。箭头表示$t$从$0$到$1$的方向；空圈为删去的原点。原创示意。}
+\label{fig:radial-retract}
+\end{figure}
+
+\begin{example}[紧支条件不能自动传递]
+常值映射$\R\to\{p\}$把一点上非零的紧支函数拉回为实线上的非紧支常函数。一般光滑拉回不一定保持紧支，同伦算子也不一定保持紧支；本节的普通上同调同伦不变性不能直接套用于紧支上同调。习题9.8将计算$H_c^1(\R)$，并与$H^1(\R)=0$比较。
+\end{example}

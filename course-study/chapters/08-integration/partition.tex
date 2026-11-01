@@ -1,0 +1,49 @@
+局部函数延零未必光滑，任意无穷和也未必连续。单位分解（partition of unity）同时解决这两个问题：先把每一项的支集关在一个坐标域内，再要求邻域中只有有限项可能非零。
+\begin{definition}[支集、局部有限与从属]
+函数或截面$s$的支集为$\operatorname{supp}s=\overline{\{p:s(p)\ne0\}}$。一族集合局部有限（locally finite），指每点有邻域只与有限个成员相交。给定开覆盖$\{U_\alpha\}$，从属的光滑单位分解是一族光滑函数$\rho_i:M\to[0,1]$，其支集族局部有限，$\sum_i\rho_i=1$，且每个$i$可指定$\alpha(i)$使$\operatorname{supp}\rho_i\subset U_{\alpha(i)}$。允许一个覆盖成员对应多个函数。
+\end{definition}
+局部有限比逐点有限强。例如在实线上令光滑尖峰的支集互不相交且趋近零，每个点至多属于一个支集，但零点的任何邻域都遇到无穷个支集。若峰值均为$1$，其和在零点不连续。
+
+\begin{lemma}[可数紧耗尽]\label{lem:compact-exhaustion}
+Hausdorff、第二可数、局部欧氏的空间$M$存在紧集列$K_j$，满足$K_j\subset\operatorname{int}K_{j+1}$及$M=\bigcup_{j\geq1}\operatorname{int}K_j$。
+\end{lemma}
+\begin{proof}
+每点的小坐标球有紧闭包，并可缩小到任意指定邻域中。第二可数蕴含每个开覆盖有可数子覆盖：对每个包含于某覆盖成员的基元素选一个这样的成员，所选成员覆盖空间。因此可选可数预紧开集$V_1,V_2,\ldots$覆盖$M$。先令$K_1=\overline V_1$。若$K_j$已定，用有限多个$V_i$覆盖紧集$K_j$，令$K_{j+1}$为这些$\overline V_i$以及$\overline V_1,\ldots,\overline V_{j+1}$的并。它紧；所选开集的并包含$K_j$并位于$K_{j+1}$中，故$K_j\subset\operatorname{int}K_{j+1}$。每个$V_i\subset K_i$（$i=1$亦然），进而包含于$\operatorname{int}K_{i+1}$，证明耗尽性质。紧闭包在$M$中闭使用了Hausdorff性。
+\end{proof}
+
+\begin{theorem}[光滑单位分解]\label{thm:partition-unity}
+有限维Hausdorff、第二可数的光滑流形上，每个开覆盖都有从属的光滑单位分解；可取函数族可数且各项紧支。该结论也适用于下节定义的带边光滑流形。
+\end{theorem}
+\begin{proof}
+先处理无边情形。取引理\ref{lem:compact-exhaustion}的耗尽，约定$K_0=K_{-1}=\varnothing$。紧壳层
+\[
+ A_j=K_j\setminus\operatorname{int}K_{j-1}
+ \subset\operatorname{int}K_{j+1}\setminus K_{j-2}
+\]
+中的每点$p$，可选同心小坐标球$W_{jp}\Subset V_{jp}$，使$\overline V_{jp}$包含于右侧开集以及一个$U_{\alpha(jp)}$。符号$W\Subset V$表示$\overline W$紧且包含于$V$。有限多个$W_{j\ell}$覆盖$A_j$。由第4章引理\ref{lem:tangent-locality}的小球截断构造，可取$b_{j\ell}\geq0$，在$W_{j\ell}$上为$1$，且$\operatorname{supp}b_{j\ell}\subset V_{j\ell}$紧。
+
+所有$W_{j\ell}$覆盖$M$：每点属于某个$K_j$，取最小这样的$j$即落入$A_j$。这些支集还局部有限。事实上，给$p\in\operatorname{int}K_m$，当$j\geq m+2$，$V_{j\ell}$避开$K_{j-2}\supset K_m$；其余有限层各只有有限成员。因此
+\[
+ B=\sum_{j,\ell}b_{j\ell}>0,\qquad
+ \rho_{j\ell}=b_{j\ell}/B
+\]
+均光滑，逐点有限求和得到$\sum\rho_{j\ell}=1$，且支集不扩大。归一化没有引入零分母。
+
+带边情形把小球换成欧氏球与半空间的交。相应闭半球仍紧，同心截断是欧氏光滑截断的限制，其支集按带边空间的相对拓扑计算；延零的光滑性仍由支集紧含于坐标域保证。壳层与局部有限论证不变。这里不借助加倍流形或尚未证明的领圈定理。
+\end{proof}
+
+\begin{corollary}[紧集附近的截断]\label{cor:compact-cutoff}
+若$C\subset M$紧，$O$开且$C\subset O$，则存在$\chi\in C_c^\infty(M)$，$0\leq\chi\leq1$，在$C$的某邻域恒为$1$，且$\operatorname{supp}\chi\subset O$。
+\end{corollary}
+\begin{proof}
+用有限个小坐标邻域覆盖$C$，各选$b_i\in[0,1]$在较小邻域为$1$、支集紧含于$O$。令$\chi=1-\prod_i(1-b_i)$。在这些较小邻域的并上有因子为零，故$\chi=1$；支集位于有限个紧支集的并中，且不超出$O$。
+\end{proof}
+
+\begin{example}[把局部截面拼成全局截面]
+设$E\to M$为向量丛，每个$U_\alpha$上给定光滑截面$s_\alpha$。若$\rho_i$从属于此覆盖，将$\rho_i s_{\alpha(i)}$延零后求和得到全局光滑截面。它不必等于任何一个$s_\alpha$；只有原截面在交叠上相同时，和才恢复原数据。若拼接的是正定双线性形式，则任一非零$v$满足$\sum_i\rho_i g_i(v,v)>0$，所以可构造全局正定度量；本章积分的定义无需先选此度量。
+\end{example}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/partition-unity}
+\caption{三个正弦平方权函数的有限单位分解示例，三者逐点相加为$1$；这是归一化和局部有限性的示意，不声称已画出任意覆盖的紧支从属函数。原创示意。}
+\label{fig:partition-unity}
+\end{figure}

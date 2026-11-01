@@ -1,0 +1,67 @@
+% Public entry point, v1.0. Load once in the preamble; paths are project-root relative.
+\RequirePackage{tikz}
+\RequirePackage{amsmath,amssymb}
+\providecommand{\dd}{\mathrm{d}}
+\usetikzlibrary{arrows.meta,calc,positioning}
+% Independent of maki-notes: use fixed semantic colors in the book and gallery.
+\definecolor{DGInk}{HTML}{263645}
+\definecolor{DGBlue}{HTML}{1676A0}
+\definecolor{DGOrange}{HTML}{B65B20}
+\definecolor{DGGreen}{HTML}{28765E}
+\definecolor{DGGray}{HTML}{788590}
+\tikzset{
+ dg/base/.style={font=\small,>=Stealth,line cap=round,line join=round,
+   every node/.style={text=DGInk,inner sep=2pt}},
+ dg/axis/.style={->,draw=DGGray,line width=.45pt},
+ dg/curve/.style={draw=DGBlue,line width=.9pt},
+ dg/secondary/.style={draw=DGOrange,line width=.9pt},
+ dg/vector/.style={->,draw=DGBlue,line width=1pt},
+ dg/normal/.style={->,draw=DGGreen,line width=1pt},
+ dg/map/.style={->,draw=DGInk,line width=.65pt},
+ dg/guide/.style={draw=DGGray,densely dashed,line width=.45pt},
+ dg/patch/.style={draw=DGBlue,fill=DGBlue!7,line width=.6pt},
+ dg/fiber/.style={draw=DGGreen,line width=.7pt},
+ dg/grid/.style={draw=DGBlue!40,line width=.35pt},
+ dg/box/.style={draw=DGBlue,fill=DGBlue!5,rounded corners=3pt,
+   align=center,minimum height=9mm,text width=43mm},
+ dg/open/.style={draw=DGOrange,fill=white,line width=.7pt},
+ /dg/circle radius/.store in=\DGCircleRadius,/dg/circle radius=1.65,
+ /dg/polar radius/.store in=\DGPolarRadius,/dg/polar radius=2,
+ /dg/polar angle/.store in=\DGPolarAngle,/dg/polar angle=0,
+ /dg/stereo angle/.store in=\DGStereoAngle,/dg/stereo angle=36.8699,
+ /dg/parabola curvature/.store in=\DGParabolaCurvature,/dg/parabola curvature=1,
+ /dg/compact intervals/.store in=\DGCompactIntervals,/dg/compact intervals=3
+}
+% Every call owns its group: parameter changes, coordinates and styles cannot leak.
+\newcommand{\DGDeclareDiagram}[2]{%
+ \ifcsname DGdiagram-#1\endcsname
+  \PackageError{dg-diagrams}{Duplicate diagram '#1'}{Use a unique diagram identifier.}%
+ \else\expandafter\gdef\csname DGdiagram-#1\endcsname{#2}\fi}
+\newcommand{\DGDiagram}[2][]{%
+ \begingroup
+ \ifcsname DGdiagram-#2\endcsname
+  \begin{tikzpicture}[dg/base,#1]\csname DGdiagram-#2\endcsname\end{tikzpicture}%
+ \else\PackageError{dg-diagrams}{Unknown diagram '#2'}{See course-study/figures/catalog.json.}\fi
+ \endgroup}
+% Primitive API: equal x/y units are preserved unless the caller explicitly changes them.
+\newcommand{\DGAxes}[6]{%
+ \draw[dg/axis] (#1,0)--(#2,0) node[right] {#5};
+ \draw[dg/axis] (0,#3)--(0,#4) node[above] {#6};}
+\newcommand{\DGPoint}[3][above right]{%
+ \fill[DGInk] (#2) circle (1.4pt) node[#1] {#3};}
+\newcommand{\DGAssert}[2]{%
+ \pgfmathparse{#2}%
+ \ifdim\pgfmathresult pt>0pt\else
+  \PackageError{dg-diagrams}{Invalid parameter: #1}{See the parameter conditions in figures/README.md.}%
+ \fi}
+\input{course-study/figures/modules/topology-analysis}
+\input{course-study/figures/modules/curves-surfaces}
+\input{course-study/figures/modules/manifolds-tangent}
+\input{course-study/figures/modules/tensor-bundles}
+\input{course-study/figures/modules/forms}
+\input{course-study/figures/modules/integration}
+\input{course-study/figures/modules/cohomology}
+\input{course-study/figures/modules/connections}
+\input{course-study/figures/modules/riemannian}
+\input{course-study/figures/modules/geodesics}
+\input{course-study/figures/modules/submanifold-geometry}

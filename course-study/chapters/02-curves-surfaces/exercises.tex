@@ -1,0 +1,64 @@
+\section{曲线曲面习题与详细解答}
+以下8题为本书原创配套题，覆盖概念、计算、证明与反例，不对应参考书原题号。几何符号均服从本章的$S=-\dd n$约定。
+\Needspace{8\baselineskip}
+\subsection*{习题2.1：直线与弧长参数}
+求$\gamma(t)=(2t,0,0)$的弧长参数及曲率，并判断是否可以据Frenet定义写出唯一的$N,B$。
+\begin{proof}[解答]
+以$t_0=0$为基点有$s=2t$、$\widehat\gamma(s)=(s,0,0)$。因此$T=(1,0,0)$、$T'=0$、$\kappa=0$。$N=T'/\kappa$没有定义，不能唯一选定Frenet标架；可以另选两个垂直于$T$的单位向量组成平行标架，但那是额外选择。
+\end{proof}
+\Needspace{8\baselineskip}
+\subsection*{习题2.2：挠率为零与平面性}
+设$\gamma:J\to\R^3$为$C^3$单位速曲线，$J$为区间且$\kappa>0$。证明它的像位于一个仿射平面内，当且仅当$\tau\equiv0$。
+\begin{proof}[解答]
+若$\tau=0$，由$B'=-\tau N$知$B=B_0$恒定。又$\langle T,B_0\rangle=0$，故$\dd\langle\gamma,B_0\rangle/\dd s=0$，即$\langle\gamma,B_0\rangle=c$，像位于固定平面。
+反之若$\langle\gamma,b\rangle=c$，$b$是固定单位法向，两次求导得$T,N$均与$b$垂直。因此$B=\pm b$，由连续性及$J$连通，符号恒定，故$B'=0$。Frenet公式及$|N|=1$给出$\tau=0$。条件$\kappa>0$使$N,B,\tau$全程有定义。
+\end{proof}
+\Needspace{8\baselineskip}
+\subsection*{习题2.3：反向参数与挠率符号}
+设$\widetilde\gamma(u)=\gamma(-u)$。比较曲率与挠率，并与空间镜面反射的效果比较。
+\begin{proof}[解答]
+三阶导数分别为$-\gamma',\gamma'',-\gamma'''$，均在$-u$处取值。叉积变号而模不变，三重积因两列变号而不变，故$\widetilde\kappa(u)=\kappa(-u)$、$\widetilde\tau(u)=\tau(-u)$。挠率不因反走曲线而变号。若作正交反射$Q$且$\det Q=-1$，速度模和叉积模不变，三重积乘以$\det Q$，故曲率不变、挠率变号；二者应区分。
+\end{proof}
+\Needspace{8\baselineskip}
+\subsection*{习题2.4：球面纬线长度}
+在半径$R$球面上，求固定$\theta=\theta_0\in(0,\pi)$的一整圈纬线长度。解释为什么可分片使用本章球面坐标。
+\begin{proof}[解答]
+沿纬线$\dot\theta=0$，速度为$R\sin\theta_0|\dot\phi|$，取$\phi$从$0$到$2\pi$得长度$2\pi R\sin\theta_0$。单张嵌入曲面片不跨越同一经线的周期识别，但可把纬线分成有限段，各段落在长度小于$2\pi$的开角区间中；对各段积分相加，与直接用闭合参数曲线计算相同。
+\end{proof}
+\Needspace{8\baselineskip}
+\subsection*{习题2.5：圆锥的局部展开}
+设$a>0,r>0$，$X(r,\theta)=(r\cos\theta,r\sin\theta,ar)$。求第一基本形式，找出使之成为平面极坐标度量的局部变量，并解释锥顶为何被排除。
+\begin{proof}[解答]
+$X_r=(\cos\theta,\sin\theta,a)$，$X_\theta=(-r\sin\theta,r\cos\theta,0)$，故$I=(1+a^2)\dd r^2+r^2\dd\theta^2$。令$\rho=\sqrt{1+a^2}\,r$、$\psi=\theta/\sqrt{1+a^2}$，则$I=\dd\rho^2+\rho^2\dd\psi^2$。在小角区间内再用平面极坐标映射$(\rho\cos\psi,\rho\sin\psi)$即得局部等距。$r=0$时$X_\theta=0$，参数不正则；且不同母线方向在顶点汇合，不能由上述计算把顶点作为正则曲面点。全局展开还含角度识别，不能把局部表达当作全局同胚。
+\end{proof}
+\Needspace{8\baselineskip}
+\subsection*{习题2.6：图像的Gauss曲率}
+对$X(u,v)=(u,v,w(u,v))$取向上单位法向，证明
+\[
+ K=\frac{w_{uu}w_{vv}-w_{uv}^2}{(1+w_u^2+w_v^2)^2}.
+\]
+\begin{proof}[解答]
+记$Q=1+w_u^2+w_v^2$。$X_u=(1,0,w_u)$、$X_v=(0,1,w_v)$给出$E=1+w_u^2,F=w_uw_v,G=1+w_v^2$，因此$EG-F^2=Q$。又$n=(-w_u,-w_v,1)/\sqrt Q$，故$e=w_{uu}/\sqrt Q,f=w_{uv}/\sqrt Q,h=w_{vv}/\sqrt Q$。代入定理\ref{thm:shape}的公式得到所求结果。对$w=(u^2-v^2)/2$，$K=-1/(1+u^2+v^2)^2$，特别地原点为$-1$。
+\end{proof}
+\Needspace{8\baselineskip}
+\subsection*{习题2.7：法向反转与圆柱曲率}
+在例\ref{ex:cylinder-isometry}的圆柱上取外法向，计算$S,K,H$；再反转法向，比较结果。
+\begin{proof}[解答]
+$n=(\cos(u/R),\sin(u/R),0)$，所以$n_u=X_u/R,n_v=0$。在正交归一基$X_u,X_v$下，$S=\operatorname{diag}(-1/R,0)$，于是$K=0,H=-1/(2R)$。换成$-n$后$S$变为相反数，主曲率为$1/R,0$，$H=1/(2R)$而$K=0$不变。这说明报告有符号平均曲率时必须给出法向选择。
+\end{proof}
+\Needspace{18\baselineskip}
+\subsection*{习题2.8：由度量计算球面曲率}
+从$I=R^2\dd\theta^2+R^2\sin^2\theta\,\dd\phi^2$直接计算$K$，不使用形算子。
+\begin{proof}[解答]
+以$1=\theta,2=\phi$，仅有的非零Christoffel系数为
+\[
+ \Gamma^1_{22}=-\sin\theta\cos\theta,\qquad
+ \Gamma^2_{12}=\Gamma^2_{21}=\cot\theta.
+\]
+它们由定理\ref{thm:egregium}的度量公式逐项求出。曲率$R(X_1,X_2)X_2$沿$X_1$的系数为
+\[
+ \partial_1\Gamma^1_{22}-\Gamma^2_{12}\Gamma^1_{22}
+ =(\sin^2\theta-\cos^2\theta)+\cos^2\theta=\sin^2\theta.
+\]
+其他可能贡献到此系数的项均含零的Christoffel系数。故分子为$R^2\sin^2\theta$，分母为$R^4\sin^2\theta$，相除得$K=1/R^2$。计算在$0<\theta<\pi$的坐标域内成立；两极改用正则坐标，或用曲率的连续性得到同样数值。
+\end{proof}

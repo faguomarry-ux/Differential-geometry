@@ -1,0 +1,55 @@
+一个光滑映射会把曲线送到曲线，因而把速度送到速度。它对协向量的作用方向相反：先在目标测量速度，再把测量拉回源流形。
+\begin{definition}[切映射与协向量拉回]
+设$F:M\to N$光滑。其在$p$处的切映射（tangent map）或推前（pushforward）定义为
+\[
+ \dd F_p:T_pM\to T_{F(p)}N,\qquad
+ \dd F_p([\gamma])=[F\circ\gamma].
+\]
+也记$F_{*p}$。协向量的拉回（pullback）是对偶线性映射
+\[
+ (\dd F_p)^*:T_{F(p)}^*N\to T_p^*M,\qquad
+ ((\dd F_p)^*\lambda)(v)=\lambda(\dd F_pv).
+\]
+本节简记后者为$F_p^*$。函数的拉回则是$F^*f=f\circ F$，其定义域与逐点协向量拉回不同。
+\end{definition}
+\begin{theorem}[Jacobi矩阵、链式法则与自然性]\label{thm:manifold-differential}
+设$x$为$p$附近的坐标，$y$为$F(p)$附近的坐标，$\widehat F=y\circ F\circ x^{-1}$。则$\dd F_p$良定义且线性，矩阵为$D\widehat F(x(p))$。在导子模型中，
+\[
+ (\dd F_pv)(f)=v(f\circ F).
+\]
+若$G:N\to P$光滑，则
+\[
+ \dd(G\circ F)_p=\dd G_{F(p)}\circ\dd F_p,
+ \qquad \dd(\operatorname{id}_M)_p=\operatorname{id}_{T_pM}.
+\]
+对目标上的局部光滑实函数$f$，还满足
+\[
+ F_p^*(\dd f_{F(p)})=\dd(f\circ F)_p,
+ \qquad (G\circ F)_p^*=F_p^*\circ G_{F(p)}^*.
+\]
+\end{theorem}
+\begin{proof}
+在坐标中，$F\circ\gamma$的速度为$D\widehat F(x(p))(x\circ\gamma)'(0)$，只依赖原速度类，故良定义且线性，矩阵公式也同时成立。对局部函数$f$，$\dd F_pv$作用于$f$就是$\dd(f\circ F\circ\gamma)/\dd t$，这等于$v(f\circ F)$。局部定义域可由$F$连续性缩小，故芽的复合也良定义。
+对任意曲线代表，$G\circ(F\circ\gamma)=(G\circ F)\circ\gamma$，给出流形链式法则；恒等映射保持每条曲线，给出第二式。把$\dd f$的拉回作用于$v$，得到$(\dd F_pv)(f)=v(f\circ F)=\dd(f\circ F)_p(v)$，故自然性成立。最后两个拉回在$v$上均为$\lambda(\dd G_{F(p)}\dd F_pv)$，所以复合的方向反转。
+\end{proof}
+\begin{figure}[htbp]
+\centering
+\input{course-study/figures/tangent-map}
+\caption{原创示意：对$F(x,y)=(x,y+x^2)$，曲线$\gamma(t)=(1+t,0)$在$p=(1,0)$的速度为$v=(1,0)$；像曲线在$F(p)=(1,1)$的速度为$\dd F_pv=(1,2)$。两幅坐标图的画面比例不同，向量分量以标注公式为准。}
+\label{fig:tangent-map}
+\end{figure}
+当$N=\R$时，以标准坐标将$T_{f(p)}\R$自然识别为$\R$，$\dd f_p:T_pM\to\R$就与上一节定义的协向量一致。Leibniz法则进一步给出
+\[
+ \dd(fg)_p=f(p)\dd g_p+g(p)\dd f_p,
+ \qquad\dd f_p=\partial_i(f\circ x^{-1})(x(p))\,\dd x^i|_p.
+\]
+\begin{corollary}[微分同胚的切映射与秩]\label{cor:diffeo-tangent}
+若$F:M\to N$为微分同胚，则每个$\dd F_p$为线性同构，其逆为$\dd(F^{-1})_{F(p)}$。若$\dim M=\dim N$且仅在一点$p$有$\dd F_p$可逆，则$F$在$p$附近是局部微分同胚。一般映射的秩定义为$\operatorname{rank}\dd F_p$，不依赖选卡。
+\end{corollary}
+\begin{proof}
+对$F^{-1}\circ F$及$F\circ F^{-1}$应用链式法则，得到两边逆等式。反过来，等维且切映射可逆时，其坐标Jacobi矩阵可逆，对$\widehat F$使用逆映射定理\ref{thm:inverse}，再用两张坐标卡移回流形，即得局部结论。换卡时矩阵的两侧乘可逆的过渡Jacobi矩阵，秩不变。
+\end{proof}
+\begin{example}[微分退化不等于映射不单射]
+$F:\R\to\R,F(t)=t^3$为光滑双射，$\dd F_0=0$，所以其逆不是光滑映射。反方向，$q:\R\to S^1,q(t)=(\cos t,\sin t)$处处有非零切映射，但$q(t+2\pi)=q(t)$，并非全局单射。切映射描述一阶局部信息，不能自行保证全局可逆。两例与第1章的欧氏结论一致。
+\end{example}
+一般$F$可逐点推前向量，却不能自动把源上的向量场推成目标上的单值向量场。例如$F(t)=t^2$，源上$\partial_t$在$t=1,-1$推前到同一目标点$1$的结果分别为$2\partial_y,-2\partial_y$，不一致。若$F$为微分同胚，可用唯一的$p=F^{-1}(q)$定义目标向量场，后续向量场章节将继续讨论。习题4.6、4.7检验这些边界及切映射计算。

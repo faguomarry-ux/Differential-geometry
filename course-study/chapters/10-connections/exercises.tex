@@ -1,0 +1,103 @@
+\Needspace{15\baselineskip}
+\section{联络与曲率习题及详细解答}
+习题10.1改述梁书上册第二版第3章原题2，10.2改述并扩展原题1，原题均在印刷页84/PDF100；10.3合并原题6与8的沿曲线公式和移动可逆任务，原题在印刷页85/PDF101。其余5题为原创补充。所有符号按本书“方向为第一个下指标”的约定重写，全部解答由本工程编写。
+
+来源分类与原题号见\texttt{references/EXERCISES.md}。
+
+\Needspace{12\baselineskip}
+\subsection*{习题10.1：偏导分量为何不是张量}
+改述梁书第3章原题2。设$Y$为向量场，$A^k{}_i=\partial_iY^k$。推导坐标变化下$A$的实际变换律；再在$x>0$上取$y=x^2$、$Y=\partial_x$，给出不服从$(1,1)$型张量变换律的具体数值。
+\begin{proof}[解答]
+记$J^a{}_k=\partial y^a/\partial x^k$，$Y'^a=J^a{}_kY^k$。求$y$偏导得到
+\[
+ A'^a{}_b=\frac{\partial x^i}{\partial y^b}J^a{}_k A^k{}_i
+ +\frac{\partial x^i}{\partial y^b}(\partial_iJ^a{}_k)Y^k.
+\]
+第二项含坐标变换二阶导数，张量变换律没有此项。在给定一维例子，$Y^x=1$，所以$A^x{}_x=0$；但$Y^y=2x$，$A'^y{}_y=(2x)^{-1}\partial_x(2x)=1/x$，例如$x=1$时为$1$，而零张量的任意坐标分量都应为零。标准联络的$y$坐标系数为$\Gamma'^y_{yy}=-1/(2x^2)$，恰使$\nabla_yY^y=1/x+\Gamma'^y_{yy}(2x)=0$，说明联络修正如何恢复张量性。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题10.2：挠率与标量Hessian}
+改述并扩展梁书第3章原题1：证明$T(X,Y)$为张量，且
+\[
+ \operatorname{Hess}f(X,Y)-\operatorname{Hess}f(Y,X)=-\dd f(T(X,Y)).
+\]
+在平面取唯一非零系数$\Gamma^1_{12}=1$、$f=x^1$，分别计算两侧，解释这为何不与混合偏导交换矛盾。
+\begin{proof}[解答]
+代入$T(fX,Y)$，$\nabla_Y(fX)$的$Y(f)X$与括号$[fX,Y]$中的$-Y(f)X$在挠率定义中相消，得到$fT(X,Y)$；另一槽由反对称性得到。因此$T$是函数双线性的张量。
+Hessian定义给$X(Yf)-\dd f(\nabla_XY)$，交换后相减，再用$XYf-YXf=[X,Y]f$，得到所列负号。本例$T(\partial_1,\partial_2)=\partial_1$，故右侧为$-1$。坐标Hessian为$\partial_i\partial_jf-\Gamma^k_{ij}\partial_kf$，于是$\operatorname{Hess}_{12}f=-1$、$\operatorname{Hess}_{21}f=0$，左侧也为$-1$。两个普通二阶偏导仍都为零；不对称来自联络对协变槽的修正，而非违反分析中的偏导交换。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题10.3：沿曲线的公式及逆移动}
+合并梁书第3章原题6、8：在坐标曲线$x(t)$上推导$(D_tV)^k=\dot v^k+\Gamma^k_{ij}\dot x^iv^j$，并用矩阵方程证明平行移动是线性同构。说明对偶向量的移动如何由它决定。
+\begin{proof}[解答]
+在定义\ref{def:derivative-along-curve}中取$e_k=\partial_k$、$\omega^k{}_j=\Gamma^k_{ij}\dd x^i$，直接求值于$\dot x$即得公式。令$A^k{}_j(t)=\Gamma^k_{ij}(x(t))\dot x^i$，基本解矩阵满足$\dot P=-AP$、$P(s)=I$，任意初值解为$P(t)v$。再解$\dot Q=QA$、$Q(s)=I$，则$\frac{\dd}{\dd t}(QP)=QAP-QAP=0$，故$QP=I$；有限维方阵因此可逆，$Q=P^{-1}$。若跨过多个坐标块，逐段移动是有限个可逆线性映射的复合，仍可逆。
+
+对偶移动须保持求值：若初始协向量为$\alpha$，终点应为$\alpha\circ P^{-1}$。它与任意平行向量的配对恒定，且由对偶联络的平行方程唯一确定。这是逆矩阵的转置在对偶系数列上的作用，不是直接再乘$P$。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题10.4：极坐标的平坦联络与测地线}
+用平面标准联络的极坐标系数，验证$R(\partial_r,\partial_\theta)\partial_r=R(\partial_r,\partial_\theta)\partial_\theta=0$，并写出测地线方程。普通圆周$r=R,\theta=t$是否为测地线？
+\begin{proof}[解答]
+已知$\nabla_r\partial_r=0$、$\nabla_r\partial_\theta=\nabla_\theta\partial_r=r^{-1}\partial_\theta$、$\nabla_\theta\partial_\theta=-r\partial_r$，且坐标括号为零。于是
+\begin{align*}
+ R(\partial_r,\partial_\theta)\partial_r
+ &=\nabla_r(r^{-1}\partial_\theta)-\nabla_\theta0
+ =-r^{-2}\partial_\theta+r^{-2}\partial_\theta=0,\\
+ R(\partial_r,\partial_\theta)\partial_\theta
+ &=\nabla_r(-r\partial_r)-\nabla_\theta(r^{-1}\partial_\theta)
+ =-\partial_r+\partial_r=0.
+\end{align*}
+张量性及反对称性说明曲率全为零。测地线方程为$\ddot r-r\dot\theta^2=0$、$\ddot\theta+2\dot r\dot\theta/r=0$。给定圆周使第一式左端为$-R\ne0$，所以不是平面联络的测地线。对笛卡儿位置求两次导数，沿径向和单位角向的分量正好为$\ddot r-r\dot\theta^2$及$r\ddot\theta+2\dot r\dot\theta$，所以两式等价于笛卡儿直线匀速运动；这里只在不碰到极坐标奇点的卡中使用。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题10.5：平坦但绕圈移动非平凡}
+在穿孔平面的平凡实线丛上，取$\nabla=\dd+a\eta$，$a\in\R$，$\eta=(-y\dd x+x\dd y)/(x^2+y^2)$。求曲率和逆时针绕一圈的平行移动。$a\ne0$时是否有处处非零的全局平行截面？
+\begin{proof}[解答]
+线丛矩阵为标量一形式，$\eta\wedge\eta=0$且$\dd\eta=0$，故$\Omega=a\dd\eta=0$。沿单位圆参数$t\in[0,2\pi]$，$\eta(\dot\gamma)=1$，平行方程为$\dot v+av=0$，所以$P=e^{-2\pi a}$。$a\ne0$时它不是恒等映射。若有处处非零的全局平行截面，将其沿此闭曲线限制，起终点是同一截面值，却又须乘$e^{-2\pi a}$，矛盾。局部角卡中可取平行截面$e^{-a\theta}$，但绕圈后无法单值拼接。平坦定理只保证局部端点无关性，未抹去全局拓扑的绕圈效应。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题10.6：非交换矩阵联络的曲率}
+在平面平凡秩二丛上令$\omega=A\dd x+B\dd y$，$A=\left(\begin{smallmatrix}0&1\\0&0\end{smallmatrix}\right)$、$B=\left(\begin{smallmatrix}0&0\\1&0\end{smallmatrix}\right)$。求曲率，并按$+x,+y,-x,-y$走边长$\varepsilon,\delta$的矩形，算出移动矩阵的二阶主项。
+\begin{proof}[解答]
+系数常数使$\dd\omega=0$，但$\omega\wedge\omega=(AB-BA)\dd x\wedge\dd y$，其中$[A,B]=\operatorname{diag}(1,-1)$，故曲率非零。每段沿线性方程移动，作用于列向量的总矩阵为
+\[
+ P=e^{\delta B}e^{\varepsilon A}e^{-\delta B}e^{-\varepsilon A}.
+\]
+因为$A^2=B^2=0$，每个指数都等于$I$加相应一次项，直接相乘得
+\[
+ P=\begin{pmatrix}1-\varepsilon\delta&\varepsilon^2\delta\\
+ -\varepsilon\delta^2&1+\varepsilon\delta+\varepsilon^2\delta^2\end{pmatrix}
+ =I-\varepsilon\delta[A,B]+O((|\varepsilon|+|\delta|)^3).
+\]
+例如$\varepsilon=\delta=1$时$P=\left(\begin{smallmatrix}0&1\\-1&3\end{smallmatrix}\right)$，仍可逆而不为恒等。这里的负号由平行方程$\dot v=-\omega(\dot\gamma)v$和绕行方向共同决定，不能只看$\Omega$的符号猜测移动次序。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题10.7：有挠时的第一Bianchi修正}
+在$\R^3$的坐标标架$e_i$中，令$\nabla_1=\partial_1+A$、$\nabla_2=\partial_2+B$、$\nabla_3=\partial_3$，其中$A=E_{13}$、$B=E_{31}$，$E_{ij}$表示第$i$行第$j$列为$1$的矩阵单位。计算循环$R(e_1,e_2)e_3$，并核对含挠率的完整第一Bianchi式。
+\begin{proof}[解答]
+只有方向对$(e_1,e_2)$及其反向的曲率非零，$R(e_1,e_2)=[A,B]=E_{11}-E_{33}$，所以
+\[
+ R(e_1,e_2)e_3+R(e_2,e_3)e_1+R(e_3,e_1)e_2=-e_3.
+\]
+挠率为$T_{12}=-e_3,T_{23}=0,T_{31}=-e_1$。尽管它们的坐标系数恒定，协变导数并不为零；按完整输入槽求导，
+\[
+ (\nabla_1T)(e_2,e_3)=-e_3,\qquad
+ (\nabla_2T)(e_3,e_1)=-e_3,\qquad
+ (\nabla_3T)(e_1,e_2)=0.
+\]
+例如第一项来自$-T(e_2,Ae_3)=-T(e_2,e_1)=-e_3$；第二项的输出导数是$B(-e_1)=-e_3$，其余输入项为零。再算循环$T(T(e_1,e_2),e_3)$，只有$T(-e_1,e_2)=e_3$留下。右侧总和为$-2e_3+e_3=-e_3$，与曲率循环相同。无挠版本的右侧零在此不可使用，结构形式的恒等式却仍成立。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题10.8：对偶曲率的负号与缩并}
+对习题10.6的联络，求$R^{E^*}(\partial_x,\partial_y)e^1$，其中$e^1$为固定对偶标架首项。再证明恒等端同态$I\in\Gamma(E\otimes E^*)$平行，其诱导曲率为零。
+\begin{proof}[解答]
+向量曲率矩阵$C=[A,B]=\operatorname{diag}(1,-1)$，对偶曲率矩阵是$-C^{\mathsf T}$，因此首项为$-e^1$。也可逐点验证：对任意$s$，$(R^{E^*}e^1)(s)=-e^1(Cs)$，给同一结果。
+端同态的诱导导数满足$(\nabla_XS)(s)=\nabla_X(Ss)-S\nabla_Xs$，令$S=I$得到零。曲率按两个因子分别作用，所以$R^{\operatorname{End}E}(X,Y)S=R^E(X,Y)S-SR^E(X,Y)$，在$I$上为零。这说明保持自然缩并并不要求底丛曲率为零；两因子的曲率在配对时带相反符号而抵消。
+\end{proof}

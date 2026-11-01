@@ -1,0 +1,90 @@
+\Needspace{15\baselineskip}
+\section{微分形式习题及详细解答}
+习题7.1、7.2、7.3分别改述或扩展梁书上册第二版第5章习题2、5、6，原题均在印刷页130（PDF物理页146）。其余5题为原创补充。本文沿用第6章的完整行列式外积约定；其与梁书5.1的阶乘归一化已核对。原题号与新增部分见\texttt{references/EXERCISES.md}，全部解答由本工程编写。
+
+\Needspace{12\baselineskip}
+\subsection*{习题7.1：四维形式的分量展开}
+改述梁书第5章习题2：设$V$为四维实空间，基为$e_1,\ldots,e_4$，对偶基为$e^1,\ldots,e^4$。分别写出一般一形式、三形式与四形式的基展开，说明系数的求值含义，并核对全指标求和时的阶乘。
+\begin{proof}[解答]
+一形式为$\alpha=\sum_{i=1}^4a_i e^i$，其中$a_i=\alpha(e_i)$。三形式为
+\begin{align*}
+ \beta&=b_{123}e^1\wedge e^2\wedge e^3+b_{124}e^1\wedge e^2\wedge e^4\\
+ &\quad+b_{134}e^1\wedge e^3\wedge e^4+b_{234}e^2\wedge e^3\wedge e^4,
+\end{align*}
+其中$b_{ijk}=\beta(e_i,e_j,e_k)$对$i<j<k$成立；其余有序分量按排列变号，重复指标时为零。四形式为$\gamma=c\,e^1\wedge e^2\wedge e^3\wedge e^4$，$c=\gamma(e_1,e_2,e_3,e_4)$。
+若对全部有序指标求和，同一递增组的$k!$项因系数和基外积同时变号而相同，故必须分别写$\beta=\frac1{3!}b_{ijk}e^i\wedge e^j\wedge e^k$与$\gamma=\frac1{4!}\gamma_{ijkl}e^i\wedge e^j\wedge e^k\wedge e^l$。递增求和时再加这些系数，就会重复除以阶乘。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题7.2：非坐标场中的括号项}
+以梁书第5章习题5为出发点，证明一形式的求值恒等式
+$\dd\alpha(X,Y)=X(\alpha(Y))-Y(\alpha(X))-\alpha([X,Y])$。
+再取$X=\partial_x,Y=e^x\partial_y,\alpha=e^{-x}\dd y$，逐项计算，判断能否省掉括号项。
+\begin{proof}[解答]
+写$\alpha=a_i\dd x^i$、$X=X^i\partial_i,Y=Y^j\partial_j$。展开两个方向导数后相减，包含$\partial_iY^j$与$\partial_jX^i$的项组成$\alpha([X,Y])$；余下为
+\[
+ X^iY^j(\partial_i a_j-\partial_j a_i)=\dd\alpha(X,Y).
+\]
+移项即得恒等式，证明未要求$X,Y$为坐标场。
+在给定例中$\alpha(Y)=1,\alpha(X)=0$，所以前两个导数都为零。$[X,Y]=Y$，故括号项为$-1$。另一方面，$\dd\alpha=-e^{-x}\dd x\wedge\dd y$，在$(X,Y)$上也取值$-1$。若删去括号项，就错误得到零。坐标场的特殊简化不能当成任意标架下的公式。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题7.3：Cartan公式的两项}
+改述并扩展梁书第5章习题6：从$\mathcal L_X=\iota_X\dd+\dd\iota_X$证明$\mathcal L_X\dd=\dd\mathcal L_X$。在平面取$X=x\partial_x+y\partial_y$、$\alpha=x\dd y-y\dd x$，计算$\iota_X\alpha$、$\dd\alpha$、$\mathcal L_X\alpha$及$\mathcal L_X\dd\alpha$，并与流的拉回核对。
+\begin{proof}[解答]
+由$\dd^2=0$，$\mathcal L_X\dd=\dd\iota_X\dd=\dd\mathcal L_X$。本例$\iota_X\alpha=xy-yx=0$，而$\dd\alpha=2\dd x\wedge\dd y$，所以
+\[
+ \mathcal L_X\alpha=2(x\dd y-y\dd x)=2\alpha,
+ \qquad \mathcal L_X\dd\alpha=\dd(2\alpha)=4\dd x\wedge\dd y.
+\]
+$X$的流为$\Phi_t(x,y)=(e^tx,e^ty)$。拉回时系数与一次基形式分别乘$e^t$，故$\Phi_t^*\alpha=e^{2t}\alpha$，零时导数为$2\alpha$；$\dd\alpha$的两个一次因子也使拉回乘$e^{2t}$，导数为$4\dd x\wedge\dd y$。若只对系数作方向导数，会少掉基形式变化的贡献。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题7.4：退化映射下的自然性}
+设$F:\R^2\to\R^2$，$F(s,t)=(x,y)=(s^2,t)$，目标一形式$\beta=x\dd y$。求$F^*\beta$及$F^*\dd\beta$，核对自然性，并解释$s=0$处切映射退化为何不妨碍拉回。
+\begin{proof}[解答]
+直接有$F^*\beta=s^2\dd t$，从而$\dd F^*\beta=2s\dd s\wedge\dd t$。目标$\dd\beta=\dd x\wedge\dd y$，而$F^*\dd x=2s\dd s,F^*\dd y=\dd t$，故$F^*\dd\beta$也等于$2s\dd s\wedge\dd t$。
+在$s=0$，矩阵$DF=\operatorname{diag}(0,1)$秩一，二形式拉回在那里为零。拉回只需把源切向量送入目标形式，并不需要逆切映射；退化会使部分输入信息丢失，却不会使定义失效。本例也不满足单射条件，但两点同像不影响各自基点上的拉回定义。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题7.5：非闭形式的同伦余项}
+在$\R^2$使用以零点为中心的径向同伦。对$\omega=x\dd y$计算$K\omega$、$\dd K\omega$、$K\dd\omega$，核对$\dd K\omega+K\dd\omega=\omega$。为何不能无条件把$K\omega$称作原函数？
+\begin{proof}[解答]
+一形式上$K\omega(x,y)=\int_0^1(tx)y\dd t=xy/2$，所以$\dd K\omega=(y\dd x+x\dd y)/2$。又$\dd\omega=\dd x\wedge\dd y$，同伦公式给
+\[
+ K\dd\omega=\int_0^1t(x\dd y-y\dd x)\dd t
+ =\frac{x\dd y-y\dd x}{2}.
+\]
+两者相加为$x\dd y$，确实等于$\omega$。但$\dd\omega\ne0$，余项不能删掉；因此$\dd K\omega\ne\omega$，$K\omega$不是它的原函数。Poincare引理的闭性假设是这个构造能够给出原形式的关键。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题7.6：角形式的局部原函数与周期}
+对例\ref{ex:angular-form}中的$\eta$，在右半平面写出一个原函数，说明它为何不能延伸为穿孔平面上满足$\dd f=\eta$的单值光滑实函数；对半径$R>0$的逆时针圆再计算积分。
+\begin{proof}[解答]
+右半平面$x>0$可取$f(x,y)=\arctan(y/x)$。直接微分得$\dd f=(-y\dd x+x\dd y)/(x^2+y^2)=\eta$。在其他角卡中可用相应角分支，交叠的连通部分上原函数相差常数，但绕原点一周会积累$2\pi$，不能拼成全局单值实函数。
+更直接地，令$\gamma_R(t)=(R\cos t,R\sin t)$。代入后分子为$R^2\dd t$，分母为$R^2$，所以$\int_{\gamma_R}\eta=2\pi$，与$R$无关。若全局$\dd f=\eta$，曲线积分应为端点函数值之差，即零，矛盾。这个判断只用一维积分，并未把尚未建立的Stokes定理用于穿孔域。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题7.7：平移同伦的端点差}
+设$H(t,x,y)=(x+t,y)$，$0\leq t\leq1$，目标形式$\omega=x\dd y$。用$K_H$的定义分别计算$K_H\omega$、$K_H\dd\omega$及$H_1^*\omega-H_0^*\omega$。
+\begin{proof}[解答]
+在三变量$(t,x,y)$上，$H^*\omega=(x+t)\dd y$，不含$\dd t$，所以$K_H\omega=0$。但
+\[
+ H^*\dd\omega=(\dd x+\dd t)\wedge\dd y,
+ \qquad\iota_{\partial_t}H^*\dd\omega=\dd y.
+\]
+限制到时间片后积分，得到$K_H\dd\omega=\dd y$。端点差为$(x+1)\dd y-x\dd y=\dd y$，因此正好与同伦公式的左边相同。一般同伦的算子来自时间方向内插；不能把径向公式中的$t^{k-1}$直接挪用到任意同伦。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题7.8：Cartan交换关系的符号}
+在平面取$X=\partial_x,Y=x\partial_y$。用$\alpha=\dd y$核对$[\mathcal L_X,\iota_Y]\alpha=\iota_{[X,Y]}\alpha$，再在$f=xy$上核对$[\mathcal L_X,\mathcal L_Y]f=\mathcal L_{[X,Y]}f$。
+\begin{proof}[解答]
+$[X,Y]=\partial_y$。$\iota_Y\alpha=x$，所以$\mathcal L_X\iota_Y\alpha=1$；$\mathcal L_X\alpha=\dd(Xy)=0$，故$\iota_Y\mathcal L_X\alpha=0$。左边为$1$，右边$\iota_{\partial_y}\dd y$也为$1$。
+对$f=xy$，先有$Yf=x^2$、$Xf=y$。于是$X(Yf)=2x$、$Y(Xf)=x$，两者之差为$x$；右边$\partial_y(xy)=x$，再次相同。交换算子顺序会改号，因此应始终与$[X,Y]=XY-YX$的约定配合。
+\end{proof}

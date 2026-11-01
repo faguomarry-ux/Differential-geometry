@@ -1,0 +1,76 @@
+闭形式的原函数不仅需要存在性论证，还希望有可以计算的构造。先建立一个比较两端拉回的恒等式，再把它用于把星形域收缩到一点的同伦。
+\begin{theorem}[同伦算子公式]\label{thm:homotopy-operator}
+设$H(t,p)$在$[0,1]\times M$的某个开邻域上光滑并取值于$N$，记$H_t(p)=H(t,p)$、$j_t(p)=(t,p)$。定义次数$-1$的线性算子
+\[
+ K_H\omega=\int_0^1 j_t^*(\iota_{\partial_t}H^*\omega)\dd t,
+ \qquad K_Hf=0.
+\]
+积分逐点在固定的形式纤维中进行。则
+\[
+ \dd K_H\omega+K_H\dd\omega=H_1^*\omega-H_0^*\omega.
+\]
+\end{theorem}
+\begin{proof}
+在时间与$M$的乘积坐标中，唯一分解
+\[
+ H^*\omega=\dd t\wedge\alpha_t+\beta_t,
+ \qquad \alpha_t=j_t^*(\iota_{\partial_t}H^*\omega),\quad\beta_t=H_t^*\omega.
+\]
+每点$p$附近可用同一组$M$坐标写出这些系数。对紧时间段$[0,1]$，开邻域条件允许缩小$p$的邻域，使这些系数在一个稍大的时间段内光滑；由参数积分的微分法则，$K_H\omega$光滑，且$\dd_M$可穿过该积分。
+由外微分的乘法式，
+\[
+ \dd(H^*\omega)
+ =\dd t\wedge(\partial_t\beta_t-\dd_M\alpha_t)+\dd_M\beta_t.
+\]
+自然性使左边等于$H^*\dd\omega$。内插$\partial_t$后限制到时间片并积分，得到
+\[
+ K_H\dd\omega=\int_0^1(\partial_t\beta_t-\dd_M\alpha_t)\dd t
+ =\beta_1-\beta_0-\dd_MK_H\omega.
+\]
+这就是所需公式。若$\omega=f$为零形式，分解只有$\beta_t$，对$\dd f$应用同样计算，仍给出$K_H\dd f=H_1^*f-H_0^*f$，没有负次数形式问题。
+\end{proof}
+这里不要求存在一个对所有$p$统一的时间延长区间；只需在$[0,1]\times M$周围有开邻域，证明逐点使用紧时间段即可。这一细节适用于任意开星形域，而不只是整个欧氏空间。
+\begin{theorem}[星形域上的Poincare引理]\label{thm:poincare}
+设$U\subset\R^n$开，关于$a\in U$星形，即$a+t(x-a)\in U$对$x\in U$、$0\leq t\leq1$成立。则每个正次数闭形式$\omega\in\Omega^k(U)$均恰当。可取原形式$K\omega$，其中
+\[
+ (K\omega)_x(v_1,\ldots,v_{k-1})
+ =\int_0^1t^{k-1}\omega_{a+t(x-a)}(x-a,v_1,\ldots,v_{k-1})\dd t.
+\]
+任意流形上的正次数闭形式都局部恰当。零次结论是闭函数局部常值，而不是任意闭函数都恰当。
+\end{theorem}
+\begin{proof}
+令$H(t,x)=a+t(x-a)$。集合$\{(t,x):x\in U,H(t,x)\in U\}$是包含$[0,1]\times U$的开集，因此满足上一定理的延拓条件。时间方向的微分为$x-a$，每个空间输入的微分为$tv_j$；逐槽线性正好给出因子$t^{k-1}$。$t=0$处$k=1$时因子为一，其余正次数时为非负整数次幂，积分光滑，并无$1/t$奇性。
+此时$H_1=\operatorname{id}_U$，$H_0$是常值映射。正次数的形式在常值映射下拉回为零，因为其切映射为零；同伦公式于是成为$\dd K\omega+K\dd\omega=\omega$。当$\dd\omega=0$，得到$\omega=\dd K\omega$。对零形式，则$K\dd f=f-f(a)$。
+一般流形每点有坐标像为欧氏小球的卡。把闭形式移到坐标球，用上式得到局部原形式，再拉回流形卡域即可。局部原形式未保证能在不同卡上无差别拼接为一个全局原形式。
+\end{proof}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/radial-homotopy}
+\caption{原创示意：星形域内的径向同伦$H(t,x)=tx$（取中心$a=0$）。时间方向微分为$x$，每个空间输入变成$tv$，从而在$k$形式的同伦算子中产生$t^{k-1}$。图画出固定$x$的一条收缩路径；整个路径须留在定义域中。}
+\label{fig:radial-homotopy}
+\end{figure}
+\begin{example}[常系数形式的显式原形式]
+在$\R^n$以零点为中心，对常系数$k$形式$\omega$、$k\geq1$，有$K\omega=\frac1k\iota_R\omega$，其中$R_x=x$。因为积分只剩$\int_0^1t^{k-1}\dd t=1/k$，所以例如
+\[
+ \dd x\wedge\dd y=\dd\!\left(\frac{x\dd y-y\dd x}{2}\right).
+\]
+一般一形式$\alpha=\alpha_i\dd x^i$若闭，其星形域原函数可取$f(x)=\int_0^1\alpha_i(tx)x^i\dd t$；这是一个可计算公式，而不仅是存在性陈述。非闭形式则必须保留同伦公式中的$K\dd\alpha$项，见习题7.5。
+\end{example}
+\Needspace{15\baselineskip}
+\begin{example}[穿孔平面上的闭而不恰当形式]\label{ex:angular-form}
+在$M=\R^2\setminus\{0\}$取
+\[
+ \eta=\frac{-y\dd x+x\dd y}{x^2+y^2}.
+\]
+若写$\eta=P\dd x+Q\dd y$，直接求导得
+\[
+ \partial_xQ=\frac{y^2-x^2}{(x^2+y^2)^2}=\partial_yP,
+\]
+故$\dd\eta=0$。但在逆时针单位圆$\gamma(t)=(\cos t,\sin t)$、$0\leq t\leq2\pi$上，$\gamma^*\eta=\dd t$，所以$\int_\gamma\eta=2\pi$。若$\eta=\dd f$，命题\ref{prop:line-integral-exact}却要求此闭曲线积分为零，矛盾。因而$\eta$只局部为角函数的微分。
+径向收缩到原点不适用于这个域，因为原点被删去；将星形域结论直接套用到穿孔平面，违反了同伦始终取值于定义域的假设。
+\end{example}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/angular-obstruction}
+\caption{原创示意：穿孔平面上的角形式沿逆时针圆周有积分$2\pi$，在局部角卡中却等于$\dd\theta$。橙色空圈表示被删去的原点，圆周箭头给出参数方向；图不把局部角函数画成全局单值实函数。}
+\label{fig:angular-obstruction}
+\end{figure}
+同伦公式会在第9章用于de Rham上同调，但本章不预先使用上同调、Stokes或拓扑同伦的光滑逼近定理来证明它。所有收缩与同伦均以明确的光滑映射及其定义域为条件。

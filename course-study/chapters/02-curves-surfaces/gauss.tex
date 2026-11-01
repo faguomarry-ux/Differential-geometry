@@ -1,0 +1,50 @@
+圆柱可以展开成平面而球面不能局部展平，差异不是空间中看见的弯曲程度，而是第一基本形式决定的$K$。本节在曲面片上直接证明Gauss方程，作为后续联络章的具体模型。
+\begin{definition}[切向投影联络与曲率]
+沿曲面片的切向量场$V,W$，用$D_VW$表示在$\R^3$逐分量沿$V$求导，定义$\nabla_VW=(D_VW)^\top$，上标表示切向正交投影。对向量场括号$[V,W]$取其作为微分算子的交换子，定义
+\[
+ R(V,W)Z=\nabla_V\nabla_WZ-\nabla_W\nabla_VZ-\nabla_{[V,W]}Z.
+\]
+这与附录的曲率约定相同。这里的联络（connection）只是参数片上的具体构造，抽象公理留到第10章。
+\end{definition}
+\begin{theorem}[Gauss分解与Gauss方程]\label{thm:gauss-surface}
+有$D_VW=\nabla_VW+II(V,W)n$，且
+\[
+ R(V,W)Z=II(W,Z)S(V)-II(V,Z)S(W).
+\]
+因此对任意线性无关的切向量$V,W$，
+\[
+ \frac{\langle R(V,W)W,V\rangle}
+ {I(V,V)I(W,W)-I(V,W)^2}=\det S=K.
+\]
+\end{theorem}
+\begin{proof}
+将$W$写为$w^jX_j$，求导时系数导数的项均切向，法向分量为$v^iw^j\langle X_{ij},n\rangle=II(V,W)$，得分解式（此处对$i,j=1,2$求和）。欧氏逐分量求导满足
+\[
+ D_VD_WZ-D_WD_VZ-D_{[V,W]}Z=0,
+\]
+因为对每个分量这是交换子的定义。代入分解式并取切向部分：第一项贡献$\nabla_V\nabla_WZ-II(W,Z)S(V)$，第二项交换$V,W$，第三项贡献$\nabla_{[V,W]}Z$。整理得Gauss方程。
+令$Z=W$并与$V$内积，分子为$II(V,V)II(W,W)-II(V,W)^2$。在基$V,W$下它是$II$的矩阵行列式，分母是$I$的矩阵行列式；由$[S]=[I]^{-1}[II]$，比值为$\det S$。
+\end{proof}
+\begin{theorem}[Gauss绝妙定理的局部形式]\label{thm:egregium}
+Gauss曲率由第一基本形式及其至多二阶偏导数决定。因此局部等距保持Gauss曲率。
+\end{theorem}
+\begin{proof}
+写$\nabla_{X_i}X_j=\Gamma^\ell_{ij}X_\ell$（本证明重复指标取$1,2$并求和），其中$X_1=X_u,X_2=X_v$。对$g_{jk}=\langle X_j,X_k\rangle$求导，利用混合偏导相等，有
+\[
+ 2\langle X_{ij},X_k\rangle
+ =\partial_i g_{jk}+\partial_j g_{ik}-\partial_k g_{ij},\qquad
+ \Gamma^\ell_{ij}=\tfrac12g^{\ell k}
+ (\partial_i g_{jk}+\partial_j g_{ik}-\partial_k g_{ij}),
+\]
+这里$(g^{ij})=g^{-1}$。所以切向投影只依赖$g$及其一阶导数。坐标向量场交换子为零，展开曲率得到
+\[
+ R(X_i,X_j)X_k=
+ (\partial_i\Gamma^\ell_{jk}-\partial_j\Gamma^\ell_{ik}
+ +\Gamma^a_{jk}\Gamma^\ell_{ia}-\Gamma^a_{ik}\Gamma^\ell_{ja})X_\ell.
+\]
+由上一个定理，$K=\langle R(X_1,X_2)X_2,X_1\rangle/\det g$，故只含$g$及至多二阶导数。若两曲面局部等距，用该等距将一边的参数转移到另一边，度量分量完全相同，上式给出相同$K$。
+\end{proof}
+\begin{example}[内蕴曲率与外在弯曲]
+例\ref{ex:cylinder-isometry}的圆柱度量分量为常数，所以$\Gamma^\ell_{ij}=0$，$K=0$。取外法向，其主曲率为$-1/R,0$，同样给出$K=0$，但$H=-1/(2R)$不同于平面。因此$H$不是内蕴量。球面$K=1/R^2>0$，由定理\ref{thm:egregium}，它的任何开片都不能局部等距于平面。
+\end{example}
+本节练习见习题2.8。曲面的Codazzi方程、给定两基本形式的局部实现定理以及全局Gauss--Bonnet定理不在本章证明范围，分别留给子流形及曲率章节；本章也未证明由给定曲率函数重建曲线的ODE存在部分。

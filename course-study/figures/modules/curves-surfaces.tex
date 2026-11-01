@@ -1,0 +1,65 @@
+\DGDeclareDiagram{frenet-circle}{
+ \DGAssert{circle radius must be positive}{\DGCircleRadius>0}
+ \pgfmathsetmacro{\DGR}{\DGCircleRadius}
+ \draw[dg/curve] (0,0) circle (\DGR);
+ \draw[dg/guide] (0,0)--(\DGR,0) node[midway,below] {$R$};
+ \DGPoint[left]{0,0}{$O$}\DGPoint[below right]{\DGR,0}{$\gamma(s)$}
+ \draw[dg/vector] (\DGR,0)--++(0,1.3) node[right] {$T$};
+ \draw[dg/normal] (\DGR,0)--++(-1.3,0) node[above] {$N$};
+ \draw[draw=DGInk] ({\DGR+.8},-.7) circle (.1);
+ \fill[DGInk] ({\DGR+.8},-.7) circle (1.2pt);
+ \node[right] at ({\DGR+.95},-.7) {$B$（向外）};
+ \draw[dg/map] (90:\DGR) arc (90:135:\DGR);
+}
+\DGDeclareDiagram{normal-sections}{
+ \foreach \shift/\sgn/\lab/\plane in {-3/1/x/{y=0},3/-1/y/{x=0}}{
+  \begin{scope}[xshift=\shift cm]
+   \DGAxes{-1.8}{1.9}{-1.45}{1.8}{$\lab$}{$z$}
+   \draw[dg/curve,domain=-1.65:1.65,samples=55] plot (\x,{\sgn*\x*\x/2});
+   \draw[dg/normal] (0,0)--(0,1.05) node[right] {$n$};
+   \node at (0,-1.9) {$\plane:\quad k_n=\sgn$};
+  \end{scope}
+ }
+}
+\DGDeclareDiagram{osculating-parabola}{
+ \DGAssert{parabola curvature must be positive}{\DGParabolaCurvature>0}
+ % y = k x^2/2 has curvature k>0 at the origin; center (0,1/k).
+ \pgfmathsetmacro{\DGK}{\DGParabolaCurvature}
+ \pgfmathsetmacro{\DGR}{1/\DGK}
+ \DGAxes{-1.65}{1.85}{-.3}{2.5}{$x$}{$y$}
+ \draw[dg/secondary] (0,\DGR) circle (\DGR);
+ \draw[dg/curve,domain=-1.5:1.5,samples=70] plot (\x,{\DGK*\x*\x/2});
+ \draw[dg/guide] (0,0)--(0,\DGR) node[midway,left] {$1/\kappa$};
+ \draw[dg/vector] (0,0)--(1,0) node[below] {$T$};
+ \draw[dg/normal] (0,0)--(0,.7) node[right] {$N$};
+ \DGPoint[below left]{0,0}{$p$}\DGPoint[above right]{0,\DGR}{$C$}
+ \node[anchor=west,align=left] at (2.05,1.35)
+  {$y=\kappa x^2/2$\\[4pt] $C=(0,1/\kappa)$\\[4pt] $R=1/\kappa$};
+}
+\DGDeclareDiagram{surface-patch}{
+ % Linear projection of R^3; analytic surface z=.22(u^2+v^2), at (0,0,0).
+ \begin{scope}[xshift=-4.3cm]
+  \fill[dg/patch] (-1,-1) rectangle (1,1);
+  \foreach \q in {-.5,0,.5}{
+   \draw[dg/grid] (\q,-1)--(\q,1);\draw[dg/grid] (-1,\q)--(1,\q);}
+  \DGAxes{-1.2}{1.3}{-1.2}{1.3}{$u$}{$v$}
+  \DGPoint[below left]{0,0}{$a$}
+  \node at (0,-1.65) {$U\subset\mathbb R^2$};
+ \end{scope}
+ \draw[dg/map] (-2.7,.2)--(-1.25,.2) node[midway,above] {$X$};
+ \begin{scope}[x={(1cm,.05cm)},y={(.48cm,.38cm)},z={(0cm,1cm)},xshift=.5cm]
+  \fill[DGGreen!9] (-1,-1,0)--(1,-1,0)--(1,1,0)--(-1,1,0)--cycle;
+  \foreach \q in {-1,-.5,0,.5,1}{
+   \draw[dg/grid,domain=-1:1,samples=45,variable=\t]
+    plot (\q,\t,{.22*(\q*\q+\t*\t)});
+   \draw[dg/grid,domain=-1:1,samples=45,variable=\t]
+    plot (\t,\q,{.22*(\q*\q+\t*\t)});}
+  \draw[dg/curve,domain=-1:1,samples=45,variable=\t] plot (\t,0,{.22*\t*\t});
+  \draw[dg/secondary,domain=-1:1,samples=45,variable=\t] plot (0,\t,{.22*\t*\t});
+  \draw[dg/vector] (0,0,0)--(1,0,0) node[below right] {$X_u$};
+  \draw[dg/vector] (0,0,0)--(0,1,0) node[above right] {$X_v$};
+  \draw[dg/normal] (0,0,0)--(0,0,1) node[above] {$n$};
+  \DGPoint[below left]{0,0,0}{$X(a)$}
+ \end{scope}
+ \node at (.6,-1.65) {$X(u,v)=(u,v,\tfrac{11}{50}(u^2+v^2))$};
+}

@@ -1,0 +1,93 @@
+\begin{theorem}[对偶、张量积及外幂联络]\label{thm:induced-connection}
+给定$E,F$上的联络，存在唯一的对偶及张量积联络，使
+\begin{align*}
+ X\bigl(\alpha(s)\bigr)&=(\nabla_X\alpha)(s)+\alpha(\nabla_Xs),\\
+ \nabla_X(s\otimes t)&=(\nabla_Xs)\otimes t+s\otimes\nabla_Xt.
+\end{align*}
+直和按分量定义。诱导联络保持置换、缩并与交替化，从而在所有张量丛和外幂丛上给出联络。在对偶标架中，矩阵为$-\omega^{\mathsf T}$。
+\end{theorem}
+\begin{proof}
+由第一式只能定义$(\nabla_X\alpha)(s)=X(\alpha(s))-\alpha(\nabla_Xs)$。将$s$换成$fs$，两个$X(f)\alpha(s)$抵消，所以右端对$s$函数线性，确为光滑对偶截面。在局部对偶基$e^a$上由$e^a(e_b)=\delta^a_b$得$\nabla_Xe^a=-\omega^a{}_b(X)e^b$，即列系数作用矩阵为$-\omega^{\mathsf T}$，并直接满足联络公理。
+
+张量积按第二式定义时，关系$(fs)\otimes t=s\otimes(ft)$两边求导都产生一次$X(f)s\otimes t$及相同的其余项，所以与张量积的平衡关系相容。纯张量张成局部截面，故定义唯一，局部展开也保证光滑和两条函数规则。逐因子求导与置换交换，与自然求值配对相容；因此与缩并及交替投影相容，可限制到对称或交替子丛。没有在不同坐标中另行选择不相容的导数。
+\end{proof}
+
+\Needspace{20\baselineskip}
+\begin{proposition}[混合张量的坐标公式]\label{prop:tensor-covariant-derivative}
+对仿射联络及$(r,s)$型张量场$Q$，协变导数是$(r,s+1)$型张量，方向槽放在最后；在坐标中记$\nabla_iQ=\nabla_{\partial_i}Q$，分量为
+\begin{align*}
+ (\nabla_iQ)^{a_1\cdots a_r}{}_{b_1\cdots b_s}
+ &=\partial_iQ^{a_1\cdots a_r}{}_{b_1\cdots b_s}\\
+ &\quad+\sum_{u=1}^r\Gamma^{a_u}_{ic}
+ Q^{a_1\cdots c\cdots a_r}{}_{b_1\cdots b_s}\\
+ &\quad-\sum_{v=1}^s\Gamma^c_{ib_v}
+ Q^{a_1\cdots a_r}{}_{b_1\cdots c\cdots b_s}.
+\end{align*}
+特别地$\nabla_if=\partial_if$、$\nabla_i\alpha_j=\partial_i\alpha_j-\Gamma^k_{ij}\alpha_k$。对任意一形式，
+\[
+ \dd\alpha(X,Y)=(\nabla_X\alpha)(Y)-(\nabla_Y\alpha)(X)+\alpha(T(X,Y)).
+\]
+\end{proposition}
+\begin{proof}
+在局部张量标架上逐因子使用上一条定理：向量基贡献正的$\Gamma$，对偶基贡献负的$\Gamma$，系数贡献偏导，合并即得公式。由于定义内禀且对方向函数线性，新添槽为协变槽；上式中$i$写在前面只是便于计算，不改变型别或槽位约定。
+
+由$\dd\alpha(X,Y)=X(\alpha(Y))-Y(\alpha(X))-\alpha([X,Y])$，把前两项分别换成协变导数加上$\alpha(\nabla_XY)$和$\alpha(\nabla_YX)$，余下恰为$\alpha(T(X,Y))$。因此只有无挠时才可直接把外微分写成协变导数的反对称化。
+\end{proof}
+
+\begin{proposition}[诱导曲率与二阶导数]\label{prop:ricci-commutator}
+对偶曲率满足$(R^{E^*}(X,Y)\alpha)(s)=-\alpha(R^E(X,Y)s)$，张量积曲率为$R^{E\otimes F}=R^E\otimes I+I\otimes R^F$。所以混合张量的曲率在每个上指标上按正号作用，在每个下指标上按负号作用。
+
+若另有底流形的仿射联络，定义沿$X,Y$的协变Hessian
+\[
+ (\nabla^2s)(X,Y)=\nabla_X\nabla_Ys-\nabla_{\nabla_XY}s.
+\]
+则
+\[
+ (\nabla^2s)(X,Y)-(\nabla^2s)(Y,X)
+ =R^E(X,Y)s-\nabla_{T(X,Y)}s.
+\]
+对函数$f$即为$\operatorname{Hess}f(X,Y)-\operatorname{Hess}f(Y,X)=-\dd f(T(X,Y))$。
+\end{proposition}
+\begin{proof}
+在配对$\alpha(s)$上施加$XY-YX-[X,Y]=0$。用两次配对乘法法则展开，含一次导数的交叉项抵消，只剩$(R^{E^*}\alpha)(s)+\alpha(R^Es)=0$，得到负号。对$s\otimes t$同样展开两次张量积乘法法则，交叉项成对抵消，只保留各因子的曲率。由逐因子构造得到一般张量结论。
+
+Hessian差按定义为两重导数的交换子减去$\nabla_{\nabla_XY-\nabla_YX}$；用$\nabla_XY-\nabla_YX=[X,Y]+T(X,Y)$整理即得。对函数的曲率算子为零，因为$XYf-YXf-[X,Y]f=0$，但完整Hessian还对新增的协变槽求导，所以有挠时它并不对称。不能把$\partial_i\partial_jf$与完整协变二阶导数混为一谈。
+\end{proof}
+
+\begin{theorem}[含挠率的张量形式Bianchi恒等式]\label{thm:bianchi-tensors}
+令$\sum_{\mathrm{cyc}}$按$(X,Y,Z)$的三次循环求和。用上面诱导的张量联络，任意仿射联络满足
+\begin{align*}
+ \sum_{\mathrm{cyc}}R(X,Y)Z
+ &=\sum_{\mathrm{cyc}}\bigl((\nabla_XT)(Y,Z)+T(T(X,Y),Z)\bigr),\\
+ \sum_{\mathrm{cyc}}\bigl((\nabla_XR)(Y,Z)+R(T(X,Y),Z)\bigr)&=0.
+\end{align*}
+第二式为端同态恒等式，可再作用于任意$W$。$T=0$时它们化为经典的两条循环Bianchi恒等式。
+\end{theorem}
+\begin{proof}
+先明确求导槽：例如
+\begin{align*}
+ (\nabla_XR)(Y,Z)W
+ &=\nabla_X(R(Y,Z)W)-R(\nabla_XY,Z)W\\
+ &\quad-R(Y,\nabla_XZ)W-R(Y,Z)\nabla_XW.
+\end{align*}
+$\nabla_XT$也对两个输入各扣除一项。对$TM$值二形式$\Theta$，在三向量上展开$D\Theta$，得到
+\[
+ (D\Theta)(X,Y,Z)=\sum_{\mathrm{cyc}}
+ \bigl(\nabla_X(T(Y,Z))-T([X,Y],Z)\bigr).
+\]
+将第一项写成
+\[
+ \nabla_X(T(Y,Z))=(\nabla_XT)(Y,Z)+T(\nabla_XY,Z)+T(Y,\nabla_XZ).
+\]
+循环和中后两类合并为$T(\nabla_XY-\nabla_YX,Z)$；再减去括号项，恰为$T(T(X,Y),Z)$。上一节$D\Theta=\Omega\wedge\theta$的右端是循环$R(X,Y)Z$，给出第一式。
+
+对端同态值二形式$\Omega$，$D\Omega=0$求值为
+\[
+ \sum_{\mathrm{cyc}}\bigl(\nabla_X^{\operatorname{End}}(R(Y,Z))-R([X,Y],Z)\bigr)=0.
+\]
+将端同态导数分成完整$\nabla_XR$与两个输入导数；同样把这些输入项按循环合并，得到$R(T(X,Y),Z)$。这正是第二式。证明只用了已建立的结构方程和诱导联络，没有预设无挠或度规曲率对称性。
+\end{proof}
+
+\begin{example}[平行移动与张量运算相容]
+若$V(t)$和$\alpha(t)$分别是平行的向量与对偶向量，则$\frac{\dd}{\dd t}\alpha(V)=(D_t\alpha)(V)+\alpha(D_tV)=0$。因此对偶移动是$P^{-1}$的对偶，张量积移动逐因子作用。并无一般结论说$g(V,V)$恒定：这还须$\nabla g=0$；下一章才研究由度规唯一确定的无挠联络。
+\end{example}

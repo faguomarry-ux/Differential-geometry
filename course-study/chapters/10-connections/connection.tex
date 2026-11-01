@@ -1,0 +1,74 @@
+\begin{definition}[向量丛联络与仿射联络]\label{def:connection}
+设$E\to M$为秩$r$的实光滑向量丛，记$\Gamma(E)$为光滑截面空间、$\mathfrak X(M)=\Gamma(TM)$。联络（connection）是实双线性映射
+\[
+ \nabla:\mathfrak X(M)\times\Gamma(E)\to\Gamma(E),\qquad (X,s)\mapsto\nabla_Xs,
+\]
+满足$\nabla_{fX}s=f\nabla_Xs$以及$\nabla_X(fs)=X(f)s+f\nabla_Xs$。$E=TM$时称仿射联络（affine connection）。$\nabla_Xs$称$s$沿$X$的协变导数（covariant derivative）。
+\end{definition}
+第一变量只依赖方向向量的点值，第二变量还需要截面的一阶变化。若第二变量也为$C^\infty$线性，Leibniz法则中的$X(f)s$就无从出现。抽象联络不必保持任何长度或内积，不能把“平行”先解释为等长。
+
+\begin{proposition}[局部性与局部表达]\label{prop:connection-local}
+联络可以限制到开子集，值$\nabla_Xs(p)$只依赖$X,s$在$p$附近的取值。若$e_1,\ldots,e_r$为局部标架，则有唯一矩阵值一形式$\omega=(\omega^a{}_b)$，使
+\[
+ \nabla_Xe_b=e_a\omega^a{}_b(X),\qquad
+ \nabla_X(e_b s^b)=e_a\bigl(X(s^a)+\omega^a{}_b(X)s^b\bigr).
+\]
+反过来，任意光滑矩阵值一形式按此公式给出局部联络。
+\end{proposition}
+\begin{proof}
+若$s$在$p$附近为零，选第4章的截断$\chi=1$于$p$附近且支集位于该邻域。于是$s=(1-\chi)s$，在$p$处用Leibniz法则得到$\nabla_Xs(p)=0$，因为$1-\chi$及其微分都在那里为零。对$X$在$p$附近为零的情形，同样用第一变量的函数线性性。将局部数据乘以这样的截断延成全局数据，所得点值与延拓无关，故可限制联络。
+
+局部写$X=X^i\partial_i$，第一变量线性给$\nabla_Xe_b=X^i\nabla_{\partial_i}e_b$，所以各标架系数是$X$的点态线性函数，组成光滑一形式$\omega^a{}_b$。对$s=e_b s^b$应用Leibniz即得公式。反向直接逐项检验两条函数规则，且结果是光滑截面。
+\end{proof}
+
+\Needspace{17\baselineskip}
+\begin{proposition}[换标架与坐标系数]\label{prop:connection-change}
+将标架视为行向量$e=(e_1,\ldots,e_r)$，令$e'=eG$，其中$G:U\to\operatorname{GL}(r,\R)$光滑；截面系数列向量相应满足$s'=G^{-1}s$。则
+\[
+ \omega'=G^{-1}\omega G+G^{-1}\dd G.
+\]
+对切丛取坐标标架，$\omega^k{}_j=\Gamma^k_{ij}\dd x^i$，有
+\begin{align*}
+ (\nabla_XY)^k&=X^i\bigl(\partial_iY^k+\Gamma^k_{ij}Y^j\bigr),\\
+ \Gamma'^a_{bc}&=\frac{\partial y^a}{\partial x^k}
+ \left(\frac{\partial x^i}{\partial y^b}\frac{\partial x^j}{\partial y^c}\Gamma^k_{ij}
+       +\frac{\partial^2x^k}{\partial y^b\partial y^c}\right).
+\end{align*}
+后一式是$y$坐标系数的变换律，故$\Gamma^k_{ij}$一般不是同一个张量在不同坐标下的分量。
+\end{proposition}
+\begin{proof}
+对$e'_b=e_aG^a{}_b$求导得到$\nabla e'=e(\omega G+\dd G)=e'G^{-1}(\omega G+\dd G)$，从而得到矩阵公式。这里$\dd G$逐项求微分，矩阵乘法次序不能交换。
+
+切丛局部式由上一命题直接得到。再写$\partial_{y^c}=(\partial x^j/\partial y^c)\partial_{x^j}$，沿$\partial_{y^b}$求导。导数打在系数上给二阶偏导，打在标架上给两个一次Jacobi因子与$\Gamma$；最后将输出$\partial_{x^k}$换成$(\partial y^a/\partial x^k)\partial_{y^a}$，即得所列式。
+\end{proof}
+
+\begin{theorem}[联络的存在及其差]\label{thm:connection-affine}
+每个有限秩光滑向量丛都有联络。若$\nabla,\widehat\nabla$为同一丛上的两个联络，则
+\[
+ A(X)s=\widehat\nabla_Xs-\nabla_Xs
+\]
+由唯一的$A\in\Omega^1(M;\operatorname{End}E)$给出。反过来，任意这样的$A$都使$\nabla+A$成为联络。因此联络集合是以该向量空间为模型的仿射空间，未指定天然的零联络。
+\end{theorem}
+\begin{proof}
+取局部平凡化覆盖，每块用$\omega_\alpha=0$定义联络$\nabla^\alpha$，以从属单位分解$\rho_i$令
+\[
+ \nabla_Xs=\sum_i\rho_i\nabla^{\alpha(i)}_X(s|_{U_{\alpha(i)}}),
+\]
+每项在域外延零。支集从属保证延零光滑，局部有限保证和光滑。第一变量线性立即成立；第二变量Leibniz的额外项是$\sum_i\rho_i X(f)s=X(f)s$，所以得到全局联络。
+
+对差$A(X)(fs)$，两个Leibniz项$X(f)s$抵消，故它对$s$为函数线性；对$X$也函数线性。在局部标架下，这使其系数成为点态的双线性映射，给出光滑$T^*M\otimes\operatorname{End}E$截面。反向加上这样的零阶项不会改变联络规则。任意两个联络的差唯一，而仿射平均只有权重之和为$1$时才保留Leibniz系数。
+\end{proof}
+
+\begin{example}[极坐标中的非零系数]
+平面标准联络在$(x,y)$坐标中$\Gamma=0$。取$r>0$的极坐标卡，直接将$\partial_r=(\cos\theta,\sin\theta)$、$\partial_\theta=(-r\sin\theta,r\cos\theta)$沿坐标方向求导，得到
+\[
+ \Gamma^r_{\theta\theta}=-r,\qquad
+ \Gamma^\theta_{r\theta}=\Gamma^\theta_{\theta r}=1/r,
+\]
+其余为零。系数非零并不说明平面有曲率；在后面计算中，系数导数与二次项会抵消。把每张卡的$\Gamma$都设为零也不能直接定义同一个联络，因为换卡有二阶项。
+\end{example}
+\begin{figure}[htbp]
+\centering\input{course-study/figures/connection-frame-change}
+\caption{同一截面在两套标架中的系数和协变导数均按$G^{-1}$变换，局部算子为$D=\dd+\omega$。交换关系导出非齐次项$G^{-1}\dd G$。这里比较的是同一基点上的标架，非沿路径的平行移动。原创示意。}
+\label{fig:connection-frame-change}
+\end{figure}

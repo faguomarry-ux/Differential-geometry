@@ -1,0 +1,89 @@
+切向量应描述经过一点的瞬时运动，而不需要把整个流形放进欧氏空间。本章$M,N$均为有限维、Hausdorff、第二可数、无边界的光滑实流形；先固定$p\in M$和$\dim M=n$。本节对照梁书上册第二版2.2.1（印刷页19--25），以函数芽补齐导子模型的局部化和坐标展开证明。
+\begin{definition}[曲线的速度等价类]
+取定义在含零开区间上的光滑曲线$\gamma$，满足$\gamma(0)=p$。在$p$附近一张卡$x:U\to x(U)\subseteq\R^n$中，若
+\[
+ (x\circ\gamma)'(0)=(x\circ\eta)'(0),
+\]
+则称$\gamma,\eta$在$p$有相同速度。这里只比较充分小的参数区间，使曲线落在卡域内；不要求曲线正则。所有速度等价类组成$p$的切空间（tangent space）$T_pM$，记曲线的类为$[\gamma]$或$\dot\gamma(0)$。
+\end{definition}
+\begin{theorem}[曲线模型的坐标无关性]\label{thm:tangent-curves}
+速度相同与所选坐标卡无关。映射
+\[
+ \Theta_x:T_pM\to\R^n,\qquad [\gamma]\mapsto(x\circ\gamma)'(0)
+\]
+是双射；由它把$\R^n$的线性运算移到$T_pM$，得到与卡无关的$n$维向量空间结构。
+\end{theorem}
+\begin{proof}
+设$y$为另一张卡，欧氏链式法则给出
+\[
+ (y\circ\gamma)'(0)=D(y\circ x^{-1})_{x(p)}(x\circ\gamma)'(0).
+\]
+换卡矩阵可逆，其逆由反向过渡映射的微分给出。因此一张卡中速度相同恰好等价于另一张卡中相同。这也说明所定义的关系满足自反、对称和传递性，且$\Theta_x$单射。
+给定$a\in\R^n$，因$x(U)$开，$x(p)+ta$在$t$充分小时属于$x(U)$，所以$\gamma(t)=x^{-1}(x(p)+ta)$实现该速度，得满射。换卡时$\Theta_y= D(y\circ x^{-1})_{x(p)}\Theta_x$为线性同构，故由两张卡移来的加法及数乘相同。特别地零向量由常值曲线表示；速度为零不要求曲线本身恒定。
+\end{proof}
+为连接梁书以全局光滑函数定义的矢量，需要先区分局部函数及全局函数。
+\begin{definition}[函数芽与点导子]
+若两个在$p$附近定义的光滑实函数在$p$的某邻域相同，就视为同一函数芽（germ），记$[f]_p$；芽构成实代数$\mathcal E_p$，加法、乘法在共同邻域逐点定义。点导子（point derivation）是实线性映射$D:\mathcal E_p\to\R$，满足
+\[
+ D(fg)=f(p)D(g)+g(p)D(f).
+\]
+无歧义时省略芽括号。导子的集合记为$\operatorname{Der}_p$，按逐点加法、数乘成为向量空间。Leibniz法则对$1\cdot1$给出$D(1)=2D(1)$，所以导子杀死常数芽。
+\end{definition}
+\begin{lemma}[局部光滑截断与全局导子的局部性]\label{lem:tangent-locality}
+给定$p$的开邻域$O$，存在全局光滑函数$\chi:M\to[0,1]$，在$p$附近恒为$1$，且其支集是包含于$O$的紧集。若线性映射$L:C^\infty(M)\to\R$满足$p$处的Leibniz法则，则$L(f)$只依赖$f$的$p$处函数芽。每个局部函数芽可由某全局光滑函数代表，因而全局函数上的点导子与$\operatorname{Der}_p$自然一一对应。
+\end{lemma}
+\begin{proof}
+取卡域$U\subseteq O$，中心$a=x(p)$，并取$0<r<R$使闭球$\overline B(a,R)\subset x(U)$。令$\rho(t)=e^{-1/t}$（$t>0$），$\rho(t)=0$（$t\leq0$）。在零点处，右侧各阶导数为$e^{-1/t}$乘$1/t$的多项式，都趋于零，故$\rho$光滑。定义
+\[
+ b(z)=\frac{\rho(R^2-|z-a|^2)}
+ {\rho(R^2-|z-a|^2)+\rho(|z-a|^2-r^2)}.
+\]
+分母处处为正；$b$在$\overline B(a,r)$上为$1$，在$\R^n\setminus B(a,R)$上为零。在$U$上令$\chi=b\circ x$，在$M\setminus U$上延拓为零。其可能非零的点均位于紧集$x^{-1}(\overline B(a,R))\subset U$。该紧集在Hausdorff空间$M$中闭，外部每点有邻域使延拓恒零，因此延拓光滑，支集也紧且包含于$O$。
+若$f$在$p$的邻域$O$恒零，选上述$\chi$，则$\chi f=0$且$\chi(p)=1,f(p)=0$。Leibniz法则给出$0=L(\chi f)=L(f)$，所以局部相同的全局函数有相同的$L$值。
+给局部函数$f$，选支集包含于其定义域的$\chi$，将$\chi f$在域外延零，得到全局光滑函数，且在$p$附近等于$f$。任何两个这样的延拓之差在$p$附近为零，所以$L$在芽上取值良定义，并保持线性与Leibniz法则。反过来，芽导子限制到全局函数即为全局导子；延拓性质说明这两步互逆。
+\end{proof}
+这里仅使用单个坐标域内的截断，没有提前使用第8章的全局单位分解。零维情形$p$的单点为开集，直接取其示性函数，以下坐标求和为空和。
+\begin{lemma}[一阶余项分解]\label{lem:hadamard}
+设$F$在$a\in\R^n$的邻域光滑。缩小到以$a$为中心的开球后，存在光滑函数$F_i$使
+\[
+ F(z)=F(a)+\sum_{i=1}^n(z^i-a^i)F_i(z),\qquad F_i(a)=\partial_iF(a).
+\]
+\end{lemma}
+\begin{proof}
+沿线段$t\mapsto a+t(z-a)$应用单变量微积分基本定理，可取
+\[
+ F_i(z)=\int_0^1\partial_iF(a+t(z-a))\,\dd t.
+\]
+其在$a$处的值由代入得到。积分给出光滑函数：在任意较小闭球上，被积函数的任意阶$z$偏导在与$[0,1]$的乘积上连续，故一致连续；由单变量增量的积分表达，差商一致趋于对应偏导，可与$t$积分交换。逐阶重复此论证得到各阶连续偏导，因而$F_i$光滑。
+\end{proof}
+\begin{theorem}[曲线与导子模型等价]\label{thm:derivation-model}
+映射
+\[
+ T_pM\longrightarrow\operatorname{Der}_p,\qquad
+ [\gamma]\longmapsto\left(f\mapsto\left.\frac{\dd}{\dd t}f(\gamma(t))\right|_{t=0}\right)
+\]
+为线性同构。对任何点导子$D$，在卡$x=(x^1,\ldots,x^n)$中有
+\[
+ D(f)=\sum_{i=1}^n D(x^i)\,\partial_i(f\circ x^{-1})(x(p)).
+\]
+此处$x^i$作为局部函数芽使用，不要求它在整个$M$上定义。
+\end{theorem}
+\begin{proof}
+若曲线速度分量为$v^i$，链式法则给出
+\[
+ \left.\frac{\dd}{\dd t}f(\gamma(t))\right|_0
+ =\sum_i v^i\partial_i(f\circ x^{-1})(x(p)).
+\]
+所以此值只依赖速度类与函数芽。单变量求导的线性、乘积法则说明它为点导子，且关于$v$线性。
+反之令$a=x(p)$，对$F=f\circ x^{-1}$使用引理\ref{lem:hadamard}，拉回卡域得到芽恒等式
+$f=f(p)+\sum_i(x^i-a^i)(F_i\circ x)$。对它作用$D$：常数项为零，每个乘积中$x^i-a^i$在$p$为零，所以只剩$D(x^i)F_i(a)$。这就是所给公式。由定理\ref{thm:tangent-curves}，存在曲线实现速度$\bigl(D(x^1),\ldots,D(x^n)\bigr)$，其导子与$D$对所有芽相等，得满射。若曲线导子相同，对各$x^i$作用即得速度分量相同，得单射。
+\end{proof}
+\begin{example}[速度相同不代表曲线相同]
+在$\R^2$原点，$\gamma(t)=(t,t^2)$与$\eta(t)=(t,0)$均代表$(1,0)$，虽然它们的像不相同。$\sigma(t)=(t^2,0)$则代表零向量。二阶信息被切空间忽略；取$f(x,y)=x$可区分$\gamma$和$\sigma$的速度。相应练习见习题4.1、4.2和4.4。
+\end{example}
+\begin{figure}[htbp]
+\centering
+\input{course-study/figures/tangent-equivalence}
+\caption{原创示意：$\gamma(t)=(t,t^2)$和$\eta(t)=(t,0)$在原点具有相同速度$(1,0)$，代表同一切向量。绿色箭头表示速度，不能仅从两条曲线的像相切就推断任意参数下速度相同。}
+\label{fig:tangent-equivalence}
+\end{figure}
