@@ -1,0 +1,40 @@
+\subsection{Chern联络的构造及唯一性}
+设$E\to M$为\emph{已经给定}的全纯向量丛，纤维Hermite内积$h$取第一变量共轭线性、第二变量线性。全纯标架$e=(e_1,\ldots,e_r)$中
+\[
+ h(ea,eb)=\bar a^{\mathsf T}Hb,\qquad H=\bar H^{\mathsf T}>0,
+ \qquad\nabla(ea)=e(\dd a+Aa).
+\]
+对矩阵值形式记$A^*=\bar A^{\mathsf T}$，共轭同时交换$(1,0)$与$(0,1)$型。
+
+\begin{theorem}\label{thm:chern-connection}
+存在唯一保持$h$且$(0,1)$部分等于$\bar\partial_E$的复线性联络，称Chern联络。其全纯标架表达式、曲率为
+\begin{equation}\label{eq:chern-matrix}
+ A=H^{-1}\partial H,\qquad
+ F=\bar\partial(H^{-1}\partial H),\qquad F^{2,0}=F^{0,2}=0.
+\end{equation}
+若$e'=eG$为全纯换标架，则$H'=G^*HG$，且$A'=G^{-1}AG+G^{-1}\dd G$。
+\end{theorem}
+\begin{proof}
+度量相容在实向量输入上等价于$\dd H=A^*H+HA$，由对$h(ea,eb)$求导并消去$\dd a,\dd b$项得到。条件$\nabla^{0,1}=\bar\partial_E$要求$A^{0,1}=0$，所以该等式的$(1,0)$部分为$\partial H=HA$，唯一迫使$A=H^{-1}\partial H$。反向取此$A$，其共轭转置满足$A^*H=\bar\partial H$，两型合起来给度量相容。
+
+换全纯标架时$\partial G^*=0$，代入$H'=G^*HG$并展开可得$A'=G^{-1}AG+G^{-1}\partial G$。又$\bar\partial G=0$，故这就是第10、16章换标架律，局部联络可拼接。曲率的$(0,2)$部分为零；利用$\partial H^{-1}=-H^{-1}(\partial H)H^{-1}$，
+\[
+ \partial A=-H^{-1}(\partial H)H^{-1}\wedge\partial H=-A\wedge A.
+\]
+故$(2,0)$部分也为零，只剩$F=\bar\partial A$，并按$F'=G^{-1}FG$变换。这里$\bar\partial\partial=-\partial\bar\partial$，曲率号不可换掉。
+\end{proof}
+全纯线丛时$A=\partial\log H$、$F=-\partial\bar\partial\log H$。例如平凡线丛配$H=e^{|z|^2}$，便有$F=-\dd z\wedge\dd\bar z$；丛平凡不意味着其给定度量的Chern联络平坦。若只要求度量相容而不固定$(0,1)$部分，则第16章表明还可加适当的斜Hermite一形式，唯一性会失去。
+
+\subsection{与切丛的Levi--Civita联络比较}
+对$E=T^{1,0}M$，按\eqref{eq:hermitian-normalization}使用$H=G^{\mathsf T}$，Chern系数为
+\[
+ A^c{}_b=\sum_{a,d}g^{\bar d c}\partial_a g_{b\bar d}\,\dd z^a.
+\]
+在Kahler情形，这恰与\eqref{eq:kahler-christoffel}一致，故Levi--Civita复化后在$T^{1,0}$上的限制为Chern联络。反向，若实Levi--Civita联络复化后保持$T^{1,0}$并与该Chern联络相同，由复共轭也保持$T^{0,1}$，所以$\nabla J=0$，进而Kahler。一般Hermite度量的Levi--Civita未必保持$T^{1,0}$，不能不加条件地把其“限制”叫作复丛联络。
+
+把Chern联络及其共轭合为$T_{\mathbb C}M$的联络，则其$(1,0)$方向的挠率为
+\[
+ T^c{}_{ab}=\sum_dg^{\bar d c}
+ (\partial_ag_{b\bar d}-\partial_bg_{a\bar d}).
+\]
+混合挠率为零，另一同型部分是共轭；因此无挠恰等价于Kahler闭性。这个比较解释了为何同一Hermite度量会自然产生两个不同联络。

@@ -1,0 +1,37 @@
+\subsection{Dolbeault算子及其成立条件}
+在复流形上，按全纯坐标定义
+\begin{align}
+ \partial(f\,\dd z^I\wedge\dd\bar z^J)
+ &=\sum_a\partial_a f\,\dd z^a\wedge\dd z^I\wedge\dd\bar z^J,\notag\\
+ \bar\partial(f\,\dd z^I\wedge\dd\bar z^J)
+ &=\sum_a\partial_{\bar a}f\,\dd\bar z^a\wedge\dd z^I\wedge\dd\bar z^J.
+ \label{eq:dolbeault-local}
+\end{align}
+第二式如需重排为约定基，须移动$\dd\bar z^a$穿过全部$\dd z^I$，符号为$(-1)^{|I|}$。全纯换元不混合$\dd z$和$\dd\bar z$，故这两个算子就是$\dd$的$(p+1,q)$和$(p,q+1)$投影，与坐标无关。
+
+\Needspace{14\baselineskip}
+\begin{proposition}\label{prop:dolbeault-complex}
+复流形上$\dd=\partial+\bar\partial$，且
+\[
+ \partial^2=0,\qquad\bar\partial^2=0,\qquad
+ \partial\bar\partial+\bar\partial\partial=0.
+\]
+两算子都按总次数满足分次Leibniz规则，复共轭交换$\partial$和$\bar\partial$。
+\end{proposition}
+\begin{proof}
+在坐标基上$\dd\dd z^j=\dd\dd\bar z^j=0$，所以只需对系数求导，得到分解。再把$\dd^2=0$分别投影到三种不同型别，得三条恒等式；或者直接用二阶偏导可交换和楔积反对称验证。分次乘法式与共轭关系也逐个坐标单项验证，因已知自然性而成为全局结论。
+\end{proof}
+例如$\partial\bar\partial f=\sum_{a,b}\partial_a\partial_{\bar b}f\,\dd z^a\wedge\dd\bar z^b$，而$\bar\partial\partial f$为其负号。定义
+\[
+ H^{p,q}_{\bar\partial}(M)=
+ \frac{\ker(\bar\partial:\Omega^{p,q}\to\Omega^{p,q+1})}
+ {\operatorname{im}(\bar\partial:\Omega^{p,q-1}\to\Omega^{p,q})},
+\]
+分母在$q=0$时为零。这里仅定义Dolbeault上同调，不预先宣称它与某个层上同调相同，亦不从第14章自动推出$H^k_{\mathrm{dR}}=\bigoplus_{p+q=k}H^{p,q}_{\bar\partial}$。
+
+在仅有几乎复结构时，投影仍然存在，但$\dd$还可能含$(p+2,q-1)$和$(p-1,q+2)$分量。因为对一形式$\alpha$有$\dd\alpha(U,V)=U\alpha(V)-V\alpha(U)-\alpha([U,V])$，若$U,V\in T^{0,1}$而$[U,V]$出现$(1,0)$分量，$(1,0)$形式的外微分便出现$(0,2)$项。第17.4节将给出显式反例，故不能在几乎复情形不加条件地沿用本命题。
+
+\subsection{全纯向量丛及其自然算子}
+全纯向量丛是过渡矩阵全纯的复向量丛。取全纯局部标架$e$，对系数列$a$定义$\bar\partial_E(ea)=e\bar\partial a$。若$e'=eG$，全纯性$\bar\partial G=0$使定义相容，且$\bar\partial_E^2=0$。$T^{1,0}M$由全纯坐标标架及其Jacobi矩阵成为全纯丛，其对偶与外幂也一样；$K_M=\Lambda^{m,0}T^*M$称典范线丛。
+
+反向，“光滑丛上的一个$(0,1)$联络满足平方零，便能找到全纯标架”是Koszul--Malgrange型可积性结论，本章不证明也不在构造中使用。下节Chern联络的起点始终是\emph{已经给定}的全纯丛，而不是仅给一族形式后默认为已存在全纯结构。

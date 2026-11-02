@@ -90,3 +90,19 @@ Ricci法曲率式取$\langle R^\perp(X,Y)\xi,\eta\rangle=\langle\bar R(X,Y)\xi,\
 主联络再现竖直生成元且$R_g^*\omega=\operatorname{Ad}_{g^{-1}}\omega$；局部式为$\operatorname{Ad}_{h^{-1}}A+h^{-1}\dd h$，换截面得$A'=\operatorname{Ad}_{g^{-1}}A+g^{-1}\dd g$。水平提升矩阵方程$\dot h=-A(\dot\gamma)h$；曲率$\Omega=\dd\omega+[\omega,\omega]/2$，水平括号的竖直缺陷为$-\Omega^\#$，相伴曲率为$\rho_*(F)$。本章规范变换取$\omega^\Phi=\Phi^*\omega$，按复合乘法为右作用。
 
 Hopf丛取$w=z_1/z_0$、$s_1=s_0e^{-i\phi}$、$\omega=\sum\bar z_j\dd z_j$。在球面外向定向下$F=i\mathrm{vol}_{S^2}/2$，$\int F/(2\pi i)=1$；若取酉Chern归一化$iF/(2\pi)$，积分为$-1$。本章只证明此周期、一般圆群在球面上的整数周期及具体非平凡性，不预用一般示性类或丛分类。平凡、平坦及全局水平截面分别检验。
+
+\Needspace{18\baselineskip}
+\section{复结构、Hermite系数与Chern曲率}
+第17章取$J\partial_x=\partial_y$，$\partial_z=(\partial_x-i\partial_y)/2$，$\omega(X,Y)=g(JX,Y)$。$G_{a\bar b}=g_{\mathbb C}(\partial_a,\partial_{\bar b})$，所以$g=2\operatorname{Re}(G_{a\bar b}\dd z^a\otimes\dd\bar z^b)$、$\omega=iG_{a\bar b}\dd z^a\wedge\dd\bar z^b$；Euclid度量对应$G=I/2$。第一变量共轭线性的纤维内积矩阵为$H=G^{\mathsf T}$，全纯标架Chern势$A=H^{-1}\partial H$，曲率$F=\bar\partial A$。
+
+Kahler情形Levi--Civita限制到$T^{1,0}$等于Chern联络，$\rho(X,Y)=\operatorname{Ric}(JX,Y)=-i\partial\bar\partial\log\det G$。Fubini--Study取$\omega=i\partial\bar\partial\log(1+|z|^2)$，在$\mathbb{CP}^1$上半径$1/\sqrt2$、曲率2、面积$2\pi$；第16章Hopf曲率为$i\omega_{\mathrm{FS}}$，重言线丛的$iF/(2\pi)$积分为$-1$。
+
+$N_J=[JX,JY]-J[JX,Y]-J[X,JY]-[X,Y]$，在两个$(0,1)$向量上为$-4\pi^{1,0}[X,Y]$。NN充分性、一般局部势存在、Koszul--Malgrange反向可积性及Kahler恒等式/Hodge型分解未在本章证明。球面复结构的2026年外部构造仅记录来源及核查范围，不写成本章已证结果。
+
+\Needspace{18\baselineskip}
+\section{实示性类、Pfaffian与相对传递}
+第18章取$P(X,\ldots,X)=p(X)$，极化时仅除一次$k!$；$k$次多项式代入曲率得到$2k$次形式。矩阵值形式的循环迹带$(-1)^{rs}$，分次交换子为$\alpha\beta-(-1)^{rs}\beta\alpha$。Chern归一化为$c(\nabla)=\det(I+iF/(2\pi))$，$\operatorname{ch}=\operatorname{tr}\exp(iF/(2\pi))$，因此重言线丛$c_1=-[\omega_{\mathrm{FS}}/(2\pi)]$。
+
+实曲率矩阵斜对称时$p_1=-\operatorname{tr}\Omega^2/(8\pi^2)$，$p_k=(-1)^kc_{2k}(V_{\mathbb C})$。定向偶秩丛取$e=\operatorname{Pf}(\Omega)/(2\pi)^r$，复定向下$e(E_{\mathbb R})=c_r(E)$；反转丛定向使Euler类变号。相对传递取$\omega_t=\omega_0+t(\omega_1-\omega_0)$，$T_p=k\int_0^1P(a,\Omega_t^{k-1})\dd t$，故$\dd T_p=\operatorname{cw}_p(\omega_1)-\operatorname{cw}_p(\omega_0)$。
+
+固定平凡化的$\operatorname{CS}_3(A)=\operatorname{tr}(A\dd A+2A^3/3)$一般不是非平凡丛上的全局形式；它不能与两个全局联络的相对$T_p$混同。本章构造的是实de Rham类，一般整类比较、挠信息、Euler指标比较/CGB、签名定理和怪球完整构造分类另列未证依赖。

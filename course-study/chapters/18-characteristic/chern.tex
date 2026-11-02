@@ -1,0 +1,56 @@
+\subsection{Chern形式及其实性}
+设$E$为秩$r$的光滑复向量丛，先选Hermite内积及保持它的联络。在酉标架中曲率矩阵满足$F^*=-F$。定义总Chern形式为
+\begin{equation}\label{eq:total-chern}
+ c(\nabla;t)=\det\left(I+t\frac{iF}{2\pi}\right)
+ =\sum_{k=0}^r t^k c_k(\nabla),\qquad c_0=1.
+\end{equation}
+$t$在这里是记账用的形式参数，每个$c_k$为实$2k$形式。行列式在偶形式组成的交换代数中计算；若把一次联络矩阵$A$直接放入同一行列式，交换性依据就丢失了。
+
+\Needspace{17\baselineskip}
+\begin{proposition}\label{prop:chern-properties}
+各$c_k(\nabla)$闭，换标架不变，且对拉回自然。其上同调类$c_k(E)$与联络及Hermite度量无关，并有
+\begin{gather*}
+ c(E\oplus F)=c(E)c(F),\qquad c_1(E)=c_1(\det E),\\
+ c_k(E^*)=c_k(\bar E)=(-1)^kc_k(E).
+\end{gather*}
+前述等式是类的等式；选直和、对偶、行列式诱导联络时才直接成为相应形式的等式。
+\end{proposition}
+\begin{proof}
+行列式的各系数为$\mathrm{GL}(r,\mathbb C)$共轭不变多项式，由定理\ref{thm:chern-weil-closed}给闭性、拼接和自然性。酉标架中$iF$满足共轭转置不变，行列式又不因转置改变，故所有系数为实形式。
+
+联络无关性由定理\ref{thm:cw-transgression}给出，其证明只用不变性及Bianchi，不预用本命题。即使两端联络保持的是不同Hermite内积，也可在全体复线性联络的仿射空间中连接；中间形式可为复值，但两个实端点之差等于传递形式\emph{实部}的外微分，故给同一实类。
+
+直和联络曲率为分块对角，行列式乘法即给Whitney公式。对偶联络曲率$-F^{\mathsf T}$把每个$k$次系数乘$(-1)^k$。共轭丛的曲率为$\bar F=-F^{\mathsf T}$（酉标架中），得到同一结论。行列式线丛的曲率为$\operatorname{tr}F$，其一阶形式与原丛的一阶形式相同。任意其他联络再由联络无关性比较。
+\end{proof}
+若$E$有无零光滑截面，归一化后由第16章分裂为$\mathbb C\oplus E'$，$E'$秩为$r-1$。Whitney公式及秩截断给$c_r(E)=0$；这仅是必要条件。平凡丛上仍可有非零的\emph{恰当}Chern形式，例如第17章平凡线丛取$H=e^{|z|^2}$，其曲率为$-\dd z\wedge\dd\bar z$，对应形式非零而类为零。
+
+\subsection{Chern特征与低阶展开}
+记$B=iF/(2\pi)$，定义
+\begin{equation}\label{eq:chern-character}
+ \operatorname{ch}(\nabla)=\operatorname{tr}e^B
+ =r+\sum_{k\geq1}\frac1{k!}\operatorname{tr}B^k.
+\end{equation}
+按底空间维数截断后仅有限项有贡献，故无分析收敛问题。对交换偶形式系数，Jacobi公式给
+\[
+ \frac{\dd}{\dd t}\log\det(I+tB)
+ =\operatorname{tr}\bigl(B(I+tB)^{-1}\bigr).
+\]
+将$(I+tB)^{-1}$按形式幂级数展开，积分且用$t=0$常数项为零，得$\log\det(I+tB)=\operatorname{tr}\log(I+tB)$。比较系数得到
+\begin{align*}
+ c_1&=\operatorname{tr}B,&
+ c_2&=\tfrac12\bigl((\operatorname{tr}B)^2-\operatorname{tr}B^2\bigr),\\
+ \operatorname{ch}_1&=c_1,&
+ \operatorname{ch}_2&=\tfrac12(c_1^2-2c_2),\\
+ \operatorname{ch}_3&=\tfrac16(c_1^3-3c_1c_2+3c_3).
+\end{align*}
+这些首先是选定同一联络的形式恒等式，随后也是类恒等式。不能由$\operatorname{ch}$常带分母就否定整Chern类的归一化。
+
+对直和联络，迹分块相加；对张量积联络，曲率为$F_E\otimes I+I\otimes F_F$。两项在偶形式代数中交换，指数可分解，且张量积矩阵的迹等于迹的乘积。因此
+\[
+ \operatorname{ch}(E\oplus F)=\operatorname{ch}(E)+\operatorname{ch}(F),\qquad
+ \operatorname{ch}(E\otimes F)=\operatorname{ch}(E)\operatorname{ch}(F).
+\]
+这个证明不依赖尚未建立的拓扑分裂原理。对线丛$L$，$\operatorname{ch}(L)=e^{c_1(L)}$且$c_1(L\otimes K)=c_1(L)+c_1(K)$。
+
+\subsection{实类与整类的界线}
+第16--17章已经证明在$S^2$上圆群曲率周期的整数性，重言线丛满足$\int c_1(L)=-1$。但对任意秩、任意底空间，一般整类比较仍需拓扑构造及de Rham比较定理：存在拓扑整类$c_k^{\mathbb Z}(E)$，其到实上同调并与de Rham上同调识别后的像等于上述$c_k(E)$。\textbf{此一般比较在本书尚未证明。}后面的Pontryagin、Euler形式也采用相同层次的边界。即使承认比较，映到实系数后挠元消失；实类一般不能唯一还原整类。

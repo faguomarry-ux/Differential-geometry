@@ -61,3 +61,11 @@
 ## 第16章新增（2026-11-01）
 
 `associated-coordinates`显示同一相伴元素在两截面中的表示，右乘g与系数乘ρ(g)^-1配合。`principal-horizontal`位于同一切空间，竖直向量平移排列成分解图，斜水平补空间不表示任何天然正交。`hopf-potentials`取单位球面沿正交投影(X,Y,Z)→(X,(Y+√3 Z)/2)，整体放大2倍，纬线ϑ=75°；箭头由参数φ增加给出，两个势的符号与s_S=s_N exp(-iφ)一致。球面显示为投影示意，未复制原书或网页图形代码。三图原创，模块`modules/principal-bundles.tex`，无原图号。
+
+## 第17章复几何三图（v0.18）
+
+`complex-types`、`projective-potentials`、`complex-conditions`均为原创TikZ组织，模块为`modules/complex-kahler.tex`，无原书图号。分别表示复线性特征分解/反线性共轭、局部势经i∂bar∂后的相容性、以及有明确外引边界的条件关系。图中不是实切空间直和、等距射影平面或NN定理证明；相应限制在正文图注中说明。
+
+## 第18章示性类三图（v0.19）
+
+`characteristic-descent`、`connection-transgression`、`characteristic-limits`均为原创TikZ组织，位于`modules/characteristic-classes.tex`。分别表示不变曲率多项式的基本性/闭性、联络仿射线段和全局相对传递、四维示性数检测与七维消失的局限。四维数值取复定向；图不代表分类空间、整数提升或怪球构造证明，无原书图号。

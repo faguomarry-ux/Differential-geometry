@@ -1,0 +1,45 @@
+\subsection{从全纯图册到几乎复张量}
+\begin{definition}\label{def:complex-atlas}
+实$2m$维流形的复图册由取值于$\mathbb C^m$开集的坐标卡组成，重叠处换元为全纯双射且逆全纯。两个图册的并仍满足此条件时视为同一复结构，装备复结构者称复流形（complex manifold）。几乎复结构（almost complex structure）则仅为光滑实丛自同态$J:TM\to TM$，满足$J^2=-I$。
+\end{definition}
+这里全纯可理解为在每点具有收敛复幂级数表示。对光滑映射$f:U\subset\mathbb C^m\to\mathbb C^r$，等价判据是$\partial f/\partial\bar z^j=0$：幂级数逐项求导给必要性；反向固定除一个以外的变量，用单变量Cauchy公式，依次在紧含于$U$的多圆盘上迭代，得到
+\[
+ f(z)=\frac1{(2\pi i)^m}\int\cdots\int
+ \frac{f(\zeta)\,\dd\zeta^1\cdots\dd\zeta^m}
+ {\prod_j(\zeta^j-z^j)}.
+\]
+把各分母按几何级数展开，在更小闭多圆盘上一致收敛，故积分可逐项进行并给出幂级数。这一步使用单变量复分析及紧集上一致收敛的积分换序，没有证明一般几乎复结构存在这类坐标。
+
+写$z^j=x^j+iy^j$，规定
+\[
+ J\partial_{x^j}=\partial_{y^j},\quad
+ J\partial_{y^j}=-\partial_{x^j},\qquad
+ \partial_j=\tfrac12(\partial_{x^j}-i\partial_{y^j}),\quad
+ \partial_{\bar j}=\tfrac12(\partial_{x^j}+i\partial_{y^j}).
+\]
+全纯换元的实微分与乘$i$交换，所以局部$J$拼成全局张量，且$J^2=-I$。反过来，若$J$确能在一族实坐标中写成上述形式，则两张这种坐标间的微分与乘$i$交换；这就是Cauchy--Riemann方程，故换元全纯。这只能证明\emph{已有适配坐标之间}的相容性，不能从$J^2=-I$直接造出坐标。
+
+\Needspace{14\baselineskip}
+\begin{proposition}\label{prop:complex-map-inverse}
+复流形间的光滑映射$f$全纯，当且仅当$\dd f\circ J_M=J_N\circ\dd f$。若复维相同且$\dd f_p$可逆，则$f$在$p$附近为双全纯映射。
+\end{proposition}
+\begin{proof}
+坐标下微分与乘$i$交换等价于各分量的$\partial_{\bar j}f=0$，由上述判据得第一条。实逆映射定理给光滑局部逆；等式左右乘逆微分说明逆也与$J$交换，故逆全纯。这里没有把任意实局部微分同胚误认为双全纯。
+\end{proof}
+例如共轭映射$z\mapsto\bar z$为实微分同胚，但其微分反交换$J$，不全纯。复环面$\mathbb C^m/\Lambda$中$\Lambda$为实满秩格：足够小的开球与非零格平移不交，投影给局部坐标；重叠换元为平移，故全纯。格离散和有界基本平行多面体分别给Hausdorff性与紧致性。
+
+\subsection{复定向及线性类型分解}
+复矩阵$A+iB$在实坐标中的矩阵为$\left(\begin{smallmatrix}A&-B\\B&A\end{smallmatrix}\right)$，复化后相似于$\operatorname{diag}(A+iB,A-iB)$。因此实行列式为$|\det_{\mathbb C}(A+iB)|^2>0$，全纯坐标自然定向。一般几乎复流形也可在每点附近选复基$v_1,\ldots,v_m$，以$(v_1,Jv_1,\ldots,v_m,Jv_m)$定向；复换基仍有正实行列式，故定向拼接。
+
+在$T_{\mathbb C}M=TM\otimes_{\mathbb R}\mathbb C$上复线性延拓$J$。多项式$u^2+1$的根互异，因而
+\begin{equation}\label{eq:complex-projections}
+ T_{\mathbb C}M=T^{1,0}M\oplus T^{0,1}M,\qquad
+ \pi^{1,0}=\tfrac12(I-iJ),\quad\pi^{0,1}=\tfrac12(I+iJ).
+\end{equation}
+两空间分别为$+i,-i$特征丛，互为复共轭，秩均为$m$。在全纯坐标中分别由$\partial_j,\partial_{\bar j}$张成。余切丛的$(1,0)$部分定义为$T^{0,1}$的零化子，局部基为$\dd z^j$，另一部分为$\dd\bar z^j$。外幂分解为$\Lambda^kT^*_{\mathbb C}M=\bigoplus_{p+q=k}\Lambda^{p,q}$；基中先列$p$个$\dd z$再列$q$个$\dd\bar z$，不额外加入阶乘。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/complex-types}
+\caption{复化切丛的两个特征子丛。箭头表示代数投影与共轭；共轭为反线性，图不是把实切空间分成两个实子空间。}
+\label{fig:complex-types}
+\end{figure}

@@ -1,18 +1,28 @@
 \chapter{示性类与Chern--Weil理论}
 \label{ch:18-characteristic}
-\ChapterPlan{周第8章}{待撰写；以下为写作计划，不是已完成正文}
+\ChapterPlan{周第8章（本地页码待核对）；Meinrenken、Freed讲义及Milnor原论文补充}{正文证明初稿；8题详解与3幅原创图，尚未独立数学审阅}
 
+第16章的曲率本来依赖联络，第17章却已看到某些曲率积分不能通过换联络消去。本章解释这件事的机制：先对曲率代入共轭不变多项式，再用Bianchi把它变成闭形式；改变联络所造成的差恰为一个全局外微分。所得不变量首先生活在实de Rham上同调中，不能仅靠曲率公式便获得整系数中的挠信息或完整的丛分类。
+
+流形仍有限维、Hausdorff、第二可数、光滑、无边界；涉及边界时另行声明。主丛用右作用，曲率为$\Omega=\dd\omega+[\omega,\omega]/2$，向量丛中为$F=\dd A+A\wedge A$。复丛沿用第17章归一化$\det(I+iF/(2\pi))$，因此Hopf相伴重言线丛的一阶Chern周期为$-1$。本文所称Chern、Pontryagin、Euler\emph{类}若未加上标，均指本章构造的实de Rham类；与拓扑整类的比较单列外引。
+
+\Needspace{16\baselineskip}
 \section{不变多项式与Chern--Weil构造}
-\PlannedSection
+\input{course-study/chapters/18-characteristic/invariants}
 
+\Needspace{16\baselineskip}
 \section{Chern类、Pontryagin类与Euler类}
-\PlannedSection
+\input{course-study/chapters/18-characteristic/chern}
+\input{course-study/chapters/18-characteristic/real}
 
+\Needspace{16\baselineskip}
 \section{联络无关性与传递形式}
-\PlannedSection
+\input{course-study/chapters/18-characteristic/transgression}
+\input{course-study/chapters/18-characteristic/secondary}
 
+\Needspace{16\baselineskip}
 \section{示性数与怪球专题}
-\PlannedSection
+\input{course-study/chapters/18-characteristic/numbers}
+\input{course-study/chapters/18-characteristic/exotic}
 
-\section{例题、习题与解答计划}
-需配置概念判断题、坐标计算题、完整证明题及反例题；解答必须与题号对应。
+\input{course-study/chapters/18-characteristic/exercises}

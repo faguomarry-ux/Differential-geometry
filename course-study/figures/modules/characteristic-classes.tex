@@ -1,0 +1,22 @@
+% Chapter 18. Descent, parameter integration, and detection boundaries.
+\DGDeclareDiagram{characteristic-descent}{%
+ \node[dg/box,text width=35mm] (a) at (-2.5,1) {$\Omega\in\Omega^2(\mathcal P;\mathfrak g)$};
+ \node[dg/box,text width=35mm] (b) at (2.5,1) {$P(\Omega,\ldots,\Omega)$};
+ \node[dg/box,text width=45mm] (c) at (2.5,-1) {$\operatorname{cw}_p(\omega)\in\Omega^{2k}(M)$};
+ \draw[dg/map] (a)--(b) node[midway,above=5mm] {不变多项式};
+ \draw[dg/map] (c)--(b) node[midway,right] {$\pi^*$};
+ \node[align=center] at (-2.5,-1) {$D\Omega=0$\\$\Longrightarrow\ \dd\operatorname{cw}_p=0$};}
+\DGDeclareDiagram{connection-transgression}{%
+ \draw[dg/axis] (-3.5,1.3)--(3.5,1.3) node[right] {联络仿射空间};
+ \DGPoint[above]{-2.7,1.3}{$\omega_0$}
+ \DGPoint[above]{0,1.3}{$\omega_t=\omega_0+ta$}
+ \DGPoint[above]{2.7,1.3}{$\omega_1$}
+ \draw[dg/vector] (-2.7,1.3)--(2.7,1.3);
+ \node at (0,.15) {$T_p=k\int_0^1P(a,\Omega_t^{k-1})\dd t$};
+ \node at (0,-1.05) {$\dd T_p=\operatorname{cw}_p(\omega_1)-\operatorname{cw}_p(\omega_0)$};}
+\DGDeclareDiagram{characteristic-limits}{%
+ \node[dg/box,text width=31mm] (a) at (-2.6,1.1) {$\mathbb{CP}^2$\\$\int p_1=3$};
+ \node[dg/box,text width=31mm] (b) at (2.6,1.1) {$S^2\times S^2$\\$\int p_1=0$};
+ \node at (0,1.1) {$\ne$};
+ \node[dg/box,text width=72mm] (c) at (0,-1.1) {光滑同伦七维球面\\$H^4=0\ \Longrightarrow\ p_1=0$};
+ \node at (0,-2.3) {相同的消失结果不等于完整光滑分类};}

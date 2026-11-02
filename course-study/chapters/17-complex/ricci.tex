@@ -1,0 +1,39 @@
+\subsection{迹曲率、Ricci形式与尺度}
+对Chern矩阵取迹，Jacobi行列式求导公式给$\operatorname{tr}A=\partial\log\det H$。因为$\det H>0$，这里用普通实对数，无须额外的线丛平凡化。于是
+\begin{equation}\label{eq:chern-trace}
+ \operatorname{tr}F=-\partial\bar\partial\log\det H.
+\end{equation}
+换标架的曲率共轭律使迹成为全局二形式，且度量相容使其在实向量输入上为纯虚，故$i\operatorname{tr}F$为实形式。两Hermite度量的行列式之比在换标架时不变，因此它们的迹曲率相差全局$-\partial\bar\partial$的实函数；这里只证明此微分形式结论，第18章将构造实de Rham示性类，一般整类的构造与比较另列待办。
+
+\begin{theorem}\label{thm:kahler-ricci}
+Kahler流形的Ricci形式取$\rho(X,Y)=\operatorname{Ric}(JX,Y)$，则
+\begin{equation}\label{eq:kahler-ricci}
+ \rho=i\operatorname{tr}F_{T^{1,0}}
+ =-i\partial\bar\partial\log\det G,
+ \qquad \operatorname{Ric}_{a\bar b}=-\partial_a\partial_{\bar b}\log\det G.
+\end{equation}
+特别地$\dd\rho=0$。本书的Fubini--Study度量满足$\rho=(m+1)\omega_{\mathrm{FS}}$，即实张量$\operatorname{Ric}=(m+1)g_{\mathrm{FS}}$。
+\end{theorem}
+\begin{proof}
+在全纯坐标中，$\nabla_{\bar b}\partial_c=0$，所以
+\[
+ R(\partial_a,\partial_{\bar b})\partial_c
+ =-\partial_{\bar b}\Gamma^d_{ac}\partial_d.
+\]
+Chern曲率为$(1,1)$型说明$R(\partial_a,\partial_b)=0$及其共轭。计算第11章的$\operatorname{Ric}(X,Y)=\operatorname{tr}(Z\mapsto R(Z,X)Y)$时，可在复化空间取迹，数值等于实迹的复双线性延拓。取$X=\partial_a,Y=\partial_{\bar b}$，在$T^{1,0}$上的对角块为零；在$T^{0,1}$上有
+\[
+ R(\partial_{\bar k},\partial_a)\partial_{\bar b}
+ =-\partial_a\overline{\Gamma^l_{kb}}\,\partial_{\bar l}.
+\]
+挠率为零使$\Gamma^l_{kb}=\Gamma^l_{bk}$，故其迹为$-\partial_a\partial_{\bar b}\log\det G$，两个同型Ricci分量为零。$J\partial_a=i\partial_a$给出$\rho$的系数，正好是\eqref{eq:chern-trace}乘$i$。闭性由Dolbeault恒等式得到。最后将\eqref{eq:fs-matrix}的行列式代入，便得$\rho=(m+1)i\partial\bar\partial\log(1+r^2)$；由$g(X,Y)=\omega(X,JY)$还原实Ricci张量即可。
+\end{proof}
+将度量乘正常数$c$，$G$乘$c$，$\log\det G$增加常数$m\log c$，所以$\rho$与作为$(0,2)$张量的Ricci不变，而Einstein常数除以$c$。复维一时$\rho=K\omega$，故前面的$\mathbb{CP}^1$模型确有$K=2$。一般Hermite流形上$i\operatorname{tr}F$仍有定义，但不能未经Kahler假设便把它当作实Levi--Civita的Ricci形式。
+
+\subsection{紧致性产生的上同调障碍}
+\begin{proposition}\label{prop:kahler-powers}
+紧致无边界Kahler流形的$[\omega]^k\in H^{2k}_{\mathrm{dR}}(M;\mathbb R)$在$1\leq k\leq m$时均非零。特别地其第二de Rham上同调非零，且不存在全局实势$\omega=i\partial\bar\partial\varphi$。
+\end{proposition}
+\begin{proof}
+可逐个连通分支证明。复定向及体积公式给$\int_M\omega^m=m!\operatorname{Vol}_g(M)>0$。若$\omega^k=\dd\eta$，闭性使$\omega^m=\dd(\eta\wedge\omega^{m-k})$，与Stokes矛盾。若有全局实势，则$\omega=\dd\bigl(\tfrac i2(\bar\partial-\partial)\varphi\bigr)$；括号内为实一形式，又与$k=1$结论矛盾。非紧空间上的Euclid全局势不矛盾，因为这里的正体积积分和无边界Stokes用到了紧致性。
+\end{proof}
+第9章已算出$m>1$时$H^2_{\mathrm{dR}}(S^{2m})=0$，所以这些球面都不能承载Kahler结构；这排除的是Kahler度量，并不排除可能的非Kahler复结构。第17.4节将据此区分拓扑障碍与复可积性问题。

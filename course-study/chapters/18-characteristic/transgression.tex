@@ -1,0 +1,71 @@
+\subsection{两联络之间的全局相对形式}
+设同一主丛上两联络为$\omega_0,\omega_1$。差$a=\omega_1-\omega_0$为水平$\operatorname{Ad}$等变一形式，因而是底空间的伴随丛值一形式。令$\omega_t=\omega_0+ta$，$0\leq t\leq1$，则
+\begin{equation}\label{eq:curvature-interpolation}
+ \Omega_t=\Omega_0+tD_0a+\tfrac{t^2}{2}[a,a],
+ \qquad \dot\Omega_t=D_ta.
+\end{equation}
+这是在总空间展开$\dd\omega_t+[\omega_t,\omega_t]/2$得到的等式；矩阵情形最后一项为$t^2a\wedge a$。与$\omega_t$不同，$a$竖直收缩为零，因此$P(a,\Omega_t,\ldots)$也下降到底空间。
+
+\Needspace{20\baselineskip}
+\begin{theorem}[相对传递公式]\label{thm:cw-transgression}
+对齐次$k\geq1$的不变$p$，定义全局$(2k-1)$形式
+\begin{equation}\label{eq:cw-transgression}
+ T_p(\omega_0,\omega_1)
+ =k\int_0^1P(a,\Omega_t,\ldots,\Omega_t)\,\dd t.
+\end{equation}
+积分中的总空间形式均以下沉后的形式理解。则
+\begin{equation}\label{eq:cw-difference}
+ \operatorname{cw}_p(\omega_1)-\operatorname{cw}_p(\omega_0)
+ =\dd T_p(\omega_0,\omega_1).
+\end{equation}
+因此Chern--Weil类与联络无关，且对丛同构及拉回自然。
+\end{theorem}
+\begin{proof}
+对曲率的$k$个偶次输入求导，它们可无符号交换，故
+\[
+ \frac{\partial}{\partial t}P(\Omega_t,\ldots,\Omega_t)
+ =kP(D_ta,\Omega_t,\ldots,\Omega_t).
+\]
+命题\ref{prop:invariant-derivative}用在首个一次输入$a$及其余二次输入上，再用$D_t\Omega_t=0$，得到右端等于$k\dd P(a,\Omega_t,\ldots,\Omega_t)$。系数对$t$光滑，在紧区间积分可逐坐标与外微分交换；积分即给所需差值。全部形式已下降，故这是$M$上的全局恰当性，不是仅在某张平凡化卡中的计算。自然性先在形式层成立，传递形式也与拉回交换，所以类的自然性不依赖选定联络。
+\end{proof}
+在$M\times[0,1]$上取无$\dd t$分量的联络$\omega_t$，其曲率为$\widetilde\Omega=\Omega_t+\dd t\wedge a$。代入$P$得到
+\[
+ P(\widetilde\Omega,\ldots,\widetilde\Omega)
+ =P(\Omega_t,\ldots,\Omega_t)
+ +k\dd t\wedge P(a,\Omega_t,\ldots,\Omega_t),
+\]
+右边省略的曲率输入补足到总共$k$个。对这个闭形式在参数方向积分，也得到差值公式；这解释了为何次数下降1。它不是把两底流形之间任意选一条路径来作平行移动。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/connection-transgression}
+\caption{联络仿射空间中的线段及参数积分。$T_p$为两联络的相对量，外微分等于两个特征形式之差；单个曲率代表随联络变化，而类保持不变。}
+\label{fig:connection-transgression}
+\end{figure}
+
+\subsection{换连接路径与模恰当的可加性}
+下文$P(a,\Omega^{k-1})$表示把$\Omega$重复填入$k-1$个位置，不是对$P$的值乘方。一般光滑联络路径也可用$k\int P(\dot\omega_t,\Omega_t^{k-1})\dd t$定义$T$。不同路径给出的$T$不必完全相等，但在固定端点时相差恰当形式。为看清这一点，取固定端点的两参数联络$\omega_{s,t}$，记$a=\partial_t\omega$、$b=\partial_s\omega$。直接微分并用Bianchi及$\partial_sa=\partial_tb$，得到
+\begin{align*}
+ &\partial_s\bigl(kP(a,\Omega^{k-1})\bigr)
+ -\partial_t\bigl(kP(b,\Omega^{k-1})\bigr)\\
+ &\hspace{1em}=-k(k-1)\dd P(a,b,\Omega^{k-2}).
+\end{align*}
+具体地，未消掉的项为
+\[
+ k(k-1)\bigl(P(a,D b,\ldots)-P(b,D a,\ldots)\bigr).
+\]
+另一方面，
+\[
+ \dd P(a,b,\ldots)=P(Da,b,\ldots)-P(a,Db,\ldots).
+\]
+$Da$与$b$交换无符号，故得到负号。固定端点使$t=0,1$处$b=0$，积分便得
+\[
+ T_{s=1}-T_{s=0}
+ =-k(k-1)\dd\int_0^1\!\int_0^1P(a,b,\Omega^{k-2})\,\dd t\,\dd s.
+\]
+$k=1$时右端取零，直接积分$P(\dot\omega)$亦知结果只依赖端点。仿射空间中任意两条固定端点路径可线性同伦，因此结论适用。拼接路径的积分相加，遂有
+\[
+ T_p(\omega_0,\omega_2)\equiv
+ T_p(\omega_0,\omega_1)+T_p(\omega_1,\omega_2)
+ \pmod{\dd\Omega^{2k-2}(M)}.
+\]
+分段光滑拼接可逐段积分，或先作固定端点的平滑参数重标；没有将此模恰当关系写成未经选择的逐形式恒等式。

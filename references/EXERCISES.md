@@ -228,3 +228,35 @@ Gorodski 2021作者官方讲义 `https://users.ime.usp.br/~gorodski/ps/symmetric
 Wendl官方索引 https://www.mathematik.hu-berlin.de/~wendl/connections.html ，第2章 https://www.mathematik.hu-berlin.de/~wendl/pub/connections_chapter2.pdf ，第3章 https://www.mathematik.hu-berlin.de/~wendl/pub/connections_chapter3.pdf 。主联络公理/水平补见第3章定义3.35及题3.36（印刷90/独立PDF22）；本书已在正文证明，不另冒充新增原题。
 
 Meinrenken官方 https://www.math.toronto.edu/mein/teaching/moduli.pdf 共18页；核对2.2–2.5、3.2–3.6（印刷/PDF4–13）。其用左作用及逆指数描述基本场，规范群左作用取逆拉回；本书统一为右主作用、正指数基本场及联络拉回右作用。相关公式按这组约定重写；相伴构造和Hopf符号由本工程局部表达逐项核对。不预用分类空间、一般自由适当商定理、一般Chern类或完整holonomy结构理论。
+
+## 第17章复流形与Kahler几何（v0.18）
+
+2026-11-02读取并缓存Moroianu《Lectures on Kähler Geometry》2004-03-16讲义版97页，Oxford教学托管PDF： https://people.maths.ox.ac.uk/joyce/Nairobi2019/MoroianuKahlerGeometry.pdf 。查看以下原题所在整页，印刷页与该PDF物理页相同；源题改述与新增部分分别说明。周第7章DjVu页码及梁书对应题尚未核对，不虚构题号。
+
+| 本书位置 | 来源性质 | 原位置及改编边界 | 双页码 |
+|---|---|---|---|
+| 17.1 | 第1.5节题2、3合并扩展 | 实行列式模平方及几乎复定向；新增反全纯映射的定向奇偶 | 印刷10/PDF10 |
+| 17.2 | 第5.5节题1、2的限制/扩展 | 原题1为二维几乎复背景；本题明确先给可积复曲线，避免隐用NN，新增高维共形刚性 | 印刷31/PDF31 |
+| 17.3 | 第4.3节题4改述扩展 | 直和/张量积Chern自然性；新增对偶、行列式、曲率及转置楔积号 | 印刷26/PDF26 |
+| 17.4 | 第7.4节题2改述扩展 | CP1与半径1/√2球面；改用显式立体坐标，不调用整体常曲率分类，新增Hopf尺度对照 | 印刷41/PDF41 |
+| 17.5–17.7 | 原创补充 | 非可积模型bar∂平方失效、重言线丛全纯/酉标架、闭非退化二形式各次幂与球面障碍 | 无原题号 |
+| 17.8 | 第1.5节题4改述扩展 | 伸缩商的复结构与S1×S(2m−1)；新增可下降的特定Hermite度量非闭性，未升级为所有度量不存在 | 印刷11/PDF11 |
+| 三幅图 | 原创TikZ | 类型分解、局部势拼接、结构条件与NN外引边界 | 无原图号 |
+
+正文交叉核对Moroianu第1–2节印刷/PDF6–16、第4–7节24–41；本书曲率、矩阵指标及FS尺度独立固定。NN充分性、一般局部势和Koszul–Malgrange反向结论保留明确未证依赖；未把源书后面的Kähler恒等式当成本章成果。球面研究动态另核对Engel arXiv:2609.38442v1、Viaclovsky arXiv:2609.33785v1官方摘要及Engel作者版引言；未据此宣称已完成其证明审核或期刊审稿确认。
+
+## 第18章示性类与Chern–Weil（v0.19）
+
+2026-11-02读取并缓存Freed《Geometry of Dirac Operators》约1987年初稿，作者托管PDF https://abel.math.harvard.edu/~dafr/DiracNotes.pdf ，共122页。放大查看印刷92/PDF94整页，原题号及脚注29可见；该讲义注明preliminary，不能把来源本身视为无排印问题。周第8章DjVu页码和梁书对应题尚未核实，不造题号。
+
+| 本书位置 | 来源性质 | 原位置与新增内容 | 双页码 |
+|---|---|---|---|
+| 18.1 | Freed6.1.13改述扩展 | 带次数迹/协变外微分；新增奇一次矩阵反例。原页括号把超交换子写成加号，本书按直接计算取减号，避免零次已矛盾 | 印刷92/PDF94 |
+| 18.2 | Freed6.1.15改述扩展 | 迹曲率幂及指数闭性；原页“tr∇² for all k”遗漏的幂次按迹F^k重写。新增低阶Chern特征、直和/张量积 | 印刷92/PDF94 |
+| 18.3 | Freed6.1.16改述扩展 | 参数导数及指数传递；原题取e^(−F)，本书取任意λ并以λ=i/(2π)匹配既定归一化，新增局部CS3和全局性区别 | 印刷92/PDF94 |
+| 18.4–18.8 | 原创补充 | CP2线丛幂直和、Pfaffian定向、线丛相对传递/Möbius反例、乘积曲面示性数、稳定球面与七维局限 | 无原题号 |
+| 三幅图 | 原创TikZ | 基本形式下降、联络参数积分、检测与分类边界 | 无原图号 |
+
+补充来源：Meinrenken《Group actions on manifolds》Spring2003，第5节印刷/PDF43–48，https://www.math.toronto.edu/mein/teaching/LectureNotes/action.pdf ，重点核对定理5.1（44页）及命题5.10（47页）。源书用其群作用记号，本书保持第16章右主作用约定，并直接证明有限维极化/Bianchi传递，不预引Weil/分类空间比较。
+
+怪球专题核对Milnor1956原论文印刷399–405，DOI https://doi.org/10.2307/1969983 ，扫描 https://sites.math.rutgers.edu/~feehan/teaching/math866/milnor7sphere.pdf 共8页（含首张JSTOR封页）；查看印刷399/PDF2的定理1、相对p1配对及签名。原论文不是新增练习题源；其整类/填充/签名依赖、怪球完整构造及分类不冒充本章已证内容。

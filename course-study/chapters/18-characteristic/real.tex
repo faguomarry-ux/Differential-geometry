@@ -1,0 +1,62 @@
+\subsection{Pontryagin形式与稳定性}
+实秩$n$向量丛$V$选内积及度量相容联络，曲率矩阵记$\Omega$，在正交标架中$\Omega^{\mathsf T}=-\Omega$。复化丛$V_{\mathbb C}$的曲率仍为同一矩阵。定义
+\begin{equation}\label{eq:pontryagin}
+ p_k(V)=(-1)^kc_{2k}(V_{\mathbb C}),\qquad
+ p(\nabla;t)=\det\left(I+t\frac{\Omega}{2\pi}\right)
+ =1+\sum_{k\geq1}t^{2k}p_k(\nabla).
+\end{equation}
+后式无奇数幂，因为转置给$\det(I+t\Omega)=\det(I-t\Omega)$；与Chern形式比较$i^{2k}=(-1)^k$即得前式。$p_k$为实$4k$次闭形式，其类不依赖联络、内积或定向，并满足Whitney乘法及加平凡实丛后的稳定性。特别地
+\[
+ p_1(\nabla)=-\frac1{8\pi^2}\operatorname{tr}(\Omega\wedge\Omega).
+\]
+若$E$为复丛，则$(E_{\mathbb R})_{\mathbb C}\simeq E\oplus\bar E$：把实复化中的乘$i$分成两特征丛，分别与$E$和$\bar E$识别即可。因此Whitney及共轭号给
+\begin{equation}\label{eq:p1-underlying-complex}
+ p_1(E_{\mathbb R})=c_1(E)^2-2c_2(E).
+\end{equation}
+这里实类的比较由丛同构及本章公式直接证明，不需整系数分裂原理。
+
+\subsection{Pfaffian与定向Euler形式}
+对实斜对称$2r$阶矩阵$X$定义
+\[
+ \operatorname{Pf}(X)=\frac1{2^r r!}
+ \sum_{\sigma\in S_{2r}}\operatorname{sgn}(\sigma)
+ X_{\sigma(1)\sigma(2)}\cdots X_{\sigma(2r-1)\sigma(2r)}.
+\]
+辅助外代数中$\Xi=\sum_{i,j}X_{ij}z_i\wedge z_j/2$满足$\Xi^r/r!=\operatorname{Pf}(X)z_1\wedge\cdots\wedge z_{2r}$。改变基并比较顶外幂系数，得到
+\[
+ \operatorname{Pf}(Q^{\mathsf T}XQ)=\det Q\,\operatorname{Pf}(X).
+\]
+所以它是$\mathrm{SO}(2r)$不变多项式，反向正交变换则改变符号。在实斜型的正交分块标准形上，Pfaffian是每个二阶块右上角元素的乘积，行列式是此乘积的平方；由换基律得到$\operatorname{Pf}(X)^2=\det X$。作为多项式恒等式，它也适用于偶形式系数。
+
+\Needspace{18\baselineskip}
+\begin{theorem}\label{thm:euler-form}
+定向实秩$2r$丛$V$的Euler形式为
+\begin{equation}\label{eq:euler-form}
+ e(\nabla)=\frac{\operatorname{Pf}(\Omega)}{(2\pi)^r}.
+\end{equation}
+它闭，其类与度量相容联络及内积无关，反转丛定向使其变号。对定向偶秩丛有$e(V\oplus W)=e(V)e(W)$，且$p_r(V)=e(V)^2$。若$V$有无零光滑截面，则$e(V)=0$。
+\end{theorem}
+\begin{proof}
+固定内积后应用$\mathrm{SO}(2r)$主丛的Chern--Weil构造及定理\ref{thm:cw-transgression}，得到闭性和联络无关性。反向标架的行列式为$-1$，由Pfaffian换基律给定向号。直和取按先$V$后$W$排列的定向标架，曲率分块；辅助外代数顶次项相乘给Euler乘法。Pfaffian平方等于行列式，再对照\eqref{eq:pontryagin}的最高项，得$p_r=e^2$。
+
+若更换内积为$g_1(v,w)=g_0(Bv,w)$，$B$为$g_0$正定自伴场。正平方根光滑：在正根$C$处，映射$C\mapsto C^2$的导数为$T\mapsto CT+TC$，在对角基中各系数乘正数$\lambda_i+\lambda_j$，可逆，故逆函数定理给光滑依赖。于是$B^{-1/2}$为保向丛等距同构，将两个正交标架主丛识别；把第二个联络移回第一个主丛后才作仿射连接，得到同一Euler类。不能直接插值不同内积的相容联络，并默认为中间曲率仍在同一个$\mathfrak{so}$中。
+
+最后把无零截面归一化，取分裂$V=\mathbb R\oplus V'$及使该截面平行的度量联络。其曲率首行首列为零，Pfaffian各项均含零因子，故此代表为零；联络无关性即给结论。
+\end{proof}
+复秩$r$丛按$(u_1,iu_1,\ldots,u_r,iu_r)$取底层实丛的复定向，有
+\begin{equation}\label{eq:euler-top-chern}
+ e(E_{\mathbb R})=c_r(E).
+\end{equation}
+证明可在多项式层完成：对$X\in\mathfrak u(r)$用酉对角化写成$i\operatorname{diag}(\lambda_1,\ldots,\lambda_r)$，其实表示的二阶块为$\left(\begin{smallmatrix}0&-\lambda_j\\\lambda_j&0\end{smallmatrix}\right)$。Pfaffian与$\det(iX)$均为$(-1)^r\prod_j\lambda_j$。酉换基的实表示保向，两边均不变，故对所有$X$相同；极化后代入曲率即得公式。这里仅用有限维Hermite谱定理，没有假设丛全局分裂为线丛。
+
+\subsection{球面归一化及不消失向量场障碍}
+第14章的二维Euler形式就是$K\mathrm{vol}/(2\pi)$。一般半径$R$的$S^{2r}$由第13章Gauss方程给常曲率$R^{-2}$，因而$\Omega_{ij}=R^{-2}\theta^i\wedge\theta^j$。Pfaffian的每个排列项都给同向体积形式，故
+\[
+ e(TS^{2r},\nabla)=
+ \frac{(2r)!}{(2\pi)^r2^r r!\,R^{2r}}\mathrm{vol}.
+\]
+球面面积为$2\pi^{r+1/2}R^{2r}/\Gamma(r+1/2)$，可由Euclid高斯积分的径向形式求得；半整数Gamma递推给
+\[
+ \int_{S^{2r}}e=2.
+\]
+这是一组具体积分，不是一般Chern--Gauss--Bonnet的证明。结合无零截面必使Euler类为零，便证明偶维球面不存在处处非零切向量场。另一方面，$(X,a)\mapsto X+ap$给$TS^n\oplus\mathbb R\simeq S^n\times\mathbb R^{n+1}$，所以稳定性使所有正次Pontryagin类为零。Pontryagin类全零与Euler障碍可同时出现。

@@ -1,0 +1,108 @@
+\Needspace{18\baselineskip}
+\section{示性类习题及详细解答}
+18.1--18.3分别以Freed《Geometry of Dirac Operators》约1987年初稿的题6.1.13、6.1.15、6.1.16为起点改述扩展，均位于印刷92/PDF94；本书改用$iF/(2\pi)$并纠正该页括号中超交换子号及幂次的排印问题。18.4--18.8为原创补充。一般定理已在正文证明，这些习题不承担缺失的主线证明。
+
+\Needspace{12\baselineskip}
+\subsection*{习题18.1：有符号循环律与反例}
+改述Freed题6.1.13并扩展。证明矩阵值齐次形式的带次数循环律及$\dd\operatorname{tr}\alpha=\operatorname{tr}D_A\alpha$。取$\alpha=E_{12}\dd x$、$\beta=E_{21}\dd y$，比较普通交换子与分次交换子的迹。
+\begin{proof}[解答]
+按指标展开$\operatorname{tr}(\alpha\beta)=\sum_{i,j}\alpha_{ij}\wedge\beta_{ji}$，移动标量形式并互换$i,j$，得$(-1)^{rs}\operatorname{tr}(\beta\alpha)$。所以分次交换子必须取$[\alpha,\beta]_{\mathrm{gr}}=\alpha\beta-(-1)^{rs}\beta\alpha$，其迹为零。$D_A\alpha$与$\dd\alpha$之差是同样的分次交换子，得到求导公式。
+
+本例$\operatorname{tr}(\alpha\beta)=\dd x\wedge\dd y$、$\operatorname{tr}(\beta\alpha)=-\dd x\wedge\dd y$，故普通交换子的迹为$2\dd x\wedge\dd y$，分次交换子此时为反交换子，迹为零。源页括号中若取印刷的加号约定，在零次矩阵情形便已经与“迹为零”冲突；本书按上述直接计算固定减号。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题18.2：闭迹幂及Chern特征的展开}
+改述Freed题6.1.15并扩展。证明$\operatorname{tr}F^k$闭，写出$\operatorname{ch}$至六次的展开，并求直和与张量积公式。说明指数为何可视为有限表达式。
+\begin{proof}[解答]
+协变外微分按分次乘法式作用，$F$为偶次，故$D_AF^k=\sum_jF^j(D_AF)F^{k-1-j}=0$。再用上一题的迹求导公式得到闭性。底空间维数有限，高于维数的形式均为零，所以指数在形式意义下截断，不需估计矩阵指数的分析收敛。
+
+记$B=iF/(2\pi)$，逐阶展开$\operatorname{tr}e^B$，用正文的行列式恒等式消去迹幂，得
+\[
+ \operatorname{ch}=r+c_1+\tfrac12(c_1^2-2c_2)
+ +\tfrac16(c_1^3-3c_1c_2+3c_3)+\text{高于六次的项}.
+\]
+直和的指数按块分解，迹相加。张量积曲率两项$B_E\otimes I$和$I\otimes B_F$交换，指数积的迹为两迹之积，得到$\operatorname{ch}(E\otimes F)=\operatorname{ch}(E)\operatorname{ch}(F)$。这是对源题闭性主题的扩展，不把新增的张量积结论冒充原题原句。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题18.3：指数传递及三次系数}
+改述Freed题6.1.16并按本书归一化扩展。若$\dot A_t=a_t$，证明
+\[
+ \frac{\partial}{\partial t}\operatorname{tr}e^{\lambda F_t}
+ =\lambda\dd\operatorname{tr}(a_t e^{\lambda F_t}),
+\]
+其中$\lambda$为常数；再由线段$A_t=tA$求$\operatorname{tr}F^2$的三次传递形式。它是否自动在非平凡丛上全局定义？
+\begin{proof}[解答]
+不交换矩阵的指数不能直接按标量链式法则求导，但对每一迹幂有
+\[
+ \partial_t\operatorname{tr}F_t^k
+ =k\operatorname{tr}(\dot F_tF_t^{k-1})
+ =k\dd\operatorname{tr}(a_tF_t^{k-1}),
+\]
+第一步的$k$项通过偶次循环律变为相同，第二步用$\dot F_t=D_ta_t$和Bianchi。将有限截断指数逐阶求和便得公式。取$\lambda=i/(2\pi)$给本书Chern特征，源书则取$\lambda=-1$。
+
+线段曲率为$t\dd A+t^2A^2$，所以
+\[
+ 2\int_0^1\operatorname{tr}(A F_t)\dd t
+ =\operatorname{tr}(A\dd A+\tfrac23A^3).
+\]
+这是固定平凡化中的$\operatorname{CS}_3(A)$。非平凡丛上“零势”未必拼成一个全局联络，因此此式不自动全局。若确有两个全局联络，改用它们的差及相对传递才有全局性。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题18.4：射影平面上线丛直和}
+原创补充。令$L\to\mathbb{CP}^2$为重言线丛，$E=L^a\oplus L^b$，$a,b\in\mathbb Z$，负幂表示对偶幂。以$x=[\omega_{\mathrm{FS}}/(2\pi)]$写$c_1,c_2,\operatorname{ch}_2,p_1(E_{\mathbb R})$，并求对应四次积分。
+\begin{proof}[解答]
+线丛张量及对偶公式给$c_1(L^a)=-ax$，所以
+\begin{align*}
+ c_1(E)&=-(a+b)x,& c_2(E)&=abx^2,\\
+ \operatorname{ch}_2(E)&=\tfrac12(a^2+b^2)x^2,&
+ p_1(E_{\mathbb R})&=(a^2+b^2)x^2.
+\end{align*}
+由于$\int x^2=1$，$c_1^2,c_2,\operatorname{ch}_2,p_1$的积分依次为$(a+b)^2,ab,(a^2+b^2)/2,a^2+b^2$。$\operatorname{ch}_2$可为半整数，这不违反Chern数的整性归一化。若取$E=L$本身，则底层实二平面丛有$e=-x$、$p_1=x^2=e^2$。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题18.5：Pfaffian的定向与复表示号}
+原创补充。在有序实基$(u,iu,v,iv)$中取$X=\operatorname{diag}(ia,ib)\in\mathfrak u(2)$的实表示，计算Pfaffian及行列式；交换前两个基向量后会怎样？用它核对$e(E_{\mathbb R})=c_2(E)$与$p_2=e^2$的号。
+\begin{proof}[解答]
+实表示为两个块$\left(\begin{smallmatrix}0&-a\\a&0\end{smallmatrix}\right)$、$\left(\begin{smallmatrix}0&-b\\b&0\end{smallmatrix}\right)$，所以$\operatorname{Pf}=ab$，行列式$a^2b^2$。同时$\det(iX)=(-a)(-b)=ab$，与复定向的顶Chern多项式一致。交换前两个基向量使换基行列式为$-1$，Pfaffian变成$-ab$，行列式仍为$a^2b^2$。
+
+因此Euler形式需要丛定向，Pontryagin形式不需要；顶Pontryagin只看到Euler的平方。底流形定向则另控制积分号。对切丛同时反转丛定向和底定向时，Euler形式及积分方向各变一次号，Euler数保持不变，不可把这两种定向变化合并成一次。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题18.6：相对一阶传递与曲率零}
+原创补充。同一Hermite线丛上两个酉联络相差$i\alpha$，$\alpha$为全局实一形式。计算$c_1$形式之差及其传递形式。在平凡线丛上取$A_0=0,A_1=ix\dd y$；再以M\"obius线丛说明零曲率为什么不等于平凡。
+\begin{proof}[解答]
+圆群交换，故$F_1-F_0=i\dd\alpha$，乘$i/(2\pi)$得到
+\[
+ c_1(\nabla_1)-c_1(\nabla_0)
+ =-\frac{\dd\alpha}{2\pi},\qquad T_{c_1}=-\frac\alpha{2\pi}.
+\]
+给定例子$F_1=i\dd x\wedge\dd y$，$c_1(\nabla_1)=-\dd x\wedge\dd y/(2\pi)$非零，但它为全局恰当形式，类仍为零。闭曲面上的积分不会因此改变。
+
+M\"obius实线丛的单位标架丛结构群为$\mathrm O(1)$，李代数为零，唯一联络曲率也为零，所有正次Pontryagin类消失。非平凡性却由绕圈反号或无零截面障碍给出。本例涉及实线丛，并非声称已构造某个任意复秩的全部Chern类零但非平凡的分类反例。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题18.7：乘积曲面的两组示性数}
+原创补充。对$M=\mathbb{CP}^1\times\mathbb{CP}^1$取乘积复结构，计算$c_1^2,c_2,p_1,e$的积分，并与$\mathbb{CP}^2$比较。哪一部分推理依赖一般Chern--Gauss--Bonnet？
+\begin{proof}[解答]
+写$x,y$为两因子归一化面积类，$x^2=y^2=0$、$\int xy=1$。每个射影直线切丛有$c_1=2x$或$2y$，切丛直和使
+\begin{gather*}
+ c(TM)=(1+2x)(1+2y),\\
+ c_1^2=8xy,\quad c_2=4xy,\quad p_1=0,\quad e=c_2.
+\end{gather*}
+积分依次为$8,4,0,4$。射影平面的对应结果为$9,3,3,3$，所以Pontryagin数已排除两者微分同胚，允许反向也不改变“非零与零”的区别。这里Euler等于顶Chern由酉表示的多项式恒等式证明，所有积分由显式FS形式或乘积积分得到；并未用一般Euler数等于拓扑Euler示性数。若将这些数统一解释为任意闭流形的$\chi$，那一步才需外部比较或Chern--Gauss--Bonnet。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题18.8：稳定平凡性与七维检测的局限}
+原创补充。显式证明$TS^n\oplus\mathbb R$平凡。为什么这会使正次Pontryagin类全零，却不使偶维球面Euler类为零？对一个光滑同伦七维球面，Chern--Weil正次偶类能否区分其与标准球面的光滑结构？
+\begin{proof}[解答]
+在单位球面点$p$处，把$(X,a)$送为$X+ap\in\mathbb R^{n+1}$。逆为$v\mapsto(v-\langle v,p\rangle p,\langle v,p\rangle)$，两式光滑且逐纤维线性互逆。Pontryagin类稳定且平凡丛的正次类为零，故$p(TS^n)=1$。Euler类却不稳定；本章圆球直接积分给$\int_{S^{2r}}e=2$，所以其类非零。不能通过加一条平凡线再把奇秩曲率的行列式公式当作原Euler类。
+
+光滑同伦七维球面的正偶次数de Rham群均为零，且奇数顶维7无法由偶次数相加得到，所以这些类及其普通示性数不能完成区分。这不是微分同胚结论。Milnor的外部论证使用八维填充、整相对配对及签名；本题没有计算这些二级数据，亦未证明任何怪球分类总数。
+\end{proof}

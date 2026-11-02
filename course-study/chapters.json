@@ -217,25 +217,27 @@
   {
     "id": "17-complex",
     "title": "复流形与Kahler几何",
-    "source": "周第7章",
-    "status": "planned",
+    "source": "周第7章（本地页码待核对）；Moroianu2004第1–7节及题1.5(2–4)/4.3(4)/5.5(1–2)/7.4(2)；NN充分性/局部势存在外引；2026球面构造未核验",
+    "status": "draft",
     "sections": [
       "复结构与全纯坐标",
       "Hermite度量与Kahler形式",
       "复流形上的联络与曲率",
-      "可积性、球面复结构问题的准确边界"
+      "可积性、球面复结构问题的准确边界",
+      "复几何习题及详细解答"
     ]
   },
   {
     "id": "18-characteristic",
     "title": "示性类与Chern--Weil理论",
-    "source": "周第8章",
-    "status": "planned",
+    "source": "周第8章（本地页码待核对）；Meinrenken2003第5节43–48；Freed约1987题6.1.13/15/16印刷92/PDF94；Milnor1956印刷399–405；一般整类比较/CGB/怪球构造分类未证",
+    "status": "draft",
     "sections": [
       "不变多项式与Chern--Weil构造",
       "Chern类、Pontryagin类与Euler类",
       "联络无关性与传递形式",
-      "示性数与怪球专题"
+      "示性数与怪球专题",
+      "示性类习题及详细解答"
     ]
   },
   {

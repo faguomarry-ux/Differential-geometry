@@ -1,0 +1,112 @@
+\Needspace{18\baselineskip}
+\section{复几何习题及详细解答}
+17.1、17.2、17.3、17.4、17.8分别改述或扩展Moroianu第1.5节题2/3、第5.5节题1/2、第4.3节题4、第7.4节题2、第1.5节题4；印刷/PDF页分别为10、31、26、41、11。17.5--17.7为原创补充。所有尺度与Chern符号按本书约定，周书页码和梁书对应题尚待核对。
+
+\Needspace{12\baselineskip}
+\subsection*{习题17.1：复行列式、定向与反全纯映射}
+改述Moroianu第1.5节题2、3并扩展。证明可逆复矩阵的实行列式为复行列式模平方，并说明几乎复流形为何可定向。复共轭在$\mathbb C^m$上何时保持实定向？是否保持复结构？
+\begin{proof}[解答]
+把复矩阵$C=A+iB$看成实矩阵$C_{\mathbb R}=\left(\begin{smallmatrix}A&-B\\B&A\end{smallmatrix}\right)$，复化后以$z=x+iy,\bar z=x-iy$换基，便把它化为$\operatorname{diag}(C,\bar C)$。因此$\det_{\mathbb R}C_{\mathbb R}=\det C\det\bar C=|\det C|^2>0$。源题使用的实分块次序反转了$B$，行列式结论相同。
+
+局部复基确定实基$(v_1,Jv_1,\ldots,v_m,Jv_m)$，重叠时换基正行列式使定向一致。复共轭在每对实坐标上为$(x^j,y^j)\mapsto(x^j,-y^j)$，所以总实行列式为$(-1)^m$；$m$偶数时保持定向。但它总满足$\dd f\,J=-J\,\dd f$，在$m\geq1$时不全纯。保持实定向比保持复结构弱得多。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题17.2：复曲线与共形变化}
+取Moroianu第5.5节题1的\emph{已可积}情形，并结合题2扩展。证明复维一Hermite度量必为Kahler；再证明连通复维$m\geq2$的Kahler流形中，$e^{2u}g$仍为Kahler当且仅当$u$为常数。为什么不能将第一句中的可积性凭空删去？
+\begin{proof}[解答]
+基本形式为实$(1,1)$形式，而实维二时三形式为零，所以$\dd\omega=0$。若只给二维几乎复结构，则还需可积性论证；原讲义已使用Newlander--Nirenberg。本题把起点限定为复曲线，不把该外引隐藏在维数计数里。
+
+共形后$\widetilde\omega=e^{2u}\omega$，故闭性等价于$\dd u\wedge\omega=0$。将其再楔$\omega^{m-2}$得$\dd u\wedge\omega^{m-1}=0$。在正交基中，$u^j\wedge\omega^{m-1}$和$v^j\wedge\omega^{m-1}$分别是仅缺$v^j$和$u^j$的基顶减一次形式，系数均为非零的$(m-1)!$，因此该映射可逆，$\dd u=0$。连通性给$u$为常数；反向常倍显然保持闭性。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题17.3：张量积、对偶和Chern联络}
+改述Moroianu第4.3节题4并扩展。给定两个带Hermite度量的全纯丛，写出直和、张量积及对偶的Chern联络与曲率，并说明为何是Chern联络而非仅仅某个联络。
+\begin{proof}[解答]
+直和的联络矩阵为$A_E\oplus A_F$，曲率为$F_E\oplus F_F$。张量积中
+\[
+ \nabla(s\otimes t)=\nabla^Es\otimes t+s\otimes\nabla^Ft,
+ \qquad F_{E\otimes F}=F_E\otimes I+I\otimes F_F.
+\]
+其矩阵$A_E\otimes I+I\otimes A_F$的平方中，两组交叉项因一形式反交换而抵消，故得到曲率式。对偶从$\dd(\lambda(s))=(\nabla\lambda)(s)+\lambda(\nabla s)$得到$A_{E^*}=-A_E^{\mathsf T}$，曲率$F_{E^*}=-F_E^{\mathsf T}$；转置时矩阵值一形式的楔积次序也须反转，不能只机械地转置$A\wedge A$。
+
+这些联络都保持相应的直和、张量积或对偶内积，且全纯标架中所有势为$(1,0)$型，所以$(0,1)$部分等于自然的$\bar\partial$。定理\ref{thm:chern-connection}的唯一性遂说明它们恰为相应Chern联络。特别地$\det E$的曲率为$\operatorname{tr}F_E$，典范丛的曲率为$-\operatorname{tr}F_{T^{1,0}}$。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题17.4：射影直线的真实尺度}
+改述Moroianu第7.4节题2，改用显式坐标而不调用常曲率空间整体分类。证明本书$(\mathbb{CP}^1,g_{\mathrm{FS}})$等距于半径$1/\sqrt2$的圆球，求其面积和Ricci形式，并与第16章Hopf底球的单位尺度比较。
+\begin{proof}[解答]
+第16章映射
+\[
+ q(w)=\frac{(2\operatorname{Re}w,2\operatorname{Im}w,1-|w|^2)}{1+|w|^2}
+\]
+全局延拓为到单位球面的微分同胚。直接求导并将映射乘$1/\sqrt2$，得到
+\begin{align*}
+ q^*g_{S^2}&=\frac{4|\dd w|^2}{(1+|w|^2)^2},\\
+ (q/\sqrt2)^*g_{S^2(1/\sqrt2)}&=\frac{2|\dd w|^2}{(1+|w|^2)^2}=g_{\mathrm{FS}}.
+\end{align*}
+这里第二个拉回中的映射以半径$1/\sqrt2$球面为目标，故给全局等距。面积为$2\pi$，$K=2$，所以$\rho=2\omega_{\mathrm{FS}}$。
+
+Hopf丛前章取单位底球，面积为$4\pi$且$F=i\mathrm{vol}_{S^2}/2$。本章$\omega_{\mathrm{FS}}=\mathrm{vol}_{S^2}/2$，故仍有$F=i\omega_{\mathrm{FS}}$，归一化周期$\int F/(2\pi i)=1$保持不变。度量面积和曲率周期是不同对象，不能同时把所有常数都设成1。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题17.5：几乎复情形的平方零失效}
+原创补充。对第17.4节的非可积例子，令$\theta^1=\dd z^1-\bar z^1\dd\bar z^2$、$\theta^2=\dd z^2$。验证其为$(1,0)$余标架，并按型别投影定义$\bar\partial_J$，计算$\bar\partial_J^2z^1$。
+\begin{proof}[解答]
+两形式在$\bar Z_1,\bar Z_2$上均为零，且$\theta^a(Z_b)=\delta^a_b$，所以为所述余标架。其共轭为$\bar\theta^1=\dd\bar z^1-z^1\dd z^2$和$\bar\theta^2=\dd\bar z^2$。于是
+\[
+ \dd z^1=\theta^1+\bar z^1\bar\theta^2,\qquad
+ \bar\partial_Jz^1=\bar z^1\bar\theta^2.
+\]
+又$\dd\bar z^1=\bar\theta^1+z^1\theta^2$、$\dd\bar\theta^2=0$，取$(0,2)$分量得到
+\[
+ \bar\partial_J^2z^1=\bar\theta^1\wedge\bar\theta^2\ne0.
+\]
+同时$\dd\theta^1=-\dd\bar z^1\wedge\dd\bar z^2$有非零$(0,2)$部分，与括号$[\bar Z_1,\bar Z_2]=Z_1$相对应。这个反例说明投影定义的算子未必构成复形。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题17.6：重言线丛的全纯标架与酉标架}
+原创补充。在$\mathbb{CP}^1$的$w$卡上，重言线丛取全纯标架$e_0=(1,w)$，内积由$\mathbb C^2$限制。求Chern联络、曲率、酉标架下的局部势及$iF/(2\pi)$的积分。
+\begin{proof}[解答]
+全纯标架的度量系数$H=1+|w|^2$，故
+\[
+ A_{\mathrm{hol}}=\frac{\bar w\,\dd w}{1+|w|^2},\qquad
+ F=-\frac{\dd w\wedge\dd\bar w}{(1+|w|^2)^2}=i\omega_{\mathrm{FS}}.
+\]
+酉标架为$u_0=e_0/\sqrt H$，换标架$G=H^{-1/2}$不是全纯，但可使用一般联络换元律，得到
+\[
+ A_u=A_{\mathrm{hol}}-\tfrac12\dd\log H
+ =\frac{\bar w\dd w-w\dd\bar w}{2(1+|w|^2)}.
+\]
+这正是第16章$A_0$，为纯虚形式。全纯标架中的$A_{\mathrm{hol}}$则不必纯虚，因为它不是酉标架。最后$iF=-\omega_{\mathrm{FS}}$，所以$\int iF/(2\pi)=-1$，而$\int F/(2\pi i)=1$。两个归一化相差负号；本题直接算形式，不诉诸一般Chern类理论。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题17.7：闭形式的幂与球面障碍}
+原创补充。紧致无边界实$2m$维流形上，若实二形式$\omega$闭且非退化，证明可用$\omega^m$定向，并且$[\omega]^k\ne0$。将结论用于$S^6$，解释为何与复结构构造不是同一个问题。
+\begin{proof}[解答]
+非退化斜型在每点有线性标准基，$\omega=\sum_j u^j\wedge v^j$，故$\omega^m$无零，给出光滑定向。按此定向$\omega^m$处处正，紧致性给有限正积分。若某$\omega^k=\dd\eta$，则$\omega^m=\dd(\eta\wedge\omega^{m-k})$，Stokes使积分零，矛盾。证明甚至不要求已有$J$。
+
+$S^6$的$H^2_{\mathrm{dR}}$为零，故不存在这样的闭非退化二形式，尤其不存在Kahler度量。一个复结构只先规定可积$J$；平均法仍能给Hermite度量，但其基本形式不必闭。因此排除Kahler结构不能用于否定第17.4节所述外部复结构构造。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题17.8：Hopf型商与不闭的基本形式}
+改述Moroianu第1.5节题4并扩展。设$\alpha>1$实数，$m\geq2$。证明$\alpha^\mathbb Z$在$\mathbb C^m\setminus\{0\}$上的商为紧复流形，底层微分同胚于$S^1\times S^{2m-1}$。证明$|z|^{-2}g_{\mathrm{Euclid}}$下降为Hermite度量，但该度量不是Kahler。是否已证明商上\emph{任何}Hermite度量都非Kahler？
+\begin{proof}[解答]
+非零点的径向模长在$\alpha^k$作用下改变为$\alpha^k|z|$，故作用自由。任一紧集的模长有正下界和有限上界，仅有限个$k$可能使其平移与自身相交；每点还可选足够薄的径向开环域，使不同平移不交。这样的开集投影给复坐标，换元为常数复线性伸缩。利用极坐标
+\[
+ z\longmapsto(\log|z|,z/|z|)\in\mathbb R\times S^{2m-1},
+\]
+群作用成为第一因子的平移$\log\alpha$。其商为$(\mathbb R/(\log\alpha)\mathbb Z)\times S^{2m-1}$，直接给Hausdorff、第二可数、紧致及所述微分同胚，不预用一般适当群作用商定理。
+
+伸缩拉回Euclid度量乘$\alpha^{2k}$，而$|z|^{-2}$乘$\alpha^{-2k}$，故乘积不变，可下降。基本形式为$\widetilde\omega=|z|^{-2}\omega_0$，于是
+\[
+ \dd\widetilde\omega=-2|z|^{-2}\dd\log|z|\wedge\omega_0.
+\]
+$\dd\log|z|$处处不为零，复维至少二时前面的楔积单射性说明右式不为零。所以该\emph{特定}度量非Kahler。若要证明商上完全不存在Kahler度量，还需进一步的拓扑或复几何障碍；本题没有计算其第二上同调，不能把度量反例自动升级为流形的不存在定理。
+\end{proof}

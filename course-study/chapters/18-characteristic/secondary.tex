@@ -1,0 +1,30 @@
+\subsection{局部Chern--Simons三形式}
+在一个固定平凡化中，取$p(X)=\operatorname{tr}X^2$，以零势为起点、$A$为终点。$A_t=tA$的曲率为$t\dd A+t^2A\wedge A$，故相对传递式化为
+\begin{equation}\label{eq:cs-three}
+ \operatorname{CS}_3(A)=\operatorname{tr}
+ \left(A\wedge\dd A+\tfrac23A\wedge A\wedge A\right),
+ \qquad \dd\operatorname{CS}_3(A)=\operatorname{tr}(F\wedge F).
+\end{equation}
+也可直接核对：$\dd\operatorname{tr}(A\dd A)=\operatorname{tr}(\dd A\dd A)$，带次数循环律给$\dd\operatorname{tr}A^3=3\operatorname{tr}(\dd A A^2)$；另一方面$\operatorname{tr}A^4=0$，展开$\operatorname{tr}(\dd A+A^2)^2$正好得到同样结果。若用于$p_1$，还须整体乘$-1/(8\pi^2)$，不能省略归一化。
+
+此处$A$是\emph{一张平凡化中的势}，零势也依赖该平凡化；所以$\operatorname{CS}_3(A)$一般不是非平凡丛上的全局基本形式。对比之下，式\eqref{eq:cw-transgression}固定了两个\emph{全局联络}，其差$a$为伴随丛值形式，因此给出全局相对形式。两者的全局性来源不同。
+
+\subsection{纯规范势及二级信息的范围}
+取$A=g^{-1}\dd g$，Maurer--Cartan式给$\dd A=-A^2$，所以$F=0$，但
+\[
+ \operatorname{CS}_3(g^{-1}\dd g)=-\tfrac13\operatorname{tr}(g^{-1}\dd g)^3
+\]
+不必为零。以$G=\mathrm{SU}(2)$为例，取$T_j=-i\sigma_j/2$，其中
+\[
+ \sigma_1=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+ \sigma_2=\begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad
+ \sigma_3=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\]
+矩阵乘法给$[T_i,T_j]=\epsilon_{ijk}T_k$、$\operatorname{tr}(T_iT_jT_k)=-\epsilon_{ijk}/4$。写左Maurer--Cartan形式为$A=\sum_jT_j\theta^j$，逐项反对称求和给
+\[
+ \operatorname{tr}A^3=-\tfrac32\theta^1\wedge\theta^2\wedge\theta^3,
+ \qquad \operatorname{CS}_3(A)=\tfrac12\theta^1\wedge\theta^2\wedge\theta^3\ne0.
+\]
+这已说明纯规范势下局部三形式可改变，虽然曲率为零。本章没有证明大规范变换使某个归一化积分只差整数，也没有构造微分上同调、平坦微分特征或规范不变的$\mathbb R/\mathbb Z$值泛函；不能仅由这个三形式便宣称所有二级理论已建立。
+
+平坦联络使所有正次Chern--Weil类消失，因为直接取$F=0$作代表。但反向一般不成立，类消失也不等于丛平凡：第16章M\"obius线丛的$\mathrm O(1)$联络曲率恒零，丛仍非平凡，离散闭路移动为$-1$。这种结构的李代数为零，正次实不变多项式根本无法检出它。

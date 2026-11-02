@@ -1,0 +1,44 @@
+\subsection{Nijenhuis张量与必要条件}
+对几乎复结构定义
+\begin{equation}\label{eq:nijenhuis}
+ N_J(X,Y)=[JX,JY]-J[JX,Y]-J[X,JY]-[X,Y].
+\end{equation}
+用$[fX,Y]=f[X,Y]-Y(f)X$及$J^2=-I$展开，四个导数项两两相消，故$N_J(fX,Y)=fN_J(X,Y)$；反对称性给另一变量也线性。因此它是张量，尽管定义中出现非张量的李括号。
+
+\begin{proposition}\label{prop:nijenhuis-involutive}
+$N_J=0$当且仅当$T^{0,1}$的光滑截面在括号下封闭。复图册诱导的$J$必满足这两个条件。
+\end{proposition}
+\begin{proof}
+复线性延拓$N_J$。对$U,V\in T^{0,1}$，代入$JU=-iU,JV=-iV$得
+\[
+ N_J(U,V)=-2[U,V]+2iJ[U,V]=-4\pi^{1,0}[U,V].
+\]
+对两个$(1,0)$向量为共轭式；对一个$(1,0)$和一个$(0,1)$向量直接代入则恒为零。按直和分解展开任意两向量，遂得等价。若有全纯坐标，$T^{0,1}$由可交换的$\partial_{\bar j}$生成，任意系数的括号仍在其张成空间，故满足条件。
+\end{proof}
+
+\textbf{Newlander--Nirenberg定理（外引，未在本书证明）。}在光滑几乎复流形上，$N_J=0$保证每点附近存在全纯适配坐标，因而$J$来自复流形结构。上面的命题只证明代数判据及必要方向；充分性涉及复偏微分方程，不能将第5章\emph{实}Frobenius定理直接套在$T^{0,1}$上。它与共轭丛互补但不是一个实切分布，实Frobenius给实积分片的结论没有直接提供所需的复坐标。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/complex-conditions}
+\caption{本章的条件关系。$N_J=0$到复图册的方向使用外引Newlander--Nirenberg；Kahler与$\nabla J=0$的等价只在已可积的Hermite背景下证明。闭基本形式本身不足以替代可积性。}
+\label{fig:complex-conditions}
+\end{figure}
+
+\subsection{一个可直接计算的非可积结构}
+在$\mathbb C^2$的底层实空间上，定义$T^{0,1}$由
+\[
+ \bar Z_1=\partial_{\bar z^1},\qquad
+ \bar Z_2=\partial_{\bar z^2}+\bar z^1\partial_{z^1}
+\]
+张成，并令$T^{1,0}$为其共轭。比较$\partial_{z^2}$和$\partial_{\bar z^2}$系数，再比较其余两个系数，即可看出两丛交为零，故处处直和为整个复化切丛。令$J$在两丛上分别为$-i,+i$，它与复共轭交换，因此来自一个光滑实张量，且$J^2=-I$。
+
+然而$[\bar Z_1,\bar Z_2]=\partial_{z^1}=Z_1$，于是$N_J(\bar Z_1,\bar Z_2)=-4Z_1\ne0$。不存在诱导这一$J$的复图册；不是说底层$\mathbb R^4$本身不能具有\emph{其他}可积结构。它当然还有标准复结构。
+
+\subsection{球面问题的三个不同层次}
+首先，奇数实维空间不能有$J^2=-I$：实线性空间若成为复向量空间，实维必须为偶数。$S^2\simeq\mathbb{CP}^1$则有本章显式构造的复结构及Kahler度量。
+
+其次，对$m>1$的$S^{2m}$，本章已由上同调和Stokes\emph{证明}不存在Kahler结构。至于哪些偶维球面能有几乎复结构，经典结论是正维球面只有$S^2$和$S^6$，依赖Borel--Serre等拓扑方法；本书未证明该分类，也未构造八元数给出的$S^6$标准几乎复张量。即使某个特定张量不可积，也不能推出底流形上所有几乎复张量都不可积。
+
+\textbf{研究动态与核查范围（2026年11月2日）。}早期讲义把$S^6$是否存在复结构列为Hopf问题，不能将这句话当作不随时间变化的定理。Philip Engel的\textit{Complex structures on $S^6$}（arXiv:2609.38442v1，2026年9月29日提交）给出一种构造的自足论证；Jeff Viaclovsky的\textit{A two-parameter family of complex structures on $S^6$}（arXiv:2609.33785v1，9月27日提交）陈述两参数构造。本轮核对了两篇官方摘要，并读取Engel作者版引言与证明路线；本章将这些记录为\emph{外部研究结果与待专题核验的构造}，没有逐条验证其代数几何、单连通性、整同调与光滑球面识别证明，亦不从预印本页面推断期刊审稿状态。
+
+因此这里不作“截至今日仍未解决”的断言，也不把这些新构造写成本章已证定理。它们与“不存在Kahler结构”没有逻辑冲突：若采用所述复结构，它必属于非Kahler范围。一般Kodaira嵌入、Kahler恒等式与Hodge型分解、Calabi--Yau定理、球面几乎复分类及上述新构造的完整证明，都尚未在本章建立。

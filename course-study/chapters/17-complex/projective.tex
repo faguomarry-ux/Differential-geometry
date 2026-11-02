@@ -1,0 +1,43 @@
+\subsection{复射影空间与Fubini--Study形式}
+记$\mathbb{CP}^m$为$\mathbb C^{m+1}$中复直线的集合，取非零齐次坐标$[Z_0:\cdots:Z_m]$。在$U_j=\{Z_j\ne0\}$中用$z^a=Z_a/Z_j$（省略$j$）坐标，逆为在第$j$位填1。重叠换元为无零分母的有理全纯式，所以给复图册。拓扑取非零向量商拓扑；映射$[Z]\mapsto ZZ^*/|Z|^2$把它连续单射到Hermite矩阵空间，坐标逆在每个$U_j$上连续。这给出Hausdorff性；有限张可数基坐标卡给第二可数性。单位球面满射到商空间，故该流形紧致。$m=1$时正是第16章构造的底空间。
+
+在第$j$张卡上令$\varphi_j=\log(\sum_a|Z_a|^2/|Z_j|^2)$。重叠处
+\[
+ \varphi_k-\varphi_j=-\log|Z_k/Z_j|^2.
+\]
+对任意无零全纯$f$，$\partial\log|f|^2=f^{-1}\partial f$，故$\bar\partial\partial\log|f|^2=0$，无须选择全局对数分支。于是$i\partial\bar\partial\varphi_j$在重叠处相等，拼成全局$\omega_{\mathrm{FS}}$。
+
+\Needspace{18\baselineskip}
+\begin{theorem}\label{thm:fubini-study}
+上述形式为Kahler形式。在$U_0\simeq\mathbb C^m$上，记$r^2=\sum_a|z^a|^2$，其系数及行列式为
+\begin{equation}\label{eq:fs-matrix}
+ g_{a\bar b}=\frac{(1+r^2)\delta_{ab}-\bar z^a z^b}{(1+r^2)^2},
+ \qquad\det G=(1+r^2)^{-(m+1)}.
+\end{equation}
+本书的Fubini--Study度量取$g_{\mathrm{FS}}=2\operatorname{Re}(G_{a\bar b}\dd z^a\otimes\dd\bar z^b)$。
+\end{theorem}
+\begin{proof}
+直接对$\log(1+r^2)$作两次Wirtinger求导即得系数。对$v\ne0$，Cauchy--Schwarz不等式给
+\[
+ \sum_{a,b}g_{a\bar b}v^a\bar v^b
+ =\frac{(1+r^2)|v|^2-|\sum_a\bar z^a v^a|^2}{(1+r^2)^2}
+ \geq\frac{|v|^2}{(1+r^2)^2}>0.
+\]
+因此正定。闭性由势函数已经证明，且局部形式已相容。行列式可在$z\ne0$时沿$\bar z$及其正交补分解矩阵：两个特征值分别为$(1+r^2)^{-2}$和$(1+r^2)^{-1}$，后者重数$m-1$；相乘给公式，在$z=0$处由连续性也成立。
+\end{proof}
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/projective-potentials}
+\caption{局部势在两张射影卡上不同，但其$i\partial\bar\partial$相同。图表示重叠区上的公式关系；没有全局实势的断言，亦不是射影空间的等距平面图。}
+\label{fig:projective-potentials}
+\end{figure}
+
+在$\mathbb{CP}^1$上，$w=x+iy$给
+\[
+ g_{\mathrm{FS}}=\frac{2(\dd x^2+\dd y^2)}{(1+|w|^2)^2},\qquad
+ \omega_{\mathrm{FS}}=\frac{2\dd x\wedge\dd y}{(1+|w|^2)^2},
+ \quad\int_{\mathbb{CP}^1}\omega_{\mathrm{FS}}=2\pi.
+\]
+第16章单位球面识别的拉回度量为$4(\dd x^2+\dd y^2)/(1+|w|^2)^2$，故这里半径为$1/\sqrt2$、Gauss曲率为2；Hopf曲率恰为$F=i\omega_{\mathrm{FS}}$。这组常数与有些书采用$i\partial\bar\partial\log(1+r^2)/2$的约定不同，比较曲率时必须同时比较尺度。
+
+全纯浸入$f:N\to M$拉回Kahler形式仍闭，且$f^*\omega(X,JX)=g(\dd fX,\dd fX)>0$，所以诱导度量为Kahler。一般全纯映射有临界点时，拉回仅半正定，不一定是度量。两个Kahler流形的乘积取两形式拉回之和，闭性及分块正定性直接给Kahler结构；例如标准复环面及$\mathbb{CP}^1\times\mathbb{CP}^1$均给出紧例子。

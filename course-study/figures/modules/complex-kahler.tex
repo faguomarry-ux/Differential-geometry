@@ -1,0 +1,24 @@
+% Chapter 17. Algebraic eigenspaces, local potentials, and proof boundaries.
+\DGDeclareDiagram{complex-types}{%
+ \node[dg/box,text width=34mm] (t) at (0,1.5) {$T_{\mathbb C}M$};
+ \node[dg/box,text width=34mm] (a) at (-2.6,-.4) {$T^{1,0}M$\\$J=+i$};
+ \node[dg/box,text width=34mm] (b) at (2.6,-.4) {$T^{0,1}M$\\$J=-i$};
+ \draw[dg/map] (t)--(a) node[midway,above left] {$\tfrac12(I-iJ)$};
+ \draw[dg/map] (t)--(b) node[midway,above right] {$\tfrac12(I+iJ)$};
+ \draw[dg/map,<->] (a)--(b) node[midway,below] {复共轭};
+ \node at (0,-1.7) {$\partial_j\in T^{1,0},\quad\partial_{\bar j}\in T^{0,1}$};}
+\DGDeclareDiagram{projective-potentials}{%
+ \node[dg/box,text width=32mm] (a) at (-2.5,1.1) {$U_j:\ \varphi_j$};
+ \node[dg/box,text width=32mm] (b) at (2.5,1.1) {$U_k:\ \varphi_k$};
+ \node[dg/box,text width=43mm] (o) at (0,-1.5) {$\omega_{\mathrm{FS}}$};
+ \draw[dg/map,<->] (a)--(b);
+ \node at (0,2.2) {$\varphi_k-\varphi_j=-\log|Z_k/Z_j|^2$};
+ \draw[dg/map] (a)--(o) node[midway,left] {$i\partial\bar\partial$};
+ \draw[dg/map] (b)--(o) node[midway,right] {$i\partial\bar\partial$};}
+\DGDeclareDiagram{complex-conditions}{%
+ \node[dg/box,text width=31mm] (a) at (-2.5,1.2) {几乎复结构\\$J^2=-I$};
+ \node[dg/box,text width=31mm] (b) at (2.5,1.2) {复图册\\可积$J$};
+ \draw[dg/map] (a)--(b) node[midway,above,align=center] {$N_J=0$\\外引NN};
+ \node[dg/box,text width=38mm] (c) at (2.5,-1.3) {Kahler\\Hermite且$\dd\omega=0$};
+ \draw[dg/map] (b)--(c) node[midway,right,align=left] {再选度量\\并检验闭性};
+ \node[align=center] at (-2.5,-1.3) {已可积的Hermite背景下\\$\dd\omega=0\ \Longleftrightarrow\ \nabla J=0$};}

@@ -1,0 +1,74 @@
+\subsection{极化、次数与全群不变性}
+设$G$为李群，李代数为$\mathfrak g$。齐次$k$次多项式$p:\mathfrak g\to\mathbb K$与对称$k$线性型$P$对应，约定
+\[
+ p(X)=P(X,\ldots,X),\qquad
+ P(X_1,\ldots,X_k)=\left.\frac1{k!}
+ \frac{\partial^k}{\partial t_1\cdots\partial t_k}
+ p\left(\sum_jt_jX_j\right)\right|_{t=0}.
+\]
+将齐次多项式按单项式展开可验证此极化公式，特别是$P(X,\ldots,X)=p(X)$；$k!$不能在代入曲率后再重复加入。$k=0$为常数。要求
+\[
+ p(\operatorname{Ad}_gX)=p(X)\quad(g\in G),
+\]
+等价于$P$对所有输入同时施加$\operatorname{Ad}_g$后不变。若$G$不连通，仅有李代数的无穷小不变性还不足以代替此条件；Euler的Pfaffian正好会区分$\mathrm{SO}(2r)$和$\mathrm O(2r)$。
+
+取基$e_a$，对$\mathfrak g$值形式$\beta_j=\sum_a\beta_j^ae_a$定义
+\begin{equation}\label{eq:polarized-forms}
+ P(\beta_1,\ldots,\beta_k)=
+ \sum_{a_1,\ldots,a_k}P(e_{a_1},\ldots,e_{a_k})
+ \beta_1^{a_1}\wedge\cdots\wedge\beta_k^{a_k}.
+\end{equation}
+换基矩阵在系数及输入中互相抵消，所以定义不依赖基。交换两个次数$r,s$的输入，符号为$(-1)^{rs}$；曲率输入均为二次，彼此交换没有负号。多项式次数$k$由此变成形式次数$2k$。
+
+\subsection{不变性怎样消去联络项}
+在底空间的局部截面中记势为$A$，协变外微分$D_A\beta=\dd\beta+[A,\beta]$，括号楔积按第16章约定。
+
+\Needspace{15\baselineskip}
+\begin{proposition}\label{prop:invariant-derivative}
+对齐次形式$\beta_j$，有
+\begin{equation}\label{eq:invariant-derivative}
+ \dd P(\beta_1,\ldots,\beta_k)
+ =\sum_j(-1)^{\deg\beta_1+\cdots+\deg\beta_{j-1}}
+ P(\beta_1,\ldots,D_A\beta_j,\ldots,\beta_k).
+\end{equation}
+\end{proposition}
+\begin{proof}
+从全群不变性对$g=\exp(t\xi)$求导，得到
+\[
+ \sum_jP(X_1,\ldots,[\xi,X_j],\ldots,X_k)=0.
+\]
+把$A=\sum_aA^ae_a$及各$\beta_j$按基展开。右端中含$\dd\beta_j$的项就是外微分乘法式。其余含$[A,\beta_j]$的项中，将一次形式$A^a$移到全部$\beta$前面时，恰再产生$(-1)^{\deg\beta_1+\cdots+\deg\beta_{j-1}}$，与原符号相消；剩下的系数按上一条无穷小恒等式求和为零。这说明消掉的是整组联络项，而不是假设$A$在某个开集为零。
+\end{proof}
+
+\Needspace{18\baselineskip}
+\begin{theorem}[Chern--Weil闭形式]\label{thm:chern-weil-closed}
+设$\mathcal P\to M$为主$G$丛，$\omega$为主联络。对$\operatorname{Ad}_G$不变的齐次$k$次$p$，总空间的$P(\Omega,\ldots,\Omega)$唯一写成$\pi^*\operatorname{cw}_p(\omega)$，其中$\operatorname{cw}_p(\omega)$是底空间的闭$2k$形式。该构造对主丛同构和拉回自然，并保持多项式的和与积。
+\end{theorem}
+\begin{proof}
+第16章曲率水平且$\operatorname{Ad}$等变，故代入$P$后水平性仍在，不变性又使其对右群作用不变。沿局部截面拉回得到$P(F_i,\ldots,F_i)$；不同截面的曲率同时共轭，故这些式子相等并拼成底空间形式。$\pi$为满射下沉映射，其拉回对形式单射，保证唯一性。
+
+局部用\eqref{eq:invariant-derivative}及Bianchi $D_AF_i=0$，得到
+\[
+ \dd P(F_i,\ldots,F_i)=kP(D_AF_i,F_i,\ldots,F_i)=0.
+\]
+丛映射拉回曲率，且拉回保持楔积，所以自然性成立。把两个多项式极化后的曲率代入展开，因所有曲率分量为偶次，结果等于普通多项式乘积的代入；故$\operatorname{cw}_{pq}=\operatorname{cw}_p\wedge\operatorname{cw}_q$，和的性质由线性性得到。
+\end{proof}
+第18.3节将不使用任何整类比较，直接证明$[\operatorname{cw}_p(\omega)]$与联络无关。届时得到次数加倍的代数同态
+\[
+ (S\mathfrak g^*)^G\longrightarrow H^{\mathrm{even}}_{\mathrm{dR}}(M;\mathbb K).
+\]
+本章不证明它对某个分类空间是同构，也不声称在一个固定$M$上能检出全部丛。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/characteristic-descent}
+\caption{曲率先经不变多项式变成水平不变形式，再下降到基底。闭性使用Bianchi；从闭形式到联络无关的类还需第18.3节的传递公式。}
+\label{fig:characteristic-descent}
+\end{figure}
+
+\subsection{矩阵值形式的迹}
+对$r$次和$s$次矩阵值形式$\alpha,\beta$，按矩阵指标求和并交换标量形式可得
+\[
+ \operatorname{tr}(\alpha\wedge\beta)=(-1)^{rs}\operatorname{tr}(\beta\wedge\alpha),
+ \quad \dd\operatorname{tr}\alpha=\operatorname{tr}(D_A\alpha).
+\]
+第二式中的$D_A\alpha=\dd\alpha+A\wedge\alpha-(-1)^r\alpha\wedge A$，两联络项的迹由第一式抵消。因此$\dd\operatorname{tr}F^k=0$。这里使用\emph{带次数}的循环律，不是对所有形式都无符号循环；例如$\operatorname{tr}A^4=0$，因为把第一个一次$A$移过其余三个后得到负的自身。

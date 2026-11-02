@@ -1,0 +1,47 @@
+\subsection{闭流形上的示性数}
+设$M$紧致、定向、无边界，$q$为若干Chern、Pontryagin或Euler形式的乘积，且总形式次数等于$\dim M$。定义相应示性数为$\int_Mq$。改变任一联络代表时，其差是恰当形式；与其余闭形式相乘仍恰当，Stokes使积分不变。拉回自然性及积分换元说明，保向丛同构覆盖的保向微分同胚保持此数，反转底定向则把一个\emph{固定}顶次形式积分变号。
+
+此定义先得到实数。一般“整Chern/Pontryagin/Euler数为整数”的结论还需要前述整类比较及整基本类配对。我们将直接算出下面例子的整数值，不以少数例子代替一般整性定理。
+
+\subsection{射影空间的积分与Euler短正合列}
+在$\mathbb{CP}^m$上记$L$为重言线丛，$x=[\omega_{\mathrm{FS}}/(2\pi)]$。全纯标架$e_0=(1,z)$的内积系数为$1+|z|^2$，第17章Chern公式给$F_L=i\omega_{\mathrm{FS}}$，故$c_1(L)=-x$、$c_1(L^*)=x$。
+
+我们先直接计算$\int_{\mathbb{CP}^m}x^m=1$。删去超平面后是$\mathbb C^m$，所删集合在有限坐标卡中实余维2，故对顶维体积积分为零。由第17章$\det G=(1+|z|^2)^{-(m+1)}$及体积公式，得到
+\[
+ \int x^m=\frac{m!}{\pi^m}
+ \int_{\mathbb R^{2m}}\frac{\dd V}{(1+|z|^2)^{m+1}}.
+\]
+高斯积分给单位$S^{2m-1}$面积$2\pi^m/(m-1)!$；径向积分用$u=r^2$、$v=u/(1+u)$依次换元，得到
+\[
+ \int_0^\infty\frac{r^{2m-1}}{(1+r^2)^{m+1}}\dd r
+ =\tfrac12\int_0^1v^{m-1}\dd v=\frac1{2m}.
+\]
+相乘即得1。此证明既确定尺度，也不预用$\mathbb{CP}^m$的整上同调环。
+
+在直线$\ell\subset\mathbb C^{m+1}$处，图坐标把切向量识别为$\operatorname{Hom}_{\mathbb C}(\ell,\mathbb C^{m+1}/\ell)$：一条直线曲线的图函数一阶导数是一个从$\ell$到商空间的线性映射；换补空间只改变提升、不改变商。因此得到光滑且全纯相容的识别$T^{1,0}\mathbb{CP}^m\simeq\operatorname{Hom}(L,Q)$，$Q=\mathbb C^{m+1}/L$。对$0\to L\to\mathbb C^{m+1}\to Q\to0$逐纤维施加$\operatorname{Hom}(L,-)$，得
+\begin{equation}\label{eq:projective-euler-sequence}
+ 0\longrightarrow\mathbb C\longrightarrow(L^*)^{\oplus(m+1)}
+ \longrightarrow T^{1,0}\mathbb{CP}^m\longrightarrow0.
+\end{equation}
+第一项用线丛的恒等自同态识别为平凡线丛。第16章给出\emph{光滑}分裂，足以使用Whitney公式，无须声称存在全纯分裂。于是
+\begin{equation}\label{eq:projective-chern}
+ c(T^{1,0}\mathbb{CP}^m)=(1+x)^{m+1},\qquad
+ c_k=\binom{m+1}{k}x^k\quad(0\leq k\leq m).
+\end{equation}
+在更高次数，底空间维数使相应de Rham类为零；没有把形式上存在的$x^{m+1}$当成一个额外非零类。
+
+\subsection{四维计算与有边界的区别}
+复定向$\mathbb{CP}^2$上，公式给
+\[
+ \int c_1^2=9,\qquad \int c_2=3,\qquad
+ \int p_1=\int(c_1^2-2c_2)=3,\qquad \int e=3.
+\]
+$\mathbb{CP}^1\times\mathbb{CP}^1$上，令$x,y$为两因子归一化面积形式的类，$x^2=y^2=0$、$\int xy=1$由维数及乘积积分直接给出。切丛分成两因子，故$c_1=2x+2y$、$c_2=4xy$，从而$\int c_1^2=8$、$\int c_2=\int e=4$、$\int p_1=0$。Pontryagin数已足以区分这两个光滑流形，即使允许反向微分同胚，$\pm3$也不等于0。
+
+若$M=\partial W$且给定丛及闭特征形式确实延伸到紧致定向$W$，外向首位边界定向及Stokes给$\int_Mq=\int_W\dd q=0$。对切丛Pontryagin数，可用$TW|_M\simeq TM\oplus\mathbb R$及稳定性，故它们是相应定向配边关系下的不变量。不能将这个论证照搬到切丛Euler数：$TW$的秩及其Euler形式次数不同，Euler类也不稳定；$S^2=\partial D^3$却有$\int_{S^2}e=2$，就是直接反例。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/characteristic-limits}
+\caption{前两例取复定向。具体Pontryagin数可以区分某些四维光滑流形，但球面型七维流形的正次实示性类消失仍不能给出完整光滑分类。各框表示检测结果，未宣称后者与标准球面微分同胚。}
+\label{fig:characteristic-limits}
+\end{figure}

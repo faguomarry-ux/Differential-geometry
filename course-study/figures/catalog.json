@@ -304,5 +304,41 @@
     "title": "Hopf丛两卡局部势与球面曲率",
     "chapter": "16",
     "provenance": "原创；正交投影的纬线，$g_{NS}=e^{-i\\phi}$，$F=i\\mathrm{vol}/2$"
+  },
+  {
+    "id": "complex-types",
+    "title": "复化切丛的特征分解",
+    "chapter": "17",
+    "provenance": "原创；$T^{1,0}$与$T^{0,1}$为复特征丛，共轭箭头为反线性"
+  },
+  {
+    "id": "projective-potentials",
+    "title": "射影卡上的局部势拼接",
+    "chapter": "17",
+    "provenance": "原创；局部势之差为$-\\log|Z_k/Z_j|^2$，$i\\partial\\bar\\partial$后相等"
+  },
+  {
+    "id": "complex-conditions",
+    "title": "几乎复、可积与Kahler条件",
+    "chapter": "17",
+    "provenance": "原创；NN充分性外引，闭性与平行性等价在已可积Hermite背景下证明"
+  },
+  {
+    "id": "characteristic-descent",
+    "title": "不变曲率多项式的下降",
+    "chapter": "18",
+    "provenance": "原创；水平等变曲率经不变多项式成为基本形式，闭性来自Bianchi"
+  },
+  {
+    "id": "connection-transgression",
+    "title": "联络线段及相对传递",
+    "chapter": "18",
+    "provenance": "原创；$\\omega_t=\\omega_0+ta$，参数积分给特征形式之差的全局原始形式"
+  },
+  {
+    "id": "characteristic-limits",
+    "title": "示性数的检测及其局限",
+    "chapter": "18",
+    "provenance": "原创；复定向$\\mathbb{CP}^2$与$S^2\\times S^2$的$\\int p_1$为3及0，球面型七维消失不等于完整分类"
   }
 ]

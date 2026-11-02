@@ -1,0 +1,65 @@
+\subsection{正定度量、基本形式及归一化}
+\begin{definition}\label{def:hermitian-kahler}
+几乎复流形上的Hermite度量为满足$g(JX,JY)=g(X,Y)$的黎曼度量。基本形式取
+\[
+ \omega(X,Y)=g(JX,Y).
+\]
+若$J$来自复图册且$\dd\omega=0$，称$(M,J,g)$为Kahler流形。
+\end{definition}
+由$J^2=-I$及度量相容可得$g(JX,Y)=-g(X,JY)$，所以$\omega$确为实二形式。若只有$J^2=-I$和$\dd\omega=0$，通常称几乎Kahler结构；不能在定义中略去可积性。
+
+\begin{proposition}\label{prop:hermitian-exists}
+每个几乎复流形都有Hermite度量；其基本形式非退化、型别为$(1,1)$。按复定向有$\omega^m/m!=\mathrm{vol}_g$。
+\end{proposition}
+\begin{proof}
+由第11章取黎曼度量$g_0$，令$g(X,Y)=(g_0(X,Y)+g_0(JX,JY))/2$，正定且$J$不变。若$\omega(X,Y)=0$对所有$Y$成立，取$Y=JX$便得$g(X,X)=0$，所以$X=0$。$\omega(JX,JY)=\omega(X,Y)$，作用于两个同型特征向量时右式又乘$i^2=-1$或$(-i)^2=-1$，故同型部分为零，只余$(1,1)$。
+
+选$e_1,Je_1,\ldots,e_m,Je_m$为实正交归一标架，记对偶为$u^j,v^j$。逐对代入得$\omega=\sum_j u^j\wedge v^j$；其$m$次楔积只有使用每对一次的$m!$项，符号均正，故给出体积公式。
+\end{proof}
+在全纯坐标中令$G=(g_{a\bar b})$，其中$g_{a\bar b}=g_{\mathbb C}(\partial_a,\partial_{\bar b})$，$g_{\mathbb C}$为$g$的\emph{复双线性}延拓。则
+\begin{equation}\label{eq:hermitian-normalization}
+ g=2\operatorname{Re}\sum_{a,b}g_{a\bar b}\,\dd z^a\otimes\dd\bar z^b,
+ \qquad\omega=i\sum_{a,b}g_{a\bar b}\,\dd z^a\wedge\dd\bar z^b.
+\end{equation}
+Euclid度量$\sum_j((\dd x^j)^2+(\dd y^j)^2)$对应$G=I/2$和$\omega=\sum_j\dd x^j\wedge\dd y^j$，这个$1/2$以后不再随意改动。对$T^{1,0}M$取“第一变量共轭线性”的纤维Hermite内积时，其矩阵$H$为$H_{\bar a b}=g_{b\bar a}$，即$H=G^{\mathsf T}$；不能在矩阵联络公式中漏掉这次转置。
+
+\subsection{闭性与Levi--Civita联络}
+\begin{theorem}\label{thm:kahler-parallel}
+在已经可积的Hermite流形上，以下条件等价：$\dd\omega=0$；
+\[
+ \partial_a g_{b\bar c}=\partial_b g_{a\bar c}
+ \quad\text{及其复共轭式};
+\]
+Levi--Civita联络满足$\nabla J=0$。此时非零的同型联络系数为
+\begin{equation}\label{eq:kahler-christoffel}
+ \nabla_{\partial_a}\partial_b=\Gamma^c_{ab}\partial_c,
+ \quad\Gamma^c_{ab}=\sum_d g^{\bar d c}\partial_a g_{b\bar d},
+ \quad\nabla_{\partial_{\bar a}}\partial_b=0,
+\end{equation}
+以及它们的共轭；这里$\sum_dg_{b\bar d}g^{\bar d c}=\delta_b^c$。
+\end{theorem}
+\begin{proof}
+展开$\partial\omega$，$\dd z^a\wedge\dd z^b\wedge\dd\bar z^c$的系数为$i(\partial_ag_{b\bar c}-\partial_bg_{a\bar c})$（对$a<b$求和）；$\bar\partial\omega$给共轭条件，且型别不同不能互相抵消。
+
+在可交换的复坐标场上使用第11章Koszul公式。因两个同型向量的度量配对为零，得到
+\begin{align*}
+ 2g_{\mathbb C}(\nabla_{\partial_a}\partial_b,\partial_{\bar c})
+ &=\partial_ag_{b\bar c}+\partial_bg_{a\bar c},\\
+ 2g_{\mathbb C}(\nabla_{\partial_{\bar a}}\partial_b,\partial_{\bar c})
+ &=\partial_{\bar a}g_{b\bar c}-\partial_{\bar c}g_{b\bar a},\\
+ 2g_{\mathbb C}(\nabla_{\partial_{\bar a}}\partial_b,\partial_c)
+ &=\partial_bg_{c\bar a}-\partial_cg_{b\bar a}.
+\end{align*}
+另外$g_{\mathbb C}(\nabla_{\partial_a}\partial_b,\partial_c)=0$。代入闭性条件，混合导数同时与两型全部基向量配对为零，因此为零；第一式则化为\eqref{eq:kahler-christoffel}。联络保持两特征丛，等价于$\nabla J=0$。反向若$\nabla J=0$，结合$\nabla g=0$得$\nabla\omega=0$；无挠性使$\dd\omega$为$\nabla\omega$的交替和，所以闭。
+\end{proof}
+复维一时三形式恒零，因此任意Hermite度量均为Kahler。复维$m\geq2$时，$\widetilde g=e^{2u}g$有$\dd\widetilde\omega=2e^{2u}\dd u\wedge\omega$；在一点取上述正交基，映射$\alpha\mapsto\alpha\wedge\omega^{m-1}$为一次形式到$(2m-1)$次形式的同构。因此$\dd u\wedge\omega=0$迫使$\dd u=0$。例如$\mathbb C^2$上$e^{2x^1}g_{\mathrm{Euclid}}$是Hermite而非Kahler。
+
+\subsection{势函数能给出什么}
+若实光滑函数$\varphi$的复Hessian$(\partial_a\partial_{\bar b}\varphi)$正定，称其严格多重次调和函数（strictly plurisubharmonic）。取
+\[
+ \omega_\varphi=i\partial\bar\partial\varphi,
+ \qquad g_{a\bar b}=\partial_a\partial_{\bar b}\varphi,
+\]
+则$\overline{\omega_\varphi}=\omega_\varphi$，且由两Dolbeault平方零及反交换可得$\dd\omega_\varphi=0$；正定性给出Kahler度量。$\varphi=|z|^2/2$恢复Euclid模型。若$f$为全纯函数，$\varphi+\operatorname{Re}f$给同一形式，因为$\partial\bar\partial f=\partial\bar\partial\bar f=0$。
+
+\textbf{外引边界。}一般Kahler形式在每点附近都能写为$i\partial\bar\partial\varphi$，这是局部$\partial\bar\partial$引理的结论。本章仅证明上述“给定势产生度量”的方向，并显式构造下面的势；一般逆向存在性依赖尚未补证的局部Dolbeault求解，不以实Poincare引理一行代替。更不声称存在全局实势：紧致情形会受到Stokes障碍。
