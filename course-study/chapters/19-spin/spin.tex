@@ -1,0 +1,53 @@
+\subsection{反射生成正交变换}
+单位$u\in V$有$u^{-1}=-u$。由Clifford关系直接算得
+\[
+ uvu=v-2g(u,v)u=:r_u(v).
+\]
+这是法向为$u$的超平面反射。所有单位向量乘积构成$\operatorname{Pin}(n)$；采用扭伴随$\alpha(a)va^{-1}$时，一个单位$u$的像正是$r_u$。偶个单位向量乘积的子群称$\operatorname{Spin}(n)$，其扭伴随等于普通共轭，记为$\lambda(a)v=ava^{-1}$。
+
+\Needspace{13\baselineskip}
+\begin{lemma}[正定反射分解]\label{lem:euclidean-reflections}
+每个$T\in\mathrm O(n)$均为至多$n$个超平面反射的乘积；乘积个数的奇偶由$\det T$决定。
+\end{lemma}
+\begin{proof}
+对维数归纳。选单位$e$；若$Te=e$，限制到$e^\perp$后归纳。否则取$u=(Te-e)/|Te-e|$，利用$|Te|=|e|=1$算得$r_uTe=e$。于是$r_uT$固定$e$，在$e^\perp$上由至多$n-1$个反射组成，乘回$r_u$即可。每个反射行列式为$-1$，所以任意这种分解的奇偶一致。此处使用正定性保证非零向量可归一化，未证明不定签名版本。
+\end{proof}
+
+\Needspace{17\baselineskip}
+\subsection{双覆盖及其微分}
+\begin{theorem}\label{thm:spin-cover}
+$\operatorname{Spin}(n)$是Lie群，共轭给满射Lie群同态
+\[
+ 1\longrightarrow\{1,-1\}\longrightarrow\operatorname{Spin}(n)
+ \xrightarrow{\lambda}\mathrm{SO}(n)\longrightarrow1,
+\]
+并为二重覆盖。令$L_{ij}e_i=e_j$、$L_{ij}e_j=-e_i$，其余基向量送零，则$\lambda_*(e_ie_j/2)=L_{ij}$。
+\end{theorem}
+\begin{proof}
+每个偶乘积给偶数次反射，像在$\mathrm{SO}(n)$；引理给满射。若偶元素$a$与所有$e_j$交换，按有序基展开：偶长度的$e_I$在$j\notin I$时与$e_j$交换，在$j\in I$时反交换。对固定$j$的交换子涉及的$e_{I\triangle\{j\}}$互不相同，故全部含$j$的系数为零。逐个$j$考察后$a$只能是标量。单位向量满足$\bar u u=1$，乘积仍满足$\bar a a=1$，所以核中的标量只能是$\pm1$。
+
+为说明光滑结构，考虑偶代数中满足$\bar a a=1$且$aV\bar a\subset V$的集合。左乘$a$在有限维代数上有左逆，故可逆且$a^{-1}=\bar a$。共轭保持$v^2=-|v|^2$，所以在$V$上的像正交。偶元素与体积元$e_1\cdots e_n$交换；把一个正交基的像相乘，又等于其行列式乘体积元，所以该正交变换保向。选前述Spin元素$b$具有同样的像，$ab^{-1}$属于偶中心化子且范数为1，故为$\pm1$。这个集合恰是Spin群，由多项式等式闭合；通过忠实左正则表示，它是一般线性群的闭子群，因第15章闭子群定理而为Lie群。
+
+曲线$\cos(t/2)+\sin(t/2)e_ie_j$是两个单位向量的乘积，因而在Spin中。直接取交换子得
+\[
+ [e_ie_j/2,e_i]=e_j,\qquad [e_ie_j/2,e_j]=-e_i.
+\]
+故微分像包含整个$\mathfrak{so}(n)$。微分的核中，切向量与$V$交换，前述基论证使其为标量，而对$\bar a a=1$求导使此标量为零。逆函数定理于是给单位元附近局部微分同胚。缩小邻域$U$使$U\cap(-U)=\varnothing$；每个像点的纤维恰为相反的两个元素，故$\lambda^{-1}(\lambda(U))=U\sqcup(-U)$，再用平移即得覆盖。
+\end{proof}
+
+对斜对称算子$B$，有特别重要的逆微分公式
+\begin{equation}\label{eq:spin-lie-lift}
+ \lambda_*^{-1}(B)=\frac14\sum_{i,j}g(Be_i,e_j)e_ie_j.
+\end{equation}
+这里系数是$g(Be_i,e_j)$，若改用矩阵\emph{行$i$列$j$}的$B_{ij}=g(Be_j,e_i)$，须连同转置号一起改写。
+
+\subsection{二维的半角与三维四元数}
+二维偶代数为$\mathbb R\langle1,e_1e_2\rangle$，$(e_1e_2)^2=-1$，故Spin群为单位圆。置$a_\theta=\cos(\theta/2)+\sin(\theta/2)e_1e_2$，共轭使$e_1$旋转到$\cos\theta\,e_1+\sin\theta\,e_2$。提升满足$a_{2\pi}=-1$、$a_{4\pi}=1$。
+
+三维偶代数的$I=e_2e_3,J=e_3e_1,K=e_1e_2$满足$I^2=J^2=K^2=IJK=-1$。每个单位四元数可写为$\cos t+\sin t\,B$，其中单位虚四元数$B$为单位简单双向量：用三维Hodge星把$B$的系数识别为单位法向，再选其正交平面的正向规范基$u,v$，得$B=uv$。此表达是两个单位向量的乘积，所以$\operatorname{Spin}(3)$恰为单位四元数$S^3$，也可用标准二阶复矩阵写成$\mathrm{SU}(2)$。这里没有推断高维Spin群的全局单连通性或全部低维偶然同构。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/spin-half-angle}
+\caption{平面旋转角$\theta$及其Spin提升的半角。基底转一整周时提升由1到$-1$，两整周才闭合；两圆仅表示参数，不表示旋量是普通平面向量。}
+\label{fig:spin-half-angle}
+\end{figure}

@@ -106,3 +106,11 @@ $N_J=[JX,JY]-J[JX,Y]-J[X,JY]-[X,Y]$，在两个$(0,1)$向量上为$-4\pi^{1,0}[X
 实曲率矩阵斜对称时$p_1=-\operatorname{tr}\Omega^2/(8\pi^2)$，$p_k=(-1)^kc_{2k}(V_{\mathbb C})$。定向偶秩丛取$e=\operatorname{Pf}(\Omega)/(2\pi)^r$，复定向下$e(E_{\mathbb R})=c_r(E)$；反转丛定向使Euler类变号。相对传递取$\omega_t=\omega_0+t(\omega_1-\omega_0)$，$T_p=k\int_0^1P(a,\Omega_t^{k-1})\dd t$，故$\dd T_p=\operatorname{cw}_p(\omega_1)-\operatorname{cw}_p(\omega_0)$。
 
 固定平凡化的$\operatorname{CS}_3(A)=\operatorname{tr}(A\dd A+2A^3/3)$一般不是非平凡丛上的全局形式；它不能与两个全局联络的相对$T_p$混同。本章构造的是实de Rham类，一般整类比较、挠信息、Euler指标比较/CGB、签名定理和怪球完整构造分类另列未证依赖。
+
+\Needspace{18\baselineskip}
+\section{Clifford负平方、Spin提升与Dirac符号}
+第19章在正定内积上取$vw+wv=-2g(v,w)$，旋量乘法$c(v)^*=-c(v)$；反序$\tau(v)=v$，Clifford共轭$\bar v=-v$为实代数反自同构，不能与复系数共轭混用。$\operatorname{Spin}(n)$用偶个单位向量乘积，覆盖$\lambda(a)v=ava^{-1}$。若$L_{ij}e_i=e_j$、$L_{ij}e_j=-e_i$，则$\lambda_*^{-1}(L_{ij})=e_ie_j/2$。
+
+旋量联络势为$A^{\mathbb S}(X)=\frac14\sum_{i,j}g(\nabla_Xe_i,e_j)c_ic_j$，系数指标不可未经转置便换成矩阵行列记号。偶维手征$\Gamma=i^{n/2}c_1\cdots c_n$，外代数模型中为$(-1)^{\deg}$。几何Dirac取$D=\sum c_i\nabla_{e_i}$，用$\partial\mapsto i\xi$时主符号$ic(\xi^\sharp)$平方为正的$|\xi|^2$。粗Laplace取负二阶迹，因此$D^2=\nabla^*\nabla+\mathrm{Scal}/4$；扭丛另有$\sum_{i<j}c_ic_jF^E(e_i,e_j)$。
+
+Spin过渡提升的中心符号为$z_{ijk}=h_{ij}h_{jk}h_{ki}$；给定良覆盖上证明的符号障碍不等于已建立一般拓扑$w_2$比较。形式自伴不等于已证明非紧本质自伴或Fredholm。校准要求闭性及逐有向规范平面上界1；图像定向下的特殊Lagrange条件还须$\operatorname{Re}\det(I+i\operatorname{Hess}f)>0$，不能只检查虚部零。

@@ -1,0 +1,35 @@
+\subsection{外代数上的复旋量模型}
+令$n=2m$，取$S=\Lambda^*\mathbb C^m$，使有序楔积基正交规范。记$\epsilon_j$为楔乘，$\iota_j=\epsilon_j^*$为内乘，定义
+\begin{equation}\label{eq:spin-fock}
+ c_{2j-1}=\epsilon_j-\iota_j,\qquad
+ c_{2j}=i(\epsilon_j+\iota_j).
+\end{equation}
+外代数恒等式逐项给$c_ac_b+c_bc_a=-2\delta_{ab}I$及$c_a^*=-c_a$，于是$S$为复化Clifford代数的Hermite模。它的维数是$2^m$，不是整个$\Lambda^*\mathbb C^{2m}$的$2^{2m}$。
+
+\Needspace{14\baselineskip}
+\begin{proposition}\label{prop:complex-clifford}
+复化代数有
+\[
+ \operatorname{Cl}_{2m}^{\mathbb C}\simeq\operatorname{End}(S),\qquad
+ \operatorname{Cl}_{2m+1}^{\mathbb C}\simeq
+ \operatorname{End}(S)\oplus\operatorname{End}(S).
+\]
+偶维有一个不可约复模的同构类，奇维有两个；两者在奇维的偶子代数上同构。
+\end{proposition}
+\begin{proof}
+从$c$能还原
+\[
+ \epsilon_j=\tfrac12(c_{2j-1}-ic_{2j}),\qquad
+ \iota_j=-\tfrac12(c_{2j-1}+ic_{2j}).
+\]
+令$N_j=\epsilon_j\iota_j$，$P_0=\prod_j(1-N_j)$投影到真空$1$。用适当有序的内乘先把指定楔积基送到1，再接$P_0$和指定的楔乘，得到每一个矩阵单位（其余基向量被投影消去）。因此表示满射；两边维数均为$2^{2m}$，由定理\ref{thm:clifford-basis}知它是同构。
+
+置$\Gamma=i^mc_1\cdots c_{2m}$。把相邻一对相乘可得$\Gamma=\prod_j(1-2N_j)$，即在$\Lambda^k\mathbb C^m$上为$(-1)^k$；它平方为1并与每个$c_a$反交换。奇维另一个生成元可取$c_{2m+1}=+i\Gamma$或$-i\Gamma$。代数中的$z=-i(i^me_1\cdots e_{2m})e_{2m+1}$为中心元且$z^2=1$，两表示分别把它送到$+I,-I$。用$(1\pm z)/2$隔离两个矩阵块，合并表示满射；维数再次相等，得到第二个同构。
+
+最后，矩阵代数的不可约模必是列空间：对一个非零模用对角矩阵单位分解，再用$E_{ab}$相互传送各分量；不可约性迫使每个分量一维。直和代数的中心幂等元在不可约模上仅能有一个非零块。奇维偶子代数的像仍是整个$\operatorname{End}(S)$：其中已有$\Gamma$，再由$c_ac_{2m+1}$与$\Gamma$还原$c_a$。这证明全部断言。
+\end{proof}
+
+\subsection{手征与不能下降的表示}
+偶维$\Gamma$自伴，给$S=S^+\oplus S^-$，其中$S^\pm$分别为偶/奇外幂，维数均$2^{m-1}$（$m\geq1$）。偶Clifford元素保持它们，向量乘法交换它们；偶子代数的像是$\operatorname{End}(S^+)\oplus\operatorname{End}(S^-)$，因为前述矩阵单位的输入输出同奇偶时其构造属于偶次。
+
+下一节的$\operatorname{Spin}(n)$由偶个单位向量相乘组成，每个$c(v)$在$|v|=1$时为酉矩阵，故其旋量表示酉。$-1$却作用为$-I$，所以此表示不能通过$\operatorname{Spin}(n)\to\mathrm{SO}(n)$下降。一个旋量并非简单地在每张正交标架中放一个复列向量，仍须解决标架过渡提升。

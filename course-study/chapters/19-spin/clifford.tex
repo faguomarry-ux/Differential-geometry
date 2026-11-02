@@ -1,0 +1,46 @@
+\subsection{用商代数记录度量}
+设$(V,g)$为$n$维实内积空间，张量代数$T(V)=\bigoplus_{k\geq0}V^{\otimes k}$取连接乘法。令$I$为所有$v\otimes v+g(v,v)1$生成的双边理想，定义
+\[
+ \operatorname{Cl}(V,g)=T(V)/I.
+\]
+把$v+w$的平方减去各自平方，便得$vw+wv=-2g(v,w)$。若线性映射$f:V\to A$进入含幺结合代数且$f(v)^2=-g(v,v)1$，逐个张量相乘唯一延拓到$T(V)$的代数同态，其核含$I$；因此唯一下降为$\operatorname{Cl}(V,g)\to A$。这就是构造的泛性质。还须证明$V$没有在商中意外塌缩。
+
+\Needspace{16\baselineskip}
+\begin{theorem}[有序单项式基]\label{thm:clifford-basis}
+对任意正交规范基$e_1,\ldots,e_n$，元素
+\[
+ e_I=e_{i_1}\cdots e_{i_k},\qquad i_1<\cdots<i_k,
+ \qquad e_\varnothing=1
+\]
+构成Clifford代数的基。因此维数为$2^n$，自然映射$V\to\operatorname{Cl}(V,g)$单射。
+\end{theorem}
+\begin{proof}
+用$e_ie_j=-e_je_i$（$i\ne j$）把指标排序，再用$e_i^2=-1$删掉重复指标，说明这些元素生成整个商空间。
+
+为证独立，在$\Lambda^*V$上记$\epsilon_v\alpha=v\wedge\alpha$，$\iota_v$为用$g(v,-)$的内乘。由外代数的交替性和内乘乘法式，
+\[
+ \epsilon_v\epsilon_w+\epsilon_w\epsilon_v=0,\quad
+ \iota_v\iota_w+\iota_w\iota_v=0,\quad
+ \iota_v\epsilon_w+\epsilon_w\iota_v=g(v,w)I.
+\]
+故$C(v)=\epsilon_v-\iota_v$满足所需平方关系，泛性质给表示$C$。有序不同指标作用在$1\in\Lambda^0V$上时，各内乘都遇到不含相同指标的楔积，因此
+\[
+ C(e_{i_1})\cdots C(e_{i_k})1=e_{i_1}\wedge\cdots\wedge e_{i_k}.
+\]
+若$\sum_Ia_Ie_I=0$，施加此表示并作用于1，外代数基的独立性迫使全部$a_I=0$。特别地，非零$v$在商中仍非零。
+\end{proof}
+
+\subsection{分次、滤过与三个对合}
+虽然$v^2$从张量二次降为常数，次数的\emph{奇偶}不变。因此代数有$\mathbb Z/2$分次$\operatorname{Cl}^0\oplus\operatorname{Cl}^1$，乘法将奇偶相加。长度不超过$k$的单项式给滤过$F_k$，伴随分次中的最高项满足$vw=-wv$；由有序基逐次比较，得到
+\[
+ \operatorname{gr}_F\operatorname{Cl}(V,g)\simeq\Lambda^*V.
+\]
+反对称化$\frac1{k!}\sum_\sigma\operatorname{sgn}(\sigma)v_{\sigma(1)}\cdots v_{\sigma(k)}$还给出$\Lambda^*V$与Clifford代数的规范\emph{向量空间}同构，但一般不保持乘法：前者$v\wedge v=0$，后者$v^2=-|v|^2$。
+
+定义分次自同构$\alpha(v)=-v$、反序反自同构$\tau(v)=v$、Clifford共轭$\bar a=\alpha(\tau(a))$。它们由保持商关系而存在，且平方均为恒等；$\tau(ab)=\tau(b)\tau(a)$、$\overline{ab}=\bar b\bar a$。这里横线是\emph{实代数反自同构}，不是以后复旋量系数的复共轭。长度$k$的不同正交指标单项式满足
+\[
+ \alpha(e_I)=(-1)^ke_I,\quad
+ \tau(e_I)=(-1)^{k(k-1)/2}e_I,\quad
+ \bar e_I=(-1)^{k(k+1)/2}e_I.
+\]
+例如$\operatorname{Cl}(\mathbb R)=\mathbb C$是\emph{实}代数同构（$e_1\mapsto i$）；二维时$1,e_1,e_2,e_1e_2$满足四元数关系，故$\operatorname{Cl}(\mathbb R^2)\simeq\mathbb H$。这些低维例子不能代替全部实签名及八周期分类。

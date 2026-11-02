@@ -340,5 +340,23 @@
     "title": "示性数的检测及其局限",
     "chapter": "18",
     "provenance": "原创；复定向$\\mathbb{CP}^2$与$S^2\\times S^2$的$\\int p_1$为3及0，球面型七维消失不等于完整分类"
+  },
+  {
+    "id": "spin-half-angle",
+    "title": "Spin双覆盖的半角",
+    "chapter": "19",
+    "provenance": "原创；参数圆表示旋转与提升，基底一周对应提升由1到负1，非普通向量表示"
+  },
+  {
+    "id": "spin-transition-sign",
+    "title": "Spin过渡提升的中心符号",
+    "chapter": "19",
+    "provenance": "原创；三重交集的符号缺陷，只有满足上闭链条件的提升才可拼接"
+  },
+  {
+    "id": "calibration-phase",
+    "title": "特殊Lagrange平面的相位分支",
+    "chapter": "19",
+    "provenance": "原创；对角Lagrange平面相位和，图像定向下实部为正才属相位0校准"
   }
 ]

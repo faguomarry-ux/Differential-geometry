@@ -1,0 +1,96 @@
+\Needspace{18\baselineskip}
+\section{旋量几何习题及详细解答}
+19.1--19.3分别从Figueroa-O'Farrill的2010年Spin课程习题单3的题3.3、3.5、3.6改述、限制或扩展，19.4改述习题单4的题4.1；两份习题单各只有一个PDF页，均印刷/PDF1。19.5--19.8为原创补充。讲义正文是2017年5月18日修订版；来源符号与本书显式定义分别核对，不照搬可能不同的签名或对合记号。
+
+\Needspace{12\baselineskip}
+\subsection*{习题19.1：限制到Spin后何时仍不可约}
+改述习题单3题3.3，取正定情形。证明不可约Clifford模限制到Pin仍不可约，不可约偶Clifford模限制到Spin仍不可约。为什么这不使偶维的整个$S=S^+\oplus S^-$成为不可约Spin模？
+\begin{proof}[解答]
+每个规范基向量为单位向量，任意Clifford有序基单项式都是Pin元素，故Pin的线性张成是整个Clifford代数。一个对Pin不变的线性子空间，对其线性张成也不变，因此不可约性保留。同理，偶有序基单项式属于Spin，故Spin张成偶子代数，得到第二个结论；这对实模或复化后的复模均成立。
+
+偶维的全$S$只对\emph{整个}Clifford代数不可约；对偶子代数，它已分成两个非零的手征块，所以第二个结论的假设不适用于全$S$。将它分别用于$S^+$、$S^-$，才得到两个不可约半旋量表示。原题不是“所有Clifford不可约模限制到Spin都不可约”。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题19.2：三个对合的号与逆元}
+改述习题单3题3.5，采用本章$\alpha,\tau,\bar{\ }$的定义。求它们在$k$个不同正交生成元乘积上的号，验证$\overline{ab}=\bar b\bar a$，并计算单位向量乘积的逆。
+\begin{proof}[解答]
+分次对每个生成元给一个负号，故为$(-1)^k$。反序需$k(k-1)/2$次相邻交换，故$\tau$的号为$(-1)^{k(k-1)/2}$；合成为$(-1)^{k(k+1)/2}$。在$k=0,1,2,3$模4时，三列号依次是
+\[
+ \begin{array}{c|rrrr}
+ k\bmod4&0&1&2&3\\\hline
+ \alpha&+&-&+&-\\
+ \tau&+&+&-&-\\
+ \bar{\ }&+&-&-&+
+ \end{array}
+\]
+反序对一般乘积先交换两个因子的先后顺序，分次再逐因子作用，便得共轭的反乘法式。对单位$u$有$u^{-1}=-u=\bar u$，故$a=u_1\cdots u_r$满足
+\[
+ a^{-1}=(-u_r)\cdots(-u_1)=\bar a.
+\]
+这些号取决于明确给出的定义；不可只因不同资料都称某记号“共轭”就把符号表照抄。旋量矩阵中的Hermite伴随则还含系数复共轭，是另一种运算。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题19.3：Spin3的一个矩阵实现}
+限制并扩展习题单3题3.6，只处理$\operatorname{Spin}(3)$。把$I,J,K$送到$-i\sigma_1,-i\sigma_2,-i\sigma_3$（$\sigma_j$为第18章Pauli矩阵），证明单位四元数映成$\mathrm{SU}(2)$，说明覆盖核。
+\begin{proof}[解答]
+Pauli乘法给$(-i\sigma_j)^2=-I$及$(-i\sigma_1)(-i\sigma_2)=-i\sigma_3$，循环式同样成立，故为实代数同态。四个像实线性独立，四元数$q=a+bI+cJ+dK$的像满足$U^*U=(a^2+b^2+c^2+d^2)I$，行列式也等于这个实数。单位四元数因此进入SU2。
+
+反向SU2矩阵的两列酉正交且行列式1，迫使其形如$\left(\begin{smallmatrix}z&w\\-\bar w&\bar z\end{smallmatrix}\right)$，$|z|^2+|w|^2=1$；它能唯一写成上述四个基矩阵的实组合。因此映射为群同构。共轭在三维虚四元数上为正交保向变换；按前文三维Hodge识别，它与Spin覆盖的切向量表示对应。与所有虚四元数交换的$q$为实数，单位条件迫使$q=\pm1$，故核正是两点。此题未证明Spin4以上的同构表。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题19.4：平坦二维环面的四个符号}
+改述习题单4题4.1，使用环面平行标架作基准。以$b=(b_1,b_2)\in(\mathbb Z/2)^2$记录绕两基圈的符号$(-1)^{b_j}$。求$A\in\mathrm{SL}(2,\mathbb Z)$所给换格映射的拉回作用，以及四个结构的轨道。
+\begin{proof}[解答]
+符号是格上的特征$\chi_b(\ell)=(-1)^{b^{\mathsf T}\ell}$。换格$x\mapsto Ax$把闭路$\ell$送到$A\ell$，故拉回为$\chi_b\circ A$，即
+\[
+ b\longmapsto A^{\mathsf T}b\pmod2.
+\]
+导数$A$为常矩阵；比较拉回度量与原度量可用常的正定平方根，正交标架的比较同样为常，故不会额外引入随闭路改变的符号。这也说明此线性表达使用了平行标架的基准。
+
+生成矩阵$S=\left(\begin{smallmatrix}0&-1\\1&0\end{smallmatrix}\right)$、$T=\left(\begin{smallmatrix}1&1\\0&1\end{smallmatrix}\right)$分别给$(b_2,b_1)$、$(b_1,b_1+b_2)$。零向量固定，其余三点由这些变换互相连通，故有一个单点轨道和一个三点轨道。这里只写这些显式换格映射的作用；不在本题证明任意环面微分同胚均由此代表或高属曲面的映射类群分类。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题19.5：二维旋量与半角}
+原创补充。在$\Lambda^*\mathbb C$的基$(1,u)$中写出$c_1,c_2,\Gamma$及$\rho(a_\theta)$。计算$\theta=2\pi$时的值，并说明半旋量是否是SO2的单值表示。
+\begin{proof}[解答]
+楔乘把1送到$u$，内乘把$u$送到1，故
+\[
+ c_1=\begin{pmatrix}0&-1\\1&0\end{pmatrix},\quad
+ c_2=\begin{pmatrix}0&i\\i&0\end{pmatrix},\quad
+ \Gamma=ic_1c_2=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\]
+于是$\rho(a_\theta)=\operatorname{diag}(e^{-i\theta/2},e^{i\theta/2})$。在$2\pi$处两对角元都是$-1$，$4\pi$处才回到1。因此两个一维半旋量均为Spin2的表示，却不是以$\theta\bmod2\pi$为参数的SO2单值表示。向量共轭作用仍在$2\pi$返回恒等，两种表示不要混淆。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题19.6：圆周的边界Spin结构与Dirac模式}
+原创补充。长度$L$的圆周采用$c(e)=i$。分别写出周期和反周期结构的Dirac模式及核。哪一个由圆盘的Spin结构按外向法向在首诱导？
+\begin{proof}[解答]
+用弧长$x$取平行切标架，则$D=i\partial_x$。周期条件$\psi(x+L)=\psi(x)$允许模式$e^{2\pi ikx/L}$，其特征值$-2\pi k/L$；反周期条件允许$e^{2\pi i(k+1/2)x/L}$，特征值$-2\pi(k+1/2)/L$。从$D\psi=0$直接得常数，故前者核复维1，后者为零，无需先用Fourier完备性。
+
+圆盘内固定Spin平凡化。沿边界，外向法向和正向切向量组成的正向标架转一整周；Spin2提升从1走到$-1$，故诱导的Spin1双覆盖是连通的，旋量相对于边界平行切标架呈反周期。这是反周期结构，不能因为圆盘自身可平凡化就把其边界的旋转标架当作常标架。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题19.7：扭Dirac平方的二维号}
+原创补充。Euclid平面上令$\nabla_x=\partial_x$、$\nabla_y=\partial_y+iBx$，$B$为实常数。直接展开$D_E=c_1\nabla_x+c_2\nabla_y$的平方，比较两个手征分量，并解释为何不能丢掉扭曲率项。
+\begin{proof}[解答]
+对角项为$-\nabla_x^2-\nabla_y^2$，交叉项为$c_1c_2[\nabla_x,\nabla_y]=iBc_1c_2=B\Gamma$。因此在$\Gamma=\pm1$的分量上，零阶修正分别为$\pm B$。取$B>0$，其中一个修正为负，故粗Laplace加上未扭标量曲率的非负性论证不能直接复用。这里验证的是局部微分算子恒等式；平面非紧，既未给L2定义域，也未据此宣布完整Landau能级或紧致扭核的维数。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题19.8：图像方程的相位分支}
+原创补充。对$\Gamma_f\subset\mathbb C^m$取投影图像定向。证明二维时相位0特殊Lagrange方程等价于$\partial_1^2f+\partial_2^2f=0$；三维时写出方程，并用$\operatorname{Hess}f=\sqrt3 I$说明只查虚部为零的错误。
+\begin{proof}[解答]
+二维实对称$H$有$\det(I+iH)=1-\det H+i\operatorname{tr}H$。虚部零等价于$\Delta_g f=\operatorname{tr}H=0$；此时两特征值为$\lambda,-\lambda$，实部$1+\lambda^2>0$，所以二维不需再排除另一分支。
+
+三维展开给
+\[
+ \det(I+iH)=1-\sigma_2(H)+i\bigl(\operatorname{tr}H-\det H\bigr),
+\]
+因此必须同时有$\operatorname{tr}H=\det H$和$1-\sigma_2(H)>0$。取$f=(\sqrt3/2)|x|^2$，三个特征值均$\sqrt3$，则$\det(I+iH)=(1+i\sqrt3)^3=-8$。虚部虽零，图像定向下实部却为负，故是相位$\pi$而非相位0；反转定向后才被$\operatorname{Re}\Omega_0$校准。此反例说明相位条件具有实际内容，不是无关的记号选择。
+\end{proof}

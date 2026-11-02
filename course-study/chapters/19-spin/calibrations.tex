@@ -1,0 +1,53 @@
+\subsection{闭形式怎样给体积下界}
+几何中的校准（calibration）不是调节参数，而是一个闭形式给出的逐切平面体积下界。设$\varphi$为Riemannian流形上的实$k$形式，要求对每个有向正交规范$k$标架有$\varphi(v_1,\ldots,v_k)\leq1$；反转定向也在要求中，故等价于绝对值不超过1。若再有$\dd\varphi=0$，称为校准。定向$k$维子流形$N$满足$\varphi|_N=\mathrm{vol}_N$时，称被其校准。
+
+\Needspace{14\baselineskip}
+\begin{theorem}[校准的体积比较]\label{thm:calibration-minimizing}
+设$N,N'$为紧致定向无边界$k$维子流形，且存在紧致定向光滑带边$(k+1)$维流形$W$及光滑$F:W\to M$，使边界映射给$N'$和反向的$N$。若$N$被$\varphi$校准，则$\operatorname{Vol}(N)\leq\operatorname{Vol}(N')$。此外，校准子流形对紧支变分为极小子流形。
+\end{theorem}
+\begin{proof}
+第8章Stokes给$\int_{N'}\varphi-\int_N\varphi=\int_W\dd F^*\varphi=0$。逐点的校准不等式给$\int_{N'}\varphi\leq\operatorname{Vol}(N')$，而$N$上等于体积，得到比较。
+
+为得局部极小性，取支撑在一张子流形坐标卡内部的变分，选包含支撑的闭坐标球域。Cartan公式给$\frac{\dd}{\dd t}\int F_t^*\varphi=\int F_t^*\dd\iota_V\varphi=0$，因为变分场在边界附近为零，Stokes的边界项消失。只比较该紧区域体积，即使$N$非紧也成立。$t$的正负两侧体积都不小于原值，导数为零；第13章第一变分用任意局部法向场遂得平均曲率向量处处为零。分解一般紧支变分后亦成立。
+\end{proof}
+通常的“同调类内最小”还可用光滑链版本的Stokes表述；这里直接证明给定光滑配边的版本及固定边界的局部变分，不预用一般奇异同调比较、积分流存在、紧性或奇点正则性。
+
+\subsection{Kahler形式的Wirtinger不等式}
+设$(M^{2m},g,J,\omega)$为Kahler，沿用$\omega(X,Y)=g(JX,Y)$。则$\varphi_k=\omega^k/k!$为校准，且其校准的有向$2k$平面恰为复定向的$J$不变平面。证明如下：在实$2k$平面$W$上，$A=\operatorname{pr}_WJ|_W$为斜自伴且算子范数不超过1。实斜矩阵的正交分块标准形给正交基，使$\omega|_W$由$k$个系数$\lambda_j$的面积块组成，$|\lambda_j|\leq1$；于是
+\[
+ \left|\frac{\omega^k}{k!}(v_1,\ldots,v_{2k})\right|
+ =\prod_j|\lambda_j|\leq1.
+\]
+等号使每个块$|\lambda_j|=1$，故$|\operatorname{pr}_WJv|=|v|$；正交投影的等号迫使$Jv\in W$。反向$J$不变且取复定向时，由第17章体积式得正的等号。$\dd\omega=0$使$\varphi_k$闭，因此复子流形在相应光滑配边范围内体积最小。若只是Hermite，逐点不等式仍成立，但缺少闭性不能作Stokes比较。
+
+\subsection{平坦特殊Lagrange与相位}
+在$\mathbb C^m$上取Euclid度量、$\omega_0=\sum_j\dd x_j\wedge\dd y_j$、$\Omega_0=\dd z_1\wedge\cdots\wedge\dd z_m$，则$\operatorname{Re}\Omega_0$是校准。确实，把有向实规范基$v_1,\ldots,v_m$作为复矩阵$Z$的列，每列Hermite长度为1，复Hadamard不等式给
+\[
+ \operatorname{Re}\det Z\leq|\det Z|\leq1.
+\]
+Hadamard可由复Gram--Schmidt证明：行列式绝对值是各列依次投影到前列正交补后的长度之积，每项至多原长度；等号当且仅当各列复正交。由于各列已实正交，复正交等价于$\omega_0|_W=0$。再要求$\det Z=1$，即$\operatorname{Im}\Omega_0|_W=0$且实部取正，才是当前定向下的相位0校准；只要求虚部为零可能给相反定向。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/calibration-phase}
+\caption{在一族对角Lagrange平面中，$\Omega_0(v_1,\ldots,v_m)=e^{i\sum\theta_j}$。相位0给正向校准，实部非正的分支不能仅因虚部为零就混入；图只画该复数的相位圆。}
+\label{fig:calibration-phase}
+\end{figure}
+
+对实函数$f:\mathbb R^m\to\mathbb R$，图像$x\mapsto x+i\operatorname{grad}f$的切矩阵为$I+iH$，$H=\operatorname{Hess}f$对称。拉回$\omega_0$为零，而
+\begin{equation}\label{eq:special-lagrangian-graph}
+ \Omega_0|_{\Gamma_f}=\det(I+iH)\,\dd x_1\cdots\dd x_m,
+ \qquad \mathrm{vol}_{\Gamma_f}=\sqrt{\det(I+H^2)}\,\dd x_1\cdots\dd x_m.
+\end{equation}
+对角化$H$给$\sqrt{\det(I+H^2)}=|\det(I+iH)|$。因此采用投影到$x$空间的图像定向时，相位0方程必须是
+\[
+ \operatorname{Im}\det(I+iH)=0,\qquad \operatorname{Re}\det(I+iH)>0.
+\]
+这些图被校准，因而对紧支光滑比较体积最小。本章不证明其一般非线性PDE解的存在或模空间理论。
+
+\subsection{旋量与校准之间还差哪些论证}
+旋量的作用在于给平行张量的一种来源。若$\psi$平行，对任意$k$，张量
+\[
+ \beta(X_1,\ldots,X_k)=\operatorname{Alt}
+ \langle\psi,c(X_1)\cdots c(X_k)\psi\rangle
+\]
+其中$\operatorname{Alt}$采用$1/k!$归一化。由联络相容性逐项求导为零；取实部或虚部仍为平行实形式，Levi--Civita无挠使其外微分为零。然而它可能为零，或其最大值未归一化为1，等号平面也尚未确定。要从特定旋量得到$G_2$、$\operatorname{Spin}(7)$校准，必须另证表示恒等式、稳定子和逐平面不等式。本章仅建立上述平行闭性与Kahler/平坦特殊Lagrange实例，不把特殊holonomy分类、Killing旋量分类、Calabi--Yau存在性及McLean变形理论算作已证。

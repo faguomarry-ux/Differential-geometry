@@ -1,0 +1,48 @@
+\subsection{提升的是标架丛，不只是每个过渡矩阵}
+设$F_{\mathrm{SO}}(M)$为正向正交标架主丛。一个Spin结构是主$\operatorname{Spin}(n)$丛$Q\to M$，连同覆盖恒等底映射的映射$\Phi:Q\to F_{\mathrm{SO}}(M)$，满足
+\[
+ \Phi(qa)=\Phi(q)\lambda(a),
+\]
+且每个纤维上是上述二重覆盖。等价结构要求主丛同构还保持$\Phi$。若只忘掉$\Phi$而比较抽象丛，可能把不同Spin结构错误合并。
+
+在局部标架$s_j=s_i g_{ij}$中，候选提升$h_{ij}:U_i\cap U_j\to\operatorname{Spin}(n)$应满足$\lambda(h_{ij})=g_{ij}$。一个矩阵可提升不保证整个过渡\emph{函数}可单值提升，更不保证三重交集上的乘法相容。
+
+\Needspace{18\baselineskip}
+\begin{proposition}[给定覆盖上的符号障碍]\label{prop:spin-cocycle}
+取一组有正向正交标架的开覆盖，并假设所有非空有限交集可缩且连通。选$h_{ji}=h_{ij}^{-1}$的光滑提升，令
+\[
+ z_{ijk}=h_{ij}h_{jk}h_{ki}\in\{1,-1\}.
+\]
+则$z$为常值层$\mathbb Z/2$的Cech二上闭链，其类不依赖提升选择。此类为零当且仅当这些标架过渡可提升为Spin结构；存在时，等价结构组成$\check H^1(\{U_i\};\mathbb Z/2)$的挠子，即该群作用自由且传递，但未选基准结构时没有指定零点。
+\end{proposition}
+\begin{proof}
+可缩交集上，双覆盖的路径提升使$g_{ij}$有单值提升：从一点选定起值，沿路径提升，收缩路径的同伦提升保证终值与路径无关。覆盖局部逆保证光滑；这一步也可直接用第15章覆盖提升论证。三重乘积在$\lambda$下为1，故是局部常符号；因交集连通而常值。
+
+由$h_{ij}h_{jk}=z_{ijk}h_{ik}$在四重交集计算同一三重乘积的两种结合，得
+\[
+ z_{ijk}z_{ikl}=z_{jkl}z_{ijl},
+\]
+其中符号位于中心，正是$\delta z=1$。若$h'_{ij}=\varepsilon_{ij}h_{ij}$，则$z'=z\,\delta\varepsilon$。因此类不变；类为零时选择$\varepsilon$消掉$z$，使$h_{ij}h_{jk}=h_{ik}$，第16章拼接法便构造主Spin丛及$\Phi$。反向由实际Spin丛取局部提升截面，过渡本来就满足该乘法式，障碍类为零。
+
+两组相容提升的比值$\varepsilon_{ij}$为符号一上闭链。保持$\Phi$的局部同构只能改截面为$q_i\eta_i$，$\eta_i\in\{\pm1\}$，因而恰把比值改一个上边界。反之每个符号一上闭链与既有提升相乘仍相容。这给出自由且传递的$\check H^1$作用。
+\end{proof}
+上闭链、上边界在此均指固定覆盖上交替的符号数据及其乘法，不把它们与第9章的实微分形式混同。\textbf{外引边界：}本书尚未证明每个流形都有上述良覆盖、其Cech群与奇异上同调的比较，以及此障碍等于拓扑$w_2(TM)$的比较。因此常见判据“定向且$w_2=0$当且仅当spin”在采用这些拓扑定理后可用，但不能由第18章实Chern--Weil类直接推出。尤其真实障碍为模2信息，实曲率类一般看不到。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/spin-transition-sign}
+\caption{三张标架卡的提升相乘可能剩下中心符号$z_{ijk}$。把单个过渡选成另一个提升会改此符号的上边界，但不能任意消掉非零的整体障碍类。}
+\label{fig:spin-transition-sign}
+\end{figure}
+
+\subsection{可直接构造的例子：平行化与球面}
+有全局正向正交标架时，$F_{\mathrm{SO}}\simeq M\times\mathrm{SO}(n)$，取$Q=M\times\operatorname{Spin}(n)$即得一个Spin结构。度量的改变可用第18章正定平方根同构对应正交标架丛，故不改变是否存在Spin结构。
+
+球面不必全局平行化也有Spin结构。在$\mathbb R^{n+1}$取规范基$e_0,e_1,\ldots,e_n$，以
+\[
+ Q=\operatorname{Spin}(n+1),\qquad p(a)=\lambda(a)e_0\in S^n
+\]
+为总空间和投影。稳定子恰为嵌入的$\operatorname{Spin}(n)$：其像是固定$e_0$的$\mathrm{SO}(n)$，用$e_0^\perp$内偶数次反射提升；同像元素仅相差$\pm1$，仍在该子群。局部选正交补标架再作局部覆盖提升，给主丛平凡化。映射
+\[
+ \Phi(a)=(\lambda(a)e_1,\ldots,\lambda(a)e_n)
+\]
+给$S^n$的正向切标架，其定向采用外向法向在首；它是纤维上的二重覆盖，故确为Spin结构。$S^2$的总空间即$\operatorname{Spin}(3)=S^3$，并不意味着$TS^2$平凡。维数1时同样取$\operatorname{Spin}(1)=\{\pm1\}$，此构造给圆周的连通双覆盖；习题将比较圆周的两个结构。

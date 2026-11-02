@@ -1,0 +1,68 @@
+\subsection{Dirac平方的曲率项}
+定义联络粗Laplace算子
+\[
+ \nabla^*\nabla\psi=-\sum_i\left(
+ \nabla^{\mathbb S}_{e_i}\nabla^{\mathbb S}_{e_i}\psi
+ -\nabla^{\mathbb S}_{\nabla_{e_i}e_i}\psi\right).
+\]
+它在函数平凡线丛上是第11章$-\Delta_g$，在旋量上仍有非负的紧支积分$\int\langle\nabla^*\nabla\psi,\psi\rangle=\int|\nabla\psi|^2$；对每个局部标架用度量相容和散度，再用单位分解即可证明此积分式。
+
+\Needspace{15\baselineskip}
+\begin{theorem}[Schr\"odinger--Lichnerowicz公式]\label{thm:lichnerowicz}
+对正定Riemannian Spin流形的未扭旋量丛，有算子恒等式
+\begin{equation}\label{eq:lichnerowicz}
+ D^2=\nabla^*\nabla+\tfrac14\mathrm{Scal}\,I.
+\end{equation}
+\end{theorem}
+\begin{proof}
+在任意点$p$选局部正向正交标架使$\nabla e_i(p)=0$；无挠使$[e_i,e_j](p)=0$。相容性、$c_i^2=-1$及不同指标的反交换给
+\[
+ D^2=\nabla^*\nabla+\sum_{i<j}c_ic_jR^{\mathbb S}(e_i,e_j)
+ \quad\text{在$p$处}.
+\]
+记$R_{ijkl}=g(R(e_i,e_j)e_k,e_l)$，代入\eqref{eq:spin-curvature}，曲率项为
+\[
+ \mathcal C=\frac18\sum_{i,j,k,l}R_{ijkl}c_ic_jc_kc_l.
+\]
+下面不用“标准缩并”省掉关键号。第11章给两对反对称、对换对称$R_{ijkl}=R_{klij}$及第一Bianchi。
+
+若两对指标只共一个，交换$(i,j)$与$(k,l)$时系数不变，而对应两个双Clifford乘积反交换，所以这样的项成对抵消。四指标互异时，对每个$i<j<k<l$合并全部排列，剩下
+\[
+ (R_{ijkl}-R_{ikjl}+R_{iljk})c_ic_jc_kc_l=0,
+\]
+等于零正是第一Bianchi和对换对称。若仅有两个不同指标$i<j$，四个非零排列用$(c_ic_j)^2=-1$合并，给$R_{ijji}/2$。因此
+\[
+ \mathcal C=\tfrac12\sum_{i<j}R_{ijji}
+ =\tfrac14\sum_{i,j}R_{ijji}=\tfrac14\mathrm{Scal}.
+\]
+这里$R_{ijji}$是正截面曲率的分子，与本书球面为正的约定一致。$p$任意，故算子恒等式全局成立。
+\end{proof}
+
+\Needspace{13\baselineskip}
+\subsection{调和旋量消失及其适用边界}
+\begin{corollary}\label{cor:spin-vanishing}
+设$M$紧致、连通、无边界且spin，$\mathrm{Scal}\geq0$。若$D\psi=0$，则$\psi$平行；若某点$\mathrm{Scal}>0$，则$\psi=0$。
+\end{corollary}
+\begin{proof}
+形式自伴及上式给
+\begin{equation}\label{eq:spin-energy}
+ \|D\psi\|_{L^2}^2=\|\nabla\psi\|_{L^2}^2
+ +\frac14\int_M\mathrm{Scal}|\psi|^2\,\mathrm{vol}.
+\end{equation}
+左端为零，右边两项非负，故平行。度量相容使其长度常数；若正曲率点附近积分仍为零，旋量在该处为零，连通性使常长度为零。若不连通，只能逐分支使用此结论。
+\end{proof}
+单位$n$球面有$\mathrm{Scal}=n(n-1)>0$（$n\geq2$），前节又显式构造了Spin结构，所以没有非零调和旋量。平坦环面则只有全周期结构允许非零平行旋量，核维数为$2^{\lfloor n/2\rfloor}$，其余符号结构的核为零。此核计算仅用能量式及平行方程，不依赖Fourier谱完备。
+
+非紧空间上不能直接把无穷远的边界项丢掉；有边界时更不能省略边界条件。正标量曲率不能仅凭本章结论排除\emph{所有}Spin流形上的度量：要从拓扑指标强迫核非零，仍需第20章计划中的Fredholm及指标理论。
+
+\subsection{扭丛会多出曲率}
+若$(E,h,\nabla^E)$为复Hermite丛及酉联络，在$\mathbb S\otimes E$上用张量积联络和$c\otimes I$定义$D_E$。曲率相加，以上推导逐字保留到最后一步，给
+\begin{equation}\label{eq:twisted-lichnerowicz}
+ D_E^2=\nabla^*\nabla+\tfrac14\mathrm{Scal}
+ +\sum_{i<j}c_ic_j\otimes F^E(e_i,e_j).
+\end{equation}
+最后一项一般没有非负性，不能只查标量曲率就重复未扭的消失结论。二维平面上取$A^E=iBx\dd y$，有$F^E=iB\dd x\wedge\dd y$、$\Gamma=ic_1c_2$，故
+\[
+ D_E^2=-\partial_x^2-(\partial_y+iBx)^2+B\Gamma.
+\]
+系数及号可直接通过两个协变导数的交换子核对；本例不声称已发展规范场的谱理论。

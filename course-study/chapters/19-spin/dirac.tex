@@ -1,0 +1,80 @@
+\subsection{相伴旋量丛与提升的联络}
+给定Spin结构$(Q,\Phi)$及前述复旋量模$S$，定义$\mathbb S=Q\times_\rho S$，采用第16章关系$[qa,s]=[q,\rho(a)s]$。令$e_i=\Phi(q)e_i^{\mathrm{std}}$，定义
+\[
+ c(X)[q,s]=[q,c(q^{-1}X)s].
+\]
+此处$q^{-1}X$意为用标架$\Phi(q)$取坐标，而不是对切向量真的乘一个群逆。由表示的共轭相容性，
+\[
+ \rho(a)c(v)\rho(a)^{-1}=c(\lambda(a)v),
+\]
+所以定义与$q$无关。偶维$\Gamma$也不依赖正向标架，给$\mathbb S^+\oplus\mathbb S^-$；反转定向会改变手征标记。
+
+Levi--Civita主联络$\omega$拉回到$Q$后，再用$\lambda_*^{-1}$识别李代数，得到$\widetilde\omega=\lambda_*^{-1}\Phi^*\omega$。它满足主联络的再现及等变公理，因$\lambda$为群同态且微分同构。相伴联络写成
+\begin{equation}\label{eq:spin-connection}
+ \nabla_X^{\mathbb S}\psi=X(\psi)+A^{\mathbb S}(X)\psi,
+ \qquad A^{\mathbb S}(X)=\frac14\sum_{i,j}
+ g(\nabla_Xe_i,e_j)c_i c_j.
+\end{equation}
+相邻提升$q_j=q_i h_{ij}$中，局部系数按$\rho(h_{ij})^{-1}$变换，联络势按第16章公式变换，故上式确实拼接。
+
+\Needspace{13\baselineskip}
+\begin{proposition}\label{prop:spin-compatible}
+旋量联络保持Hermite内积，并满足
+\[
+ \nabla_X^{\mathbb S}(c(Y)\psi)=c(\nabla_XY)\psi+c(Y)\nabla_X^{\mathbb S}\psi.
+\]
+其曲率为
+\begin{equation}\label{eq:spin-curvature}
+ R^{\mathbb S}(X,Y)=\frac14\sum_{i,j}
+ g(R(X,Y)e_i,e_j)c_i c_j.
+\end{equation}
+\end{proposition}
+\begin{proof}
+对$i\ne j$，$(c_ic_j)^*=c_jc_i=-c_ic_j$，实斜系数使$A^{\mathbb S}$斜Hermite，因此联络度量相容。直接算
+\[
+ [c_ic_j,c_k]=2(\delta_{ik}c_j-\delta_{jk}c_i),
+\]
+连同\eqref{eq:spin-lie-lift}说明$[A^{\mathbb S}(X),c_k]=c(\nabla_Xe_k)$。对$Y=\sum Y^ke_k$用乘法式即得相容性。曲率可从主丛同态及表示拉回，也可在$\dd A^{\mathbb S}+A^{\mathbb S}\wedge A^{\mathbb S}$中用同一交换子计算；因$\lambda_*^{-1}$为李代数同态，结果正是\eqref{eq:spin-curvature}。
+\end{proof}
+
+\subsection{Dirac算子、主符号与形式自伴}
+定义几何Dirac算子
+\begin{equation}\label{eq:geometric-dirac}
+ D\psi=\sum_{i=1}^nc(e_i)\nabla^{\mathbb S}_{e_i}\psi.
+\end{equation}
+若换为$e'_i=\sum_j e_jO_{ji}$，两处$O$相乘求和给$\sum_iO_{ji}O_{ki}=\delta_{jk}$，所以定义与标架无关。偶维$D$交换手征：$D:\Gamma(\mathbb S^\pm)\to\Gamma(\mathbb S^\mp)$，因为$\Gamma$平行且与向量乘法反交换。
+
+\Needspace{14\baselineskip}
+\begin{proposition}\label{prop:dirac-symbol-adjoint}
+有$[D,f]=c(\operatorname{grad}f)$。以$\partial_j\mapsto i\xi_j$定义主符号，则
+\[
+ \sigma_D(x,\xi)=i c(\xi^\sharp),\qquad
+ \sigma_D(x,\xi)^2=|\xi|^2I,
+\]
+故$D$椭圆。对紧支光滑旋量$\psi,\chi$，有$\int\langle D\psi,\chi\rangle=\int\langle\psi,D\chi\rangle$。
+\end{proposition}
+\begin{proof}
+展开$D(f\psi)$，只有导数作用于$f$的项未相消，正是$\sum_i(e_if)c_i$。符号把它再乘$i$，由Clifford平方得正的$|\xi|^2$。不用$i$的实代数符号约定也可用，但其平方会是$-|\xi|^2$，不能混写。
+
+在一点取协变导数为零的正交标架，对复值向量场$W=\sum_i\langle\psi,c_i\chi\rangle e_i$，相容性和$c_i^*=-c_i$给
+\[
+ \operatorname{div}W=-\langle D\psi,\chi\rangle+\langle\psi,D\chi\rangle.
+\]
+这是标量恒等式，逐点成立。对实虚部应用Stokes，紧支使边界项为零，即得结论。
+\end{proof}
+形式自伴只讨论积分分部；非紧时的算子闭包、定义域、本质自伴、紧致时的谱完备和Fredholm性质需要分析论证，不由上述命题自动获得。若有边界，还须写出边界项及边界条件，本章不处理APS边界问题。
+
+\subsection{同样的局部公式，不同的全局符号}
+平坦$T^n=\mathbb R^n/\mathbb Z^n$上，任选$\varepsilon_j\in\{0,\tfrac12\}$，令
+\[
+ \psi(x+\ell)=e^{2\pi i\varepsilon\cdot\ell}\psi(x),\qquad \ell\in\mathbb Z^n.
+\]
+由$(x,a)\sim(x+\ell,e^{2\pi i\varepsilon\cdot\ell}a)$构造Spin主丛（相位这里只是中心$\pm1$），再取相伴丛便得这些条件。这$2^n$个结构互不等价且穷尽：一个Spin结构在固定全局标架的逆像是二重覆盖；拉回可缩的$\mathbb R^n$后，用路径及同伦提升将其平凡化。格平移在两层上给乘法特征$\mathbb Z^n\to\{\pm1\}$，恰由$n$个基圈符号决定，保持$\Phi$的同构不改变这些符号。
+
+固定平行标架下$D=\sum c_j\partial_j$，但允许的旋量不同。每个模式
+\[
+ \psi(x)=e^{2\pi i(k+\varepsilon)\cdot x}s
+\]
+被$D$送为同一指数乘$2\pi i\,c(k+\varepsilon)s$；非零频率的平方特征值为$4\pi^2|k+\varepsilon|^2$。对$n\geq2$非零频率的正负特征值均出现，重数相等，可用与频率正交的Clifford乘法交换两特征空间。
+
+此处先给显式模式，不以一组模式的写出代替一般谱完备证明。下一节的能量恒等式会直接说明：平坦环面调和旋量必平行，所以只有全周期结构有常旋量核。局部曲率均为零，却可以有不同的全局核，这正是Spin结构选择不可忽略的例子。

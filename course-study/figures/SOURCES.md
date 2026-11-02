@@ -69,3 +69,7 @@
 ## 第18章示性类三图（v0.19）
 
 `characteristic-descent`、`connection-transgression`、`characteristic-limits`均为原创TikZ组织，位于`modules/characteristic-classes.tex`。分别表示不变曲率多项式的基本性/闭性、联络仿射线段和全局相对传递、四维示性数检测与七维消失的局限。四维数值取复定向；图不代表分类空间、整数提升或怪球构造证明，无原书图号。
+
+## 第19章（v0.20）
+
+`spin-half-angle`、`spin-transition-sign`、`calibration-phase`均为原创TikZ示意，不改绘原书图。分别表示Spin2半角参数、三重交集提升符号、对角Lagrange平面的复相位；不把参数圆当作切向量，不把模2提升障碍当实曲率，不把虚部零与正定向校准等同。正文证明和来源核对见第19章自查记录。

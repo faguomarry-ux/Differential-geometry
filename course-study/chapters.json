@@ -243,13 +243,14 @@
   {
     "id": "19-spin",
     "title": "Clifford代数与旋量几何",
-    "source": "周第9章",
-    "status": "planned",
+    "source": "周第9章（本地页码待核对）；Figueroa-O'Farrill2017修订讲义1–4、6、8节，2010习题单3题3.3/3.5/3.6及单4题4.1；Joyce2003第2节；w2比较/指标理论未证",
+    "status": "draft",
     "sections": [
       "Clifford代数的构造与表示",
       "Spin群及其双覆盖",
       "旋量丛与Dirac算子",
-      "校准与几何应用"
+      "校准与几何应用",
+      "旋量几何习题及详细解答"
     ]
   },
   {

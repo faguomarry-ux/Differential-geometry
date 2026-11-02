@@ -260,3 +260,24 @@ Meinrenken官方 https://www.math.toronto.edu/mein/teaching/moduli.pdf 共18页�
 补充来源：Meinrenken《Group actions on manifolds》Spring2003，第5节印刷/PDF43–48，https://www.math.toronto.edu/mein/teaching/LectureNotes/action.pdf ，重点核对定理5.1（44页）及命题5.10（47页）。源书用其群作用记号，本书保持第16章右主作用约定，并直接证明有限维极化/Bianchi传递，不预引Weil/分类空间比较。
 
 怪球专题核对Milnor1956原论文印刷399–405，DOI https://doi.org/10.2307/1969983 ，扫描 https://sites.math.rutgers.edu/~feehan/teaching/math866/milnor7sphere.pdf 共8页（含首张JSTOR封页）；查看印刷399/PDF2的定理1、相对p1配对及签名。原论文不是新增练习题源；其整类/填充/签名依赖、怪球完整构造及分类不冒充本章已证内容。
+
+## 第19章Clifford与旋量几何（v0.20）
+
+2026-11-03读取Figueroa-O'Farrill的Edinburgh作者课程索引及三份PDF。SpinNotes.pdf首页为2017-05-18修订版，61页，印刷页与PDF物理页相同；课程与习题单为2010年，两个年份不可合并。习题单3/4各一页，整页渲染核对，来源链接如下：
+
+- https://webhomes.maths.ed.ac.uk/~jmf/Teaching/Spin/SpinNotes.pdf
+- https://webhomes.maths.ed.ac.uk/~jmf/Teaching/Spin/Tutorial3.pdf
+- https://webhomes.maths.ed.ac.uk/~jmf/Teaching/Spin/Tutorial4.pdf
+
+| 本书题 | 来源性质 | 原位置及改编边界 | 双页码 |
+|---|---|---|---|
+| 19.1 | 改述扩展 | 单3题3.3，限制正定；补辨全Clifford模与偶模的不可约性假设，说明手征反例 | 印刷1/PDF1 |
+| 19.2 | 改述 | 单3题3.5，按本书显式定义重算分次/反序/Clifford共轭及逆元，不照抄不同对合记号表 | 印刷1/PDF1 |
+| 19.3 | 限制扩展 | 单3题3.6只取Spin3与SU2，不承接全部低维同构表；补Pauli矩阵和覆盖核 | 印刷1/PDF1 |
+| 19.4 | 改述 | 单4题4.1，明确平行标架基准，计算SL2Z换格拉回与两轨道；不证明全映射类群识别或高属分类 | 印刷1/PDF1 |
+| 19.5–19.8 | 原创补充 | 二维Fock/半角、圆周边界Spin/Dirac模式、二维扭曲率号、图像相位反例 | 无原题号 |
+| 三幅图 | 原创TikZ | 半角参数、过渡中心符号、特殊Lagrange相位分支 | 无原图号 |
+
+正文交叉核对讲义第1–4、6、8节，尤其有序基/外代数、Spin覆盖与联络（46页）及Dirac平方/消失（56页）。本书补写平方曲率项全部指标类型的抵消，旋量系数采用第一变量共轭线性的Hermite约定。良覆盖存在、Cech/奇异比较及w2识别明确外引，正定结论不直接搬到Lorentz。
+
+校准补充Joyce《Lectures on special Lagrangian geometry》，arXiv:math/0111111v3（2003-09-29），34页，第2节印刷/PDF2–5，https://arxiv.org/pdf/math/0111111v3 。重写逐平面不等式、给定光滑配边的体积比较及图像定向的正相位；一般同调比较、积分流、奇点和McLean模空间理论未证。周第9章DjVu及梁书对应题来源仍待核对，未造页码。

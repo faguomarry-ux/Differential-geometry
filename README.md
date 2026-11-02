@@ -2,25 +2,26 @@
 
 使用 LaTeX 编写的中文学习整理工程，入口为 [`main.tex`](main.tex)，内容集中在 [`course-study/`](course-study/)。目标是用统一符号、完整证明、可复现的 TikZ 图及配套习题串起现代微分几何与广义相对论。
 
-**当前版本：v0.19 示性类与Chern–Weil理论初稿。** 已建立五部分、23章和两个附录；第1–18章已有正文初稿，第19–23章仍为写作计划。独立数学审阅与部分来源核对尚未完成。
+**当前版本：v0.20 Clifford代数与旋量几何初稿。** 已建立五部分、23章和两个附录；第1–19章已有正文初稿，第20–23章仍为写作计划。独立数学审阅与部分来源核对尚未完成。
 
 [详细进度](docs/PROGRESS.md) · [完整任务清单](docs/TODO.md) · [内容覆盖](course-study/COVERAGE.md) · [工作记录](docs/WORKLOG.md) · [写作约定](CONTRIBUTING.md)
 
 ## 当前验收快照
 
-以下为2026-11-02的本地验收结果；远端构建以对应提交的[GitHub Actions](https://github.com/faguomarry-ux/Differential-geometry/actions/workflows/build.yml)为准。
+以下为2026-11-03的本地验收结果；远端构建以对应提交的[GitHub Actions](https://github.com/faguomarry-ux/Differential-geometry/actions/workflows/build.yml)为准。
 
 | 项目 | 当前结果 |
 |---|---|
-| 正文状态 | 第1–18章初稿；第19–23章待写 |
-| 主书 | 352页；第18章为PDF物理页312–330，共19页 |
-| 图示 | 57幅默认图（56幅正文图及1幅阅读路线图），16组可复用TikZ模块 |
-| 独立图册 | 62页，含57幅默认图及5个参数变体 |
-| 源码与构建 | 23章、201个可达TeX文件；主书及图册日志无警告、缺字、未定义引用或溢出 |
-| 第18章核查 | 8题详解、3幅原创图；131项模型核算通过，23个具名目标页码一致 |
-| 全书链接 | 333个内部链接有效；图模块参数隔离检查通过 |
+| 正文状态 | 第1–19章初稿；第20–23章待写 |
+| 任务归档 | 46项已完成、31项待办；按工作记录条目统计，不代表数学内容完成率 |
+| 主书 | 371页；第19章为PDF物理页331–350，共20页 |
+| 图示 | 60幅默认图（59幅正文图及1幅阅读路线图），17组可复用TikZ模块 |
+| 独立图册 | 65页，含60幅默认图及5个参数变体 |
+| 源码与构建 | 23章、213个可达TeX文件；主书及图册日志无警告、缺字、未定义引用或溢出 |
+| 第19章核查 | 8题详解、3幅原创图；174项模型核算通过，23个具名目标页码一致 |
+| 全书链接 | 357个内部链接有效；图模块参数隔离检查通过 |
 
-具体验收与证明边界见[第18章自查记录](docs/REVIEW-CHAPTER-18.md)。源码检查、符号核算和编译通过均不代替独立数学审阅，也不表示全书证明已完整。
+具体验收与证明边界见[第19章自查记录](docs/REVIEW-CHAPTER-19.md)。源码检查、符号核算和编译通过均不代替独立数学审阅，也不表示全书证明已完整。
 
 ## 已完成任务
 
@@ -38,14 +39,14 @@
 | 第16章 | 拉回/商丛、主丛/相伴丛、主联络与水平提升、曲率/Bianchi、规范变换和Hopf丛；8题详解及3图，完成续接验收 | [自查与验收](docs/REVIEW-CHAPTER-16.md) |
 | 第17章 | 复图册/类型、Hermite/Kahler、FS势、Chern/Ricci、非可积反例及球面边界；8题详解及3图 | [自查与依赖边界](docs/REVIEW-CHAPTER-17.md) |
 | 第18章 | 不变曲率多项式、实Chern/Pontryagin/Euler、联络无关性与传递、局部CS3、射影示性数及怪球边界；8题详解及3图 | [自查与依赖边界](docs/REVIEW-CHAPTER-18.md) |
+| 第19章 | Clifford/复表示、Spin双覆盖、给定覆盖的符号提升障碍、旋量联络/Dirac及Lichnerowicz平方公式、曲率消失、校准；8题详解及3图 | [自查与依赖边界](docs/REVIEW-CHAPTER-19.md) |
 | 图示与来源登记 | 统一TikZ接口、图册及参数隔离检查；习题逐题区分改述、扩展和原创，图示单独登记来源 | [图示文档](course-study/figures/README.md) · [习题来源](references/EXERCISES.md) |
 
 ## 待办与下一步
 
-- [ ] **下一写作章：第19章Clifford代数与旋量几何。** 补写Clifford构造/表示、Spin双覆盖、旋量丛及Dirac算子，逐项说明提升障碍和分析先修，配题解与图示。
-- [ ] 第20章：指标、规范场与进阶专题；逐项列出证明依赖。
+- [ ] **下一写作章：第20章指标定理、规范场与进阶专题。** 先建立椭圆符号、Fredholm与指标的分析依赖，再按可证明范围展开规范场专题，配题解与图示。
 - [ ] 第21–23章：核对资料覆盖后，写作Lorentz几何、Einstein方程和典型时空。
-- [ ] 补齐已有章节的证明缺口与推广，包括第2章曲线重建、第5章全局叶理论，以及后续全局比较和高级分析工具；具体未证范围按章登记。
+- [ ] 补齐已有章节的证明缺口与推广，包括第2章曲线重建、第5章全局叶理论、第19章提升障碍与拓扑w2的比较，以及全局比较和非紧算子分析；具体未证范围按章登记。
 - [ ] 解码并核对周书DjVu版次/页码，核对梁书上下册覆盖，继续补齐参考书、习题和图示的逐项来源映射。
 - [ ] 对已有初稿进行独立数学审阅，复核定理假设、符号、证明依赖及习题解答；新增或修订内容继续进行页面和链接验收。
 - [ ] 正文达到可发布标准后创建教材Release。
@@ -67,7 +68,7 @@
 | I | 1–2 | 分析、代数、拓扑；曲线曲面 | 初稿 |
 | II | 3–9 | 流形、切空间、子流形、张量、形式、积分与上同调 | 初稿 |
 | III | 10–14 | 联络、曲率、测地线、子流形几何、Hodge与Gauss–Bonnet | 初稿 |
-| IV | 15–20 | 李群、丛、复几何、示性类、旋量、指标与规范场 | 第15–18章初稿；第19–20章待写 |
+| IV | 15–20 | 李群、丛、复几何、示性类、旋量、指标与规范场 | 第15–19章初稿；第20章待写 |
 | V | 21–23 | Lorentz几何、Einstein方程、典型时空 | 待写 |
 
 各章细分节、参考范围和进度由 [`chapters.json`](course-study/chapters.json) 登记；详细映射见 [COVERAGE](course-study/COVERAGE.md)。高阶专题也必须列明证明依赖，不能以专题简介替代完整证明。
@@ -87,11 +88,13 @@ python scripts/check-sources.py
 latexmk -r latexmkrc main.tex
 ```
 
-输出 `build/main.pdf`。也可以在根目录对 `main.tex` 直接运行 XeLaTeX 至交叉引用稳定。根目录旧 `main.pdf` 是历史产物，不代表最新构建。GitHub Actions 已配置编译主书和图册并上传双 PDF artifact；是否成功须查看对应提交的运行结果，不以 push 成功代替 CI 成功。当前不自动创建 Release。
+输出 `build/main.pdf`。也可以在根目录对 `main.tex` 直接运行 XeLaTeX 至交叉引用稳定。根目录旧 `main.pdf` 是历史产物，不代表最新构建。
+
+GitHub Actions 会编译主书与图册。在对应提交成功的 `Build book` 运行页面下载 `differential-geometry-book` artifact，即可获取两份PDF。生成PDF不纳入源码提交；远端验收须查看对应提交的运行结果，不以push成功代替CI成功。当前不自动创建Release。
 
 若 Python 不在 PATH 中，PowerShell 脚本支持 `-PythonCommand 'Python可执行文件的绝对路径'`。本机验证使用此参数调用已安装的 Python 运行时。
 
-第13–18章另提供可选的具体模型核算。使用含SymPy的Python环境执行相应脚本；普通构建不依赖SymPy。这些核算检查具体例子，不替代一般证明或独立审阅。
+第13–19章另提供可选的具体模型核算。使用含SymPy的Python环境执行相应脚本；普通构建不依赖SymPy。这些核算检查具体例子，不替代一般证明或独立审阅。
 
 | 章节 | 命令 | 本地核算 |
 |---|---|---|
@@ -101,10 +104,11 @@ latexmk -r latexmkrc main.tex
 | 第16章 | `python scripts/check-principal-bundle-models.py` | 44项：规范协变、水平括号、Hopf局部势/曲率周期 |
 | 第17章 | `python scripts/check-complex-kahler-models.py` | 60项：FS/Ricci、Chern协变、实CP1尺度、Hopf势及非可积括号 |
 | 第18章 | `python scripts/check-characteristic-models.py` | 131项：五维非交换联络/传递、CS3、Pfaffian/定向、球面及射影归一化 |
+| 第19章 | `python scripts/check-spin-models.py` | 174项：Fock/手征、Spin半角/微分、四维曲率缩并、圆球/扭Dirac、环面符号与校准相位 |
 
 ## TikZ模块与图册
 
-统一入口为 `course-study/figures/dg-diagrams.tex`，支持 `\DGDiagram[局部选项]{图名}`，正文仍可输入一图一个 `.tex` 文件。57幅默认图的注册信息、参数、语义样式、新增方式及迁移说明见 [绘图模块文档](course-study/figures/README.md)，参考来源见 [图示来源](course-study/figures/SOURCES.md)。
+统一入口为 `course-study/figures/dg-diagrams.tex`，支持 `\DGDiagram[局部选项]{图名}`，正文仍可输入一图一个 `.tex` 文件。60幅默认图的注册信息、参数、语义样式、新增方式及迁移说明见 [绘图模块文档](course-study/figures/README.md)，参考来源见 [图示来源](course-study/figures/SOURCES.md)。
 
 ```powershell
 python scripts/build-figures.py
@@ -112,7 +116,7 @@ python scripts/build-figures.py
 powershell -ExecutionPolicy Bypass -File scripts/build.ps1 -WithFigureGallery
 ```
 
-图册输出为 `build/figures-gallery.pdf`，包含57幅默认图和5个参数变体，并检查调用间参数隔离。无需书籍模板、外部图片或shell-escape；修改后仍须查看正文页面和图册，不能仅凭编译判断图形正确。
+图册输出为 `build/figures-gallery.pdf`，包含60幅默认图和5个参数变体，并检查调用间参数隔离。无需书籍模板、外部图片或shell-escape；修改后仍须查看正文页面和图册，不能仅凭编译判断图形正确。
 
 ## 工程结构
 

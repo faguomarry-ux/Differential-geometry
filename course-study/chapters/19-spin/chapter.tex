@@ -1,18 +1,32 @@
 \chapter{Clifford代数与旋量几何}
 \label{ch:19-spin}
-\ChapterPlan{周第9章}{待撰写；以下为写作计划，不是已完成正文}
+\ChapterPlan{周第9章（本地页码待核对）；Figueroa-O'Farrill的Spin讲义及2010习题单；Joyce的特殊Lagrange讲义}{正文证明初稿；8题详解和3幅原创图，尚未独立数学审阅}
+
+第16章给出由主丛表示构造相伴丛的方法；本章的困难是，旋量表示通常不下降为$\mathrm{SO}(n)$的表示。因此既要构造一个更精细的群，也要检查正交标架丛能否提升到这个群。随后，联络的协变导数经Clifford乘法缩并为Dirac算子，其平方把标量曲率带入分析。
+
+除另行声明，$g$正定，流形光滑、定向、无边界，维数$n\geq2$；不默认紧致或完备。采用
+\[
+ vw+wv=-2g(v,w),\qquad c(v)^*=-c(v),\qquad
+ R(X,Y)=[\nabla_X,\nabla_Y]-\nabla_{[X,Y]}.
+\]
+Clifford代数先在实数上构造，旋量用复Hermite空间，内积第一变量共轭线性。Lorentz旋量、实表示八周期、$\mathrm{Spin}^c$及指标定理不由这些正定论证自动获得。
 
 \section{Clifford代数的构造与表示}
-\PlannedSection
+\input{course-study/chapters/19-spin/clifford}
+\input{course-study/chapters/19-spin/representations}
 
+\Needspace{16\baselineskip}
 \section{Spin群及其双覆盖}
-\PlannedSection
+\input{course-study/chapters/19-spin/spin}
+\input{course-study/chapters/19-spin/structures}
 
+\Needspace{16\baselineskip}
 \section{旋量丛与Dirac算子}
-\PlannedSection
+\input{course-study/chapters/19-spin/dirac}
+\input{course-study/chapters/19-spin/lichnerowicz}
 
+\Needspace{16\baselineskip}
 \section{校准与几何应用}
-\PlannedSection
+\input{course-study/chapters/19-spin/calibrations}
 
-\section{例题、习题与解答计划}
-需配置概念判断题、坐标计算题、完整证明题及反例题；解答必须与题号对应。
+\input{course-study/chapters/19-spin/exercises}

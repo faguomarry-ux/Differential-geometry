@@ -1,6 +1,6 @@
 # 可复用TikZ模块 v1.0
 
-本目录为第1–18章及前言提供57幅命名图。正文保留一图一个 `.tex` 入口；几何实现集中在十六个模块中。统一加载文件是 `dg-diagrams.tex`，图目录为 `catalog.json`，来源说明为 [SOURCES.md](SOURCES.md)。
+本目录为第1–19章及前言提供60幅命名图。正文保留一图一个 `.tex` 入口；几何实现集中在十七个模块中。统一加载文件是 `dg-diagrams.tex`，图目录为 `catalog.json`，来源说明为 [SOURCES.md](SOURCES.md)。
 
 ## 加载与调用
 
@@ -45,7 +45,7 @@
 \end{document}
 ```
 
-需要XeLaTeX/TeX Live、CTeX、TikZ及AMS数学包。CTeX只负责图中的中文；模块本身自动加载TikZ、AMS及所需库，并为 `\dd` 提供后备定义。迁移到其他项目时保留 `course-study/figures/` 的目录层级，或统一调整该入口文件中十六个模块的相对路径。所有输入路径均为项目根目录相对路径，不包含本机绝对路径。
+需要XeLaTeX/TeX Live、CTeX、TikZ及AMS数学包。CTeX只负责图中的中文；模块本身自动加载TikZ、AMS及所需库，并为 `\dd` 提供后备定义。迁移到其他项目时保留 `course-study/figures/` 的目录层级，或统一调整该入口文件中十七个模块的相对路径。所有输入路径均为项目根目录相对路径，不包含本机绝对路径。
 
 ## 目录与参数
 
@@ -67,6 +67,7 @@
 | `modules/principal-bundles.tex` | `associated-coordinates`、`principal-horizontal`、`hopf-potentials` |
 | `modules/complex-kahler.tex` | `complex-types`、`projective-potentials`、`complex-conditions` |
 | `modules/characteristic-classes.tex` | `characteristic-descent`、`connection-transgression`、`characteristic-limits` |
+| `modules/spin-calibrations.tex` | `spin-half-angle`、`spin-transition-sign`、`calibration-phase` |
 
 | 参数 | 默认值 | 含义与使用条件 | 图册验证值 |
 |---|---|---|---|
@@ -119,7 +120,7 @@ latexmk -r latexmkrc main.tex
 
 Python不在PATH时，用主书构建说明中的Python可执行文件路径调用同一脚本。脚本只依赖Python标准库和PATH中的latexmk。
 
-输出为 `build/figures-gallery.pdf`：57个默认图和5个变体，每图一页，A5横向。该图册使用独立CTeX文档，不加载 `maki-notes`，同时验证模块能脱离书籍模板编译。生成的TeX、PDF、日志均在忽略目录 `build/` 下，不作为源文件提交。
+输出为 `build/figures-gallery.pdf`：60个默认图和5个变体，每图一页，A5横向。该图册使用独立CTeX文档，不加载 `maki-notes`，同时验证模块能脱离书籍模板编译。生成的TeX、PDF、日志均在忽略目录 `build/` 下，不作为源文件提交。
 
 脚本检查目录/注册/入口一致性、重复名称及未知名称；编译日志出现LaTeX警告、缺字或Overfull/Underfull时失败；编译末尾检查参数是否泄漏。它不能自动判断标签重叠、图形遮挡或数学意义，仍须实际查看图册和正文PDF。当前验收记录见 [图示模块验收](../../docs/REVIEW-DIAGRAMS.md)。
 
