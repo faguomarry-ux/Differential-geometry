@@ -1,0 +1,82 @@
+\subsection*{先排除零能量方向，再解弱方程}
+考虑$\mathcal N=\{u\in H^1:\dd u=0,\delta u=0\}$。这些等式在$L^2$或分布意义下相同。对$u\in\mathcal N$有$Q(u,v)=0$，正则性引理使$u$光滑，故$\mathcal N=\mathcal H^k$。
+
+\begin{lemma}[有限维核与核外强制性]\label{lem:hodge-coercivity}
+$\mathcal H^k$有限维。存在$c>0$，使所有$u\in H^1$且$u\perp\mathcal H^k$满足
+\[
+ Q(u,u)\geq c\|u\|_{H^1}^2.
+\]
+\end{lemma}
+\begin{proof}
+若核无限维，取其中$L^2$正交归一序列。Garding估计使其$H^1$有界，Rellich给$L^2$强收敛子列；但任意不同两项距离为$\sqrt2$，矛盾。
+
+先证明核外$\|u\|_{L^2}^2\leq C Q(u,u)$。若否，存在$\|u_j\|_{L^2}=1$、$u_j\perp\mathcal H^k$且$Q(u_j,u_j)\to0$。Garding使$H^1$有界，取子列在$H^1$弱收敛、$L^2$强收敛到$u$。一阶算子连续给$\dd u=\delta u=0$，所以$u\in\mathcal H^k$；强收敛保留范数1及与核正交，矛盾。将此界代入Garding，便得$H^1$强制性。
+\end{proof}
+
+\Needspace{19\baselineskip}
+\begin{theorem}[Hodge分解与调和代表]\label{thm:hodge-decomposition}
+设$(M,g)$光滑、紧致、定向、无边界，则每个次数有$L^2$正交直和
+\[
+ \Omega^k(M)=\mathcal H^k\oplus\dd\Omega^{k-1}(M)
+                        \oplus\delta\Omega^{k+1}(M).
+\]
+约定越界次数的空间为零。每个de Rham上同调类含唯一调和代表，因此$\mathcal H^k\simeq H^k_{\mathrm{dR}}(M;\R)$，特别上同调有限维。
+\end{theorem}
+\begin{proof}
+令$P$为有限维光滑核的$L^2$正交投影，取光滑$\alpha$并置$f=\alpha-P\alpha$。空间
+\[
+ V=H^1(\Lambda^kT^*M)\cap(\mathcal H^k)^\perp
+\]
+在$H^1$中闭，因此完备。$Q$在$V$连续、对称且强制，泛函$v\mapsto(f,v)$连续；变分引理给唯一$u\in V$使$Q(u,v)=(f,v)$对$v\in V$成立。任意$H^1$测试形式可减去其核投影，而$Q(u,h)=0=(f,h)$对核成立，故此弱方程对全部测试成立。正则性使$u$光滑，且
+\[
+ \alpha=P\alpha+\Delta_Hu=P\alpha+\dd\delta u+\delta\dd u.
+\]
+调和形式因闭且余闭而与两个像正交；两像也正交，因为
+\[
+ (\dd\beta,\delta\gamma)=(\dd\dd\beta,\gamma)=0.
+\]
+所以这是正交直和，各个分量唯一；势$\beta,\gamma$本身一般不唯一。
+
+若$\dd\alpha=0$，对分解中的余恰当项配对，
+\[
+ (\alpha,\delta\dd u)=(\dd\alpha,\dd u)=0.
+\]
+由正交性得$\|\delta\dd u\|^2=0$，因此$\alpha=P\alpha+\dd\delta u$，与调和代表同类。若调和$h$又恰当，$h=\dd\beta$，则$\|h\|^2=(h,\dd\beta)=(\delta h,\beta)=0$，故$h=0$。这同时给唯一性和同构，而不是仅仅比较两个空间的维数。
+\end{proof}
+
+记上述核外解算子为Green算子$G$，规定$G\alpha\perp\mathcal H^k$且$GP=0$。则在光滑形式上
+\[
+ \Delta_HG=G\Delta_H=I-P,\qquad
+ \alpha=P\alpha+\dd\delta G\alpha+\delta\dd G\alpha.
+\]
+第一式左半已证明。右半用自伴性得$\Delta_H\alpha\perp\mathcal H^k$，而$\alpha-P\alpha$是相应核外解，再用唯一性。变分估计和正则性还给$\|Gf\|_{H^{s+2}}\leq C_s\|f\|_{H^s}$；这并不预设有一个逐点Green核。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/hodge-decomposition}
+\caption{Hodge分解的有限维投影示意：三个分量位于调和、恰当、余恰当子空间，正交性是$L^2$积分意义的，不是逐点正交；图中三轴是空间投影。调和项由有限维投影给出，另外两项需先解椭圆方程。}
+\label{fig:hodge-decomposition}
+\end{figure}
+
+\subsection*{对偶配对及其度量依赖}
+\begin{theorem}[紧定向流形的de Rham对偶]\label{thm:hodge-poincare-duality}
+同样假设下，积分配对
+\[
+ H^k_{\mathrm{dR}}(M)\times H^{n-k}_{\mathrm{dR}}(M)\longrightarrow\R,
+ \qquad([\alpha],[\beta])\longmapsto\int_M\alpha\wedge\beta
+\]
+非退化，因而$H^{n-k}_{\mathrm{dR}}\simeq(H^k_{\mathrm{dR}})^*$。这是普通de Rham上同调的对偶，不是尚未建立的非紧/紧支版本。
+\end{theorem}
+\begin{proof}
+闭形式与恰当形式的外积积分由Stokes为零，故配对与代表选择无关。若$h\in\mathcal H^k$，由$\delta$的星公式可知$*h$同时闭且余闭，因此$*h\in\mathcal H^{n-k}$。若$[\alpha]\ne0$，其唯一调和代表$h\ne0$，取$\beta=*h$，则
+\[
+ \int_Mh\wedge *h=\|h\|_{L^2}^2>0.
+\]
+交换两个因子同理，得到双侧非退化。两空间有限维，所以到对方对偶空间的单射在两边维数不等式下均为同构。
+\end{proof}
+
+积分配对本身只用定向及上同调；通过调和代表构造$[h]\mapsto[*h]$时使用了度量，不能说星算子在任意闭形式上直接给出同一个与度量无关的上同调映射。零次调和形式是逐连通分支常数，顶次由星对应各分支体积形式。若$M$连通，顶次积分给$H^n\simeq\R$。
+
+对平坦$\mathbb T^n$，$\Delta_H$逐系数为$-\sum_i\partial_i^2$，Fourier零频以外均无核，所以调和形式恰为常系数形式，$\dim H^k=\binom nk$。球面的上同调已在第9章计算，故其调和形式只在0与$n$次非零；结论不依赖使用圆度量。
+
+\subsection*{假设不能删去}
+在非紧$\R$上，函数$x$满足$\Delta_Hx=0$但$\dd x\ne0$；没有有限能量积分恒等式可用。一次形式$\dd x$既调和又恰当，故普通上同调中的调和代表不唯一。在有边界的区间上，同样的形式也给反例，除非另配绝对或相对边界条件。非定向流形上的普通全局星及积分配对则须改用定向线丛或密度版本。本章不把这些修订包含在刚证明的定理中。

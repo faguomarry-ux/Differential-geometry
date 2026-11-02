@@ -1,0 +1,56 @@
+\subsection{群运算的微分与基本例子}
+\begin{definition}
+李群是一个群$G$及其光滑流形结构，使乘法$\mu(g,h)=gh$与取逆$\iota(g)=g^{-1}$光滑。单位元记$e$，左、右平移分别为$L_g(h)=gh$、$R_g(h)=hg$。李群同态是保持乘法的光滑映射。
+\end{definition}
+每个$L_g,R_g$均为微分同胚，逆分别为$L_{g^{-1}},R_{g^{-1}}$。令$\mathfrak g=T_eG$。由$\mu(g,e)=g$及$\mu(e,h)=h$，微分的线性性给出
+\[
+ \dd\mu_{(e,e)}(X,Y)=X+Y.
+\]
+再微分$g\iota(g)=e$，得到$\dd\iota_e=-I$。这两条公式只在单位元作这种简单表示；不能把一般群乘法看成切空间中的加法。
+
+\begin{example}[加法群、圆周与矩阵群]
+$\R^n$的加法与$S^1\subset\mathbb C$的复数乘法均为李群。$\mathrm{GL}(n,\R)$是矩阵空间中$\det\ne0$的开集；逆矩阵由余子式除以行列式表示，故取逆光滑。
+
+在可逆矩阵$A$处，行列式的一阶项为
+\[
+ \dd(\det)_A(V)=\det(A)\operatorname{tr}(A^{-1}V).
+\]
+这是由$\det(A+tV)=\det A\det(I+tA^{-1}V)$及行列式展开中一次项等于迹得到的。该导数满射到$\R$，所以$\mathrm{SL}(n,\R)=\{\det A=1\}$是正则水平集，其单位元切空间为迹零矩阵。
+
+对$F(A)=A^{\mathsf T}A$，在$A\in\mathrm O(n)$处有
+\[
+ \dd F_A(V)=V^{\mathsf T}A+A^{\mathsf T}V.
+\]
+余域取对称矩阵空间；给定对称$S$，选$V=AS/2$即映为$S$。因此$\mathrm O(n)=F^{-1}(I)$为嵌入子流形，切空间由$A^{\mathsf T}V$反对称刻画。$\mathrm{SO}(n)$是在其中$\det=1$的开闭子流形。群运算是环境运算的限制，于是这些都是李群，且
+\[
+ \mathfrak{gl}(n,\R)=M_n(\R),\quad
+ \mathfrak{sl}(n,\R)=\{X:\operatorname{tr}X=0\},\quad
+ \mathfrak{so}(n)=\{X:X^{\mathsf T}=-X\}.
+\]
+此处已给出具体子流形证明，不依赖稍后的一般闭子群定理。
+\end{example}
+
+\subsection{左不变场与括号}
+\begin{proposition}\label{prop:lie-left-fields}
+对$X\in\mathfrak g$，公式$X^L(g)=\dd(L_g)_eX$定义光滑左不变场。它给出$\mathfrak g$与全部左不变场的线性同构。定义
+\[
+ [X,Y]=[X^L,Y^L](e),
+\]
+则$[X^L,Y^L]=[X,Y]^L$，且此括号满足反对称性与Jacobi恒等式，称为$G$的李代数。
+\end{proposition}
+\begin{proof}
+光滑性由群乘法的微分给出。$L_hL_g=L_{hg}$说明左不变性。反过来，左不变场$V$必满足$V(g)=\dd(L_g)_eV(e)$，故单位元取值确定全场。微分同胚保持向量场的括号，而$L_h$保持$X^L,Y^L$，所以也保持它们的括号。反对称性及Jacobi恒等式因而从第5章的向量场括号传到单位元。
+\end{proof}
+
+对矩阵群，$X^L(A)=AX$。环境线性场的导数给出
+\[
+ [X^L,Y^L](A)=(AX)Y-(AY)X=A(XY-YX),
+\]
+故矩阵李代数的括号确实是$[X,Y]=XY-YX$。迹的循环性表明迹零矩阵封闭；反对称矩阵的交换子仍反对称，也与上面的切空间相容。
+
+右不变场记$X^R(g)=\dd(R_g)_eX$。取逆映射满足
+$\iota\circ L_g=R_{g^{-1}}\circ\iota$，从而$\iota_*X^L=-X^R$。将括号也推过去，得到必须记住的反号
+\begin{equation}\label{eq:lie-right-sign}
+ [X^R,Y^R]=-[X,Y]^R.
+\end{equation}
+例如矩阵群的右不变场为$X^R(A)=XA$，直接求导便是$(YX-XY)A$。后面的群作用也将遇到这个反号。

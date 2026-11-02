@@ -1,0 +1,42 @@
+% Chapter 14: oriented star, L2 decomposition, spherical octant.
+\DGDeclareDiagram{hodge-star-plane}{%
+ \begin{scope}[shift={(-2.8,0)}]
+  \draw[dg/axis] (-.5,0)--(2,0);
+  \draw[dg/axis] (0,-.5)--(0,2);
+  \draw[dg/vector] (0,0)--(1.6,0) node[below] {$\dd x$};
+  \draw[dg/normal] (0,0)--(0,1.6) node[left] {$\dd y$};
+  \draw[dg/map] (.9,.1) arc[start angle=6,end angle=84,radius=.9] node[midway,above right] {$*$};
+ \end{scope}
+ \begin{scope}[shift={(2.8,0)}]
+  \draw[dg/axis] (-2,0)--(.5,0);
+  \draw[dg/axis] (0,-.5)--(0,2);
+  \draw[dg/vector] (0,0)--(0,1.6) node[right] {$\dd y$};
+  \draw[dg/normal] (0,0)--(-1.6,0) node[below] {$-\dd x$};
+  \draw[dg/map] (-.1,.9) arc[start angle=96,end angle=174,radius=.9] node[midway,above left] {$*$};
+ \end{scope}
+ \node at (0,-1) {$*\dd x=\dd y,\quad *\dd y=-\dd x,\quad **=-I\ \text{on }\Lambda^1$};}
+\DGDeclareDiagram{hodge-decomposition}{%
+ \coordinate (o) at (0,0);\coordinate (h) at (2.5,0);
+ \coordinate (e) at (-1.2,1.1);\coordinate (c) at (0,2);
+ \draw[dg/axis] (o)--(3.7,0) node[right] {$\mathcal H^k$};
+ \draw[dg/axis] (o)--(-2,1.85) node[above left] {$\dd\Omega^{k-1}$};
+ \draw[dg/axis] (o)--(0,3.1) node[above] {$\delta\Omega^{k+1}$};
+ \draw[dg/vector] (o)--(h) node[midway,below] {$h$};
+ \draw[dg/secondary,->] (h)--($(h)+(e)$) node[midway,below left] {$e$};
+ \draw[dg/normal] ($(h)+(e)$)--($(h)+(e)+(c)$) node[midway,right] {$c$};
+ \draw[dg/guide] (e)--($(e)+(h)$);\draw[dg/guide] (c)--($(h)+(e)+(c)$);
+ \draw[dg/map] (o)--($(h)+(e)+(c)$);
+ \DGPoint[above right]{$(h)+(e)+(c)$}{$\alpha=h+e+c$}
+ \node at (.7,-1) {$h=P\alpha,\quad e=\dd\delta G\alpha,\quad c=\delta\dd G\alpha$};}
+\DGDeclareDiagram{gauss-bonnet-octant}{%
+ % Scaled orthographic projection along (1,1,1): each side is an exact great-circle arc.
+ \coordinate (n) at (0,2.5);\coordinate (x) at ({-1.25*sqrt(3)},-1.25);
+ \coordinate (y) at ({1.25*sqrt(3)},-1.25);
+ \path[dg/patch]
+  plot[domain=90:0,samples=45] ({-1.25*sqrt(3)*cos(\x)},{-1.25*cos(\x)+2.5*sin(\x)})
+  -- plot[domain=0:90,samples=45] ({1.25*sqrt(3)*(sin(\x)-cos(\x))},{-1.25*(sin(\x)+cos(\x))})
+  -- plot[domain=0:90,samples=45] ({1.25*sqrt(3)*cos(\x)},{-1.25*cos(\x)+2.5*sin(\x)}) -- cycle;
+ \DGPoint[above]{n}{$(0,0,a)$}\DGPoint[below left]{x}{$(a,0,0)$}\DGPoint[below right]{y}{$(0,a,0)$}
+ \node at (0,1.95) {$\pi/2$};\node at (-1.6,-.9) {$\pi/2$};\node at (1.6,-.9) {$\pi/2$};
+ \node[align=center] at (0,.2) {$K=a^{-2}$\\[3pt]$\operatorname{Area}=\pi a^2/2$};
+ \node at (0,-2.55) {$\int_TK\,\mathrm{vol}=3\pi/2-\pi=\pi/2$};}

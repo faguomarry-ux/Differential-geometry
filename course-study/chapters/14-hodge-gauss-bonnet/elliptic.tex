@@ -1,0 +1,97 @@
+\subsection*{一阶能量估计}
+以下流形紧致且无边界，次数$k$固定。写
+\[
+ Q(u,v)=(\dd u,\dd v)+(\delta u,\delta v),\qquad
+ Q(u,u)=\|\dd u\|^2+\|\delta u\|^2.
+\]
+一阶算子的连续性把$Q$延拓到$H^1$形式。
+
+\begin{lemma}[Garding估计]\label{lem:hodge-garding}
+存在仅依赖流形、度量和次数的$C$，对所有$u\in H^1(\Lambda^kT^*M)$有
+\[
+ \|u\|_{H^1}^2\leq C\bigl(Q(u,u)+\|u\|_{L^2}^2\bigr).
+\]
+\end{lemma}
+\begin{proof}
+先对支集在小坐标球中的光滑形式证明。在球中心将度量及纤维内积化为标准内积，令$D=\dd+\delta$，冻结其一阶系数为常系数算子$D_0$。主符号恒等式给
+\[
+ |\varepsilon_\xi a|^2+|\iota_\xi a|^2=|\xi|^2|a|^2,
+ \qquad \|\partial u\|_{L^2}=\|D_0u\|_{L^2}.
+\]
+第二式可在包含支集的环面上逐Fourier系数验证。由于一阶系数连续，缩小球后
+\[
+ \|(D-D_0)u\|_{L^2}
+ \leq\epsilon\|\partial u\|_{L^2}+C_\epsilon\|u\|_{L^2}.
+\]
+取$\epsilon<1/2$吸收到左边，便有局部估计。这里把$Du$视为$k-1$与$k+1$次两部分的直和，因此$\|Du\|^2=Q(u,u)$，没有不同次数相消的问题。
+
+在有限覆盖上对$\chi_au$应用局部估计。交换子
+\[
+ [\dd,\chi_a]u=\dd\chi_a\wedge u,\qquad
+ [\delta,\chi_a]u=-\iota_{\operatorname{grad}\chi_a}u
+\]
+均为零阶，平方和由$C\|u\|^2$控制。有限个局部估计相加，得到全局式。最后用光滑稠密性推广到$H^1$。低阶项解释了为何估计中必须保留$L^2$范数。
+\end{proof}
+
+\subsection*{弱解的二阶正则性}
+称$u\in H^1$为$\Delta_Hu=f\in L^2$的弱解，是指$Q(u,v)=(f,v)$对所有光滑测试形式$v$成立；由稠密性也对所有$H^1$测试成立。
+
+\Needspace{18\baselineskip}
+\begin{lemma}[从弱解到光滑解]\label{lem:hodge-weak-regularity}
+局部$H^1$弱解满足：若$f\in H^s_{\mathrm{loc}}$、$s\geq0$为整数，则$u\in H^{s+2}_{\mathrm{loc}}$。在紧致无边界流形上，存在$C_s$使
+\[
+ \|u\|_{H^{s+2}}\leq C_s\bigl(\|f\|_{H^s}+\|u\|_{L^2}\bigr).
+\]
+特别$f$光滑时$u$光滑。该结论针对光滑系数的Hodge算子，不声称任意粗糙系数系统具有同样正则性。
+\end{lemma}
+\begin{proof}
+在局部光滑正交丛标架中，主部为标量矩阵；令$\rho=\sqrt{\det g}$，将方程乘$\rho$，可写为
+\[
+ -\partial_i(a^{ij}\partial_j u)+C^j\partial_ju+C_0u=\rho f,
+ \qquad a^{ij}=\rho g^{ij}I.
+\]
+所有矩阵系数光滑，紧子球上$a$一致正定。此形式来自前述主符号，其余二阶项既已扣除，差只能为一阶与零阶算子；局部弱形式可由测试函数分部积分得到。
+
+下面给出从$H^1$到$H^2$的差商论证。固定一个坐标方向，记$D_hw(x)=(w(x+he_l)-w(x))/h$。取内部截断函数$\eta$，$|h|$小到所有平移支集仍在坐标球内，以
+\[
+ v=-D_{-h}(\eta^2D_hu)
+\]
+测试方程。对固定$h$，此$v$为紧支$H^1$函数，可用稠密性作测试。平移换元给$\int pD_{-h}q=-\int(D_hp)q$。主项因此含
+\[
+ \int\eta^2 a^{ij}(x+he_l)
+       \partial_jD_hu\cdot\partial_iD_hu
+ \geq c\|\eta\,\partial D_hu\|_{L^2}^2.
+\]
+其余项来自$\partial\eta$、$D_ha^{ij}$及低阶系数。利用
+\[
+ D_h(a\partial u)=a(x+he_l)\partial D_hu+(D_ha)\partial u,
+ \qquad \|D_hw\|_{L^2}\leq\|\partial_lw\|_{L^2},
+\]
+它们的绝对值至多
+$C\|u\|_{H^1}(\|\eta\partial D_hu\|_{L^2}+\|u\|_{H^1})$。
+右端无需对$f$求导，因为
+\[
+ \left|\int\rho fD_{-h}(\eta^2D_hu)\right|
+ \leq C\|f\|_{L^2}
+       \bigl(\|\eta\partial D_hu\|_{L^2}+\|u\|_{H^1}\bigr).
+\]
+这里再次用差商的导数界作用于$\eta^2D_hu$。用$ab\leq\epsilon a^2+b^2/(4\epsilon)$吸收，得到与$h$无关的内球估计
+\[
+ \|\eta\partial D_hu\|_{L^2}
+ \leq C(\|f\|_{L^2}+\|u\|_{H^1}).
+\]
+当$h\to0$时，二阶差商有弱收敛子列；对测试函数分部积分表明弱极限正是二阶分布导数。逐方向得到$u\in H^2$及局部估计。上面的差商导数界由$w(x+h)-w(x)=\int_0^h\partial_lw(x+t)\dd t$、Cauchy--Schwarz和密度得到，故也适用于$H^1$函数。
+
+归纳高阶：若已知$u\in H^{s+1}_{\mathrm{loc}}$且$f\in H^s_{\mathrm{loc}}$，对$|\gamma|=s$在分布意义求导，
+\[
+ L(\partial^\gamma u)=\partial^\gamma(\rho f)+[L,\partial^\gamma]u.
+\]
+交换子至多含$s+1$阶的$u$导数：每个未抵消的最高阶项至少有一次导数落在光滑系数上，故右端在$L^2$。对$\partial^\gamma u\in H^1$再用刚证的二阶结论，得到$u\in H^{s+2}$。取嵌套内球并有限次应用，给相应局部范数估计。
+
+紧流形用有限覆盖相加，先得到右端含$\|u\|_{H^1}$的全局估计。对弱方程取$v=u$并用Garding式，
+\[
+ \|u\|_{H^1}^2\leq C((f,u)+\|u\|^2)
+ \leq C'(\|f\|^2+\|u\|^2),
+\]
+于是得到所列估计。若$f$光滑，归纳得$u$属于全部整数阶Sobolev空间，再由嵌入定理得全部连续阶导数，即为光滑解。
+\end{proof}

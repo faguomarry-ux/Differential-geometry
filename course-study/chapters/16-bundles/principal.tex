@@ -1,0 +1,37 @@
+\subsection{主丛、局部截面与过渡次序}
+\begin{definition}\label{def:principal-bundle}
+主$G$丛是光滑满射$\pi:P\to M$及光滑右作用$(p,g)\mapsto pg$，使每个$x$有邻域$U$和右$G$等变微分同胚$\pi^{-1}(U)\simeq U\times G$，覆盖$\mathrm{id}_U$；乘积上的右作用为$(x,h)g=(x,hg)$。主丛同态为覆盖底映射的光滑等变映射。
+\end{definition}
+局部乘积立即说明$\pi$为下沉，右作用自由，每条纤维上作用传递；但仅给出“自由作用”还不等于已经构造了光滑主丛。例如第15章的无理绕行提醒我们，轨道空间拓扑必须检查。本章采用局部平凡化作为定义，不以未证明的一般商定理替代它。
+
+局部平凡化的单位截面记$s_i:U_i\to P$。每个$p\in P_x$唯一写成$p=s_i(x)h_i$。反过来，任一光滑局部截面$s$给出等变平凡化$\psi_s(x,h)=s(x)h$：在一个已知平凡化中，$s(x)$对应$(x,a(x))$，所以$\psi_s$对应$(x,a(x)h)$，其逆光滑。
+
+\begin{proposition}\label{prop:principal-cocycle}
+在重叠处唯一的光滑$g_{ij}:U_i\cap U_j\to G$由$s_j=s_i g_{ij}$定义，满足
+\begin{equation}\label{eq:principal-cocycle}
+ g_{ii}=e,\quad g_{ji}=g_{ij}^{-1},\quad
+ g_{ik}=g_{ij}g_{jk},\qquad h_i=g_{ij}h_j.
+\end{equation}
+反过来，给定这样的过渡函数，可以唯一拼出带这些局部截面的主丛。主丛平凡当且仅当存在全局光滑截面。
+\end{proposition}
+\begin{proof}
+在$s_i$的平凡化中读取$s_j$的群分量即得$g_{ij}$，故光滑；把$s_k=s_jg_{jk}$代入得到复合次序。反向在不交并$\bigsqcup_iU_i\times G$中规定$(x,h_j)_j\sim(x,g_{ij}h_j)_i$，这些条件保证为等价关系。各块到商的映射是开嵌入，因为任一开集在另一块的原像由光滑可逆过渡给出。不同底点用$M$分开，同一底点上的不同总空间点在一个局部乘积中分开，故商Hausdorff。底空间可数子覆盖和$G$第二可数给出总空间第二可数，光滑过渡给出流形结构。右乘与过渡中的左乘交换，故作用下降且局部等变。固定局部识别的唯一性与第6章同理。
+
+全局截面给出$M\times G\to P$、$(x,h)\mapsto s(x)h$，局部式说明其为微分同胚。平凡丛有单位截面，故反向成立。向量丛的零截面总存在；主丛有全局截面则必须平凡。
+\end{proof}
+换截面$s_i'=s_i k_i$时，$g_{ij}'=k_i^{-1}g_{ij}k_j$。给定$f:N\to M$，集合$f^*P=\{(y,p):f(y)=\pi(p)\}$按局部乘积同样构成主丛，右作用只乘$p$。若$\Phi:Q\to P$覆盖$f$，则$q\mapsto(\pi_Q(q),\Phi(q))$给出$Q\simeq f^*P$：每条纤维上的等变映射是两个自由传递$G$空间之间的双射，局部表达$(y,h)\mapsto(y,a(y)h)$使逆也光滑。
+
+\subsection{标架主丛}
+\begin{proposition}\label{prop:principal-frames}
+秩$r$实向量丛$E\to M$的标架丛
+\[
+ \operatorname{Fr}(E)_x=\operatorname{Iso}(\R^r,E_x)
+\]
+在右作用$u\cdot g=u\circ g$下成为主$\mathrm{GL}(r,\R)$丛。复丛相应使用$\mathbb C^r$和$\mathrm{GL}(r,\mathbb C)$（视为实李群）。
+\end{proposition}
+\begin{proof}
+局部标架$e_i:\mathbb K^r\to E_x$把任意$u$唯一写成$e_i(x)h_i$，其中$h_i\in\mathrm{GL}(r,\mathbb K)$。若$e_j=e_iG_{ij}$，则$h_i=G_{ij}h_j$，这恰为上一命题的主丛过渡。因此拼接出所列总空间的光滑结构及主作用。
+\end{proof}
+这里$G_{ij}$是\emph{标架}过渡。第6章使用\emph{纤维坐标}过渡$v_j=g_{ji}^{\mathrm{coord}}v_i$，两者关系为$g_{ji}^{\mathrm{coord}}=G_{ij}^{-1}$。同一个字母指标若不说明作用于基还是分量，就容易把本章的公式写反。
+
+若$E$有正定内积，其正交归一标架组成主$\mathrm O(r)$丛；局部Gram--Schmidt保证平凡化存在。复Hermite丛得到主$\mathrm U(r)$丛；若实丛另有定向，则正向正交标架为主$\mathrm{SO}(r)$丛。这些都是在具体局部乘积中构造，不预用一般结构群约化的存在判据。

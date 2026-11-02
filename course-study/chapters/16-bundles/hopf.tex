@@ -1,0 +1,93 @@
+\subsection{Hopf丛的底空间与局部截面}
+把$\mathbb C^2$看作实四维空间，令
+\[
+ S^3=\{(z_0,z_1):|z_0|^2+|z_1|^2=1\},\qquad
+ (z_0,z_1)\lambda=(z_0\lambda,z_1\lambda),\quad\lambda\in\mathrm U(1).
+\]
+记$\mathbb{CP}^1$为$\mathbb C^2$中复直线的集合，$[z_0:z_1]$为非零向量张成的直线；投影$\pi:S^3\to\mathbb{CP}^1$取该直线。先把底空间的光滑结构具体构造出来，不借用下一章的复流形理论。
+
+两张卡为$U_0=\{z_0\ne0\}$上的$w=z_1/z_0$，以及$U_1=\{z_1\ne0\}$上的$\zeta=z_0/z_1$，重叠处$\zeta=1/w$。映射
+\begin{equation}\label{eq:hopf-sphere}
+ [z_0:z_1]\longmapsto
+ \frac{(2\operatorname{Re}(\bar z_0z_1),\,2\operatorname{Im}(\bar z_0z_1),\,
+ |z_0|^2-|z_1|^2)}{|z_0|^2+|z_1|^2}
+\end{equation}
+把它与单位$S^2$识别：在$w=x+iy$中变成
+\[
+ \left(\frac{2x}{1+x^2+y^2},\frac{2y}{1+x^2+y^2},
+ \frac{1-x^2-y^2}{1+x^2+y^2}\right),
+\]
+其逆为$w=(X+iY)/(1+Z)$，另一个极点用$\zeta$卡。这些表达式证明双射及局部光滑逆，并给底空间Hausdorff、第二可数结构。$w$卡的$\dd x\wedge\dd y$正向与$S^2$外法向定向一致。
+
+局部单位向量截面可取
+\begin{equation}\label{eq:hopf-sections}
+ s_0(w)=\frac{(1,w)}{\sqrt{1+|w|^2}},\qquad
+ s_1(\zeta)=\frac{(\zeta,1)}{\sqrt{1+|\zeta|^2}}.
+\end{equation}
+每条纤维是这些单位向量的全部相位倍数；局部逆直接读取相位，所以$\pi$确为主$\mathrm U(1)$丛。在$w=re^{i\phi}\ne0$处
+\begin{equation}\label{eq:hopf-transition}
+ s_1=s_0g_{01},\qquad g_{01}=\frac{|w|}{w}=e^{-i\phi}.
+\end{equation}
+这个负指数由本书$s_1=s_0g_{01}$及$w=z_1/z_0$的次序确定。
+
+\subsection{全局联络、曲率及非平凡性}
+\begin{theorem}\label{thm:hopf-connection}
+在$S^3$上限制的一形式
+\[
+ \omega=\bar z_0\dd z_0+\bar z_1\dd z_1
+\]
+为$i\R$值主联络。局部势及曲率为
+\begin{align}
+ A_0&=\frac{\bar w\dd w-w\dd\bar w}{2(1+|w|^2)}
+     =i\frac{r^2}{1+r^2}\dd\phi,\label{eq:hopf-potentials}\\
+ A_1&=\frac{\bar\zeta\dd\zeta-\zeta\dd\bar\zeta}{2(1+|\zeta|^2)},
+ & A_1\big|_w&=-i\frac1{1+r^2}\dd\phi,\notag\\
+ F&=\dd A_0=\frac{2i}{(1+x^2+y^2)^2}\dd x\wedge\dd y
+   =\frac i2\operatorname{vol}_{S^2}.\label{eq:hopf-curvature}
+\end{align}
+其中第二个$A_1$表达式只在重叠环域中使用；两极处分别使用各自的光滑笛卡儿表达式。全局有
+\begin{equation}\label{eq:hopf-flux}
+ \frac1{2\pi i}\int_{S^2}F=1.
+\end{equation}
+所以Hopf主丛没有全局截面，因而不平凡。
+\end{theorem}
+\begin{proof}
+在$S^3$的切向量上，$\omega+\bar\omega=\dd(|z_0|^2+|z_1|^2)=0$，故值为纯虚数。常相位右乘保持$\omega$；$\xi=it$的基本向量为$it(z_0,z_1)$，代入得$\omega(\xi^\#)=it$，满足两个主联络公理。
+
+把\eqref{eq:hopf-sections}代入，求导归一化分母，得到$A_0$的第一式。$w=re^{i\phi}$给第二式；$\zeta=r^{-1}e^{-i\phi}$则给$A_1|_w$。因此$A_1=A_0-i\dd\phi=A_0+g_{01}^{-1}\dd g_{01}$，恰符合换截面律。群交换使曲率为$\dd\omega$，其水平性与不变性已经由一般定理保证，下降为全局$i\R$值二形式$F$。直接对$A_0$求导得
+\[
+ F=\frac{2ir}{(1+r^2)^2}\dd r\wedge\dd\phi.
+\]
+单位球面面积元在此坐标为$4\dd x\wedge\dd y/(1+r^2)^2$（由\eqref{eq:hopf-sphere}的两个导数叉积核对），所以$F=i\operatorname{vol}/2$。极点处光滑表达式保证可用$R\to\infty$的圆盘积分逼近全积分，于是
+\[
+ \int_{S^2}F=2\pi i\int_0^\infty\frac{2r}{(1+r^2)^2}\dd r=2\pi i.
+\]
+若有全局截面$s$，则$A=s^*\omega$是整个$S^2$上的一形式，且$F=\dd A$。Stokes使$\int_{S^2}F=0$，矛盾。因此主丛不平凡。该论证没有使用$S^3$的基本群或示性类分类。
+\end{proof}
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/hopf-potentials}
+\caption{Hopf丛两张卡的局部势。取$r=\tan(\vartheta/2)$，同一纬线的两种势相差$-i\dd\phi$；曲率为单位球面面积形式的$i/2$倍。图中球面为正投影示意，环箭头标明$\phi$增加方向。}
+\label{fig:hopf-potentials}
+\end{figure}
+
+标准表示$\rho(\lambda)v=\lambda v$的相伴复线丛可识别为
+\[
+ L=\{(\ell,v):v\in\ell\subset\mathbb C^2\},\qquad
+ [z,c]\longmapsto(\mathbb Cz,cz).
+\]
+它称为重言线丛。这确实良定义，因为$[z\lambda,c]=[z,\lambda c]$。若$L$有无零截面，将其按环境范数归一化便给出Hopf主丛的截面，所以$L$也不平凡。我们只计算\eqref{eq:hopf-flux}的周期；若以后采用酉联络的Chern形式归一化$iF/(2\pi)$，此模型的积分为$-1$。这与$g_{01}=e^{-i\phi}$及重言线丛一致，不能把$1/(2\pi i)$和$i/(2\pi)$当作同一个系数。一般Chern类理论留到第18章。
+
+\subsection{曲率、闭路相位与平坦反例}
+在$w$卡沿$r=r_0$、$0\le\phi\le2\pi$走一圈，写水平提升为$p(\phi)=s_0(r_0e^{i\phi})e^{i\chi(\phi)}$。水平式给
+\[
+ \chi'=-\frac{r_0^2}{1+r_0^2},\qquad
+ h=\exp\left(-2\pi i\frac{r_0^2}{1+r_0^2}\right).
+\]
+以北极为中心的球帽面积为$\mathcal A=4\pi r_0^2/(1+r_0^2)$，故$h=e^{-i\mathcal A/2}$。改用另一块跨过南极计算时，相位差是$2\pi$的整数倍，最终群元素相同。此处“面积决定相位”是这个明确联络和可张成球帽的闭路的计算，不是对任意主丛联络的普遍公式。
+
+另一方面，在平凡主丛$S^1\times\mathrm U(1)$上，令
+\[
+ \omega=h^{-1}\dd h+i\kappa\,\dd\theta,\qquad\kappa\in\R.
+\]
+这里$\dd\theta$指圆周上全局一形式$x\dd y-y\dd x$，不要求有全局实值角函数。曲率恒零，但绕圈移动为$e^{-2\pi i\kappa}$，$\kappa\notin\mathbb Z$时非平凡。与Hopf丛相反，这个\emph{丛}有全局截面，却没有全局\emph{水平}截面；主丛平凡、联络平坦、闭路移动恒等是三个需要分别检验的条件。

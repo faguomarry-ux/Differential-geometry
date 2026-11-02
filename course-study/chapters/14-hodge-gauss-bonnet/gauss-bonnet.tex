@@ -1,0 +1,120 @@
+\subsection*{联络一形式、测地曲率与转角}
+设$S$为定向黎曼曲面，$J$为切平面中的正向直角旋转。局部取正向正交标架$(e_1,e_2)$，令
+\[
+ a(X)=g(\nabla_Xe_1,e_2)=\omega^2{}_1(X).
+\]
+第13章的曲率矩阵约定给$\Omega^1{}_2=K\,\mathrm{vol}_g$，而$\omega^1{}_2=-a$，所以
+\[
+ \dd a=-K\,\mathrm{vol}_g.
+\]
+沿单位速正则曲线，写$T=\cos\vartheta\,e_1+\sin\vartheta\,e_2$，则
+\[
+ k_g:=g(\nabla_TT,JT)=\frac{\dd\vartheta}{\dd s}+a(T).
+\]
+直接对$T$求导、用$\nabla e_1=ae_2$和$\nabla e_2=-ae_1$即可验证。正向边界以区域在左侧为准，故$JT$指向区域内部。若标架旋转$\phi$，有$a'=a+\dd\phi$、$\vartheta'=\vartheta-\phi$，所以$k_g$不变。
+
+在边界角点，设区域内角为$\beta\in(0,2\pi)$，定义带号外转角$\epsilon=\pi-\beta$。凸角外转角为正，凹角为负；光滑边界上人为插入的顶点有$\beta=\pi$、$\epsilon=0$。
+
+\Needspace{18\baselineskip}
+\begin{lemma}[一个坐标三角片上的Gauss--Bonnet]\label{lem:local-gauss-bonnet}
+设$T$为正向曲面卡内的闭三角片，它是平面闭三角形在某个邻域微分同胚下的像。沿三条光滑边取正向边界参数，则
+\[
+ \int_T K\,\mathrm{vol}_g+\int_{\partial T}k_g\,\dd s
+        +\sum_{p\text{为角点}}\epsilon_p=2\pi.
+\]
+对同样由平面闭圆盘微分同胚参数化的光滑圆盘，公式没有角点项。
+\end{lemma}
+\begin{proof}
+卡内可用Gram--Schmidt构造正向正交标架。在每条边上提升切向角$\vartheta$，到角点补上有号的外转角，使切方向成为一个连续绕行。此绕行的总角增量为$2\pi$，理由如下。
+
+把切向量拉回参考三角形，并把选定标架拉回。切方向在标架中的分量由一个光滑$GL^+(2,\R)$矩阵$A(x)$作用于参考边界切方向得到。取三角形内点$p$，用$A_t(x)=A(p+t(x-p))$从$A$连续变到常矩阵$A(p)$。这些矩阵均可逆，边界切向量始终非零，角点处的正向插值也连续；因此角增量除以$2\pi$这个整数不变。常正行列式矩阵可在$GL^+(2,\R)$内连到恒等矩阵（Gram--Schmidt分解成旋转与正对角上三角矩阵，再分别变形），故总绕行等于参考三角形的总外转角$2\pi$。圆盘用相同的径向收缩和标准圆的切方向验证。
+
+把$k_g=\vartheta'+a(T)$在各边积分并加角点项，得到
+\[
+ \int_{\partial T}k_g\,\dd s+\sum\epsilon_p
+ =2\pi+\int_{\partial T}a
+ =2\pi-\int_TK\,\mathrm{vol}_g,
+\]
+最后一步为Stokes。对于三角片的有限角点，可先在卡内截去半径$\epsilon$的小角并光滑化，应用第8章光滑边界Stokes；新增弧长为$O(\epsilon)$、删去面积为$O(\epsilon^2)$，而$a,\dd a$在闭片上有界，令$\epsilon\to0$即得所用的分段光滑公式。这只补证本节二维有限角点的情形，不预设一般角点流形理论。三条边无需是测地线，也没有默认任意闭曲线的绕数都是1。
+\end{proof}
+
+若三条边均为测地线，则角为$A,B,C$时
+\[
+ \int_T K\,\mathrm{vol}_g=A+B+C-\pi.
+\]
+正曲率球面出现角超，平坦时回到平面三角形内角和。
+\begin{figure}[htbp]
+\centering\input{course-study/figures/gauss-bonnet-octant}
+\caption{半径$a$球面的第一卦限三角片，由三条大圆弧围成，每个内角为$\pi/2$。图为球面片的空间投影，三个直角由环境中相交大圆的切向量验证；面积为球面的八分之一$\pi a^2/2$，曲率积分恰为角超$\pi/2$。}
+\label{fig:gauss-bonnet-octant}
+\end{figure}
+
+\subsection*{有限剖分上的全局求和}
+本节明确拓扑输入：设紧曲面给定一个有限三角剖分，每个闭面具有上引理的坐标三角片参数，边界为边的并，角点列在顶点中，顶点处相邻片的切扇形恰覆盖整圆或边界内角。定义$\chi_{\mathcal T}=V-E+F$。曲面光滑三角剖分的一般存在性不在这里补证；下面的几何与组合论证对给定的这种剖分是完整的。
+
+\Needspace{18\baselineskip}
+\begin{theorem}[曲面Gauss--Bonnet，含边界与角点]\label{thm:surface-gauss-bonnet}
+设$S$为具有上述有限兼容剖分的紧定向黎曼曲面，边界分段光滑，角点外转角为$\epsilon_p$。则
+\[
+ \int_S K\,\mathrm{vol}_g+\int_{\partial S}k_g\,\dd s
+       +\sum_{p\in\partial S}\epsilon_p=2\pi\chi_{\mathcal T}.
+\]
+无边界时为$\int_SK\,\mathrm{vol}_g=2\pi(V-E+F)$。同一光滑曲面不同兼容剖分的$V-E+F$相同，记为$\chi(S)$；闭曲面的总曲率亦与度量无关。
+\end{theorem}
+\begin{proof}
+先对每个面片应用局部公式并相加。内部边被相反方向经过两次。反向时$T\mapsto-T$、$JT\mapsto-JT$，$\nabla_{-T}(-T)=\nabla_TT$，故$k_g$变号，内部边积分相消。仅剩真实边界积分。
+
+记内部/边界顶点数为$V_i,V_b$，边数为$E_i,E_b$。所有面片角数为$3F$，内部顶点周围内角和为$2\pi$，边界顶点$p$周围内角和为真实边界内角$\beta_p$。所以面片外转角的总和为
+\[
+ 3\pi F-2\pi V_i-\sum_{p\in\partial S}\beta_p.
+\]
+面公式右端相加为$2\pi F$，移项并加上真实边界外转角$\sum_p(\pi-\beta_p)$，得到
+\[
+ \int_SK+\int_{\partial S}k_g+\sum_p\epsilon_p
+ =2\pi V_i+\pi V_b-\pi F.
+\]
+此行积分中的测度沿用前式。剖分的计数关系为$3F=2E_i+E_b$，而每个边界分支闭合，故$E_b=V_b$。因此
+\[
+ 2\pi(V-E+F)=2\pi(V_i+V_b-E_i-E_b+F)
+             =2\pi V_i+\pi V_b-\pi F,
+\]
+即得结论；闭曲面取所有边界计数为零。
+
+固定度量后，等式左端不依赖剖分，所以不同兼容剖分给相同整数。固定剖分而改变度量，闭曲面的右端不变，所以总曲率与度量无关。对任意紧光滑曲面无条件应用时须另用光滑三角剖分存在定理；把该整数与奇异同调或de Rham Betti数的交错和作一般比较，还需相应拓扑比较定理，不能仅由前面的Hodge对偶自动得到。
+\end{proof}
+
+\subsection*{两个符号检查与曲率障碍}
+球面半径$a$有$K=a^{-2}$、面积$4\pi a^2$，故总曲率$4\pi$对应$\chi=2$。平坦环面有$K=0$，故$\chi=0$；任意兼容剖分可用于核对此整数。若给定曲面$\chi<0$，它不可能有处处非负曲率的度量；如果$\chi=0$且$K\geq0$，连续性及积分为零迫使$K\equiv0$。这些结论不包含曲面度量的存在性或整体分类。
+
+在半径$R$的球面非极点标架卡中，$a=\cos\theta\,\dd\phi$（此式不延伸到极点），$\dd a=-\sin\theta\,\dd\theta\wedge\dd\phi=-K\mathrm{vol}$。北极帽边界$\theta=\theta_0$取$\phi$增加方向，则$k_g=\cot\theta_0/R$、$\dd s=R\sin\theta_0\dd\phi$，所以
+\[
+ \int_{\text{帽}}K\,\mathrm{vol}=2\pi(1-\cos\theta_0),\qquad
+ \int_{\partial\text{帽}}k_g\,\dd s=2\pi\cos\theta_0.
+\]
+两者相加为$2\pi$。若直接在含极点的整个帽上把这个奇异标架的$a$用于Stokes，会漏掉$2\pi$；局部圆盘公式使用的是在整个圆盘光滑的标架。
+
+\subsection*{高维Euler形式：可计算的部分与尚未证明的整体等式}
+令$n=2m$，正向正交标架的曲率二形式矩阵为$\Omega^i{}_j$，简写$\Omega_{ij}$，其矩阵斜对称。定义
+\[
+ e_g=\frac1{(2\pi)^m2^m m!}
+ \sum_{\sigma\in S_{2m}}\operatorname{sgn}(\sigma)
+ \Omega_{\sigma(1)\sigma(2)}\wedge\cdots\wedge
+ \Omega_{\sigma(2m-1)\sigma(2m)}.
+\]
+这就是$\operatorname{Pf}(\Omega)/(2\pi)^m$。为看清不变性，在辅助外代数中引入正向基$z_1,\ldots,z_{2m}$，令
+\[
+ \Xi=\frac12\sum_{i,j}\Omega_{ij}z_i\wedge z_j.
+\]
+$\Xi^m/m!$的顶次系数恰为上述Pfaffian。正交保向换基只使顶外幂乘行列式1，所以局部形式拼成全局$2m$形式。这里曲率二形式彼此交换，不应套用一次形式换序的负号。
+
+二维时$e_g=\Omega_{12}/(2\pi)=K\mathrm{vol}/(2\pi)$。四维时直接展开得到
+\[
+ e_g=\frac1{4\pi^2}\bigl(\Omega_{12}\wedge\Omega_{34}
+ -\Omega_{13}\wedge\Omega_{24}+\Omega_{14}\wedge\Omega_{23}\bigr).
+\]
+它是顶次形式，故自动闭；若将同一不变多项式用于更高维底空间上的定向偶秩丛，则闭性来自Bianchi，可留到第18章建立。对本章的球面曲率约定，二维归一化为正，不另插入未说明的整体负号。
+
+\begin{quote}\small
+\textbf{外引陈述，未在本章证明：}Chern--Gauss--Bonnet断言，对紧致、定向、无边界的$2m$维黎曼流形，$\int_Me_g=\chi(M)$。一般证明还需Euler类与零截面/指标的比较或完整的传递形式构造；本章没有建立这些工具。四维表达式及下列乘积例子只是局部代数和归一化检查，不作为一般定理的证明。此整体定理的证明留至示性类与指标专题。
+\end{quote}
+例如$S^2(a)\times S^2(b)$的混合曲率为零，只有两个因子曲率块，故$e_g=(4\pi^2a^2b^2)^{-1}\mathrm{vol}$，积分为4；具体推导见习题。奇数维时也不能把同样的Pfaffian表达式原样使用。

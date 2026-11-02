@@ -1,0 +1,88 @@
+\subsection*{外幂内积与定向}
+在$n$维定向内积空间中，协向量内积由逆度量给出。约定
+\[
+ \langle\alpha_1\wedge\cdots\wedge\alpha_k,
+ \beta_1\wedge\cdots\wedge\beta_k\rangle
+ =\det(\langle\alpha_i,\beta_j\rangle).
+\]
+取正向正交归一余标架$\theta^1,\ldots,\theta^n$，严格递增的$\theta^I$构成$\Lambda^kT^*M$的正交归一基。若用全指标分量写$\alpha=\alpha_{i_1\cdots i_k}\theta^{i_1}\wedge\cdots\wedge\theta^{i_k}/k!$，则$|\alpha|^2=\sum_{i_1,\ldots,i_k}\alpha_{i_1\cdots i_k}^2/k!$，不能与递增指标求和混用。
+
+\begin{definition}[Hodge星]\label{def:hodge-star}
+星算子$*:\Lambda^kT^*M\to\Lambda^{n-k}T^*M$由
+\[
+ \alpha\wedge *\beta=\langle\alpha,\beta\rangle\mathrm{vol}_g
+ \quad\text{对所有$\alpha,\beta\in\Lambda^kT^*M$}
+\]
+唯一确定。具体地，$*\theta^I=\varepsilon(I,I^c)\theta^{I^c}$，符号取使$\theta^I\wedge *\theta^I=\mathrm{vol}_g$者。
+\end{definition}
+外积配对非退化给唯一性；补指标公式给存在性和光滑性，因此与正向正交标架的选择无关。移动补指标跨过$k(n-k)$次，得到
+\[
+ **|_{\Omega^k}=(-1)^{k(n-k)}I,\qquad
+ *1=\mathrm{vol}_g,\qquad *\mathrm{vol}_g=1,
+ \qquad |*\alpha|=|\alpha|.
+\]
+反转定向使$*$与体积形式同时变号。若$\widetilde g=e^{2u}g$，$k$形式的内积乘$e^{-2ku}$、体积乘$e^{nu}$，故
+\[
+ *_{\widetilde g}|_{\Omega^k}=e^{(n-2k)u}*_g.
+\]
+在中间次数$n=2k$星算子共形不变，但一般次数并不如此。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/hodge-star-plane}
+\caption{定向欧氏平面中$*\dd x=\dd y$、$*\dd y=-\dd x$，因此一次形式上$**=-I$。图经内积把协向量识别为箭头，表示星算子而非切向量的坐标换基。}
+\label{fig:hodge-star-plane}
+\end{figure}
+
+\begin{proposition}[星算子与Levi--Civita导数]\label{prop:parallel-hodge-star}
+Levi--Civita联络满足$\nabla\mathrm{vol}_g=0$和$\nabla_X(*\alpha)=*(\nabla_X\alpha)$。
+\end{proposition}
+\begin{proof}
+局部正交标架的联络矩阵斜对称。顶外幂的诱导联络系数是其迹的负号，故为零，得到体积平行。外幂内积也因度量相容而平行。对定义中的$\alpha\wedge *\beta$作协变导数，扣除对$\alpha,\beta$求导的两项，得到$\alpha\wedge(\nabla_X(*\beta)-*\nabla_X\beta)=0$对所有$\alpha$成立；非退化性给结论。这里不是说坐标中$*$的系数为常数，而是联络项恰补偿其变化。
+\end{proof}
+
+\subsection*{形式伴随及两个Laplace符号}
+对至少一个紧支的同次数实形式定义$(\alpha,\beta)=\int_M\alpha\wedge *\beta$。在无边界情形，这等于正定的$L^2$内积。定义
+\[
+ \delta|_{\Omega^k}=(-1)^{n(k+1)+1}*\dd*,\qquad \delta|_{\Omega^0}=0.
+\]
+\begin{proposition}[余微分与能量恒等式]\label{prop:codifferential-energy}
+在无边界流形上，至少一个紧支时有$(\dd\alpha,\beta)=(\alpha,\delta\beta)$。并且$\delta^2=0$，Hodge Laplace算子
+\[
+ \Delta_H=\dd\delta+\delta\dd
+\]
+满足$\Delta_H\dd=\dd\Delta_H$、$\Delta_H\delta=\delta\Delta_H$及
+\[
+ (\Delta_H\alpha,\beta)=(\dd\alpha,\dd\beta)+(\delta\alpha,\delta\beta).
+\]
+在函数上$\Delta_Hf=-\Delta_gf$，其中第11章$\Delta_g=\operatorname{div}\operatorname{grad}$。
+\end{proposition}
+\begin{proof}
+令$\deg\alpha=k-1$、$\deg\beta=k$。Stokes给
+\[
+ 0=\int\dd(\alpha\wedge *\beta)
+  =\int\dd\alpha\wedge *\beta+(-1)^{k-1}\int\alpha\wedge\dd*\beta.
+\]
+用$**$公式化简可得$*\delta\beta=(-1)^k\dd*\beta$，所以正好得到伴随式。将两次$\delta$中的中间$**$合并，$\dd^2=0$给$\delta^2=0$；两条交换关系分别展开即得。伴随式应用两次得到能量式。
+
+在一点取联络系数为零的正交标架，外微分与余微分分别为
+\[
+ \dd\alpha=\sum_i\theta^i\wedge\nabla_{e_i}\alpha,
+ \qquad\delta\alpha=-\sum_i\iota_{e_i}\nabla_{e_i}\alpha.
+\]
+第一式由无挠及外微分坐标式得到；第二式也可在此标架逐分量分部积分求伴随。于是$\delta\dd f=-\operatorname{tr}(\nabla\dd f)=-\Delta_gf$。若有边界，Stokes会留下边界项，本命题的伴随结论不能在没有边界条件时直接使用。
+\end{proof}
+
+在紧致无边界情形，$(\Delta_H\alpha,\alpha)=\|\dd\alpha\|^2+\|\delta\alpha\|^2\geq0$。称$\Delta_H\alpha=0$的光滑形式为调和形式，记空间为$\mathcal H^k$；此时调和等价于同时闭且余闭。这个积分论证还没有证明每个上同调类有调和代表。
+
+\subsection*{主符号为什么正定}
+记$\varepsilon_\xi(\alpha)=\xi\wedge\alpha$，$\iota_\xi=\iota_{\xi^\sharp}$。插入的分次乘法式给
+\[
+ \iota_\xi\varepsilon_\xi+\varepsilon_\xi\iota_\xi=|\xi|^2I.
+\]
+在最高阶部分用$\partial_j\mapsto i\xi_j$定义主符号，则
+\[
+ \sigma_{\dd}(\xi)=i\varepsilon_\xi,\qquad
+ \sigma_\delta(\xi)=-i\iota_\xi,\qquad
+ \sigma_{\Delta_H}(\xi)=|\xi|^2I.
+\]
+所以$\Delta_H$椭圆，局部最高阶项为$-g^{ij}\partial_i\partial_j$乘纤维恒等矩阵。这里的正号对应非负$\Delta_H$；若漏掉Fourier符号中的$i$，便会与第11章的$\Delta_g$混淆。

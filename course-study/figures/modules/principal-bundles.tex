@@ -1,0 +1,33 @@
+% Chapter 16. Right action, inverse associated coefficients, and Hopf signs.
+\DGDeclareDiagram{associated-coordinates}{%
+ \node (si) at (-2.5,1.2) {$s_i$};\node (sj) at (2.5,1.2) {$s_j=s_i g_{ij}$};
+ \node (ai) at (-2.5,-1.2) {$a_i$};\node (aj) at (2.5,-1.2) {$a_j=\rho(g_{ij})^{-1}a_i$};
+ \draw[dg/map] (si)--(sj) node[midway,above] {right multiplication};
+ \draw[dg/map] (ai)--(aj) node[midway,below] {inverse representation};
+ \draw[dg/guide] (si)--(ai);\draw[dg/guide] (sj)--(aj);
+ \node[fill=white,inner sep=6pt] at (0,0) {$[s_i,a_i]=[s_j,a_j]$};}
+\DGDeclareDiagram{principal-horizontal}{%
+ \coordinate (o) at (0,0);\coordinate (h) at (2,1);\coordinate (v) at (2,2.2);
+ \draw[dg/axis] (0,-.3)--(0,2.8) node[above] {$V_pP$};
+ \draw[dg/axis] (-.7,-.35)--(3,1.5) node[right] {$H_pP$};
+ \draw[dg/vector] (o)--(h) node[midway,below] {$v_H$};
+ \draw[dg/normal] (h)--(v) node[midway,right] {$\xi^\#$};
+ \draw[dg/map] (o)--(v) node[midway,left] {$v$};
+ \draw[dg/guide] (0,1.2)--(v);
+ \node at (3.9,2.3) {$T_pP$};
+ \draw[dg/axis] (-.7,-1.6)--(3,-1.6) node[right] {$T_xM$};
+ \draw[dg/map] (h)--(2,-1.5) node[midway,right] {$\dd\pi$};
+ \draw[dg/vector] (0,-1.6)--(2,-1.6) node[midway,below] {$X$};
+ \node at (1.5,-2.6) {$\omega(v)=\xi,\quad\dd\pi(v)=\dd\pi(v_H)=X$};}
+\DGDeclareDiagram{hopf-potentials}{%
+ \begin{scope}[shift={(-2.4,0)}]
+  \path[dg/patch] (0,0) circle (2);
+  \draw[dg/curve] plot[domain=0:360,samples=100] ({2*sin(75)*cos(\x)},{sqrt(3)*cos(75)+sin(75)*sin(\x)});
+  \draw[dg/map] plot[domain=15:90,samples=25] ({2*sin(75)*cos(\x)},{sqrt(3)*cos(75)+sin(75)*sin(\x)});
+  \node[anchor=west] at (1.95,.7) {$\phi$ 增加};
+  \DGPoint[right]{0,1.73205}{$N$}\DGPoint[right]{0,-1.73205}{$S$}
+ \end{scope}
+ \node[align=left,anchor=west] at (.5,1.2) {$A_N=\dfrac i2(1-\cos\vartheta)\dd\phi$};
+ \node[align=left,anchor=west] at (.5,0) {$A_S=-\dfrac i2(1+\cos\vartheta)\dd\phi$};
+ \node[anchor=west] at (.5,-1.2) {$F=\dfrac i2\operatorname{vol}_{S^2}$};
+ \node at (0,-2.9) {$g_{NS}=e^{-i\phi},\qquad A_S=A_N-i\dd\phi$};}

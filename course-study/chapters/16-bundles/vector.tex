@@ -1,0 +1,44 @@
+\subsection{覆盖映射的丛同态及普遍性质}
+\begin{definition}
+设$E\to M,F\to N$为同一标量域上的向量丛，$f:M\to N$光滑。覆盖$f$的丛同态为光滑映射$A:E\to F$，使$\pi_F A=f\pi_E$，且每个$A_x:E_x\to F_{f(x)}$线性。覆盖恒等映射且每条纤维上可逆者称丛同构。
+\end{definition}
+局部标架下同态写成$(x,v)\mapsto(f(x),a(x)v)$；光滑性等价于矩阵$a$光滑。若$A_x$逐点可逆，逆矩阵的伴随矩阵公式说明逆映射也光滑。因此“纤维上线性可逆”和“总空间光滑”一起给出光滑丛同构，不需额外猜测逆的正则性。
+
+\begin{proposition}\label{prop:bundle-pullback-universal}
+集合
+\[
+ f^*F=\{(x,v)\in M\times F:f(x)=\pi_F(v)\}
+\]
+有自然的向量丛结构，纤维为$F_{f(x)}$，并有自然丛同态$q:f^*F\to F$。任意覆盖$f$的$A:E\to F$唯一分解为$q\circ\widetilde A$，其中$\widetilde A:E\to f^*F$覆盖$\mathrm{id}_M$。
+\end{proposition}
+\begin{proof}
+若$F|_U\simeq U\times\mathbb K^r$，则对应部分由$(x,v)\mapsto(x,v_U)$识别为$f^{-1}(U)\times\mathbb K^r$。过渡矩阵是原过渡与$f$的复合，满足第6章拼接条件。得到的拓扑就是$M\times F$的子空间拓扑，可在这些局部乘积中直接检验；因而该集合不只是抽象同构于某个拼接丛。这里$f$可以有临界点或为常值映射，投影$F\to N$的局部乘积已足够，不要求$f$为浸入。
+
+分解只能取$\widetilde A(v)=(\pi_E(v),A(v))$；局部式说明其光滑、纤维线性。反向与$q$复合即可，故也得到唯一性。
+\end{proof}
+若$h:L\to M$，自然同构$h^*(f^*F)\simeq(fh)^*F$把$(y,(h(y),v))$送到$(y,v)$。常值映射$f(x)=p$给出$f^*F=M\times F_p$；恒等映射的拉回自然同构于原丛。原截面$s$给出$f^*s(x)=(x,s(f(x)))$，但$f^*F$的截面一般不全是这种形式。例如常值映射拉回平凡线丛后有任意系数函数，而原截面的拉回在纤维方向只有常值。
+
+\subsection{商丛、分裂及拉回联络}
+\begin{proposition}\label{prop:bundle-split}
+向量丛$E\to M$具有光滑正定纤维内积（复情形为Hermite内积）。若$S\subset E$是光滑子丛，则$E/S$自然成为向量丛，且$E\simeq S\oplus S^\perp$、$E/S\simeq S^\perp$。任意光滑向量丛短正合列都光滑分裂，但通常没有天然分裂。
+\end{proposition}
+\begin{proof}
+在局部平凡化中取标准内积，用第8章的局部有限单位分解加权相加。正定型的正权和仍正定，复情形同时保留Hermite对称性。将$S$的局部标架作Gram--Schmidt，再在某点补齐到$E$的基并缩小邻域，使所补截面仍线性无关；继续正交化便给出$S^\perp$的光滑标架。因此两者直和为$E$。
+
+把$[v]\in E_x/S_x$送到$v$的正交投影到$S_x^\perp$，良定义且为线性同构。局部标架说明这些同构光滑，给出商丛结构；换用另一内积时，商映射诱导的恒等识别仍在局部光滑，所以商结构不依赖选择。短正合列$0\to E'\xrightarrow{i}E\xrightarrow{q}E''\to0$中，$i(E')$是常秩子丛，$q|_{i(E')^\perp}$逐纤维可逆，光滑逆给出右逆$j:E''\to E$。这个$j$依赖内积，故只证明存在。
+\end{proof}
+
+\begin{proposition}\label{prop:bundle-pullback-connection}
+若$F\to N$有联络$\nabla$，则$f^*F$有唯一联络$f^*\nabla$，满足对原丛局部截面$s$及$X\in T_xM$有
+\[
+ (f^*\nabla)_X(f^*s)=\bigl(x,\nabla_{\dd f_xX}s\bigr).
+\]
+若原联络矩阵为$A$、曲率为$F_A=\dd A+A\wedge A$，则拉回联络和曲率矩阵分别为$f^*A$、$f^*F_A$。
+\end{proposition}
+\begin{proof}
+原局部标架$e$拉回后仍为标架。对任意截面$t=(f^*e)a$，定义
+\[
+ (f^*\nabla)_Xt=(f^*e)\bigl(Xa+(f^*A)(X)a\bigr).
+\]
+若$e'=eG$，则拉回标架换为$(f^*e)(G\circ f)$；第10章的换标架公式经拉回仍成立，故局部定义相容。它显然满足联络规则和所给条件；条件决定在拉回标架上的值，再由Leibniz规则决定任意截面，故唯一。外微分与拉回交换、拉回保持楔积，遂给出曲率结论。此论证没有假定任意拉回丛截面都来自一个原截面。
+\end{proof}

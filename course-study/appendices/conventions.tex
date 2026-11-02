@@ -12,7 +12,7 @@ K(X,Y)=\frac{g(R(X,Y)Y,X)}{g(X,X)g(Y,Y)-g(X,Y)^2}.
 \section{分析工具的证明边界}
 第1章已证明欧氏链式法则、连续偏导判别、逆映射、隐映射和常秩定理；有限维线性代数部分给出对偶、换基及交替形式的基本证明。其基础依赖为实数完备性、单变量微积分基本定理、积分换元、混合偏导交换及有限维矩阵消元，不重新建立这些本科先修内容。
 
-第5章已补证常微分方程局部存在唯一性与有限维参数光滑依赖，并据此建立极大局部流、紧流形上完备性及非零点流盒。非自治方程通过增添时间变量处理；一般分析工具仍未全部建立。第2章的曲线重建定理仍待单独补写，不能仅因ODE工具具备便视为已完成。曲面片上的Gauss方程与Gauss绝妙定理局部形式已在第2章证明；Codazzi、曲面实现和全局Gauss--Bonnet仍属后续章节任务。Hodge理论与指标理论还需要Sobolev空间、椭圆正则性和Fredholm理论，尚未具备相应证明。
+第5章已补证常微分方程局部存在唯一性与有限维参数光滑依赖，并据此建立极大局部流、紧流形上完备性及非零点流盒。非自治方程通过增添时间变量处理；一般分析工具仍未全部建立。第2章的曲线重建定理仍待单独补写，不能仅因ODE工具具备便视为已完成。曲面片上的Gauss方程与Gauss绝妙定理局部形式已在第2章证明；第13章已补证相容方程与欧氏浸入局部实现。第14章以Lebesgue积分及L²完备性为先修，补证Sobolev紧性、Hodge算子的能量估计与H¹弱解正则性，并用变分法证明紧定向无边界情形的Hodge分解及对偶；不预用一般Fredholm或谱定理。曲面Gauss--Bonnet的几何求和以给定有限光滑兼容剖分为先修，剖分存在及同调比较尚未证明。一般指标理论和高维Chern--Gauss--Bonnet仍需额外工具。
 
 \section{张量与外代数约定}
 第6章采用$T^r_s(V)=V^{\otimes r}\otimes(V^*)^{\otimes s}$，上槽输入协向量，下槽输入向量。缩并只配对一个向量因子与一个协向量因子，升降指标另需选定非退化双线性形式。交替投影含$1/k!$，外积在一次形式上取完整行列式，故
@@ -21,6 +21,7 @@ K(X,Y)=\frac{g(R(X,Y)Y,X)}{g(X,X)g(Y,Y)-g(X,Y)^2}.
 \]
 局部纤维坐标约定$v_\beta=g_{\beta\alpha}v_\alpha$，三重交叠满足$g_{\gamma\alpha}=g_{\gamma\beta}g_{\beta\alpha}$。向量丛只在局部保证平凡；第8章已构造单位分解并建立全局定向判别；第10章已建立一般联络、平行移动及诱导联络。
 
+\Needspace{13\baselineskip}
 \section{形式运算与局部原形式}
 第7章外微分采用次数为一的带符号乘法式，满足$\dd^2=0$；Lie导数按流的拉回在零时求导，故Cartan公式为$\mathcal L_X=\iota_X\dd+\dd\iota_X$。同伦分解把时间因子放在最前面：$H^*\omega=\dd t\wedge\alpha_t+\beta_t$，对应$\dd K+K\dd=H_1^*-H_0^*$。
 
@@ -34,7 +35,7 @@ Stokes适用于紧支$(n-1)$形式，不能仅要求其外微分紧支；紧流�
 \section{上同调与连接映射}
 第9章默认$H^k(M)=H^k_{\mathrm{dR}}(M;\R)$为所有光滑形式的普通上同调，不是紧支上同调。零次是逐连通分支常数的直积；负次数为零。只使用明确的光滑同伦，不先调用连续同伦的光滑逼近。
 
-Mayer--Vietoris取$q(\alpha,\beta)=\alpha|_W-\beta|_W$。闭$\gamma$的提升选$a=\rho_V\gamma$在$U$内延零、$b=-\rho_U\gamma$在$V$内延零，连接类由$\dd a,\dd b$拼成。球面零次和一次在长序列中单独计算，$S^0$为两分支，不适用正维球面的连通公式。一般de Rham比较定理、Poincare对偶和Kunneth公式尚未证明。
+Mayer--Vietoris取$q(\alpha,\beta)=\alpha|_W-\beta|_W$。闭$\gamma$的提升选$a=\rho_V\gamma$在$U$内延零、$b=-\rho_U\gamma$在$V$内延零，连接类由$\dd a,\dd b$拼成。球面零次和一次在长序列中单独计算，$S^0$为两分支，不适用正维球面的连通公式。第14章已证明紧定向无边界情形的de Rham对偶；一般de Rham比较定理、非紧/紧支对偶和Kunneth公式尚未证明。
 
 \Needspace{24\baselineskip}
 \section{联络的槽位、换基与曲率}
@@ -66,3 +67,26 @@ $\Delta_g=\operatorname{div}_g\operatorname{grad}_g$在欧氏坐标中为$\sum_i
 第13章沿浸入的拉回环境切丛作正交分解，$B(X,Y)=(\bar\nabla_XY)^\perp$，$\bar\nabla_X\xi=-A_\xi X+\nabla_X^\perp\xi$，所以$g(A_\xi X,Y)=\bar g(B(X,Y),\xi)$。超曲面局部单位法向下$B=II\,n$、$A_n=S=-\dd n$（欧氏环境）。平均曲率向量取$\mathbf H=\operatorname{tr}_gB/m$；曲面上$\mathbf H=Hn$与第2章一致，外法向球面为$\mathbf H=-n/a$。
 
 Ricci法曲率式取$\langle R^\perp(X,Y)\xi,\eta\rangle=\langle\bar R(X,Y)\xi,\eta\rangle+g([A_\xi,A_\eta]X,Y)$；适配标架联络块为$\bigl(\begin{smallmatrix}\omega&-\beta^{\mathsf T}\\\beta&\tau\end{smallmatrix}\bigr)$，被求导的基向量用列指标。欧氏环境逐分量$\Delta F=m\mathbf H$，体积第一变分内项为$-m\int\langle\mathbf H,V^\perp\rangle$。不定向时，本章只补建紧区域体积密度的坐标/拼接表达；一般密度丛理论仍未展开。极小表示体积驻定；图像的固定边值最小性另外由凸性证明。局部欧氏浸入重建不保证全局单值、嵌入或完备；Lorentz类光超曲面不适用正定切法直和。
+
+
+\Needspace{20\baselineskip}
+\section{Hodge、标量Laplace与曲面边界号}
+正定定向$n$维中$**|_{\Omega^k}=(-1)^{k(n-k)}$，$\delta|_{\Omega^k}=(-1)^{n(k+1)+1}*\dd*$。非负算子$\Delta_H=\dd\delta+\delta\dd$在函数上等于$-\Delta_g$；第11章的$\Delta_g=\operatorname{div}\operatorname{grad}$保持原约定。Hodge分解是$L^2$正交而非逐点正交，调和代表依赖度量，积分对偶配对不依赖度量。紧致、无边界、定向假设不可直接省略。
+
+曲面取$a(X)=g(\nabla_Xe_1,e_2)=\omega^2{}_1(X)$，所以$\dd a=-K\mathrm{vol}$。正向边界使区域在左，$k_g=g(\nabla_TT,JT)$，角点外转角为$\pi-$内角，内圈须顺时针。Gauss--Bonnet含边界曲率和外转角；本章用截角极限补证二维有限角点Stokes，不发展一般角点流形理论。有限兼容剖分的存在及Euler数的一般同调比较另作拓扑先修；高维整体等式仅外引陈述，四维Pfaffian核算不替代其证明。
+
+
+\Needspace{18\baselineskip}
+\section{李群指数、基本场与不变曲率}
+李代数取左不变场括号：$[X,Y]=[X^L,Y^L](e)$，矩阵群为$XY-YX$。左不变场的流为$g\mapsto g\exp(tX)$，右不变场括号为$[X^R,Y^R]=-[X,Y]^R$。左作用采用正指数基本场$X_M(p)=\left.\frac{\dd}{\dd t}\right|_0\exp(tX)\cdot p$，因此$[X_M,Y_M]=-[X,Y]_M$。左Maurer--Cartan形式为$\theta=g^{-1}\dd g$，$\dd\theta+\frac12[\theta\wedge\theta]=0$。
+
+双不变正定度量下$\nabla_XY=\frac12[X,Y]$，本书曲率号给$R(X,Y)Z=-\frac14[[X,Y],Z]$、$\operatorname{Ric}=-B/4$。只有这种度量保证单位元处的黎曼指数与群指数一致；一般左不变度量不能混用。齐性空间用左陪集$G/H$及左作用，闭性为Hausdorff商和嵌入子群的必要假设。第15章补证了闭子群与商流形，不预引Lie第三定理、一般浸入积分、完整BCH或等距群Lie结构；$\nabla R=0$只直接推出局部反射，全局结论需额外条件。
+
+
+\Needspace{18\baselineskip}
+\section{主丛右作用、相伴系数与Hopf周期}
+主丛用右作用$p\mapsto pg$，正指数基本场$\xi^\#=\left.\frac{\dd}{\dd t}\right|_0p\exp(t\xi)$满足$[\xi^\#,\eta^\#]=[\xi,\eta]^\#$。局部截面$s_j=s_i g_{ij}$，相伴关系$[pg,v]=[p,\rho(g)v]$，所以系数$a_j=\rho(g_{ij})^{-1}a_i$。这与第6章纤维坐标过渡及第10章$e'=eG$的约定一致。
+
+主联络再现竖直生成元且$R_g^*\omega=\operatorname{Ad}_{g^{-1}}\omega$；局部式为$\operatorname{Ad}_{h^{-1}}A+h^{-1}\dd h$，换截面得$A'=\operatorname{Ad}_{g^{-1}}A+g^{-1}\dd g$。水平提升矩阵方程$\dot h=-A(\dot\gamma)h$；曲率$\Omega=\dd\omega+[\omega,\omega]/2$，水平括号的竖直缺陷为$-\Omega^\#$，相伴曲率为$\rho_*(F)$。本章规范变换取$\omega^\Phi=\Phi^*\omega$，按复合乘法为右作用。
+
+Hopf丛取$w=z_1/z_0$、$s_1=s_0e^{-i\phi}$、$\omega=\sum\bar z_j\dd z_j$。在球面外向定向下$F=i\mathrm{vol}_{S^2}/2$，$\int F/(2\pi i)=1$；若取酉Chern归一化$iF/(2\pi)$，积分为$-1$。本章只证明此周期、一般圆群在球面上的整数周期及具体非平凡性，不预用一般示性类或丛分类。平凡、平坦及全局水平截面分别检验。

@@ -1,0 +1,124 @@
+\section{Hodge与Gauss--Bonnet习题及详细解答}
+14.1改述梁书第5章原题11（定理5-6-1及5-6-2），只取本章正定情形；14.2合并改述原题12、13；14.3改述原题15并增加删点反例。原题均在印刷131/PDF147，正文5.6在印刷121--124/PDF137--140。14.4--14.8为原创补充，不另造原书题号。
+
+\Needspace{12\baselineskip}
+\subsection*{习题14.1：两次星与三维向量运算}
+改述梁书原题11的正定部分。证明$**\alpha=(-1)^{k(n-k)}\alpha$，并在定向欧氏$\R^3$把梯度、旋度、散度写成$\dd,*$的组合。解释四维二形式上的$**$与Lorentz版本为何不能直接混用。
+\begin{proof}[解答]
+取正向正交余标架，$*\theta^I=\varepsilon(I,I^c)\theta^{I^c}$。再取星，补指标移回原次序需$k(n-k)$次交换，故两次星的系数为$(-1)^{k(n-k)}$；对基线性推广即得。正定四维二形式满足$**=I$，有自对偶及反自对偶分解$\alpha_\pm=(\alpha\pm*\alpha)/2$。Lorentz内积的符号会额外改变两次星的结果，不能把正定的实特征值分解直接搬过去。
+
+对向量场$A$令$\alpha=A^\flat$，逐分量有
+\[
+ (\operatorname{grad}f)^\flat=\dd f,\qquad
+ (\operatorname{curl}A)^\flat=*\dd\alpha,\qquad
+ \operatorname{div}A=*\dd*\alpha=-\delta\alpha.
+\]
+例如$\dd\alpha$的$\dd x\wedge\dd y$系数为$\partial_xA_y-\partial_yA_x$，取星后成为$\dd z$分量；其余循环同理。$*\alpha=A_x\dd y\wedge\dd z+A_y\dd z\wedge\dd x+A_z\dd x\wedge\dd y$，外微分后恰为散度乘体积，再取星得到散度。梯度是度量将$\dd f$升指标后的场，不把一形式本身叫切向量。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题14.2：笛卡儿与球坐标中的星}
+梁书原题12、13合并并扩展。验证$*\dd x=\dd y\wedge\dd z$及$*(\dd x\wedge\dd y\wedge\dd z)=1$，再对三维欧氏球坐标求$*\dd r$、$*\dd\theta$、$*\dd\phi$。说明坐标奇点不能用同一个公式强行代入。
+\begin{proof}[解答]
+笛卡儿正向正交余标架的补指标规则直接给前两式。球坐标中取$r>0$、$0<\theta<\pi$且避开经线接缝的卡，正向正交余标架为
+\[
+ e^1=\dd r,\qquad e^2=r\dd\theta,\qquad e^3=r\sin\theta\dd\phi.
+\]
+因此
+\begin{align*}
+ *\dd r&=r^2\sin\theta\,\dd\theta\wedge\dd\phi,\\
+ *\dd\theta&=\sin\theta\,\dd\phi\wedge\dd r,\\
+ *\dd\phi&=\frac1{\sin\theta}\,\dd r\wedge\dd\theta.
+\end{align*}
+例如$\dd\theta\wedge*\dd\theta=\sin\theta\,\dd r\wedge\dd\theta\wedge\dd\phi=|\dd\theta|^2\mathrm{vol}$，核对了次序及逆度量因子。极点处$\phi$不是光滑坐标，$\dd\phi$本身无此全局意义；含$1/\sin\theta$的表达式不表示星算子在流形上奇异。原点$r=0$亦须换卡。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题14.3：向量势的拓扑限制}
+改述梁书原题15并扩展。证明整个$\R^3$上光滑无旋场有标量势、无散场有向量势。给出删去原点后无散却没有全局向量势的例子。
+\begin{proof}[解答]
+若$\operatorname{curl}A=0$，上题说明$\dd(A^\flat)=0$；$\R^3$为星形域，第7章Poincare引理给$A^\flat=\dd f$，故$A=\operatorname{grad}f$。若$\operatorname{div}B=0$，则$\dd*(B^\flat)=0$，同理存在全局一形式$\beta$使$*B^\flat=\dd\beta$。三维二形式上$**=1$，所以$B^\flat=*\dd\beta$，即$B=\operatorname{curl}(\beta^\sharp)$。势并不唯一，添加梯度不改变旋度。
+
+在$\R^3\setminus\{0\}$取$B=x/|x|^3$。直接求散度为零，而$*B^\flat$在任意包围原点、外向定向的球面上的积分为$4\pi$。若有全局$\beta$使$\dd\beta=*B^\flat$，拉回球面后由无边界Stokes积分应为零，矛盾。这里不使用一个包含删点的实心球作为合法积分区域。此例说明局部势与全局势的差别，也不能用局部Hodge星替代全局上同调判断。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题14.4：平坦环面的一次形式分解}
+原创。在$\mathbb T^2$上取$g=\dd x^2+\dd y^2$，将
+$\alpha=\sin x\,\dd x+\sin x\,\dd y+A\dd x+B\dd y$作Hodge分解，给出一个核外Green解。再判断共形改变度量后哪些部分仍调和。
+\begin{proof}[解答]
+对二形式$f\dd x\wedge\dd y$，$\delta(f\dd x\wedge\dd y)=f_y\dd x-f_x\dd y$，故
+\[
+ h=A\dd x+B\dd y,\qquad
+ e=\dd(-\cos x)=\sin x\dd x,\qquad
+ c=\delta(\cos x\dd x\wedge\dd y)=\sin x\dd y.
+\]
+对两个系数取全环面平均得到$h$；这里$\alpha$未必闭，不能从任意代表环路的积分直接读取其调和分量。$u=\sin x(\dd x+\dd y)$满足$\Delta_Hu=\alpha-h$，系数均零平均，所以$u\perp\mathcal H^1$，即$G\alpha=u$。其中$\delta u=-\cos x$，$\dd u=\cos x\dd x\wedge\dd y$，与分解相符。
+
+恰当、余恰当项逐点内积为零仅是此例的特殊性；一般定理只给积分正交。若$\widetilde g=e^{2v}g$，二维一次形式上的星不变，所以一次形式闭且余闭的条件仍为$\dd\alpha=\dd*\alpha=0$，调和一次形式空间仍由$\dd x,\dd y$张成。其$L^2$内积也因逆度量与体积因子抵消而不变。对余恰当项进一步核对
+\[
+ \delta_{\widetilde g}(e^{2v}\cos x\,\mathrm{vol}_g)
+ =-*_{g}\dd(\cos x)=\sin x\,\dd y,
+\]
+便知$e,c$仍为这两个正交分量；二形式的势改变了，不能把不同次数的星都当作共形不变。两者非零且分别恰当、余恰当，故均不调和。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题14.5：球面Poisson方程的相容条件}
+原创。在连通闭黎曼流形上证明$\Delta_Hu=f$有光滑函数解当且仅当$\int_Mf\mathrm{vol}=0$，解只差常数。对半径$R$球面、$f=\cos\theta$给出零平均解，并解释$f=1$为何无解。
+\begin{proof}[解答]
+必要性由$1$在核中及自伴性：$(f,1)=(\Delta_Hu,1)=0$。函数核由能量恒等式恰为常数，故零积分意味着$f\perp\mathcal H^0$，取$u=Gf$便得光滑解和零平均。两个解之差在函数核中，因而为常数。
+
+球面函数只依赖$\theta$时，
+\[
+ \Delta_gu=\frac1{R^2\sin\theta}\partial_\theta(\sin\theta\,\partial_\theta u),
+ \qquad\Delta_g\cos\theta=-\frac2{R^2}\cos\theta.
+\]
+所以$u=R^2\cos\theta/2$满足$\Delta_Hu=f$。它是高度函数的倍数，极点处光滑，南北反射给积分零。$f=1$有正积分，不能满足相容条件；这里若错用$\Delta_H=\Delta_g$，解的号会相反。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题14.6：球面三角形与极帽边界}
+原创。验证球面第一卦限的三条边为测地线、三角均为$\pi/2$，计算面积；再对北极帽$0\leq\theta\leq\theta_0<\pi$计算边界的带号测地曲率和Gauss--Bonnet两项。
+\begin{proof}[解答]
+三条边为坐标平面与球面的交，是大圆弧，所以$k_g=0$。在各坐标轴正端点，相邻两条弧的切向量沿另外两个坐标轴，故正交。角超为$3\pi/2-\pi=\pi/2$，$K=R^{-2}$，面积为$\pi R^2/2$；亦可用八个同面积卦限拼成整个球面核对。
+
+极帽边界正向为$\phi$增加。其单位切向$T=(R\sin\theta_0)^{-1}\partial_\phi$，左法向$JT=-R^{-1}\partial_\theta$。由$\Gamma^\theta_{\phi\phi}=-\sin\theta\cos\theta$，
+\[
+ \nabla_TT=-\frac{\cot\theta_0}{R^2}\partial_\theta,
+ \qquad k_g=\frac{\cot\theta_0}{R},\qquad
+ \int_{\partial S}k_g\dd s=2\pi\cos\theta_0.
+\]
+面积积分给$\int_SK\mathrm{vol}=2\pi(1-\cos\theta_0)$，和为$2\pi$，对应圆盘Euler数1。超过半球时$\cot\theta_0<0$，负边界项是正确的，不应取绝对值；$\theta_0=0,\pi$不再是题设的正则边界圆。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题14.7：共形圆环的内外边界号}
+原创。在圆环$r_0\leq\sqrt{x^2+y^2}\leq R_0$上取$g=e^{2u}(\dd x^2+\dd y^2)$，$0<r_0<R_0$。推导$K$及$k_g\dd s$的共形变换，令$u=x^2+y^2$逐项验证Gauss--Bonnet。
+\begin{proof}[解答]
+对正向正交标架$e_1=e^{-u}\partial_x,e_2=e^{-u}\partial_y$，由Koszul或直接求Christoffel系数得联络一形式$a=-u_y\dd x+u_x\dd y$。因$\dd a=(u_{xx}+u_{yy})\dd x\wedge\dd y=-K\mathrm{vol}_g$，所以
+\[
+ K=-e^{-2u}(u_{xx}+u_{yy}).
+\]
+欧氏单位切向记$T_0$，其右侧外法向为$\nu_0$。切向角在共形正交标架下相同，故
+\[
+ k_g\dd s_g=k_0\dd s_0+a(T_0)\dd s_0
+             =(k_0+\partial_{\nu_0}u)\dd s_0.
+\]
+内圈正向为顺时针，$\nu_0$朝向删去的圆盘。对$u=r^2$，曲率积分为$-4\pi(R_0^2-r_0^2)$；外圈通量及转角贡献为$2\pi+4\pi R_0^2$，内圈为$-2\pi-4\pi r_0^2$，总和为零。圆环无角点，Euler数为0。若内圈也取逆时针，就会破坏边界相消及这一等式。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题14.8：四维Euler形式的乘积归一化}
+原创。用四维Pfaffian展开计算$S^2(R_1)\times S^2(R_2)$的$e_g$及其积分。再对四维常曲率$K$的局部模型计算$e_g$，说明这些核算不能证明一般Chern--Gauss--Bonnet。
+\begin{proof}[解答]
+取正向乘积正交标架，前两个方向属于第一因子，后两个属于第二因子。第11章乘积联络使混合曲率全零，故
+\[
+ \Omega_{12}=R_1^{-2}\theta^1\wedge\theta^2,\quad
+ \Omega_{34}=R_2^{-2}\theta^3\wedge\theta^4,\quad
+ e_g=\frac{\mathrm{vol}_g}{4\pi^2R_1^2R_2^2}.
+\]
+两个球面面积分别为$4\pi R_1^2,4\pi R_2^2$，于是积分为4，半径因子全部相消。
+
+四维常曲率模型有$\Omega_{ij}=K\theta^i\wedge\theta^j$。Pfaffian中的三项在排成$1234$次序后均为$+K^2\mathrm{vol}$，所以$e_g=3K^2\mathrm{vol}/(4\pi^2)$。特别不能把Pfaffian错当作只保留$12|34$配对的一个乘积；一般矩阵还有另两项。这些只是局部代数及特定积分。将它们推广为任意闭流形的Euler数公式，仍需本章尚未证明的整体比较定理。
+\end{proof}

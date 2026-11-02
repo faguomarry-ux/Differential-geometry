@@ -1,0 +1,113 @@
+\section{李群与齐性空间习题及详细解答}
+15.3改述Kirillov讲义原题6.2的实数$n=2$情形；15.4合并原题2.2(1)、2.3并加入圆周计算；15.7改述原题2.5并补图坐标。该讲义原题的印刷/PDF页分别为82、18、19，详见来源表。其余五题为原创补充。本轮未核实梁书中对应的李群原题，不编造题号；基本群相关的原题2.2(2)未纳入，避免预用尚未建立的普遍覆盖群理论。
+
+\Needspace{12\baselineskip}
+\subsection*{习题15.1：仿射群、左右场与结构方程}
+令$G=\{(a,b):a>0\}$，表示$x\mapsto ax+b$。求群运算、左右不变场、括号、指数及左Maurer--Cartan形式，并说明它不具有双不变黎曼度量。
+\begin{proof}[解答]
+复合给出$(a,b)(c,d)=(ac,b+ad)$，单位元$(1,0)$，逆为$(a^{-1},-b/a)$。以单位元处的$a,b$方向为$H,E$，微分左右乘法得
+\[
+ H^L=a\partial_a,\quad E^L=a\partial_b,\qquad
+ H^R=a\partial_a+b\partial_b,\quad E^R=\partial_b.
+\]
+因此$[H^L,E^L]=E^L$而$[H^R,E^R]=-E^R$，即$[H,E]=E$。从$(1,0)$出发，$xH+yE$的积分曲线满足$a'=xa$、$b'=ya$，所以
+\[
+ \exp(xH+yE)=\left(e^x,\ y\frac{e^x-1}{x}\right),
+\]
+在$x=0$时商按连续值1解释。对偶于左不变基的一形式为$\theta^H=\dd a/a$、$\theta^E=\dd b/a$。直接求导得$\dd\theta^H=0$及$\dd\theta^E=-\theta^H\wedge\theta^E$，与$[H,E]=E$的Maurer--Cartan式吻合。
+
+若有双不变内积，\eqref{eq:lie-ad-skew}取$X=H,Y=Z=E$，得到$2\langle E,E\rangle=0$，违反正定性。相应地$\operatorname{ad}_H=\left(\begin{smallmatrix}0&0\\0&1\end{smallmatrix}\right)$、$\operatorname{ad}_E=\left(\begin{smallmatrix}0&0\\-1&0\end{smallmatrix}\right)$，故Killing矩阵为$\operatorname{diag}(1,0)$。群连通且可微分同胚于$\R^2$，仍不满足双不变正定度量的条件。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题15.2：三维旋转的指数与曲率}
+令$\widehat v(w)=v\times w$。推导Rodrigues公式，计算$\mathfrak{so}(3)$的Killing形式，并对内积$\langle\widehat v,\widehat w\rangle=v\cdot w$计算双不变度量的截面及Ricci曲率。
+\begin{proof}[解答]
+向量三重积使$\widehat v^2=vv^{\mathsf T}-r^2I$，其中$r=\|v\|$，故$\widehat v^3=-r^2\widehat v$。把指数级数按奇偶及这个关系归并，得到
+\[
+ \exp(\widehat v)=I+\frac{\sin r}{r}\widehat v+
+ \frac{1-\cos r}{r^2}\widehat v^2.
+\]
+$r=0$时按级数连续延拓。它固定$v$轴，在$v^\perp$上为转角$r$的旋转。$\operatorname{Ad}_Q\widehat v=\widehat{Qv}$对$Q\in\mathrm{SO}(3)$成立，因为保向正交变换保持叉积，所以所给内积确实$\operatorname{Ad}$不变。
+
+由$\widehat v\widehat w=wv^{\mathsf T}-(v\cdot w)I$，迹为$-2v\cdot w$，这也是$\operatorname{ad}$表示中的迹，故$B=-2\langle\ ,\ \rangle$。对正交单位$v,w$，$\|v\times w\|=1$，从定理\ref{thm:lie-biinvariant-curvature}得到每个截面$K=1/4$，$\operatorname{Ric}=\frac12g$，标量曲率为$3/2$。若把度量乘常数$c>0$，截面曲率变成$1/(4c)$；固定Lie括号并不意味着所有归一化下曲率都为1。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题15.3：实$\mathfrak{sl}(2)$的Killing形式}
+由Kirillov原题6.2取实数$n=2$情形。直接计算$H,E,F$基中的三个$\operatorname{ad}$矩阵及Killing矩阵，证明$B(X,Y)=4\operatorname{tr}(XY)$并判定符号。
+\begin{proof}[解答]
+矩阵的列表示被作用的基向量。由$[H,E]=2E,[H,F]=-2F,[E,F]=H$，得到
+\[
+ \operatorname{ad}_H=\begin{pmatrix}0&0&0\\0&2&0\\0&0&-2\end{pmatrix},\quad
+ \operatorname{ad}_E=\begin{pmatrix}0&0&1\\-2&0&0\\0&0&0\end{pmatrix},\quad
+ \operatorname{ad}_F=\begin{pmatrix}0&-1&0\\0&0&0\\2&0&0\end{pmatrix}.
+\]
+相乘后取迹给出
+\[
+ (B_{ij})=\begin{pmatrix}8&0&0\\0&0&4\\0&4&0\end{pmatrix}.
+\]
+$4\operatorname{tr}(X_iX_j)$在这组基上有同一矩阵，双线性推出所有$X,Y$的等式。换基$H,E+F,E-F$后为$\operatorname{diag}(8,8,-8)$，故符号为$(2,1)$，非退化却不定。若这个李代数有正定$\operatorname{ad}$不变内积，则$\operatorname{ad}_H$为斜伴随，但$\operatorname{ad}_HE=2E$蕴含$4\|E\|^2=0$，矛盾。因此$\mathrm{SL}(2,\R)$也没有双不变黎曼度量；不定的双线性型不属于本章正定黎曼结论的适用范围。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题15.4：局部同构、离散核与圆周周期}
+合并Kirillov原题2.2(1)、2.3，并扩展圆周例子。证明连通群的离散正规子群在中心内；证明微分同构的连通李群同态为覆盖。再求所有光滑群同态$F:S^1\to S^1$，说明李代数同态何时能下降到圆周。
+\begin{proof}[解答]
+对离散正规$N$及$n\in N$，$g\mapsto gng^{-1}$是从连通空间到离散空间的连续映射，恒为$n$。这独立于是否存在商流形。微分同构使同态在单位元附近为局部微分同胚，像是开子群，目标连通使它满射。取小$U$使$UU^{-1}\cap\ker F=\{e\}$，则定理\ref{prop:lie-covering}的证明给出$F^{-1}(F(U))=\coprod_{k\in\ker F}kU$，每片均微分同胚到$F(U)$，这正是覆盖条件。核离散、正规，故在中心内；只说“局部可逆”尚未写出覆盖所需的不交原像片。
+
+圆周单位元切空间以$i$为基，设$\dd F_e(i)=ci$，$c\in\R$。指数自然性给出$F(e^{it})=e^{ict}$。因$e^{i(t+2\pi)}=e^{it}$，必须$e^{2\pi ic}=1$，所以$c=m\in\mathbb Z$。反过来$F(z)=z^m$定义光滑同态。$m=0$时为常同态；$m\ne0$时导数可逆，核有$|m|$个点，成为$|m|$重覆盖。因此所有实数$c$都给出一维交换李代数同态，但只有整数保持周期格而下降为圆周同态。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题15.5：环面中的无理绕行}
+取无理数$\alpha$，令$F:\R\to T^2$为$F(t)=(e^{it},e^{i\alpha t})$。证明它是单射浸入同态，像稠密但不为全体，且不是到其像（取子空间拓扑）的同胚。说明$T^2/F(\R)$为何不能用闭子群商定理。
+\begin{proof}[解答]
+同态性直接来自指数加法。若$F(t)=(1,1)$，则$t=2\pi m$且$\alpha m\in\mathbb Z$，无理性迫使$m=0$。导数为非零向量$(1,\alpha)$的平移，所以处处单射，故为浸入。
+
+先证明$\{e^{2\pi i m\alpha}:m\in\mathbb Z\}$在$S^1$稠密。把$N+1$个小数部分$\{j\alpha\}$分入$N$个等长区间，必有两个相差小于$1/N$。取差并允许改变符号，得到整数$q$及$k$使$0<q\alpha-k=\delta<1/N$（此处$q$允许负值）。角度为$\delta$的非负整数倍在$[0,1]$中形成最大间隙不超过$\delta$的网格，每个网格点都属于该循环子群；令$N\to\infty$即可任意逼近。
+
+对给定$(e^{i\theta},e^{i\phi})$，取$t=\theta+2\pi m$可固定第一坐标，第二坐标由上述稠密性逼近目标，故像在$T^2$稠密。但第一坐标为1时，像中的第二坐标只有可数多个；圆周不可数，所以像不为全体。
+
+上述抽屉构造还给出非零整数$q_j$，使$e^{2\pi iq_j\alpha}\to1$。可选$|q_j|\to\infty$，否则某非零$q$重复出现便会使$q\alpha$为整数。于是$F(2\pi q_j)\to(1,1)$，而原像不趋于0，故逆不连续。最后商中单位陪集的原像$F(\R)$不闭，因此该点不闭，商甚至不是$T_1$空间。群的像为浸入子群与其为闭嵌入子群是不同结论。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题15.6：单位分支内的非指数元素}
+在$\mathrm{SL}(2,\R)$中令$A=\operatorname{diag}(-2,-1/2)$。证明它位于单位元的路径分支，却不等于任何实矩阵的指数。
+\begin{proof}[解答]
+记$R(\theta)=\left(\begin{smallmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{smallmatrix}\right)$，则
+\[
+ c(t)=R(\pi t)\operatorname{diag}(2^t,2^{-t}),\qquad0\le t\le1
+\]
+是行列式恒为1的光滑路径，连接$I$与$A$。若$e^X=A$且$X$实，则$X$与其指数交换，因而$XA=AX$。$A$的两个对角元互异，比较交换等式的非对角元得$X_{12}=X_{21}=0$，所以$X$是实对角矩阵，其指数对角元均为正，矛盾。特别地它也不是任何$\mathfrak{sl}(2,\R)$元素的指数。这个例子说明连通单位分支由指数邻域的有限乘积生成，不意味着每个元素都是单个指数。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题15.7：Grassmann流形的稳定子与图坐标}
+改述Kirillov原题2.5并补充坐标验证。对$0<k<n$，把$k$维线性子空间全体表示为正交群的齐性空间，求维数及一个显式局部坐标，并构造不变黎曼度量。
+\begin{proof}[解答]
+令$P_0=\R^k\oplus0$。任一$k$平面取正交归一基，再补为$\R^n$的正交基，故$\mathrm O(n)$作用传递。保持$P_0$的正交矩阵也保持$P_0^\perp$，恰为块对角$\mathrm O(k)\times\mathrm O(n-k)$。这是闭子群，所以可定义
+\[
+ \operatorname{Gr}(k,n)=\mathrm O(n)/(\mathrm O(k)\times\mathrm O(n-k)),
+ \quad \dim\operatorname{Gr}(k,n)=k(n-k).
+\]
+横截于$P_0^\perp$的平面唯一写成$\{(x,Zx):x\in\R^k\}$，其中$Z\in M_{n-k,k}(\R)$。在$Z=0$附近，对列$(e_i,Ze_i)$及剩余标准基作Gram--Schmidt，分母均非零，所得正交矩阵$Q(Z)$光滑，且$Q(Z)P_0$恰为该图平面。反向若$Q$的左上$k\times k$块$A$可逆、左下块为$C$，则图坐标为$Z=CA^{-1}$。两个构造均光滑，故图坐标与商流形结构相容；在任意参考平面作同样构造得到全体坐标。
+
+因此$T_{P_0}\operatorname{Gr}(k,n)\simeq\operatorname{Hom}(P_0,P_0^\perp)$。稳定子$(U,V)$在该空间作用为$Z\mapsto VZU^{-1}$，保持$\operatorname{tr}(Z^{\mathsf T}W)$。由定理\ref{thm:lie-homogeneous}它唯一延拓为正交群不变黎曼度量。这里讨论的是无定向平面；若换成定向Grassmann流形，稳定子须相应改变，不能原封不动沿用此商。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题15.8：左不变度量下的两种指数}
+取$\mathfrak{so}(3)$基$A,B,C$，满足$[A,B]=C,[B,C]=A,[C,A]=B$。规定它们正交且平方长度为$I_1,I_2,I_3>0$，左平移延拓度量。求$\exp_G(t(A+B))$的协变加速度，判断何时它是测地线，并解释此处与双不变公式的区别。
+\begin{proof}[解答]
+对任意左不变场$X,Z$，Koszul公式在常内积下给出
+\[
+ \langle\nabla_XX,Z\rangle=-\langle[X,Z],X\rangle.
+\]
+令$X=A+B$。$[X,A]=-C,[X,B]=C,[X,C]=A-B$，所以前两个配对为零，第三个为$-(I_1-I_2)$。因此
+\[
+ \nabla_XX=\frac{I_2-I_1}{I_3}C.
+\]
+群指数曲线的速度是$X^L$，沿线加速度就是该左不变场的限制。于是此曲线为测地线当且仅当$I_1=I_2$。当$I_1\ne I_2$时，$\exp_G(tX)$与相同初速度的黎曼测地线不同；即使$I_1=I_2\ne I_3$使这一个方向恰好为测地线，也不能推出度量双不变。双不变要求全部$\operatorname{ad}$斜伴随，依次代入三个基即迫使$I_1=I_2=I_3$。所以不能把群指数的一参数子群定义自动解释为任意左不变度量的黎曼指数。
+\end{proof}

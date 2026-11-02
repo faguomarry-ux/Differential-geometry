@@ -1,0 +1,58 @@
+\subsection{一参数子群与完备性}
+\begin{theorem}\label{thm:lie-exponential}
+每个左不变场$X^L$完备。存在唯一光滑曲线$\gamma_X:\R\to G$使$\gamma_X(0)=e$、$\dot\gamma_X=X^L\circ\gamma_X$，且
+\[
+ \gamma_X(s+t)=\gamma_X(s)\gamma_X(t),\qquad
+ \gamma_{aX}(t)=\gamma_X(at).
+\]
+定义$\exp X=\gamma_X(1)$，则$\exp:\mathfrak g\to G$光滑，$\dd\exp_0=I$，故在零点附近是微分同胚。$X^L$的流为
+\begin{equation}\label{eq:lie-left-flow}
+ \Phi_t(g)=g\exp(tX)=R_{\exp(tX)}(g).
+\end{equation}
+\end{theorem}
+\begin{proof}
+先取单位元出发的局部解$\gamma:(-\varepsilon,\varepsilon)\to G$。对固定$s$，$t\mapsto\gamma(s)\gamma(t)$由左不变性也是$X^L$的积分曲线，初值为$\gamma(s)$；唯一性给出局部乘法式。把这条短解左移至任意已到达点，可在每个端点再延长同一个时间长度。反复拼接得到全实轴解，唯一性使重叠处一致，也把乘法式推广到一切$s,t$。时间缩放验证第二式。初值$g$的解便是$L_g\gamma_X$，得到\eqref{eq:lie-left-flow}。
+
+参数ODE给出$X=0$附近一个固定短时间$\varepsilon>0$上的光滑解$\gamma_X(t)$。任取$X_0$，选足够大的整数$N$，使$X/(N\varepsilon)$对$X$在$X_0$的小邻域内落在这个局部参数范围。缩放及乘法式给出
+\[
+ \exp X=\bigl(\gamma_{X/(N\varepsilon)}(\varepsilon)\bigr)^N,
+\]
+从而得到该邻域的光滑性；右边只调用已经有参数光滑性的短时间解。最后$\exp(tX)=\gamma_X(t)$的零时导数为$X$，故$\dd\exp_0X=X$，逆函数定理给出结论。
+\end{proof}
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/lie-left-flow}
+\caption{左不变场的解从$e$经左平移搬到$g$；固定时间的流映射则是右平移。箭头注明了各自固定的量。}
+\label{fig:lie-left-flow}
+\end{figure}
+
+任一光滑一参数子群$c:\R\to G$满足$c(s+t)=c(s)c(t)$，对$t$在零点求导得$c'(s)=\dd L_{c(s)}c'(0)$，所以必为$\exp(tX)$。右不变场的流相应为$g\mapsto\exp(tX)g$。
+
+\begin{example}[矩阵指数]
+矩阵级数$E(t)=\sum_{j\ge0}t^jX^j/j!$及逐项导数在有界$t$区间一致收敛，故$E'=EX$、$E(0)=I$。由ODE唯一性，它等于上面在任意矩阵李群中定义的$\exp(tX)$；特别地解始终留在该群。$S^1$的指数为$t\mapsto e^{it}$，显然不单射。局部可逆不能推出全局单射或满射，习题15.6将给出连通单位分支中的非指数元素。
+\end{example}
+
+\subsection{同态的微分、刚性与覆盖}
+\begin{theorem}\label{thm:lie-homomorphism}
+若$F:G\to K$为光滑群同态，$f=\dd F_e$，则$f$是李代数同态，并且
+\[
+ F(\exp_G X)=\exp_K(fX),\qquad
+ \dd F_g\circ\dd L_g=\dd L_{F(g)}\circ f.
+\]
+$F$常秩，$\ker F$是闭嵌入正规李子群，$T_e\ker F=\ker f$。若$G$连通，则$F$由$f$唯一确定。
+\end{theorem}
+\begin{proof}
+第二式来自微分$F\circ L_g=L_{F(g)}\circ F$，其左右平移微分可逆，故秩常数。它也说明$X^L$与$(fX)^L$是$F$相关的场；相关场的括号相关，单位元取值给出$f[X,Y]=[fX,fY]$。将积分曲线用$F$映出，由ODE唯一性得到指数的自然性。常秩定理把单位纤维局部写成坐标子空间，故核是嵌入子流形，切空间是微分的核。核闭且正规来自连续性与群同态恒等式。
+
+连通群由任意单位元邻域$U$生成：$U\cup U^{-1}$的有限乘积之并是开子群，所有陪集也开，故其补集开；连通性迫使它为全群。两个同态若微分相等，便由指数自然性在一个单位元邻域相等，继而在其生成的全群相等。连通性不可删去，例如离散群的所有切空间都为零。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\begin{proposition}\label{prop:lie-covering}
+若$f$为线性同构且$K$连通，则$F$满射，是具有离散核的覆盖映射。若$G$也连通，则核包含在$G$的中心。
+\end{proposition}
+\begin{proof}
+逆函数定理给出单位元邻域$U$，使$F|_U:U\to V$微分同胚。像包含$V$，故是开子群；$K$连通使像为全体。缩小$U$使$UU^{-1}\cap\ker F=\{e\}$。若$F(g)\in V$，存在唯一$u\in U$满足$F(u)=F(g)$，于是$g=ku$且$k\in\ker F$。不同$kU$互不相交，因为$ku=\ell v$蕴含$\ell^{-1}k=vu^{-1}\in UU^{-1}\cap\ker F$。所以$F^{-1}(V)$是这些开集的不交并，每片映到$V$均为微分同胚；平移给出所有点的均匀覆盖邻域。最后对$k\in\ker F$，映射$g\mapsto gkg^{-1}$从连通$G$进入离散核，必恒为$k$。
+\end{proof}
+
+这里没有声称每个李代数同态都能在任意给定的源群上积分。例如$\R\to\R$的任意线性映射是李代数同态，但要下降为$S^1\to S^1$同态，必须保持指数的周期格；习题15.4会算出整数条件。

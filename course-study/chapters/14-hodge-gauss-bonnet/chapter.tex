@@ -1,18 +1,26 @@
 \chapter{Hodge理论与Gauss--Bonnet定理}
 \label{ch:14-hodge-gauss-bonnet}
-\ChapterPlan{周4.6至4.7}{待撰写；以下为写作计划，不是已完成正文}
+\ChapterPlan{周4.6至4.7（本地页码待核对）；梁上册第二版5.6及习题11--13、15；Donaldson椭圆讲义与Andrews第20讲补充}{Hodge及曲面Gauss--Bonnet证明初稿；8题详解与3幅原创图，尚未独立数学审阅；高维整体公式仅陈述}
 
+微分形式的上同调不依赖度量，而度量提供了“同一个类中哪一个代表最合适”的问题。Hodge理论给出的答案是调和代表；存在性不能只靠形式上的正交分解，而须证明弱方程可解及其解光滑。另一方面，曲面的曲率积分由局部几何量拼成一个整数，这由Gauss--Bonnet解释。
+
+本章的Hodge定理针对光滑、紧致、定向、无边界的有限维黎曼流形；星算子的逐点定义和紧支分部积分可在更一般的定向流形上使用。分析部分以Lebesgue积分及$L^2$的完备性为先修，补建所需的Hilbert变分引理、Sobolev紧性和弱解正则性，不调用尚未证明的谱分解。曲面部分以明确的有限光滑三角剖分为拓扑输入，证明边界/转角公式和求和；一般光滑三角剖分存在定理及其与奇异同调Euler数的比较不在本章证明。高维Chern--Gauss--Bonnet的整体等式另标为外引陈述，不参与前面证明。
+
+\Needspace{17\baselineskip}
 \section{Hodge星算子与余微分}
-\PlannedSection
+\input{course-study/chapters/14-hodge-gauss-bonnet/star}
 
-\section{椭圆估计与Hodge分解的证明依赖}
-\PlannedSection
+\Needspace{17\baselineskip}
+\section{Sobolev工具与椭圆方程}
+\input{course-study/chapters/14-hodge-gauss-bonnet/analysis}
+\input{course-study/chapters/14-hodge-gauss-bonnet/elliptic}
 
+\Needspace{17\baselineskip}
 \section{Poincare对偶与调和形式}
-\PlannedSection
+\input{course-study/chapters/14-hodge-gauss-bonnet/hodge}
 
+\Needspace{17\baselineskip}
 \section{曲面Gauss--Bonnet及高维推广}
-\PlannedSection
+\input{course-study/chapters/14-hodge-gauss-bonnet/gauss-bonnet}
 
-\section{例题、习题与解答计划}
-需配置概念判断题、坐标计算题、完整证明题及反例题；解答必须与题号对应。
+\input{course-study/chapters/14-hodge-gauss-bonnet/exercises}

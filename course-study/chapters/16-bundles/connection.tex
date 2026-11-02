@@ -1,0 +1,85 @@
+\subsection{右作用的基本场与主联络}
+对$\xi\in\mathfrak g$定义基本场
+\[
+ \xi^\#(p)=\left.\frac{\dd}{\dd t}\right|_0p\exp(t\xi).
+\]
+它的流是$R_{\exp(t\xi)}$。在纤维$P_x\simeq G$中，此场对应\emph{左}不变场，所以
+\begin{equation}\label{eq:principal-fundamental}
+ [\xi^\#,\eta^\#]=[\xi,\eta]^\#,
+ \qquad (R_g)_*\xi^\#=(\operatorname{Ad}_{g^{-1}}\xi)^\#.
+\end{equation}
+后一式也可微分$p\exp(t\xi)g=pg\exp(t\operatorname{Ad}_{g^{-1}}\xi)$得到。右作用的这里是同态号，与第15章\emph{左}作用的正指数基本场反号不同。局部乘积还说明$\xi\mapsto\xi^\#(p)$是$\mathfrak g\simeq V_pP:=\ker\dd\pi_p$的线性同构。
+
+\begin{definition}\label{def:principal-connection}
+主联络为$\mathfrak g$值一形式$\omega\in\Omega^1(P;\mathfrak g)$，满足
+\begin{equation}\label{eq:principal-connection-axioms}
+ \omega(\xi^\#)=\xi,\qquad R_g^*\omega=\operatorname{Ad}_{g^{-1}}\omega.
+\end{equation}
+第一条称再现竖直生成元，第二条称右等变。水平空间定义为$H_pP=\ker\omega_p$。
+\end{definition}
+\begin{proposition}\label{prop:principal-horizontal}
+主联络与光滑右$G$不变的补分布$TP=HP\oplus VP$一一对应。任意$X\in T_xM$在给定$p\in P_x$处有唯一水平提升$X^h_p$，并且$\dd R_gX^h_p=X^h_{pg}$。
+\end{proposition}
+\begin{proof}
+再现式使$\omega|_{VP}$为逐点同构，故其核是光滑补空间；等变式给出右不变性。反向将$v\in T_pP$分成水平与竖直两项，竖直项唯一为$\xi^\#(p)$，定义$\omega_p(v)=\xi$。光滑性来自光滑直和投影，\eqref{eq:principal-fundamental}给出等变式。水平提升是$\dd\pi|_{HP}$的逆，其光滑性由局部可逆矩阵得到，唯一性给出最后的等式。
+\end{proof}
+
+\subsection{局部势、换截面和存在性}
+\begin{theorem}\label{thm:principal-local-form}
+若$s:U\to P$为局部截面，定义局部联络势$A=s^*\omega\in\Omega^1(U;\mathfrak g)$。在$\psi_s(x,h)=s(x)h$的坐标中
+\begin{equation}\label{eq:principal-local-form}
+ \psi_s^*\omega=\operatorname{Ad}_{h^{-1}}A+\theta_h,
+ \qquad \theta_h=\dd(L_{h^{-1}})_h\dd h.
+\end{equation}
+换截面$s'=sg$，其中$g:U\to G$光滑，则
+\begin{equation}\label{eq:principal-gauge-local}
+ A'=\operatorname{Ad}_{g^{-1}}A+g^*\theta.
+\end{equation}
+矩阵群中$g^*\theta=g^{-1}\dd g$。反过来，任何满足此换元律的一族$A_i$唯一确定主联络。
+\end{theorem}
+\begin{proof}
+对$T_xU$输入，$\psi_s$的微分是$\dd R_h\dd s$，联络值按右等变性为$\operatorname{Ad}_{h^{-1}}A$。对群方向$\zeta\in T_hG$，写成$\dd L_h\xi$，其像为$\xi^\#$，联络值为$\xi=\theta_h(\zeta)$。线性相加给出公式。将$(x,g(x))$拉回即得换截面式，特别要保留$g$随$x$变化产生的第二项。
+
+反向用\eqref{eq:principal-local-form}在每块定义形式。群乘法的微分给出
+\[
+ (ab)^*\theta=\operatorname{Ad}_{b^{-1}}a^*\theta+b^*\theta
+\]
+（这里$a,b$可为同一底空间上的群值函数），因此局部式在重叠处相等；各块再现且等变，遂给出全局联络。公式还说明局部势唯一决定$\omega$。
+\end{proof}
+
+\Needspace{14\baselineskip}
+\begin{theorem}\label{thm:principal-existence}
+每个光滑主丛都有主联络。两联络之差是水平、$\operatorname{Ad}$等变的一形式，因而主联络空间是以$\Omega^1(M;\operatorname{Ad}P)$为模型的仿射空间。
+\end{theorem}
+\begin{proof}
+局部乘积上取$A_i=0$得到局部联络$\omega_i$，选从属于该覆盖的局部有限单位分解$\rho_i$，定义
+\[
+ \omega=\sum_i(\pi^*\rho_i)\omega_i.
+\]
+每项在其域外延零，支集从属保证光滑。右作用不改变$\pi^*\rho_i$，所以保留等变性；在$\xi^\#$上取值为$(\sum_i\rho_i)\xi=\xi$。故主联络存在，并不要求$G$紧致。两联络相减后再现项抵消，故差水平且等变；由命题\ref{prop:bundle-tensorial-descent}下降到伴随丛值一形式。反向加任意这样的形式仍满足两个公理。
+\end{proof}
+若$f:N\to M$，自然同态$q:f^*P\to P$使$q^*\omega$成为拉回主丛的联络：其在基本场上的值和等变性直接由$q$等变得到。不能在任意映射下不加说明地把“水平分布的集合原像”当作补分布；一形式的拉回才直接保留所需公理。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/principal-horizontal}
+\caption{联络在每点将切向量分成水平和竖直部分。水平部分投影为底空间方向，竖直部分由$\omega$读取为李代数元素；斜线仅表示选取了一个补空间，并无天然正交性。}
+\label{fig:principal-horizontal}
+\end{figure}
+
+\subsection{水平曲线及其全时间存在}
+\begin{theorem}\label{thm:principal-transport}
+给定紧区间$[a,b]$上的分段光滑路径$\gamma$及$p_0\in P_{\gamma(a)}$，存在唯一分段光滑水平提升$p(t)$，满足$p(a)=p_0$。移动$\mathcal P_\gamma:p_0\mapsto p(b)$为纤维间的等变微分同胚，保持路径拼接和反向，并对有限维光滑路径族光滑依赖。
+\end{theorem}
+\begin{proof}
+在一块中写$p(t)=s(\gamma(t))h(t)$，令$B(t)=A_{\gamma(t)}(\dot\gamma(t))$。水平条件为
+\begin{equation}\label{eq:principal-horizontal-ode}
+ h^{-1}\dot h=-\operatorname{Ad}_{h^{-1}}B(t),
+ \quad\text{即}\quad \dot h=-\dd(R_h)_eB(t).
+\end{equation}
+矩阵群即$\dot h=-B(t)h$。ODE局部存在唯一性适用。还需证明在整段上存在，不能只因系数光滑就忽略解逃逸。
+
+对时间$t_0$和从$e$出发的方程，紧时间区间中$B(t)$有紧像。时间依赖的局部ODE定理在$e$附近给出一个统一的小时间长度$\delta>0$，可在每个起始时间使用：可在群的一个固定坐标球上对有界系数及其空间导数取统一界，时间端点用单侧区间处理。从任意$h_0$出发的解是从$e$出发的解再右乘$h_0$，因为右不变方程与该右移相容，故同一个$\delta$也适用。有限次延续便覆盖整段；群非紧并不造成这类方程的有限时爆破。
+
+路径紧像可用有限个平凡化域逐段覆盖，在接头处按过渡函数改坐标，唯一性使这些解拼成同一提升。右平移保持水平，故从$p_0g$出发的提升为$p(t)g$，移动等变。反向恢复初值，说明移动可逆；同一唯一性给出拼接。对有限维光滑路径族，在给定参数附近选统一有限分割和局部坐标，再应用ODE参数光滑依赖逐段复合即可。这里没有建立无限维路径空间的光滑结构。
+\end{proof}
+由此相伴丛上有移动$[p_0,v]\mapsto[\mathcal P_\gamma(p_0),v]$，等变性保证不依赖代表。给定闭路及$p\in P_x$，唯一$h\in G$满足$\mathcal P_\gamma(p)=ph$；换初始点为$pk$时变成$k^{-1}hk$。因此闭路群元素的具体表示依赖纤维中的基点，纤维等变移动本身不依赖这个选择。

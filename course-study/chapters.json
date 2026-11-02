@@ -178,37 +178,40 @@
   {
     "id": "14-hodge-gauss-bonnet",
     "title": "Hodge理论与Gauss--Bonnet定理",
-    "source": "周4.6至4.7",
-    "status": "planned",
+    "source": "周4.6–4.7（页码待核对）；梁5.6印刷121–124/PDF137–140及题11–13/15；Donaldson 2020、Etnyre 1.1–1.4、Andrews20；高维整体等式未证",
+    "status": "draft",
     "sections": [
       "Hodge星算子与余微分",
-      "椭圆估计与Hodge分解的证明依赖",
+      "Sobolev工具与椭圆方程",
       "Poincare对偶与调和形式",
-      "曲面Gauss--Bonnet及高维推广"
+      "曲面Gauss--Bonnet及高维推广",
+      "Hodge与Gauss--Bonnet习题及详细解答"
     ]
   },
   {
     "id": "15-lie-groups",
     "title": "李群、李代数与齐性空间",
-    "source": "周第5章",
-    "status": "planned",
+    "source": "周第5章（页码待核对）；Kirillov第2–4、6章及题2.2(1)/2.3/2.5/6.2；Gorodski2021；Lie第三定理/分类/等距群Lie结构未证",
+    "status": "draft",
     "sections": [
       "李群、左不变向量场与李代数",
       "指数映射与群同态",
       "伴随表示与Killing形式",
-      "齐性流形与黎曼对称空间"
+      "齐性流形与黎曼对称空间",
+      "李群与齐性空间习题及详细解答"
     ]
   },
   {
     "id": "16-bundles",
     "title": "主丛、相伴丛与丛联络",
-    "source": "周第6章",
-    "status": "planned",
+    "source": "周第6章（页码待核对）；Wendl2–3及题2.13/2.34/2.90；Meinrenken主丛讲义2–3；一般分类/示性类/完整holonomy未证",
+    "status": "draft",
     "sections": [
       "向量丛同态与拉回丛",
       "主丛与相伴向量丛",
       "联络形式、水平提升与曲率",
-      "Hopf丛与规范变换"
+      "Hopf丛与规范变换",
+      "主丛与联络习题及详细解答"
     ]
   },
   {

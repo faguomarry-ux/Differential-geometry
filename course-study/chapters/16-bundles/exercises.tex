@@ -1,0 +1,115 @@
+\section{主丛与联络习题及详细解答}
+16.1改述Wendl第2章原题2.34；16.2改述原题2.90；16.3取原题2.13的光滑版本并扩展复线丛及Hopf例子。原位置分别为印刷33/PDF17、印刷66/PDF50、印刷24/PDF8（均为该章独立PDF）。其余五题为原创补充。周书本地页码和梁书对应题仍待核实，不据主题相近就填入原题号。
+
+\Needspace{12\baselineskip}
+\subsection*{习题16.1：对角拉回与切映射的目标丛}
+改述Wendl原题2.34并扩展。对$\Delta:M\to M\times M$、$\Delta(x)=(x,x)$，证明$\Delta^*T(M\times M)\simeq TM\oplus TM$。在此识别下写出$\dd\Delta$。一般$f:M\to N$的微分应视为哪两个底空间相同的丛之间的同态？
+\begin{proof}[解答]
+两因子投影的微分给出自然线性同构$T_{(x,y)}(M\times M)\to T_xM\oplus T_yM$。在乘积坐标中它就是把速度的两组分量分开，逆是把两组速度合并，所以光滑。限制到$y=x$，便得到
+\[
+ (x,v)\longmapsto(x,(\dd\operatorname{pr}_1v,\dd\operatorname{pr}_2v))
+\]
+的丛同构。因$\operatorname{pr}_j\Delta=\mathrm{id}$，$\dd\Delta$在此识别下为$X\mapsto(X,X)$，不是任一因子的包含。它的像是直和丛中的对角子丛，商可由$(u,v)\mapsto v-u$识别为$TM$。
+
+对一般$f$，$\dd f:TM\to TN$覆盖$f$，因而唯一因子化为$TM\to f^*TN$、$X_x\mapsto(x,\dd f_xX_x)$，此时两丛底空间都是$M$。不要求$f$为浸入；若微分秩跳跃，其像不能直接称光滑子丛。取$f(t)=t^2$时，原点的像秩零、其余点秩一，正说明这个区别。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题16.2：主丛等变映射为何自动可逆}
+改述Wendl原题2.90。设$P,Q$为同一底空间上的主$G$丛，$\Phi:P\to Q$光滑、覆盖恒等且等变。证明它自动为主丛同构，写出局部逆。若底映射不是恒等，这个结论如何改写？
+\begin{proof}[解答]
+固定局部截面$s$和$t$，唯一光滑$a(x)\in G$使$\Phi(s(x))=t(x)a(x)$。因此
+\[
+ \Phi(s(x)h)=t(x)a(x)h,
+ \qquad t(x)k\longmapsto s(x)a(x)^{-1}k
+\]
+为互逆局部表达。纤维自由传递使这些局部逆不依赖所选截面，故拼成全局光滑逆，并等变。
+
+若$\Phi$覆盖$f:M\to N$，正确结论是$P\simeq f^*Q$，同构为$p\mapsto(\pi(p),\Phi(p))$。不能直接断言$P\simeq Q$或$\Phi$双射。例如$P=Q=S^1\times G$、$\Phi(z,h)=(z^2,h)$为等变主丛同态，但总空间上不是单射；它仍给出$P$与相应拉回丛的同构。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题16.3：无零截面与相伴重言线丛}
+取Wendl原题2.13的光滑版本：证明实或复光滑线丛平凡当且仅当有光滑无零截面。将它用于Hopf丛的标准表示相伴线丛，说明该线丛非平凡。为什么原题的“连续”版本不能在此被无说明地升级为光滑结论？
+\begin{proof}[解答]
+若$s$无零，则$(x,c)\mapsto c\,s(x)$给出纤维线性双射。局部标架$e$中写$s=e a(x)$，其中$a(x)\ne0$，逆用$1/a(x)$，故为光滑丛同构。反过来，平凡丛的常截面1经同构移回即得无零截面。实数和复数的证明相同。
+
+Hopf相伴丛的元素$[z,c]$映为直线$\ell=\mathbb Cz$中的向量$cz$。若有无零截面$v(\ell)$，其归一化$v(\ell)/\|v(\ell)\|$为$S^3\to\mathbb{CP}^1$的光滑右逆，这与\eqref{eq:hopf-flux}及Stokes矛盾。所以重言线丛无光滑无零截面，不平凡。
+
+原题对连续丛的连续无零截面给出拓扑平凡化；本题把假设和结论同时改为光滑。若仅给连续截面而要求光滑平凡化，还须证明适当的光滑逼近并保持无零性，不能从连续函数的倒数存在就推断其光滑。本书此处没有使用这项逼近定理。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题16.4：Möbius拉回和离散群的平坦移动}
+令$L=(\R\times\R)/((t,a)\sim(t+2\pi,-a))$，以$[t,a]\mapsto e^{it}$投影。证明$z\mapsto z^2$拉回$L$后平凡。再取$L$的单位标架主$\mathrm O(1)$丛，求其曲率及绕一圈的闭路移动。
+\begin{proof}[解答]
+拉回丛中的截面可写为$e^{it}\mapsto(e^{it},[2t,1])$。当$t$换为$t+2\pi$时，$[2t+4\pi,1]=[2t,1]$，所以它良定义、光滑且无零，给出平凡化。更一般地，$m$重映射的拉回为$(t,a)\sim(t+2\pi,(-1)^ma)$；$m$偶数时平凡，$m$奇数时用中间值定理排除无零实截面。
+
+度量$|[t,a]|=|a|$良定义。单位标架$u_t(c)=[t,c]$满足$u_{t+2\pi}=u_t(-1)$，所以标架丛为非平凡二重覆盖。结构群$\mathrm O(1)=\{1,-1\}$的李代数为零，竖直切空间也为零，唯一主联络为零形式，水平空间等于全部切空间，曲率零。绕底圆周的提升从$u_0$走到$u_{2\pi}=-u_0$，闭路元素为$-1$。这是群离散时仍可有非平凡闭路移动的例子；曲率的李代数值信息不能检测这个离散元素。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题16.5：非交换规范变换的逐项计算}
+在平凡主$\mathrm{GL}(2,\R)$丛上取
+\[
+ H=\begin{pmatrix}1&0\\0&-1\end{pmatrix},\quad
+ E=\begin{pmatrix}0&1\\0&0\end{pmatrix},\quad
+ A=xH\dd y,\quad g=I+xE.
+\]
+计算$A'=g^{-1}Ag+g^{-1}\dd g$及$F'$，逐项核对$F'=g^{-1}Fg$，说明为何不能省略$A'\wedge A'$。
+\begin{proof}[解答]
+$E^2=0$，所以$g^{-1}=I-xE$；$[H,E]=2E$给$g^{-1}Hg=H+2xE$。因此
+\[
+ A'=E\dd x+(xH+2x^2E)\dd y.
+\]
+外微分与乘积项分别为
+\[
+ \dd A'=(H+4xE)\dd x\wedge\dd y,\qquad
+ A'\wedge A'=[E,xH+2x^2E]\dd x\wedge\dd y
+ =-2xE\dd x\wedge\dd y.
+\]
+相加得$F'=(H+2xE)\dd x\wedge\dd y$。原来$F=H\dd x\wedge\dd y$，共轭后恰是同一结果。若只算$\dd A'$，会留下多余的$2xE$，违反曲率变换律。对系数列$a$，也有$(\dd+A')(g^{-1}a)=g^{-1}(\dd+A)a$；这里同时改变截面系数时导数项必参与，不能只把联络矩阵作逐点相似变换。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题16.6：Hopf纬线的两种局部势}
+沿$w=re^{i\phi}$、$0\le\phi\le2\pi$走一圈，$r>0$固定。分别用$A_0$和$A_1$求水平提升的相位增量，说明为何两个增量不同但闭路群元素相同，并用球帽面积重写结果。
+\begin{proof}[解答]
+在$s_0$坐标中，水平条件给$\Delta\chi_0=-2\pi r^2/(1+r^2)$。在$s_1$坐标中，$A_1|_w=-i\dd\phi/(1+r^2)$，所以$\Delta\chi_1=2\pi/(1+r^2)$。同一点的坐标关系为$s_0h_0=s_1h_1=s_0e^{-i\phi}h_1$，即$h_1=e^{i\phi}h_0$，两个相位增量相差$2\pi$，因此指数相同。
+
+由球面面积元，北球帽面积$\mathcal A=4\pi r^2/(1+r^2)$，故$h=e^{-i\mathcal A/2}$。用互补球帽并反向取边界，得$e^{i(4\pi-\mathcal A)/2}$，与前式相同。特别地$r=1$时闭路元素为$-1$；纬线缩到北极$r\to0$或南极$r\to\infty$时均趋于1。相位的一个实数提升可随卡改变整周，而圆群元素是内禀的。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题16.7：圆群曲率周期及表示的整数权}
+设任意主$\mathrm U(1)$丛在定向$S^2$上带联络，曲率下降为$i\R$值二形式$F$。证明其曲率周期满足
+\[
+ \frac1{2\pi i}\int_{S^2}F\in\mathbb Z.
+\]
+只用两个圆盘上的截面及绕数的基本计算，不引用线丛分类。再考虑Hopf丛的整数权表示
+\[
+ \rho_k(\lambda)c=\lambda^kc,\qquad k\in\mathbb Z,
+\]
+求其相伴线丛的曲率，并判断非平凡性。
+\begin{proof}[解答]
+先说明两个略超过半球的开圆盘上确有截面。每个圆盘取中心，沿坐标径向路径用主联络作水平提升；定理\ref{thm:principal-transport}给出光滑依赖和全时间存在，故得到光滑截面。分别记$s_N,s_S$，赤道上$s_S=s_Ng$。以北半球边界定向参数化赤道，Stokes及局部换元律给
+\[
+ \int_{S^2}F=\int_{S^1}(A_N-A_S)=-\int_{S^1}g^{-1}\dd g.
+\]
+为计算最后一项，把$g(e^{i\phi})$在区间$[0,2\pi]$上写成$e^{i\psi(\phi)}$：先选初始相位，再解$\psi'=-ig^{-1}g'$，求导说明$e^{-i\psi}g$恒为1，因此该写法存在。端点相同迫使$\psi(2\pi)-\psi(0)=2\pi m$，$m\in\mathbb Z$。于是积分周期为$-m$。这只证明周期整数性，没有证明周期给出所有丛的完整分类。
+
+Hopf丛的$g_{NS}=e^{-i\phi}$有$m=-1$，与本章周期$+1$相符。权$k$表示的微分把$it$送为$ikt$，所以相伴线丛联络势为$kA_i$、曲率为$kF$，周期为$k$。$k=0$时表示平凡，相伴丛平凡且诱导联络为平凡联络。若$k\ne0$且线丛平凡，取全局无零截面给出全局联络一形式，其曲率为外微分，积分必须为零，与$2\pi ik$矛盾。因此这些非零权线丛都非平凡；此结论不依赖一般Chern类构造。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题16.8：圆周上的平坦联络及大规范变换}
+对平凡主$\mathrm U(1)$丛取$A=i\kappa\dd\theta$。证明任一光滑规范变换$u:S^1\to\mathrm U(1)$使势的周期只改变$2\pi i$的整数倍，并判定两个常数势$i\kappa\dd\theta,i\kappa'\dd\theta$规范等价的条件。何时有全局水平截面？
+\begin{proof}[解答]
+圆群交换，$A^u=A+u^{-1}\dd u$。如上一题，在参数区间上取$u=e^{i\psi}$，端点差为$2\pi m$，所以
+\[
+ \int_{S^1}(A^u-A)=2\pi im.
+\]
+若两个常数势规范等价，则$\kappa'-\kappa=m\in\mathbb Z$。反过来，$u(e^{i\theta})=e^{im\theta}$给出$A^u=i(\kappa+m)\dd\theta$，所以该整数条件也充分。
+
+全局截面可写为$e^{i\theta}\mapsto(e^{i\theta},h(\theta))$。水平条件为$h'=-i\kappa h$，解为$h(\theta)=e^{-i\kappa\theta}h(0)$；它在圆周上单值当且仅当$\kappa\in\mathbb Z$。这又等价于闭路移动$e^{-2\pi i\kappa}=1$，也等价于可规范化为零势。所有这些联络的曲率都为零，故仅凭曲率不能区分其规范等价类；这里的常数族由$\R/\mathbb Z$参数化。
+\end{proof}

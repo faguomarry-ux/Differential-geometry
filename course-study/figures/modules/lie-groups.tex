@@ -1,0 +1,30 @@
+% Local Lie group constructions; arrows state their fixed parameter.
+\DGDeclareDiagram{lie-left-flow}{%
+ \coordinate (e) at (-2.4,1.2);\coordinate (x) at (2.4,1.2);
+ \coordinate (g) at (-2.4,-1.2);\coordinate (gx) at (2.4,-1.2);
+ \DGPoint[above left]{e}{$e$}\DGPoint[above right]{x}{$\exp(tX)$}
+ \DGPoint[below left]{g}{$g$}\DGPoint[below right]{gx}{$g\exp(tX)$}
+ \draw[dg/curve,->] (e) to[bend left=10] node[above] {$\gamma_X(t)$} (x);
+ \draw[dg/curve,->] (g) to[bend left=10] node[above] {$L_g\gamma_X(t)$} (gx);
+ \draw[dg/map] (e)--(g) node[midway,left] {$L_g$};
+ \draw[dg/map] (x)--(gx) node[midway,right] {$L_g$};
+ \node at (0,-2.35) {$\Phi_t=R_{\exp(tX)}\quad(t\text{ fixed}),\qquad\dot\gamma=X^L$};}
+\DGDeclareDiagram{quotient-slice}{%
+ \path[dg/patch] (-3,-.3) rectangle (1.5,2.5);
+ \foreach \x in {-2.5,-1.5,-.5,.5,1} {\draw[dg/guide] (\x,-.2)--(\x,2.4);}
+ \draw[dg/vector] (-2.8,0)--(1.3,0) node[right] {$X\in\mathfrak m$};
+ \draw[dg/vector] (-2.8,0)--(-2.8,2.3) node[above] {$Y\in\mathfrak h$};
+ \draw[dg/map] (-.5,.9)--(-.5,-1.2);
+ \draw[dg/axis] (-3,-1.5)--(1.5,-1.5);
+ \DGPoint[below]{-.5,-1.5}{$\exp XH$}
+ \node[align=left,anchor=west] at (2,1.35) {$\Psi(X,Y)=\exp X\exp Y$\\[5pt]$\pi\Psi(X,Y)=\exp XH$};
+ \node[anchor=west] at (2,-1.5) {$G/H\text{ local chart}$};}
+\DGDeclareDiagram{symmetric-reflection}{%
+ \draw[dg/curve,->] (-3,0)--(3.2,0) node[right] {$\gamma$};
+ \DGPoint[below]{0,0}{$p=\gamma(0)$}
+ \DGPoint[below]{-2.3,0}{$\gamma(-t)$}\DGPoint[below]{2.3,0}{$\gamma(t)$}
+ \draw[dg/map] (-2.3,.3) to[bend left=30] node[above] {$s_p$} (2.3,.3);
+ \draw[dg/map] (2.3,-.8) to[bend left=25] node[below] {$s_p^2=I$} (-2.3,-.8);
+ \draw[dg/vector] (0,.15)--(1.1,.15) node[midway,above] {$v$};
+ \draw[dg/normal] (0,.15)--(-1.1,.15) node[midway,above] {$-v$};
+ \node at (0,-2.8) {$s_p(\exp_pv)=\exp_p(-v)\quad\text{on a normal ball}$};}

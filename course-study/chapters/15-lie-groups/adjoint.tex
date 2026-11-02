@@ -1,0 +1,108 @@
+\subsection{伴随表示与Maurer--Cartan方程}
+\begin{definition}
+共轭$c_g(h)=ghg^{-1}$的单位元微分称为伴随作用$\operatorname{Ad}_g:\mathfrak g\to\mathfrak g$。由于$c_g$为群自同构，它是李代数自同构，且$\operatorname{Ad}_{gh}=\operatorname{Ad}_g\operatorname{Ad}_h$。
+\end{definition}
+\begin{proposition}\label{prop:lie-ad}
+令$\operatorname{ad}_X(Y)=[X,Y]$，则
+\[
+ \left.\frac{\dd}{\dd t}\right|_0\operatorname{Ad}_{\exp(tX)}Y=[X,Y],\qquad
+ \operatorname{Ad}_{\exp(tX)}=e^{t\operatorname{ad}_X}.
+\]
+\end{proposition}
+\begin{proof}
+第5章的流公式为$[V,W]=\left.\frac{\dd}{\dd t}\right|_0(\Phi_{-t})_*W$。对$V=X^L,W=Y^L$，在$e$处取值，$\Phi_t=R_{\exp(tX)}$，故被求导的向量为
+\[
+ \dd(R_{\exp(-tX)})_{\exp(tX)}\dd(L_{\exp(tX)})_eY
+ =\operatorname{Ad}_{\exp(tX)}Y.
+\]
+这给出第一式。令$A(t)=\operatorname{Ad}_{\exp(tX)}$，一参数乘法式使$A'=A\operatorname{ad}_X$、$A(0)=I$，解为第二式。Jacobi恒等式也直接给出$[\operatorname{ad}_X,\operatorname{ad}_Y]=\operatorname{ad}_{[X,Y]}$。
+\end{proof}
+
+\begin{proposition}[左Maurer--Cartan形式]\label{prop:lie-maurer-cartan}
+定义$\mathfrak g$值一形式$\theta_g=\dd(L_{g^{-1}})_g$，则$\theta(X^L)=X$且
+\begin{equation}\label{eq:lie-maurer-cartan}
+ \dd\theta+\tfrac12[\theta\wedge\theta]=0,
+ \qquad [\theta\wedge\theta](u,v)=2[\theta(u),\theta(v)].
+\end{equation}
+其中外微分按$\mathfrak g$任一固定基逐分量定义。矩阵群中$\theta=g^{-1}\dd g$。
+\end{proposition}
+\begin{proof}
+对左不变场，$\dd\theta(X^L,Y^L)=X^L(Y)-Y^L(X)-\theta([X^L,Y^L])=-[X,Y]$。它恰好与第二项抵消；左不变场逐点张成切空间，二形式的张量性遂给出全式。矩阵表达来自左平移的微分。
+\end{proof}
+
+\subsection{Killing形式及其限度}
+\begin{definition}
+李代数上的Killing形式为$B(X,Y)=\operatorname{tr}(\operatorname{ad}_X\operatorname{ad}_Y)$。它对称，但未必正定、负定或非退化。
+\end{definition}
+\begin{proposition}\label{prop:lie-killing}
+$B$在每个李代数自同构下不变，且
+\[
+ B([Z,X],Y)+B(X,[Z,Y])=0.
+\]
+其根空间$\{X:B(X,Y)=0\text{ 对所有 }Y\}$为理想。
+\end{proposition}
+\begin{proof}
+自同构$A$满足$\operatorname{ad}_{AX}=A\operatorname{ad}_XA^{-1}$，迹在共轭下不变给出第一条。利用上一命题的交换子式，第二条的左边是
+\[
+ \operatorname{tr}\bigl([\operatorname{ad}_Z,\operatorname{ad}_X]\operatorname{ad}_Y
+ +\operatorname{ad}_X[\operatorname{ad}_Z,\operatorname{ad}_Y]\bigr)
+ =\operatorname{tr}[\operatorname{ad}_Z,\operatorname{ad}_X\operatorname{ad}_Y]=0.
+\]
+若$X$在根空间中，则$B([Z,X],Y)=-B(X,[Z,Y])=0$，故该空间为理想。
+\end{proof}
+
+\begin{example}
+交换李代数的所有$\operatorname{ad}$均为零，故$B=0$。把$\R^3$通过$\widehat v(w)=v\times w$识别为$\mathfrak{so}(3)$，向量三重积给出$[\widehat v,\widehat w]=\widehat{v\times w}$，且
+\[
+ B(\widehat v,\widehat w)=\operatorname{tr}(\widehat v\widehat w)=-2\langle v,w\rangle.
+\]
+对$\mathfrak{sl}(2,\R)$取
+$H=\left(\begin{smallmatrix}1&0\\0&-1\end{smallmatrix}\right)$、
+$E=\left(\begin{smallmatrix}0&1\\0&0\end{smallmatrix}\right)$、
+$F=\left(\begin{smallmatrix}0&0\\1&0\end{smallmatrix}\right)$，有
+$[H,E]=2E,[H,F]=-2F,[E,F]=H$。逐基计算得$B(H,H)=8$、$B(E,F)=4$，其余基配对为零，即$B(X,Y)=4\operatorname{tr}(XY)$。所以$H,E+F$为正方向，$E-F$为负方向；不能把$-B$总当黎曼内积。这里不以未证明的Cartan判据推断一般李代数的结构。
+\end{example}
+
+\subsection{不变度量与紧群平均}
+任取$\mathfrak g$上的正定内积$\langle\ ,\ \rangle$，通过左平移唯一延拓为左不变黎曼度量。把$\dd R_h$用左平凡化写出，得到
+\[
+ \theta_{gh}(\dd R_h v)=\operatorname{Ad}_{h^{-1}}\theta_g(v).
+\]
+因此该度量右不变当且仅当内积在全部$\operatorname{Ad}(G)$下不变，称为双不变度量。若$G$连通，等价条件为
+\begin{equation}\label{eq:lie-ad-skew}
+ \langle[X,Y],Z\rangle+\langle Y,[X,Z]\rangle=0.
+\end{equation}
+必要性由沿$\exp(tX)$求导得到；充分性由$e^{t\operatorname{ad}_X}$正交、指数邻域生成连通群得到。非连通时还须检查其余分支的$\operatorname{Ad}$。
+
+\begin{theorem}\label{thm:lie-compact-average}
+紧李群具有双不变黎曼度量。紧子群作用在有限维实向量空间上时，也存在使作用正交的正定内积。
+\end{theorem}
+\begin{proof}
+先在$G$上选一个左不变正密度$\nu$：取$T_eG$上的正密度，以左平移延拓。第8章的积分在各坐标中对正密度同样成立，不需定向。因左右平移交换，$R_h^*\nu$仍左不变，故$R_h^*\nu=c(h)\nu$，其中$c:G\to\R_{>0}$为连续群同态（乘法次序在标量群中无影响）。紧子群$c(G)$只能是$\{1\}$：若含$a\ne1$，则$a$或$a^{-1}$大于1，其幂无界。因此$\nu$也右不变。紧致性使总质量有限且非零，归一化为1。
+
+给定初始正定内积$b_0$，令
+\[
+ b(X,Y)=\int_G b_0(\operatorname{Ad}_gX,\operatorname{Ad}_gY)\,\nu(g).
+\]
+这是正定双线性型，右不变换元$g\mapsto gh$给出$\operatorname{Ad}_h$不变性。一般表示$\rho:H\to\mathrm{GL}(V)$以$\rho(h)$代替$\operatorname{Ad}_g$作同一平均即可。这里证明了紧李群所需的积分平均，没有调用一般局部紧群的Haar测度定理。
+\end{proof}
+
+\begin{theorem}\label{thm:lie-biinvariant-curvature}
+对双不变度量及左不变场，有
+\begin{align*}
+ \nabla_{X^L}Y^L&=\tfrac12[X,Y]^L,\\
+ R(X,Y)Z&=-\tfrac14[[X,Y],Z],\\
+ \langle R(X,Y)Y,X\rangle&=\tfrac14\|[X,Y]\|^2,\qquad
+ \operatorname{Ric}(X,Y)=-\tfrac14B(X,Y).
+\end{align*}
+故截面曲率非负，且$\exp(tX)$是从$e$出发的黎曼测地线。
+\end{theorem}
+\begin{proof}
+左不变场两两内积为常数。Koszul公式及\eqref{eq:lie-ad-skew}给出$2\langle\nabla_XY,Z\rangle=\langle[X,Y],Z\rangle$。代入本书约定的$R=\nabla_X\nabla_Y-\nabla_Y\nabla_X-\nabla_{[X,Y]}$，Jacobi恒等式使前两项合为$\tfrac14[[X,Y],Z]$，减去最后的$\tfrac12[[X,Y],Z]$即得负号。再用内积不变性得到截面曲率的分子。对正交基$e_i$求迹，
+\[
+ \operatorname{Ric}(X,Y)=\tfrac14\sum_i\langle[e_i,X],[e_i,Y]\rangle
+ =-\tfrac14\operatorname{tr}(\operatorname{ad}_X\operatorname{ad}_Y).
+\]
+最后沿$\exp(tX)$速度为$X^L$，协变加速度$\frac12[X,X]=0$。一般左不变度量不满足此结论，见习题15.8。
+\end{proof}
+此时$B(X,X)=-\|\operatorname{ad}_X\|_{\mathrm{HS}}^2$，所以Killing形式半负定，其根空间恰为中心。但反过来，仅凭半负定不能在未证明额外结构定理时便宣称群紧致。

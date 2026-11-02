@@ -1,0 +1,64 @@
+\subsection*{分析先修与Hilbert空间工具}
+以下只用实数或有限个复数分量；Fourier计算暂用复系数，最后取实部。本节接受Lebesgue积分、$L^2$完备性及有限维光滑换元作为分析先修。光滑函数的密度可由截断、简单函数的矩形逼近和卷积得到；平移在$L^2$中连续，先对矩形特征函数验证，再用稠密性推广。后面的紧性和弱方程可解性均在这里补证。
+
+\begin{lemma}[正交投影、Riesz与对称变分]\label{lem:hilbert-variational}
+设$H$为Hilbert空间。闭子空间有唯一正交投影，连续线性泛函$\ell$可唯一写为$\ell(v)=(v,w)$。若对称双线性型$a$满足
+\[
+ |a(u,v)|\leq C\|u\|_H\|v\|_H,\qquad
+ a(u,u)\geq c\|u\|_H^2\quad(c>0),
+\]
+则对每个连续$\ell$，存在唯一$u\in H$满足$a(u,v)=\ell(v)$对所有$v\in H$成立，且$\|u\|_H\leq\|\ell\|/c$。
+\end{lemma}
+\begin{proof}
+对给定$x$取闭子空间中的距离极小化序列$y_j$。平行四边形恒等式与中点仍在子空间，给
+\[
+ \|y_j-y_l\|^2\leq
+ 2\|x-y_j\|^2+2\|x-y_l\|^2-4\inf_y\|x-y\|^2\longrightarrow0.
+\]
+完备性给极小元；沿子空间任意方向微扰并令距离平方的一次项为零，知余量正交，亦给唯一性。
+
+若$\ell\ne0$，在闭仿射超平面$\ell(v)=1$上以同一中点论证取得最小范数元$z$，并有$z\perp\ker\ell$。分解$v=\ell(v)z+(v-\ell(v)z)$得$\ell(v)=(v,z)/\|z\|^2$；零泛函另计。最后$a$本身定义与原范数等价的Hilbert内积，故在该内积下对$\ell$应用刚证明的表示，得到唯一$u$。取$v=u$给所列估计。这是本章需要的对称Lax--Milgram情形，无须先调用一般Fredholm理论。
+\end{proof}
+
+可分Hilbert空间中的有界序列有弱收敛子列：在一组可数正交基的各系数上逐次取子列，再对角化；系数平方和由有界性控制，Riesz表示给极限向量，先对有限线性组合再用一致有界推广。后面出现的Sobolev空间均可分，因为局部Fourier多项式构成可数稠密集合。
+
+\subsection*{在平坦环面上建立Sobolev工具}
+取$\mathbb T^n=(\R/2\pi\mathbb Z)^n$，将测度归一为$(2\pi)^{-n}\dd x$。指数函数$e^{i\nu\cdot x}$正交归一。它们在$L^2$中完备，可用Fejer核说明：一维
+\[
+ K_N(t)=\frac1N\left|\sum_{j=0}^{N-1}e^{ijt}\right|^2\geq0,
+ \quad\frac1{2\pi}\int K_N=1,
+ \quad\int_{|t|\geq\epsilon}K_N\longrightarrow0.
+\]
+最后一式由几何级数及$|\sin(t/2)|\geq\sin(\epsilon/2)$得到。在多维取乘积核。利用$L^2$平移连续性和三角不等式，$K_N*u\to u$于$L^2$；卷积是有限Fourier多项式，故多项式稠密，正交投影的极限给Parseval恒等式。
+
+对非负整数$s$定义
+\[
+ \|u\|_{H^s(\mathbb T^n)}^2
+ =\sum_{\nu\in\mathbb Z^n}(1+|\nu|^2)^s|\widehat u(\nu)|^2.
+\]
+逐项求导与Parseval说明它等价于所有$|\gamma|\leq s$阶弱偏导的$L^2$范数平方和；弱偏导按测试函数分部积分定义。Fourier截断同时逼近各阶导数，故光滑函数在$H^s$中稠密，且这些加权序列空间完备。
+
+\begin{lemma}[Sobolev连续性与Rellich紧性]\label{lem:sobolev-rellich}
+若整数$s>q+n/2$，则$H^s(\mathbb T^n)$连续嵌入$C^q$。$H^1$中的有界集合在$L^2$中相对紧。
+\end{lemma}
+\begin{proof}
+对$|\gamma|\leq q$，Cauchy--Schwarz给
+\[
+ \sum_\nu |\nu^\gamma\widehat u(\nu)|
+ \leq\|u\|_{H^s}
+ \left(\sum_\nu(1+|\nu|^2)^{q-s}\right)^{1/2}<\infty.
+\]
+级数收敛由按整数壳计数，壳中格点数为$O(R^{n-1})$。故各阶Fourier导数一致收敛，给连续性及范数控制。
+
+若$\|u_j\|_{H^1}\leq C$，截去$|\nu|>R$的尾部，其$L^2$范数平方至多$C^2/(1+R^2)$。低频只在有限维有界集合中，存在收敛子列。对$R=1,2,\ldots$对角化，尾部一致小使最终子列在$L^2$中Cauchy，完备性给强收敛。这一尾部估计是紧性的来源，不能只由有界性推出强收敛。
+\end{proof}
+
+\subsection*{搬到紧流形的向量丛}
+在有限坐标覆盖上取紧支单位分解$\chi_a$及局部丛标架，把每个$\chi_au$的系数支持缩放到$(-\pi,\pi)^n$内部，再延零为环面函数。定义$\|u\|_{H^s}^2$为这些系数$H^s$范数的总和；对光滑截面取完备化。坐标变换的链式法则、紧支集上Jacobian上下界及标架变换的有界导数，说明不同有限选择给等价范数。
+
+弱导数的局部描述与上述完备化一致：一个方向由收敛后对测试函数分部积分得到；另一方向在坐标中先卷积平滑，再用单位分解拼接，卷积对每阶弱导数收敛，得到光滑逼近。因而$H^{s+1}\to H^s$连续，一阶光滑系数算子从$H^{s+1}$连续到$H^s$。由有限覆盖逐片应用上引理，有
+\[
+ H^s(M;E)\hookrightarrow C^q(M;E)\quad(s>q+n/2),
+ \qquad H^1(M;E)\hookrightarrow L^2(M;E)\quad\text{紧}.
+\]
+对后一个结论，在有限片上依次取强收敛子列即可。此处流形无边界；没有在坐标边界上延零任意$H^1$函数，延零的是支集严格位于卡内的$\chi_au$。

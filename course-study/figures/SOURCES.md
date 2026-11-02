@@ -49,3 +49,15 @@
 ## 第13章新增（2026-11-01）
 
 `submanifold-acceleration`以F(u)=(u,u²/2)、u(t)=t+t²/2在t=0的精确加速度(1,1)作切法分解，两个轴采用相同比例；非梁书图4-7改绘。`adapted-frame-block`为适配联络矩阵的原创结构示意，箭头表示切法混合求导，不是逐纤维联络映射。`mean-curvature-balance`在一个法空间内平移排列两个主方向的法向弯曲向量，用两个同号和两个异号的例子说明平均，不将逐点零迹当作全曲面极小。三图在`modules/submanifold-geometry.tex`中沿用公共接口，均无原书图号，不复制网页图形代码。
+
+## 第14章新增（2026-11-01）
+
+`hodge-star-plane`在同一定向欧氏平面中画dx→dy→-dx，箭头使用内积识别，不将星说成坐标换基。`hodge-decomposition`为L²正交直和的有限维投影模型，不声明形式逐点正交。`gauss-bonnet-octant`以沿(1,1,1)方向的等比例正投影绘制三个参数大圆弧，三个内角从实际球面切向量计算，图上投影角不直接量作直角；面积和角超均有解析值。三图原创，在`modules/hodge-gauss-bonnet.tex`中沿用公共接口，无原书图号，未复制网页图形代码。
+
+## 第15章新增（2026-11-01）
+
+`lie-left-flow`的交换图同时显示固定g的左平移与固定t的右平移流，正文明确乘法次序。`quotient-slice`是局部坐标盒：竖向Y改变时exp(X)exp(Y)留在同一左陪集，未把全群画作全局直积。`symmetric-reflection`在同一测地线上交换±t点，箭头与法坐标v→-v一致；法坐标图式不表示任意一般流形都存在全局反射。三图原创，模块`modules/lie-groups.tex`，无原书图号或网页图代码。
+
+## 第16章新增（2026-11-01）
+
+`associated-coordinates`显示同一相伴元素在两截面中的表示，右乘g与系数乘ρ(g)^-1配合。`principal-horizontal`位于同一切空间，竖直向量平移排列成分解图，斜水平补空间不表示任何天然正交。`hopf-potentials`取单位球面沿正交投影(X,Y,Z)→(X,(Y+√3 Z)/2)，整体放大2倍，纬线ϑ=75°；箭头由参数φ增加给出，两个势的符号与s_S=s_N exp(-iφ)一致。球面显示为投影示意，未复制原书或网页图形代码。三图原创，模块`modules/principal-bundles.tex`，无原图号。

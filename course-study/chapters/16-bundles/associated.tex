@@ -1,0 +1,52 @@
+\subsection{相伴丛及等变函数}
+\begin{theorem}\label{thm:associated-bundle}
+设$\rho:G\to\mathrm{GL}(V)$为有限维实或复表示。商集合
+\begin{equation}\label{eq:associated-convention}
+ P\times_\rho V=(P\times V)/\!\sim,\qquad
+ (pg,v)\sim(p,\rho(g)v)
+\end{equation}
+自然成为底空间$M$上的向量丛，记$[p,v]\mapsto\pi(p)$。它的截面与光滑函数$f:P\to V$中满足$f(pg)=\rho(g)^{-1}f(p)$者一一对应。
+\end{theorem}
+\begin{proof}
+等价关系也可写为右作用$(p,v)g=(pg,\rho(g)^{-1}v)$的轨道关系。对$p=s_i(x)h_i$，定义局部纤维坐标
+\[
+ [p,v]\longmapsto(x,\rho(h_i)v),\qquad
+ (x,a)\longmapsto[s_i(x),a].
+\]
+换代表$(p,v)$为$(pg,\rho(g)^{-1}v)$不改变$\rho(h_i)v$，所以两式互逆。它们对商拓扑是同胚：商映射局部等同于$(x,h,v)\mapsto(x,\rho(h)v)$，这是开映射，因映射$(x,h,v)\mapsto(x,h,\rho(h)v)$为微分同胚后再作开投影。两图之间系数关系为
+\begin{equation}\label{eq:associated-coefficients}
+ a_i=\rho(g_{ij})a_j.
+\end{equation}
+故由向量丛拼接构造得到光滑结构；Hausdorff与第二可数也由同一局部乘积及底空间性质保证，无需先证明整个作用适当。
+
+若$f$等变，$s(x)=[p,f(p)]$不依赖$p\in P_x$。反过来，固定$p$时$V\to(P\times_\rho V)_x$、$v\mapsto[p,v]$是线性同构，令$f(p)$为$s(x)$的唯一系数；换$p$为$pg$便给出所列反变换律。局部式同时证明两方向光滑。
+\end{proof}
+
+标架丛恢复原丛的自然同构为
+\[
+ \operatorname{Fr}(E)\times_{\mathrm{GL}(r)}\mathbb K^r\longrightarrow E,
+ \qquad[u,v]\longmapsto u(v).
+\]
+因为$(ug)(v)=u(gv)$，它与\eqref{eq:associated-convention}完全一致。对偶表示$\rho^*(g)=\rho(g)^{-\mathsf T}$、张量表示和外幂表示分别恢复第6章的对偶、张量及外幂丛。取$V=\mathfrak g,\rho=\operatorname{Ad}$得到伴随丛$\operatorname{Ad}P$，其每条纤维带李括号；自同构保持括号使它不依赖代表。
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/associated-coordinates}
+\caption{相伴丛的同一元素在两个局部截面中表示为$[s_i,a_i]=[s_j,a_j]$。主丛截面右乘$g_{ij}$，系数则乘逆表示；过渡方向与第6章一致。}
+\label{fig:associated-coordinates}
+\end{figure}
+
+\subsection{水平等变形式的下降}
+\begin{definition}
+$V$值$k$形式$\alpha$在$P$上称为水平的，若任一输入为竖直向量（属于$\ker\dd\pi$）时值为零；称为$\rho$等变的，若$R_g^*\alpha=\rho(g)^{-1}\alpha$。$k=0$时只要求等变。平凡表示的水平不变形式通常称基本形式。
+\end{definition}
+\begin{proposition}\label{prop:bundle-tensorial-descent}
+水平$\rho$等变$V$值$k$形式与$\Omega^k(M;P\times_\rho V)$自然一一对应。
+\end{proposition}
+\begin{proof}
+对$x\in M$及$v_1,\ldots,v_k\in T_xM$，任选$p\in P_x$和满足$\dd\pi(\widetilde v_j)=v_j$的提升，定义
+\[
+ \beta_x(v_1,\ldots,v_k)=[p,\alpha_p(\widetilde v_1,\ldots,\widetilde v_k)].
+\]
+改提升只增加竖直分量，被水平性消去；改$p$为$pg$并将提升右移时，形式值乘$\rho(g)^{-1}$，又被相伴等价关系消去。局部截面的拉回给出其光滑系数。反向借$[p,\cdot]$的逆读取$\beta$，用$\dd\pi$作输入即得水平等变形式。这两项显然互逆。
+\end{proof}
+非平凡表示中，这不是把$\alpha$下降为底空间上的一个固定$V$值形式；不同纤维的值仍须在相伴丛中比较。这个区别对曲率尤其重要。

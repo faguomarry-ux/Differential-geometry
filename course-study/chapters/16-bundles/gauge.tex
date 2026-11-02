@@ -1,0 +1,33 @@
+\subsection{换截面与主丛自同构}
+\begin{definition}
+主丛的规范变换是覆盖$\mathrm{id}_M$的主丛自同构$\Phi:P\to P$。这些变换组成群。本章约定$\omega^\Phi=\Phi^*\omega$；按映射复合作乘法，这是联络空间上的右作用，因为$(\omega^\Phi)^\Psi=\omega^{\Phi\circ\Psi}$。
+\end{definition}
+\begin{proposition}\label{prop:principal-gauge}
+任意规范变换唯一写成$\Phi(p)=p\,u(p)$，其中光滑$u:P\to G$满足$u(pg)=g^{-1}u(p)g$。局部令$u_i=u\circ s_i$，则
+\begin{align}
+ u_j&=g_{ij}^{-1}u_i g_{ij},\label{eq:principal-gauge-compatibility}\\
+ A_i^\Phi&=\operatorname{Ad}_{u_i^{-1}}A_i+u_i^*\theta,
+ & F_i^\Phi&=\operatorname{Ad}_{u_i^{-1}}F_i.\label{eq:principal-gauge-active}
+\end{align}
+相伴丛上的同构$T_\Phi[p,v]=[\Phi(p),v]$满足
+\[
+ \nabla^\Phi=T_\Phi^{-1}\nabla T_\Phi.
+\]
+\end{proposition}
+\begin{proof}
+在每条自由传递纤维上$u(p)$唯一；局部乘积中读取群坐标保证光滑。等变式$\Phi(pg)=\Phi(p)g$等价于$pg\,u(pg)=pu(p)g$，即所列共轭条件。反向任何这样的$u$定义等变映射，在局部形如$(x,h)\mapsto(x,u_i(x)h)$，逆光滑，故为自同构。代入$s_j=s_i g_{ij}$得到$u_i$的相容式。
+
+$s_i^*\Phi^*\omega=(s_i u_i)^*\omega$，所以局部换元公式直接给出$A_i^\Phi$。曲率由外微分及括号拉回自然性得到$\Omega^\Phi=\Phi^*\Omega$；它水平，故沿变动的$u_i$求拉回时竖直项消去，只剩伴随共轭。相伴丛同构在$s_i$系数中为$a\mapsto\rho(u_i)a$，因此
+\[
+ \rho(u_i)^{-1}(\dd+\rho_*(A_i))\rho(u_i)
+ =\dd+\rho_*(A_i^\Phi),
+\]
+给出最后一式。
+\end{proof}
+在\emph{被动}换截面$s_i\mapsto s_i k_i$时，联络不变，只是系数改变；在\emph{主动}规范变换时，固定截面$s_i$，将联络换成$\Phi^*\omega$。两个局部公式相同，但所比较的几何对象不同。这里使用拉回约定；若另取$(\Phi^{-1})^*\omega$作为群作用，矩阵里的$u$便须相应取逆，不能混写。
+
+规范变换保持闭路移动的共轭类。事实上，$\Phi$将$\omega^\Phi$水平提升送为$\omega$水平提升，所以
+\[
+ \mathcal P_\gamma^{\omega^\Phi}=\Phi^{-1}\mathcal P_\gamma^\omega\Phi.
+\]
+若$\mathcal P_\gamma^\omega(p)=ph$，则拉回联络在同一$p$处的闭路元素为$u(p)^{-1}h\,u(p)$。这给出了明确可比较的规范不变量，而不是把局部势的每个分量都叫不变量。

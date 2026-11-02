@@ -1,0 +1,90 @@
+\subsection{闭子群为何是子流形}
+光滑同态的像未必是嵌入子流形；环面中的无理绕行将给出反例。以下定理的闭性条件正好排除局部累积出额外方向的现象。
+
+\begin{theorem}[闭子群定理]\label{thm:lie-closed-subgroup}
+李群$G$的任一闭子群$H$有唯一的嵌入子流形结构，使其为李子群。其李代数为
+\begin{equation}\label{eq:lie-closed-algebra}
+ \mathfrak h=\{X\in\mathfrak g:\exp(tX)\in H\text{ 对所有 }t\in\R\}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+先定义$V$为所有经过$e$的$H$内$C^1$曲线在零点的速度。两条曲线相乘的速度是速度之和；重参数给出任意实数倍，所以$V$是有限维线性子空间。若$c'(0)=X$，在指数坐标中有$\log c(s)=sX+o(s)$。对固定$t$，当$n$充分大时
+\[
+ c(t/n)^n=\exp\bigl(n\log c(t/n)\bigr)\longrightarrow\exp(tX).
+\]
+左边属于$H$，闭性使极限属于$H$。反过来，$\exp(tX)$本身就是速度为$X$的曲线，故$V$恰为\eqref{eq:lie-closed-algebra}中的集合，记为$\mathfrak h$。它是线性子空间，因而闭。对$h\in H$，共轭曲线说明$\operatorname{Ad}_h\mathfrak h=\mathfrak h$；再对$h=\exp(tX)$求导，得$[X,Y]\in\mathfrak h$，所以它为李子代数。
+
+关键的局部事实是：若$Z_j\ne0$、$Z_j\to0$、$\exp Z_j\in H$，且$Z_j/\|Z_j\|\to Z$，则$Z\in\mathfrak h$。事实上，对任意$t\in\R$选整数$n_j$使$n_j\|Z_j\|\to t$，有$(\exp Z_j)^{n_j}=\exp(n_jZ_j)\to\exp(tZ)$，再用闭性即可。
+
+选补空间$\mathfrak g=\mathfrak m\oplus\mathfrak h$。映射
+\begin{equation}\label{eq:lie-slice-product}
+ \Psi(X,Y)=\exp X\exp Y,\qquad X\in\mathfrak m,\ Y\in\mathfrak h
+\end{equation}
+在$(0,0)$的微分为$(X,Y)\mapsto X+Y$，故在乘积小邻域上为微分同胚。还可缩小邻域，使$X\in\mathfrak m$且$\exp X\in H$蕴含$X=0$。否则能取这样的非零$X_j\to0$，由单位球紧性取归一化极限$Z\in\mathfrak m$，上一段又给出$Z\in\mathfrak h$，与$\|Z\|=1$矛盾。
+
+于是$\Psi(X,Y)\in H$当且仅当$X=0$：其中$\exp Y\in H$，可用群乘法消去该因子。这在$e$附近把$H$精确写成坐标子空间，左平移到各点即为嵌入子流形。群运算的限制光滑，单位元切空间就是$\mathfrak h$。嵌入结构的光滑函数由环境局部坐标限制确定，故唯一。
+\end{proof}
+
+\subsection{左陪集的光滑商}
+\begin{theorem}\label{thm:lie-quotient}
+设$H$为闭子群，$G/H=\{gH:g\in G\}$取商拓扑；这里$gH$是左陪集，也是右乘$H$作用的轨道。它有唯一的光滑流形结构使$\pi:G\to G/H$为光滑满射下沉，并且
+\[
+ \dim(G/H)=\dim G-\dim H,\qquad
+ T_{eH}(G/H)\simeq\mathfrak g/\mathfrak h.
+\]
+左乘给出$G$在$G/H$上的光滑传递作用。若$H$还正规，则商群为李群，其李代数为商李代数$\mathfrak g/\mathfrak h$。
+\end{theorem}
+\begin{proof}
+$\pi$是开映射，因为$\pi^{-1}\pi(U)=\bigcup_{h\in H}Uh$开。若$gH\ne kH$，则$g^{-1}k\notin H$。闭性及乘法连续性给出$g,k$的小邻域$U,V$使$U^{-1}V$避开$H$；其像$\pi(U),\pi(V)$不交，故商Hausdorff。$G$的可数拓扑基经开映射$\pi$映出便是商的可数基。
+
+在\eqref{eq:lie-slice-product}的乘积坐标中，$\pi\Psi(X,Y)=\pi(\exp X)$。先固定一个较大的可逆乘积坐标盒，再缩小$X$的邻域，使任意两个$X_1,X_2$对应的$\exp(-X_2)\exp X_1$都在$G$的上述坐标邻域内。若两者代表同一陪集，则
+\[
+ \exp(-X_2)\exp X_1\in H,
+ \qquad \exp(-X_2)\exp X_1=\exp Y
+\]
+且$Y\in\mathfrak h$在原来的盒内。乘积坐标的唯一性用于$\exp X_1=\exp X_2\exp Y$，给出$X_1=X_2$。这也说明缩小邻域时必须同时控制横截面和子群方向。
+
+故$X\mapsto\exp XH$是从$\mathfrak m$中开集到$\pi(\Psi(U\times V))$的连续双射。它也是开映射：对开$O\subset U$，$\Psi(O\times V)$在$G$中开，且其$\pi$像恰为$\{\exp XH:X\in O\}$。所以得到商的局部坐标。平移给出所有$gH$附近的坐标$X\mapsto g\exp XH$。
+
+验证过渡光滑时，在重叠点固定$h_0\in H$，使$k^{-1}g\exp X_0h_0$位于$k$坐标所用的乘积邻域。对附近$X$，用$\Psi^{-1}$分解$k^{-1}g\exp Xh_0$，其$\mathfrak m$分量就是过渡函数；故光滑。在这些坐标中$\pi\Psi$是第一分量投影，所以是下沉，切空间为$\mathfrak g/\mathfrak h$。这些坐标也提供局部光滑截面；借截面检验可知任何使$\pi$为下沉的另一结构具有相同光滑映射，故结构唯一。左作用及正规商群的乘法/取逆均可借局部截面从$G$的光滑运算下降。正规性还给出$\operatorname{Ad}_G\mathfrak h=\mathfrak h$，微分后$\mathfrak h$为理想；$\dd\pi_e$保持括号并有核$\mathfrak h$，故得到商李代数。
+\end{proof}
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/quotient-slice}
+\caption{闭子群的局部乘积坐标。竖线的$X$固定、$Y$变化，落在同一左陪集；投影后仅留下横向的$\mathfrak m$坐标。图表示局部坐标而非群的全局直积。}
+\label{fig:quotient-slice}
+\end{figure}
+
+\subsection{传递作用、各向同性与不变度量}
+群作用约定为左作用$g\cdot(h\cdot p)=(gh)\cdot p$。固定$p$，稳定子$H=G_p$是闭子群，因为它是连续轨道映射$F_p(g)=g\cdot p$下$\{p\}$的原像。对$X\in\mathfrak g$定义基本场
+\begin{equation}\label{eq:lie-fundamental-sign}
+ X_M(q)=\left.\frac{\dd}{\dd t}\right|_0\exp(tX)\cdot q,
+ \qquad [X_M,Y_M]=-[X,Y]_M.
+\end{equation}
+反号可由$F_p$证明：$X^R$与$X_M$相关，故\eqref{eq:lie-right-sign}传到轨道；对每个$p$如此即可。基本场的流是$\exp(tX)\cdot q$。若选择负指数定义基本场，则会得到同态约定；本书使用上面的正指数及反同态约定。
+
+\begin{lemma}\label{lem:lie-surjective-rank}
+第二可数流形之间的满射常秩光滑映射，其秩等于目标维数。
+\end{lemma}
+\begin{proof}
+若秩$r$小于目标维数，常秩坐标把局部像放在一个$r$维坐标片内。用可数个紧集$K_j$覆盖源流形，每个$K_j$含于这样的源坐标邻域且其像含于对应目标坐标邻域；这是局部紧致性与第二可数性给出的可数预紧小邻域覆盖。每个$f(K_j)$紧、闭且无内点。取目标内一个闭坐标球，在其内部避开$f(K_1)$选更小闭球，再避开$f(K_2)$选下一球，依次令半径趋零，且下一球落在上一球内部。所有球都在第一个紧坐标球内，故交集非空；交中点不在任何$f(K_j)$，与满射矛盾。这给出了此处需要的可数纲论证，不调用Sard定理。
+\end{proof}
+
+\Needspace{18\baselineskip}
+\begin{theorem}\label{thm:lie-homogeneous}
+若$G$在$M$上光滑传递作用，则$gH\mapsto g\cdot p$给出$G/H\simeq M$的微分同胚，$H=G_p$。$G$不变黎曼度量与$\mathfrak g/\mathfrak h$上在各向同性表示
+\[
+ h\cdot(X+\mathfrak h)=\operatorname{Ad}_hX+\mathfrak h
+\]
+下不变的正定内积一一对应。特别地，$H$紧时存在这样的度量。
+\end{theorem}
+\begin{proof}
+由$F_p\circ L_g=(g\cdot)\circ F_p$，轨道映射常秩；传递性及上引理使它为下沉。其单位元微分的核等于$\mathfrak h$：若$X_M(p)=0$，基本场的积分曲线从$p$出发只能是常值曲线，故$\exp(tX)\in H$；反向显然。于是诱导的双射$G/H\to M$微分处处为同构，逆函数定理使它成为局部微分同胚；双射再使局部逆拼成全局光滑逆。
+
+不变度量在$p$处的内积必须被稳定子保持。对曲线$\exp(tX)H$作用$h\in H$，得$h\exp(tX)H=\exp(t\operatorname{Ad}_hX)H$，所以各向同性表示确如所写。反过来，把该内积用$g$的作用搬到$g\cdot p$；更换代表$g$为$gh$不改变结果，局部截面保证光滑性。紧$H$时用定理\ref{thm:lie-compact-average}对这个商空间表示平均。
+\end{proof}
+
+\begin{example}[球面的齐性表示]
+$\mathrm{SO}(n+1)$在单位球面$S^n$上作用传递：将任意单位向量补成正向正交基，即构造把北极送到该向量的旋转。北极$e_{n+1}$的稳定子为$\operatorname{diag}(Q,1)$，其中$Q\in\mathrm{SO}(n)$。于是$S^n\simeq\mathrm{SO}(n+1)/\mathrm{SO}(n)$。商切空间可用
+$X_v=\left(\begin{smallmatrix}0&v\\-v^{\mathsf T}&0\end{smallmatrix}\right)$表示，$\dd F_e(X_v)=(v,0)$，稳定子作用为$v\mapsto Qv$，标准欧氏内积下降为单位球面的圆度量。
+\end{example}

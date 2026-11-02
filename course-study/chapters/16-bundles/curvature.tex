@@ -1,0 +1,89 @@
+\subsection{曲率的水平性与结构方程}
+李代数值形式的括号楔积按无阶乘的shuffle求和定义：若$\alpha$次数为$r$、$\beta$次数为$s$，则
+\[
+ [\alpha\wedge\beta](v_1,\ldots,v_{r+s})
+ =\sum_{\sigma\in\operatorname{Sh}(r,s)}\operatorname{sgn}(\sigma)
+ [\alpha(v_{\sigma1},\ldots,v_{\sigma r}),
+   \beta(v_{\sigma(r+1)},\ldots,v_{\sigma(r+s)})].
+\]
+按李代数基展开，用楔积与普通Jacobi式逐分量验证带次数的反对称性、Jacobi式及外微分乘法式。特别地$[\omega\wedge\omega](u,v)=2[\omega(u),\omega(v)]$。下文简写$[\alpha,\beta]=[\alpha\wedge\beta]$。
+
+\Needspace{18\baselineskip}
+\begin{theorem}\label{thm:principal-curvature}
+主联络的曲率定义为
+\begin{equation}\label{eq:principal-curvature}
+ \Omega=\dd\omega+\tfrac12[\omega,\omega].
+\end{equation}
+它水平且$\operatorname{Ad}$等变，故下降为$\Omega^2(M;\operatorname{Ad}P)$的元素。局部曲率为
+\[
+ F_i=s_i^*\Omega=\dd A_i+\tfrac12[A_i,A_i],\qquad
+ F_j=\operatorname{Ad}_{g_{ij}^{-1}}F_i.
+\]
+在矩阵群中$\tfrac12[A_i,A_i]=A_i\wedge A_i$，正好恢复第10章的曲率矩阵。
+\end{theorem}
+\begin{proof}
+对常$\xi\in\mathfrak g$微分等变公理，得到$\mathcal L_{\xi^\#}\omega=-[\xi,\omega]$。由Cartan公式及$\omega(\xi^\#)=\xi$为常值，
+\[
+ \iota_{\xi^\#}\dd\omega=-[\xi,\omega],\qquad
+ \iota_{\xi^\#}\tfrac12[\omega,\omega]=[\xi,\omega].
+\]
+两项抵消，因此$\Omega$水平。常$g$的拉回与外微分交换，$\operatorname{Ad}_{g^{-1}}$保持李括号，故曲率等变。沿$s_i$拉回得到局部结构式；下降性或换截面的微分中竖直项被消去给出曲率变换律。
+\end{proof}
+
+\Needspace{14\baselineskip}
+\begin{proposition}\label{prop:principal-bracket-curvature}
+底空间向量场$X,Y$的水平提升满足
+\begin{equation}\label{eq:principal-bracket-curvature}
+ [X^h,Y^h]-[X,Y]^h
+ =-\bigl(\Omega(X^h,Y^h)\bigr)^\#.
+\end{equation}
+右边按点将李代数值变成该点的竖直向量，不表示一个固定常系数基本场。
+\end{proposition}
+\begin{proof}
+相关场的括号仍相关，所以左边竖直。在水平场上$\Omega(X^h,Y^h)=\dd\omega(X^h,Y^h)=-\omega([X^h,Y^h])$，而$\omega([X,Y]^h)=0$。竖直再现同构即给出结论。这个负号与“水平绕行的首项为负曲率”一致。
+\end{proof}
+
+\subsection{相伴联络与协变外微分}
+记$\rho_*:\mathfrak g\to\operatorname{End}(V)$为表示的微分。若$f:P\to V$表示一个相伴截面，定义
+\[
+ (\nabla_Xs)(x)=[p,\dd f_p(X^h_p)].
+\]
+等变性和水平提升的右移性说明其不依赖$p$，并满足联络的两条Leibniz规则。在局部截面$s_i$中，原截面的系数为$a_i=f\circ s_i$，得到
+\begin{equation}\label{eq:associated-connection}
+ \nabla a_i=\dd a_i+\rho_*(A_i)a_i,\qquad
+ R^E=\rho_*(F_i)\quad\text{（局部矩阵）}.
+\end{equation}
+第一式可直接由等变函数在竖直方向的导数$\dd f(\xi^\#)=-\rho_*(\xi)f$验证：$\dd s_iX$的水平部分为$\dd s_iX-(A_i(X))^\#$，相减反而产生正的$\rho_*(A_i)$。再对$\dd+\rho_*(A_i)$求曲率并使用$\rho_*[\xi,\eta]=[\rho_*\xi,\rho_*\eta]$，便得第二式。
+
+\begin{theorem}\label{thm:principal-covariant-exterior}
+对水平$\rho$等变形式，
+\[
+ D\alpha=\dd\alpha+\rho_*(\omega)\wedge\alpha
+\]
+仍水平等变，因而定义相伴丛值形式上的协变外微分，且$D^2\alpha=\rho_*(\Omega)\wedge\alpha$。伴随表示时记$D\alpha=\dd\alpha+[\omega,\alpha]$，曲率满足Bianchi式
+\begin{equation}\label{eq:principal-bianchi}
+ D\Omega=\dd\Omega+[\omega,\Omega]=0.
+\end{equation}
+\end{theorem}
+\begin{proof}
+水平性由Cartan公式检验。等变性微分给出$\mathcal L_{\xi^\#}\alpha=-\rho_*(\xi)\alpha$；因$\iota_{\xi^\#}\alpha=0$，$\iota_{\xi^\#}\dd\alpha$恰为这个负项，而收缩$\rho_*(\omega)\wedge\alpha$给出相反的正项。等变性由表示与伴随作用的相容性及拉回自然性得到。因此局部拉回为$\dd+\rho_*(A_i)\wedge$，逐项展开其平方，一阶项抵消，余下$\rho_*(F_i)\wedge$，证明平方公式。
+
+对Bianchi式，用$\Omega=\dd\omega+[\omega,\omega]/2$以及带次数反对称性得到$\dd\Omega=[\dd\omega,\omega]$。又$[\omega,\dd\omega]=-[\dd\omega,\omega]$；余下$[\omega,[\omega,\omega]]/2$由次数为一的Jacobi恒等式为零。因此$\dd\Omega+[\omega,\Omega]=0$。此处不需要将任意李代数嵌入矩阵代数才能计算。
+\end{proof}
+
+\begin{proposition}\label{prop:frame-connection-equivalence}
+向量丛$E$上的线性联络与$\operatorname{Fr}(E)$上的主$\mathrm{GL}(r)$联络自然一一对应。保持给定内积的联络恰对应正交标架丛上的主$\mathrm O(r)$联络；复情形相应为$\mathrm U(r)$。
+\end{proposition}
+\begin{proof}
+标准表示的诱导联络以$A_i$为局部矩阵。反向，第10章换标架律为$A_j=G_{ij}^{-1}A_iG_{ij}+G_{ij}^{-1}\dd G_{ij}$，定理\ref{thm:principal-local-form}因此唯一重建主联络；局部互逆即给出全局对应。正交标架中度量相容恰为$A_i^{\mathsf T}+A_i=0$，即取值于$\mathfrak o(r)$；Hermite情形将转置改为共轭转置。同一重建遂可在$\mathrm O(r)$或$\mathrm U(r)$中进行。
+\end{proof}
+
+\subsection{平坦性及其局部范围}
+\Needspace{15\baselineskip}
+\begin{theorem}\label{thm:principal-flat}
+主联络曲率为零，当且仅当每点附近存在水平局部截面；等价地，可在局部势全为零的平凡化中描述联络。这些平凡化之间的过渡函数局部常值。
+\end{theorem}
+\begin{proof}
+若$\Omega=0$，命题\ref{prop:principal-bracket-curvature}说明水平分布封闭于括号。第5章Frobenius定理给出通过$p$的局部水平积分片，维数为$\dim M$，且$\dd\pi$在片上可逆。逆函数定理将其缩成一个底空间开集上的截面$s$，于是$s^*\omega=0$。反向若局部势为零，$F_i=0$，水平等变下降性使全局$\Omega=0$。两个零势截面的换元式变成$g_{ij}^*\theta=0$；Maurer--Cartan形式逐点可逆，故$\dd g_{ij}=0$，在每个连通重叠分支上为常值。
+\end{proof}
+这只给出局部水平截面，不能推出全局水平截面或闭路移动恒等。第10章已有平坦线丛的绕圈例子；下面用主$\mathrm U(1)$丛将同一现象写成规范不变量。

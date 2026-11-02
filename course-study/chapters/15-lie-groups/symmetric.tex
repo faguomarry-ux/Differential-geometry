@@ -1,0 +1,64 @@
+\subsection{测地线反射与对称空间}
+\begin{definition}
+连通黎曼流形$M$称为全局黎曼对称空间，若每个$p\in M$都存在全局等距映射$s_p:M\to M$，满足$s_p(p)=p$及$\dd(s_p)_p=-I$。若各点附近有这样一个局部等距映射，则称局部对称。
+\end{definition}
+等距映射保持Levi--Civita联络和测地线，故在法坐标小球内必有
+\begin{equation}\label{eq:lie-geodesic-reflection}
+ s_p(\exp_pv)=\exp_p(-v).
+\end{equation}
+这里$\exp_p$为黎曼指数，区别于$\exp_G$。双不变度量在$e$处使两者一致，一般情形不可混同。
+
+\begin{lemma}\label{lem:lie-isometry-rigidity}
+连通黎曼流形的等距映射由一点的像及该点的微分唯一确定。因而对称映射$s_p$唯一，且$s_p^2=\mathrm{id}$。
+\end{lemma}
+\begin{proof}
+只需证明等距映射$f$若固定$p$且$\dd f_p=I$，便为恒等。它在$p$的法坐标邻域中由保持测地线而恒等。令$A=\{q:f(q)=q,\ \dd f_q=I\}$，同一论证使$A$开；连续性使其闭（在局部坐标中比较微分）。$A$非空且流形连通，故$A=M$。应用于两个映射的复合及$s_p^2$即可。
+\end{proof}
+
+\begin{theorem}\label{thm:lie-symmetric-complete}
+全局黎曼对称空间测地完备，并且其等距变换群作为抽象群作用传递。它满足$\nabla R=0$。
+\end{theorem}
+\begin{proof}
+设单位速极大测地线$\gamma:(a,b)\to M$有有限右端点$b$。取$t_0<b$且足够接近$b$，再取$\delta>0$使$[t_0-\delta,t_0]\subset(a,b)$而$t_0+\delta>b$。反射曲线
+$\widetilde\gamma(t)=s_{\gamma(t_0)}\gamma(2t_0-t)$在$t\in[t_0,t_0+\delta]$有定义，是测地线，在$t_0$处与$\gamma$位置、速度相同。ODE唯一性使它与原线在重叠区间相同，遂延拓过$b$，矛盾。左端同理，故测地完备。
+
+连通流形的任意两点可用有限条短测地线段连起来：从一点可这样到达的集合开，其补集也开。在每条短段中点$q$的对称$s_q$交换两端。有限次复合便把起点送到终点，故等距群传递；这一步只用群的作用，不声称已经证明全体等距群是李群。
+
+令$\mathcal R(U,V,W,Z)=\langle R(U,V)W,Z\rangle$。等距映射保持它及其协变导数$\nabla\mathcal R$，后者为五阶协变张量。在$p$处$s_p$的微分在五个槽中均为$-I$，故$\nabla\mathcal R=-(\nabla\mathcal R)$，只能为零。度量平行使这等价于$\nabla R=0$。
+\end{proof}
+
+\begin{figure}[htbp]
+\centering\input{course-study/figures/symmetric-reflection}
+\caption{法坐标中的测地反射把同一测地线上等时的点交换；速度先由微分变号，再由参数反向恢复，因而可接出延长的测地线。}
+\label{fig:symmetric-reflection}
+\end{figure}
+
+\begin{theorem}[局部对称的曲率判别]\label{thm:lie-local-symmetric}
+黎曼流形局部对称当且仅当$\nabla R=0$。
+\end{theorem}
+\begin{proof}
+必要性与上面的五阶张量证明相同。充分性取$p$的小法坐标球，在$T_pM$中令$K_v(w)=R_p(w,v)v$。沿$\gamma_v(t)=\exp_p(tv)$的平行移动记$P_v(t)$。由$\nabla R=0$，在这个平行标架中Jacobi方程化为常系数方程
+\[
+ j''+K_vj=0,\qquad j(0)=0,\quad j'(0)=w.
+\]
+解的收敛矩阵幂级数给出
+\[
+ (\dd\exp_p)_vw=P_v(1)S(K_v)w,\qquad
+ S(K)=\sum_{r=0}^{\infty}\frac{(-1)^rK^r}{(2r+1)!}.
+\]
+这里用第12章的指数微分与Jacobi场关系，参数区间是$[0,1]$。平行移动保持内积，故法坐标拉回度量为
+\[
+ (\exp_p^*g)_v(w,z)=\langle S(K_v)w,S(K_v)z\rangle_p.
+\]
+$K_{-v}=K_v$，所以此式在$(v,w,z)\mapsto(-v,-w,-z)$下不变。由此$\exp_p\circ(-I)\circ\exp_p^{-1}$为局部等距映射，固定$p$且微分为$-I$，即局部对称。该论证不需要完备性，也没有将局部反射直接宣称为全局映射。
+\end{proof}
+
+\begin{example}[三类全局模型]
+半径$a$的圆球面上，$s_p(q)=2\langle p,q\rangle p/a^2-q$是环境空间的正交变换，固定$p$并在$T_pS^n$上等于$-I$，所以球面为对称空间。它不一定属于所选的$\mathrm{SO}(n+1)$传递群，这不影响对称性的定义。
+
+平坦环面$\R^n/\Lambda$上，$s_{[p]}([q])=[2p-q]$与代表选择无关，是全局等距反射。一般平坦流形是否有全局反射还须检查其商关系，不能仅由$R=0$断言全局对称。
+
+具有双不变度量的连通李群上，取逆是等距映射：在左平凡化中，$\theta_{g^{-1}}\dd\iota_gv=-\operatorname{Ad}_g\theta_gv$，而$\operatorname{Ad}_g$正交。因此$s_p(g)=pg^{-1}p$是全局等距映射，固定$p$且微分为$-I$。这也由定理\ref{thm:lie-symmetric-complete}重新得到其测地完备性。
+\end{example}
+
+至此我们证明了闭子群商、传递作用与不变度量、双不变群的曲率以及局部对称判别。把所有全局对称空间表示为特定李群的商，仍须全体等距群的Lie群结构及进一步结构理论；本章没有用这些尚未证明的定理来封闭论证。

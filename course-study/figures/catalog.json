@@ -250,5 +250,59 @@
     "title": "主方向弯曲向量与平均曲率",
     "chapter": "13",
     "provenance": "原创；同一法空间内平移排列，$\\mathbf H$为平均而非总和；逐点示意"
+  },
+  {
+    "id": "hodge-star-plane",
+    "title": "定向平面的一次形式Hodge星",
+    "chapter": "14",
+    "provenance": "原创；$*\\dd x=\\dd y$、$*\\dd y=-\\dd x$，一次形式上$**=-I$"
+  },
+  {
+    "id": "hodge-decomposition",
+    "title": "调和、恰当与余恰当分量",
+    "chapter": "14",
+    "provenance": "原创；有限维空间投影模型，正交性为$L^2$积分意义而非逐点"
+  },
+  {
+    "id": "gauss-bonnet-octant",
+    "title": "球面卦限三角片的角超",
+    "chapter": "14",
+    "provenance": "原创；参数大圆弧作等比例正投影，三个球面内角为$\\pi/2$"
+  },
+  {
+    "id": "lie-left-flow",
+    "title": "左不变场的右平移流",
+    "chapter": "15",
+    "provenance": "原创；固定$g$的$L_g$搬运曲线，固定$t$的流为$R_{\\exp(tX)}$"
+  },
+  {
+    "id": "quotient-slice",
+    "title": "闭子群商的局部乘积切片",
+    "chapter": "15",
+    "provenance": "原创；$\\exp X\\exp Y$，$X\\in\\mathfrak m$、$Y\\in\\mathfrak h$；仅局部坐标模型"
+  },
+  {
+    "id": "symmetric-reflection",
+    "title": "法坐标中的测地反射",
+    "chapter": "15",
+    "provenance": "原创；$s_p(\\exp_pv)=\\exp_p(-v)$，局部反射不自动延伸为全局"
+  },
+  {
+    "id": "associated-coordinates",
+    "title": "相伴丛系数的逆表示变换",
+    "chapter": "16",
+    "provenance": "原创；$s_j=s_i g_{ij}$，$a_j=\\rho(g_{ij})^{-1}a_i$，同一元素的两种表示"
+  },
+  {
+    "id": "principal-horizontal",
+    "title": "主联络的水平与竖直分解",
+    "chapter": "16",
+    "provenance": "原创；同一切空间的补空间图，$\\omega(v)=\\xi$，不预设正交"
+  },
+  {
+    "id": "hopf-potentials",
+    "title": "Hopf丛两卡局部势与球面曲率",
+    "chapter": "16",
+    "provenance": "原创；正交投影的纬线，$g_{NS}=e^{-i\\phi}$，$F=i\\mathrm{vol}/2$"
   }
 ]
