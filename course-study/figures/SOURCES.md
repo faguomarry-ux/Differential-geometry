@@ -73,3 +73,7 @@
 ## 第19章（v0.20）
 
 `spin-half-angle`、`spin-transition-sign`、`calibration-phase`均为原创TikZ示意，不改绘原书图。分别表示Spin2半角参数、三重交集提升符号、对角Lagrange平面的复相位；不把参数圆当作切向量，不把模2提升障碍当实曲率，不把虚部零与正定向校准等同。正文证明和来源核对见第19章自查记录。
+
+## 第20章（v0.21）
+
+fredholm-splitting、yang-mills-bound、gauge-moduli-boundary为原创TikZ示意，位于modules/index-gauge.tex，无原书图号。分别表达有限维缺陷与同构块、固定正k下的能量恒等式、从线性Fredholm到非线性及全局构造的依赖。能量图横坐标为自对偶曲率的平方范数，不表示可实现参数的全集；依赖图不声称本书已完成模空间或不变量。

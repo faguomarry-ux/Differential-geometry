@@ -1,0 +1,70 @@
+\subsection{先给数据，再写方程}
+四维Spin$^c$群定义为
+\[
+ \operatorname{Spin}^c(4)=(\operatorname{Spin}(4)\times U(1))/\{(1,1),(-1,-1)\}.
+\]
+在Spin表示上$[a,z]$作用为$z\rho(a)$，行列式角色为$z^2$。本节\emph{假定给定}到定向正交标架丛的Spin$^c$提升、秩二Hermite丛$W^\pm$、行列式线丛$L$以及相容Clifford作用。提升存在性、$c_1(L)\bmod2=w_2(TM)$与所有定向四维流形存在Spin$^c$结构的拓扑证明不在本章完成。
+
+取$L$的酉联络$B$，与Levi--Civita联络合成旋量联络及$D_B^+:\Gamma(W^+)\to\Gamma(W^-)$。局部中心项为$B/2$，因为行列式角色是平方。对实二形式$\omega$约定$c(\omega)=\sum_{i<j}\omega_{ij}c_ic_j$。在第19章手征号下，$c$把$i\Lambda^+$实线性同构到$\operatorname{Herm}_0(W^+)$，把$i\Lambda^-$作用为零。具体地，以$e^{ij}=e^i\wedge e^j$记正向正交余标架，在Fock偶基$(1,u_1\wedge u_2)$上，三个自对偶基的像为
+\[
+ \begin{array}{c|c}
+ i(e^{12}+e^{34})&\left(\begin{smallmatrix}2&0\\0&-2\end{smallmatrix}\right)\\
+ i(e^{13}-e^{24})&\left(\begin{smallmatrix}0&-2i\\2i&0\end{smallmatrix}\right)\\
+ i(e^{14}+e^{23})&\left(\begin{smallmatrix}0&-2\\-2&0\end{smallmatrix}\right)
+ \end{array}
+\]
+它们构成无迹Hermite矩阵的实基，反自对偶三基作用为零；换标架由Spin等变性相容。这给出了同构的证明和尺度，而不是范数未定的“自然相等”。
+
+定义无迹Hermite端同态
+\[
+ q(\psi)=\psi\psi^*-\tfrac12|\psi|^2I_{W^+}.
+\]
+本节固定以下未扰动Seiberg--Witten方程的归一化：
+\begin{equation}\label{eq:sw-equations}
+ D_B^+\psi=0,\qquad c(F_B^+)=q(\psi).
+\end{equation}
+有些资料把$1/2$或Clifford映射的尺度放到$q$中，比较时须同时换算平方公式；本书只用此处显式约定。
+
+主动规范群$\mathcal G=C^\infty(M,U(1))$作用为
+\begin{equation}\label{eq:sw-gauge}
+ (B,\psi)\longmapsto(B-2u^{-1}\dd u,u\psi).
+\end{equation}
+因为旋量联络的中心项是$B/2$，直接对$u\psi$求协变导数可见$u^{-1}\dd u$两项抵消，故
+\[
+ D_{B-2u^{-1}\dd u}(u\psi)=uD_B\psi.
+\]
+又$\dd(u^{-1}\dd u)=0$，曲率不变，$q(u\psi)=q(\psi)$，所以方程规范不变。漏掉因子2便失去该协变性。
+
+\Needspace{17\baselineskip}
+\begin{proposition}[给定Spin$^c$数据的消失结论]\label{prop:sw-vanishing}
+在本章紧致无边界假设下，若$\mathrm{Scal}\geq0$，\eqref{eq:sw-equations}的每个光滑解都有$\psi=0$且$F_B^+=0$。因此此时不存在$\psi\ne0$的未扰动解；并未断言全部解为空。
+\end{proposition}
+\begin{proof}
+第19章Dirac平方的局部曲率缩并适用于Spin$^c$联络；中心曲率为$F_B/2$，故在$W^+$上
+\[
+ (D_B^+)^*D_B^+=\nabla_B^*\nabla_B+\tfrac14\mathrm{Scal}
+ +\tfrac12 c(F_B^+).
+\]
+这是局部恒等式，推导只增加中心曲率，无需全局Spin分解。代入方程，与$\psi$配对并积分。由于$q(\psi)\psi=\tfrac12|\psi|^2\psi$，得到
+\begin{equation}\label{eq:sw-integrated}
+ 0=\|\nabla_B\psi\|_2^2+\tfrac14\int_M\mathrm{Scal}|\psi|^2
+ +\tfrac14\int_M|\psi|^4.
+\end{equation}
+每项非负，最后一项迫使$\psi=0$；第二条方程及$c:i\Lambda^+\to\operatorname{Herm}_0(W^+)$单射再给$F_B^+=0$。
+\end{proof}
+
+零旋量解称可约解，规范群中常数$U(1)$仍可固定它；若$M$连通且$\psi$某处非零，固定该对的规范变换由$\dd u=0$及$u\psi=\psi$迫使$u=1$。平坦$T^4$取平凡Spin$^c$数据及平坦$B$，$(B,0)$就是可约解，所以消失命题不能写成“解集为空”。
+
+\subsection{研究对象及尚未建立的步骤}
+模空间是\eqref{eq:sw-equations}的解集除以\eqref{eq:sw-gauge}。本章只定义这个集合，没有给它构造光滑流形结构。在完整外部理论中，规范固定形变算子的实指标为
+\[
+ d=\frac{\langle c_1(L)^2,[M]\rangle-(2\chi(M)+3\tau(M))}{4},
+\]
+其中$\chi$为Euler特征数、$\tau$为四维交叉形式的签名。\textbf{此虚维公式在本书仅作外引}；它依赖Spin$^c$指标、Hodge维数与签名公式的比较，不能由未知整类或尚未证明的签名定理跳步推出。Perutz第19.5节给出相应理论背景，本书未证明指标比较。
+
+从虚维数到Seiberg--Witten不变量还需要Sobolev配置空间、椭圆规范切片、先验界、模规范紧性、横截扰动、同调定向和度量路径的配边。$b_2^+=1$时有腔室问题，不能无条件声称与度量无关；这里$b_2^+$为交叉形式正指数。外部理论对光滑结构的检测，不等于任何两个不同光滑结构都能被这些不变量区分。完整构造、壁穿越、紧性和与辛结构的关系留为后续专题。
+
+\begin{figure}[htbp]
+ \centering\input{course-study/figures/gauge-moduli-boundary}
+ \caption{从方程到不变量的依赖（原创示意）。前两块中只有正文明确给出的变分、符号和消失命题已证明；箭头表示还需完成的分析与拓扑工作，不表示本书已有全部结果。}
+\end{figure}

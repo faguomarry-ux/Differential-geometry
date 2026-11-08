@@ -1,0 +1,58 @@
+\subsection{从紧嵌入到Fredholm}
+Hilbert空间之间的有界算子$T:X\to Y$称为Fredholm算子，当它的像闭且核与余核$Y/\operatorname{im}T$均有限维；定义
+\[
+ \operatorname{ind}T=\dim\ker T-\dim(Y/\operatorname{im}T).
+\]
+闭像是定义的一部分，不能只写两个有限维条件而忽略所用拓扑。
+
+\Needspace{16\baselineskip}
+\begin{theorem}\label{thm:index-fredholm}
+在本章紧致无边界假设下，满足\eqref{eq:index-dirac-type}的$P:H^1(E)\to L^2(F)$是Fredholm，且
+\[
+ (\operatorname{im}P)^{\perp_{L^2}}=\ker P^*,\qquad
+ \operatorname{ind}P=\dim\ker P-\dim\ker P^*.
+\]
+两端的核均由光滑截面组成。
+\end{theorem}
+\begin{proof}
+第14章的紧嵌入$H^1\hookrightarrow L^2$适用于任意有限秩丛：有限平凡化把它化为有限个标量结论。核上一阶估计给$\|u\|_{H^1}\leq C\|u\|_2$。若核无限维，取$L^2$规范正交序列；它在$H^1$有界，却无$L^2$收敛子列，矛盾。所以$K=\ker P$有限维，且由引理\ref{lem:index-first-order}光滑。
+
+在$K$的$L^2$正交补上有更强估计
+\begin{equation}\label{eq:index-gap}
+ \|u\|_{H^1}\leq C\|Pu\|_2,\qquad u\perp K.
+\end{equation}
+否则取$\|u_j\|_{H^1}=1$、$u_j\perp K$及$Pu_j\to0$。紧嵌入给$L^2$收敛子列，一阶估计用于$u_j-u_k$使其在$H^1$中Cauchy。极限$u$属于$K\cap K^\perp$且$H^1$范数1，矛盾。
+
+若$Pu_j\to f$，先减去$u_j$到$K$的有限维投影；\eqref{eq:index-gap}使余下序列在$H^1$收敛到$u$，连续性给$Pu=f$，故像闭。若$v\in L^2$正交于像，则对所有光滑$u$有$(Pu,v)=0$，即$P^*v=0$在分布意义成立。上个引理使$v$光滑，故它是$P^*$的核；反向由分部积分成立。对$P^*$重复有限维核的论证，余核有限维。
+\end{proof}
+
+这一证明没有把形式自伴直接等同于本质自伴，也未证明完整谱展开。偶维手征算子得
+\[
+ \operatorname{ind}D_E^+=\dim\ker D_E^+-\dim\ker D_E^-.
+\]
+全$D_E$的指标为零，手征指标却未必为零。对$\dd+\delta$的偶到奇分块，第14章Hodge分解独立给出指标$\sum_k(-1)^k\dim H^k_{\mathrm{dR}}(M)$；这是解析指标的计算，尚未证明其等于Euler形式积分。
+
+\begin{figure}[htbp]
+ \centering\input{course-study/figures/fredholm-splitting}
+ \caption{Fredholm算子的有限维缺陷（原创示意）。中间限制为有界同构，核与余核的维数之差才是指标；图中方块不表示相等维数。}
+\end{figure}
+
+\subsection{指标为何对扰动稳定}
+\begin{proposition}\label{prop:index-stability}
+Fredholm算子在算子范数的小扰动下仍Fredholm且指标不变。加紧算子保持Fredholm及指标。因此固定丛、固定Sobolev空间之间的连续Dirac型算子族具有常指标；特别地，更改酉扭联络或加光滑零阶项不改变指标。
+\end{proposition}
+\begin{proof}
+写$X=K\oplus X_0$、$Y=C\oplus Y_0$，其中$Y_0=\operatorname{im}T$、$C=Y_0^\perp$。$T_0:X_0\to Y_0$为有界同构。在本章情形逆有界来自\eqref{eq:index-gap}；一般情形用有界逆定理。此定理是Hilbert分析工具，可由Baire定理证明，不是有限维逆函数定理；本章一般Hilbert版本将它列为外部分析先修。
+
+对$S$充分接近$T$，其$X_0\to Y_0$块$d$仍可逆，因为$T_0^{-1}d=I+R$且$\|R\|<1$，逆由收敛Neumann级数给出。写$S=\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)$，两侧乘有界可逆三角矩阵消元，得到对角块$a-bd^{-1}c:K\to C$及$d:X_0\to Y_0$。有限维第一块的指标恒为$\dim K-\dim C$，第二块指标零；也得到闭像和有限维缺陷。这证明局部稳定性。
+
+定义$B:Y\to X$为$T_0^{-1}$在$Y_0$上的延拓，且在$C$上为零，则$BT=I-\Pi_K$、$TB=I-\Pi_C$。若$J:X\to Y$紧，$S=T+J$满足$BS=I+K_1$、$SB=I+K_2$，两误差紧。由$u=BSu-K_1u$得
+\[
+ \|u\|_X\leq\|B\|\|Su\|_Y+\|K_1u\|_X.
+\]
+核的正交序列会与$K_1$的紧性矛盾。同样，若核正交补上没有$\|u\|_X\leq C\|Su\|_Y$，取范数1且$Su_j\to0$的序列；$K_1u_j$的收敛子列使$u_j$收敛到核中的单位向量，矛盾。因此像闭。对有界Hilbert伴随$S^*:Y\to X$用$B^*S^*=I+K_2^*$得其核有限维，所以$S$的余核有限维。这里紧算子的伴随仍紧：用有限$\epsilon$网逼近单位球像，并投影到网点张成的有限维空间，即以有限秩算子作范数逼近；取伴随后保持误差范数。
+
+故$T+tJ$对全部$t\in[0,1]$均Fredholm，局部稳定性使其整数值指标局部常数，连通性使其常数。光滑零阶算子$H^1\to L^2$经紧嵌入分解，因而紧；联络改变只改变Dirac的零阶项。
+\end{proof}
+
+同一指标不表示核维数不变：题20.1给出核与余核同时跳跃的族。带边界时还须选择椭圆边界条件，非紧时须控制无穷远；本章不把它们包含在此定理中。

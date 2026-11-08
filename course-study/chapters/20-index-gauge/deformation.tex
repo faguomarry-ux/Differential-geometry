@@ -1,0 +1,44 @@
+\subsection{规范退化与椭圆复形的符号}
+若$A$为ASD，$F_{A+ta}^+$的一次项是$\dd_A^+a=\pi_+\dd_Aa$。主动规范轨道的切向量为$-\dd_A\phi$，而
+\[
+ \dd_A^+\dd_A\phi=\pi_+[F_A,\phi]=[F_A^+,\phi]=0.
+\]
+所以出现复形
+\begin{equation}\label{eq:asd-complex}
+ \Omega^0(\operatorname{ad}P)\xrightarrow{\dd_A}
+ \Omega^1(\operatorname{ad}P)\xrightarrow{\dd_A^+}
+ \Omega^+(\operatorname{ad}P).
+\end{equation}
+在非ASD联络处，复合一般不为零，不能不加条件称它为复形。
+
+\Needspace{17\baselineskip}
+\begin{proposition}\label{prop:asd-symbol}
+对每个实$\xi\ne0$，\eqref{eq:asd-complex}的符号列正合。规范固定算子
+\[
+ L_A=\dd_A^*\oplus\sqrt2\dd_A^+:
+ \Omega^1(\operatorname{ad}P)\longrightarrow
+ \Omega^0(\operatorname{ad}P)\oplus\Omega^+(\operatorname{ad}P)
+\]
+满足\eqref{eq:index-dirac-type}，故$H^1\to L^2$的延拓Fredholm。$\sqrt2$使符号恰为范数等距乘$|\xi|$；去掉它仍椭圆。
+\end{proposition}
+\begin{proof}
+去掉不影响正合性的非零$i$因子，并把$\xi$归一化为正交余标架$e^1$。第一个映射$\phi\mapsto e^1\phi$单射。把$a=a_1e^1+\sum_{j=2}^4a_je^j$，则
+\[
+ \pi_+(e^1\wedge a)=\frac12\sum_{j=2}^4a_j(e^{1j}+*e^{1j}).
+\]
+括号中的三个自对偶形式正交且范数平方2，张成$\Lambda^+$。因此第二映射满射，其核恰为$e^1$方向，证明正合。$\dd_A^*$符号是$-i\iota_{\xi^\sharp}$，于是
+\[
+ |\iota_{\xi^\sharp}a|^2+2|\pi_+(\xi\wedge a)|^2
+ =|\xi|^2|a|^2.
+\]
+两端实秩同为4乘$\dim G$，故单射符号也是满射，满足两个符号恒等式；复化后应用定理\ref{thm:index-fredholm}，或逐项使用其完全相同的实Hilbert证明。
+\end{proof}
+
+写复形的光滑上同调为$H_A^0,H_A^1,H_A^2$，分别为$\ker\dd_A$、$\ker\dd_A^+/\operatorname{im}\dd_A$和$\Omega^+/\operatorname{im}\dd_A^+$。此时
+\begin{equation}\label{eq:asd-index-defect}
+ \operatorname{ind}_{\mathbb R}L_A
+ =\dim H_A^1-\dim H_A^0-\dim H_A^2.
+\end{equation}
+解析依据如下：$\dd_A^*\dd_A$的标量主符号为$|\xi|^2I$，其能量为$\|\dd_A\phi\|^2$；第14章的紧性、正交补估计与Hilbert变分证明给出其在核正交补上的解，光滑右端由同一差商证明光滑。因此每个$\ker\dd_A^+$的类可减去$\dd_A\phi$而满足$\dd_A^*a=0$，且代表唯一；这把$H_A^1$识别为$\ker L_A$。若$L_A^*(\phi,\eta)=\dd_A\phi+\sqrt2(\dd_A^+)^*\eta=0$，两项正交，因为$\dd_A^+\dd_A=0$，所以各为零。$L_A$的闭像还给$\dd_A^+$闭像：若$\dd_A^+a_j\to\eta$，先减去规范方向，则$L_Aa_j\to(0,\sqrt2\eta)$，再用闭像。由此余核正是$H_A^0\oplus H_A^2$。为使光滑商与Sobolev余核一致，对光滑$\eta$取其$L^2$到$\ker L_A^*$的投影；该有限维核光滑，余下右端在像内。求得$L_Aa$为此光滑右端后，$L_A^*L_A$的标量主部正则性使$a$光滑。
+
+$H_A^0$描述无穷小稳定子，$H_A^2$是线性障碍空间；$H_A^2\ne0$不自动意味着每个形变受阻。即使两者零，仍需Sobolev乘积、局部规范切片和Banach隐函数定理才能从线性虚维数得到实际局部维数。本章尚未建立这些非线性工具，不由\eqref{eq:asd-index-defect}宣布模空间光滑、紧致或可定义Donaldson不变量。

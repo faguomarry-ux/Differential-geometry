@@ -1,0 +1,87 @@
+\Needspace{16\baselineskip}
+\section{指标与规范场习题及详细解答}
+以下8题均为依据本章定义设计的原创补充，不冒充周书或梁书原题。梁书相应主题的册次、题号及双页码尚未核实；外部讲义用于核对理论背景，未把讲义习题改号归为原创。20.3--20.4中使用指标公式的结论明确以外引定理为条件。
+
+\Needspace{12\baselineskip}
+\subsection*{习题20.1：核跳跃而指标不跳跃}
+在单位长度圆周上取周期复函数，$P_a=\partial_x+ia:H^1\to L^2$，$a\in\mathbb R$。求核、余核、指标，并说明哪个结论需要闭像。
+\begin{proof}[解答]
+解$P_au=0$得$u(x)=Ce^{-iax}$，周期性要求$e^{-ia}=1$。故$a\in2\pi\mathbb Z$时核复维1，其他时候为零。形式伴随为$P_a^*=-\partial_x-ia=-P_a$，其核相同。主符号$i\xi$满足本章条件，定理\ref{thm:index-fredholm}给闭像并识别余核为伴随核，所以指标恒为零。若只解两个ODE而不证明像闭，就没有完成Fredholm判定。跨过$2\pi\mathbb Z$时两种缺陷同时跳跃，指标不变。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题20.2：为什么非紧假设不能删除}
+证明$\partial_x:H^1(\mathbb R)\to L^2(\mathbb R)$的核为零但像不闭。提示：缩放一个非零紧支光滑函数。
+\begin{proof}[解答]
+分布导数为零的$H^1$函数为几乎处处常数，$L^2(\mathbb R)$中的常数只能为零。取$\chi\in C_c^\infty(\mathbb R)$、$\|\chi\|_2=1$，令$u_R(x)=R^{-1/2}\chi(x/R)$，则
+\[
+ \|u_R\|_2=1,\qquad \|u_R'\|_2=R^{-1}\|\chi'\|_2.
+\]
+若像闭，单射的有界算子$\partial_x:H^1\to\operatorname{im}\partial_x$由有界逆定理给$\|u\|_{H^1}\leq C\|u'\|_2$，上述序列矛盾。因此像不闭，算子不Fredholm。其主符号处处可逆；失效的是无穷远的全局控制。这也展示了为何闭像不能从局部椭圆性直接推出。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题20.3：四维扭指标的次数核对}
+设$M^4$闭且有给定Spin结构。对秩$r$复丛$E$，从$\widehat A$和$\operatorname{ch}$展开推出\eqref{eq:as-four}。当$E=L\oplus L^{-1}$时把结果写成$c_1(L)$。哪些步骤依赖外引？
+\begin{proof}[解答]
+四维只保留微分形式次数0、2、4：
+\[
+ \widehat A=1-\frac{p_1}{24},\qquad
+ \operatorname{ch}(E)=r+c_1+\frac12(c_1^2-2c_2).
+\]
+因$\widehat A$没有二次形式项，乘积的四次部分恰为$\frac12c_1^2-c_2-rp_1/24$。对$E=L\oplus L^{-1}$，Whitney给$c_1(E)=0$、$c_2(E)=-c_1(L)^2$、$r=2$，所以
+\[
+ \operatorname{ind}D_E^+=\int_M\left(c_1(L)^2-\frac{p_1(TM)}{12}\right).
+\]
+特征形式代数由第18章和幂级数展开证明；把其积分认作解析指标这一步依赖定理\ref{thm:as-external}，本题没有补齐该定理。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题20.4：未扭消失不能推广到任意扭丛}
+设闭Spin曲面取线丛$L$，$\int c_1(L)=d\ne0$。承认外引指标公式，证明$\dim\ker D_L^++\dim\ker D_L^-\geq|d|$。这为何与正标量曲率下的未扭消失不冲突？
+\begin{proof}[解答]
+二维公式给$\dim\ker D_L^+-\dim\ker D_L^-=d$。两个非负整数之和不小于其差的绝对值，得到所需下界。未扭平方只有粗Laplace与$\mathrm{Scal}/4$；扭平方还含$\sum_{i<j}c_ic_jF^L_{ij}$，它没有统一非负号。故即使底流形具有正标量曲率，未扭的积分非负性也不能迫使扭核为零。例子可取具有第19章Spin结构的$S^2$及第16章Hopf线丛的非零次幂；此处核的具体维数未由不等式确定。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题20.5：环面上的非零Yang--Mills曲率}
+补全正文$T^4$上线丛的下降构造，计算$L\oplus L^{-1}$的能量与$k$。分别判断参数$(a,b)$取$(1,-1)$、$(1,1)$和$(1,0)$时的三例。
+\begin{proof}[解答]
+在$\mathbb R^4$取$A=-2\pi i(ax^1\dd x^2+bx^3\dd x^4)$。平移$x^1\mapsto x^1+1$时$A$减去$2\pi ia\dd x^2$，可用被动酉换标架$h_1=e^{-2\pi iax^2}$实现；$x^3$方向同理用$h_3=e^{-2\pi ibx^4}$，其他方向用1。由于$a,b$为整数，$h_1$在$x^2$的整数平移下不变，$h_3$在$x^4$的整数平移下不变；两个非平凡过渡又交换，所以所有格平移的余循环相容。得到线丛与联络，而非平凡线丛上的全局一形式。
+
+令$\alpha=a\dd x^{12}+b\dd x^{34}$，则$F_L=-2\pi i\alpha$、$c_1(L)=\alpha$。Whitney给$c_2(L\oplus L^{-1})=-\alpha^2$，$\int\alpha^2=2ab$，故$k=-2ab$。矩阵迹内积给$|F|^2=8\pi^2(a^2+b^2)$，体积1得到能量。$*(\dd x^{12})=\dd x^{34}$：第一例ASD，$k=2$、能量$16\pi^2$；第二例SD，$k=-2$、能量相同；第三例既非SD也非ASD，$k=0$、能量$8\pi^2$。三者曲率均平行且与联络交换，故都是Yang--Mills。第三例显示临界点不必达到拓扑下界。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题20.6：四维能量和定向}
+证明四维二形式能量对共形变换不变。反转定向后$k$、$\mathcal Y$与ASD标签怎样改变？为什么不能只改$k$而保留原来的正负分解？
+\begin{proof}[解答]
+对$\widetilde g=e^{2f}g$有$|F|_{\widetilde g}^2=e^{-4f}|F|_g^2$、$\mathrm{vol}_{\widetilde g}=e^{4f}\mathrm{vol}_g$，乘积不变。反转定向使顶次形式积分换号，故$k\mapsto-k$；能量按正的体积密度积分，不变。星由定向定义，在二形式上变成$-* $，所以$F^+$与$F^-$交换，原ASD成为SD。此时
+$\|F^-\|^2-\|F^+\|^2$也换号，与$8\pi^2k$同步。若只改$k$，便破坏同一恒等式的定向约定。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题20.7：规范方向与缺少的符号秩}
+令$\xi=e^1$。计算$\pi_+(\xi\wedge a)$的核，说明$\dd_A^+$单独不能成为同秩椭圆算子，再验证加上$\dd_A^*$如何恢复可逆符号。此论证是否证明非线性模空间光滑？
+\begin{proof}[解答]
+写$a=\sum a_je^j$，得到$\pi_+(e^1\wedge a)=\sum_{j=2}^4a_j(e^{1j}+*e^{1j})/2$。三个括号线性独立，故核恰为$a=a_1e^1$，是第一个符号$\xi\phi$的像。原映射秩从4到3且有一维核，不能满足本章可逆符号的定义。加上$-\iota_{\xi^\sharp}$提取$-a_1$，而$\sqrt2\pi_+(\xi\wedge a)$保留其余三分量的范数，得到$|\sigma_{L_A}(\xi)a|^2=|a|^2$。恢复的是规范固定的线性椭圆性；非线性切片、余核和稳定子问题仍在，不能据此认定模空间光滑。
+\end{proof}
+
+\Needspace{12\baselineskip}
+\subsection*{习题20.8：Spin$^c$因子与四次正项}
+用局部中心项$B/2$验证\eqref{eq:sw-gauge}；对$\psi\in\mathbb C^2$求$q(\psi)$的特征值、Hilbert--Schmidt范数和$q(\psi)\psi$。解释$\mathrm{Scal}\geq0$时为何只能推出零旋量而不能一概说无解。
+\begin{proof}[解答]
+设$u=e^{i\theta}$局部成立，则$B'=B-2i\dd\theta$。展开
+\[
+ (\dd+B'/2)(u\psi)
+ =u(\dd+B/2)\psi+(\dd u-ui\dd\theta)\psi
+ =u(\dd+B/2)\psi.
+\]
+Levi--Civita部分与标量$u$交换，因此Dirac也协变。若错误地只减$u^{-1}\dd u$，会余下$(\dd u)\psi/2$。
+
+令$s=|\psi|^2$。非零$\psi$张成方向上$\psi\psi^*$特征值为$s$，正交方向为0，所以$q$特征值为$s/2,-s/2$，
+\[
+ |q(\psi)|_{\mathrm{HS}}^2=s^2/2,\qquad q(\psi)\psi=(s/2)\psi.
+\]
+当$\psi=0$这些式子仍成立。平方公式中的$1/2$与$q$作用的$1/2$相乘，正是积分恒等式中的$|\psi|^4/4$。非负标量曲率迫使$\psi=0$，随后要求$F_B^+=0$；若存在这样的行列式联络，它仍给可约解。平坦$T^4$的平凡$B$就是例子。
+\end{proof}

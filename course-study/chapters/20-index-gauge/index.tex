@@ -1,0 +1,36 @@
+\subsection{特征形式提供的候选数}
+第18章已定义$p_j$和$\operatorname{ch}$。以形式变量$x_j$表示Pontryagin根，规定$p=\prod_j(1+x_j^2)$，定义乘法序列
+\begin{equation}\label{eq:ahat-expansion}
+ \widehat A=\prod_j\frac{x_j/2}{\sinh(x_j/2)}
+ =1-\frac{p_1}{24}+\frac{7p_1^2-4p_2}{5760}+\cdots.
+\end{equation}
+根仅为表达不变多项式的代数记号，不假定切丛全局分裂。函数为偶幂级数，关于$x_j^2$对称，故每个有限次数系数是$p_j$的多项式；第18章保证相应形式闭、类与联络无关。展开单因子为$1-x^2/24+7x^4/5760+\cdots$并相乘，直接给上述两项。本章不据此先验断言其积分为整数。
+
+\Needspace{16\baselineskip}
+\begin{theorem}[扭Spin指标公式；外引]\label{thm:as-external}
+设$M^{2m}$紧致、定向、无边界且给定Spin结构，$E$为Hermite复丛并取酉联络。第19章手征约定下，
+\begin{equation}\label{eq:as-spin}
+ \operatorname{ind}D_E^+
+ =\int_M[\widehat A(TM)\wedge\operatorname{ch}(E)]_{2m}.
+\end{equation}
+下标取顶次数。这里外引Atiyah--Singer定理的Spin特例，参见Dai讲义第3.3节定理3.3.2、3.3.4；\textbf{本书尚未证明此公式}。一般椭圆符号的拓扑指标、非紧Callias及带边APS公式不在本陈述内。
+\end{theorem}
+
+左侧已在定理\ref{thm:index-fredholm}定义并证明有限。右侧的闭性、联络无关性来自第18章；这些事实加上指标稳定性，并不能证明两侧相等。热核路线还需要热半群及光滑核、迹类与超迹配对、短时局部渐近和Getzler缩放。拓扑路线需要紧支$K$理论、Thom同构、Bott周期及解析指标与推前的比较。两条路线均有本书未建立的实质步骤，不能以“局部计算相同”替代。完整证明及一般整类比较列入补证任务。
+
+\subsection{条件性推论与独立可算的例子}
+二维$\widehat A$无正次数项，故承认\eqref{eq:as-spin}后
+$\operatorname{ind}D_L^+=\int_Mc_1(L)$。
+四维直接乘特征形式得
+\begin{equation}\label{eq:as-four}
+ \operatorname{ind}D_E^+=\int_M
+ \left(\frac{c_1(E)^2}{2}-c_2(E)-\frac{\operatorname{rank}E}{24}p_1(TM)\right).
+\end{equation}
+这是外引定理的代数推论，不是另一份指标定理证明。若$E$平凡且联络平坦，右侧只剩$-r\int p_1/24$。若$M$没有给定Spin结构，不可直接套用未扭Spin公式；需先另行建立Spin$^c$或Dolbeault版本。
+
+在单位圆球$S^2$上，第19章正标量曲率消失结论独立给两手征核零，所以指标零；$\widehat A$的二维部分也零，是相容检查。在平坦$T^2$的周期Spin结构中，两手征各有一个常旋量，指标仍零；其他符号结构两核均零，指标也零。核不同而指标相同并不矛盾。
+
+若连通闭Spin流形具有$\mathrm{Scal}\geq0$且某点严格正，第19章给未扭$D$核零。再\emph{使用外引公式}，才能推出$\int_M\widehat A=0$。因此非零$\widehat A$数阻止这样的度量；扭丛曲率项有不定号，不能对任意$E$复用同一消失论证。题20.4核查这一边界。
+
+\subsection{从指标到模空间尚差什么}
+指标是线性化的虚维数来源。即使一个规范固定的线性算子Fredholm，非线性零点集也未必是同维数的光滑流形；仍需控制余核、稳定子、非线性映射的Banach光滑性及隐函数定理条件。若还要定义不变量，必须另外处理紧性、定向、扰动和度量改变。后文只证明明确写出的线性符号和变分恒等式。

@@ -1,0 +1,50 @@
+\subsection{主符号与需要选择的函数空间}
+若局部$P=\sum_{|\alpha|\leq m}a_\alpha(x)\partial^\alpha$，定义
+\[
+ \sigma_m(P)(x,\xi)=\sum_{|\alpha|=m}a_\alpha(x)(i\xi)^\alpha.
+\]
+坐标变换的链式法则只有最高阶导数贡献于此式；换丛标架则在两端乘相应变换矩阵。故它是$\pi^*E\to\pi^*F$的丛同态，$\pi:T^*M\to M$。当每个$\xi\ne0$的符号可逆时称$P$椭圆（elliptic）；本章此定义要求两端同秩。相乘最高阶项给$\sigma(PQ)=\sigma(P)\sigma(Q)$，分部积分给$\sigma(P^*)=\sigma(P)^*$。
+
+光滑截面空间尚未带本章所用的Hilbert范数。光滑系数及紧致性使每个$m$阶算子有有界延拓$P:H^{s+m}(E)\to H^s(F)$，$s\geq0$为整数：有限覆盖中应用Leibniz公式，每项至多是有界光滑系数乘$u$的不超过$s+m$阶弱导数。一般椭圆算子的完整参数子理论暂不建立；以下直接证明本书所需的一阶Dirac型情形。
+
+设$P:E\to F$为一阶算子，满足
+\begin{equation}\label{eq:index-dirac-type}
+ \sigma_P(x,\xi)^*\sigma_P(x,\xi)=|\xi|^2I_E,\qquad
+ \sigma_P(x,\xi)\sigma_P(x,\xi)^*=|\xi|^2I_F.
+\end{equation}
+第19章的$D^+$、$D^-$及其酉扭曲、加光滑零阶项均满足该式；$\dd+\delta$的奇偶分块也满足。$P^*$在此始终指形式伴随，不是已经指定定义域的无界算子伴随。
+
+\Needspace{14\baselineskip}
+\begin{lemma}[一阶估计及分布核的光滑性]\label{lem:index-first-order}
+对满足\eqref{eq:index-dirac-type}的$P$，有
+\[
+ \|u\|_{H^1}\leq C(\|Pu\|_{L^2}+\|u\|_{L^2}),\qquad u\in H^1(E).
+\]
+若$u\in L^2_{\mathrm{loc}}$且$Pu\in L^2_{\mathrm{loc}}$（分布意义），则$u\in H^1_{\mathrm{loc}}$。特别地，分布核$Pu=0$中的$L^2_{\mathrm{loc}}$截面光滑。相同结论适用于$P^*$。
+\end{lemma}
+\begin{proof}
+先对支撑在小坐标球的光滑$u$冻结一阶系数，所得$P_0=\sum A_j(x_0)\partial_j$满足
+$\|P_0u\|_2^2=\int|\xi|_{g(x_0)}^2|\widehat u(\xi)|^2\dd\xi$。
+此处可把支撑包入较大周期盒，使用第14章的Fourier论证。坐标与度量范数等价，缩小球后
+\[
+ \|(P-P_0)u\|_2\leq\epsilon\|\partial u\|_2+C_\epsilon\|u\|_2.
+\]
+取$\epsilon$足够小并吸收，得到局部估计。有限单位分解的交换子$[P,\chi]$为零阶，求和给全局估计，再由光滑稠密性延拓到$H^1$。
+
+要应用于分布核，不能先假定$u\in H^1$。取内部截断$w=\chi u$并用卷积$J_\varepsilon w=\rho_\varepsilon*w$。对一个一阶项，分布积分给
+\begin{align*}
+ [A_j\partial_j,J_\varepsilon]w(x)
+ ={}&\int(A_j(x)-A_j(y))\partial_j\rho_\varepsilon(x-y)w(y)\dd y\\
+ &+\int\rho_\varepsilon(x-y)(\partial_jA_j)(y)w(y)\dd y.
+\end{align*}
+在较小坐标球延拓系数为有界光滑系数。第一核被$C|x-y||\partial\rho_\varepsilon(x-y)|$控制，其积分与$\varepsilon$无关；第二核积分也有统一界。Young卷积不等式（由Cauchy--Schwarz和Fubini得到）给交换子的统一$L^2$界，零阶项同样有界。因此
+\[
+ \|P J_\varepsilon w\|_2\leq C(\|Pw\|_2+\|w\|_2),\qquad
+ Pw=\chi Pu+[P,\chi]u\in L^2.
+\]
+对平滑截面应用局部一阶估计，得统一$H^1$界。弱收敛子列的$L^2$极限是$w$，分布导数的极限是其弱导数，所以$w\in H^1$。
+
+最后$Pu=0$蕴含$P^*Pu=0$。该二阶算子的主部为$-g^{ij}\partial_i\partial_j I$，可写成第14章引理\ref{lem:hodge-weak-regularity}的标量主部系统；其差商证明只使用该主部及光滑低阶系数，逐阶应用得到所有局部$H^s$正则性。Sobolev嵌入给光滑性。交换$P,P^*$完成另一端。
+\end{proof}
+
+零阶项不改主符号，但可改变核。例如单位长度圆周$P_a=\partial_x+ia$在周期复函数上的核，只有$a\in2\pi\mathbb Z$时非零。椭圆性约束高频，不能单独决定零频。非紧时还会失去紧嵌入，后面的Fredholm结论须重新论证。

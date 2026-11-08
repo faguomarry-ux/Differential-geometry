@@ -281,3 +281,11 @@ Meinrenken官方 https://www.math.toronto.edu/mein/teaching/moduli.pdf 共18页�
 正文交叉核对讲义第1–4、6、8节，尤其有序基/外代数、Spin覆盖与联络（46页）及Dirac平方/消失（56页）。本书补写平方曲率项全部指标类型的抵消，旋量系数采用第一变量共轭线性的Hermite约定。良覆盖存在、Cech/奇异比较及w2识别明确外引，正定结论不直接搬到Lorentz。
 
 校准补充Joyce《Lectures on special Lagrangian geometry》，arXiv:math/0111111v3（2003-09-29），34页，第2节印刷/PDF2–5，https://arxiv.org/pdf/math/0111111v3 。重写逐平面不等式、给定光滑配边的体积比较及图像定向的正相位；一般同调比较、积分流、奇点和McLean模空间理论未证。周第9章DjVu及梁书对应题来源仍待核对，未造页码。
+
+## 第20章指标与规范场（v0.21）
+
+20.1–20.8均为原创补充，分别核查圆周核跳跃、非紧缩放反例、四维特征形式展开、扭核与消失边界、整数通量环面、共形/定向号、ASD符号退化、Spin-c规范因子与四次项。每题有详解；20.3–20.4明确使用外引AS公式。无周/梁原题号及双页码，相关覆盖仍待核对，不把讲义习题改号后称原创。
+
+背景核对：Dai《Lectures on Dirac Operators and Index Theory》2015-01-07，第3.1节及第3.3节定理3.3.2/3.3.4（印刷/PDF51）；Figueroa-O’Farrill《Gauge Theory》2006讲义3（印刷19–23/PDF1–5）、4（24–27/1–4）、5（28–31/1–4）；Perutz《Smooth 4-manifolds and the Seiberg–Witten equations》Spring 2018第19.4–19.5节（印刷/PDF96–99）。链接见本章自查记录与书内参考文献。
+
+归一化逐项重算：SU2使用定义表示的负矩阵迹、k=∫c2，不照搬伴随Pontryagin数常数；相对传递沿用本书第18章。Perutz曲率方程用c(F)/2=q(phi)，本书用c(F)=q(psi)，两者以psi=√2 phi换算，四次项常数同步改变。

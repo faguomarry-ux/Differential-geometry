@@ -1,0 +1,53 @@
+\subsection{四维星分解及拓扑能量界}
+现在$M$为定向四维。$*^2=1$作用于二形式，且星自伴，于是
+\[
+ \Lambda^2=\Lambda^+\oplus\Lambda^-,\qquad
+ F^\pm=\tfrac12(F\pm *F),\qquad
+ \|F\|^2=\|F^+\|^2+\|F^-\|^2.
+\]
+方程$F^-=0$称自对偶（SD），$F^+=0$称反自对偶（ASD）。改变底流形定向使星在二形式上变号，交换二者。
+
+\Needspace{17\baselineskip}
+\begin{theorem}\label{thm:ym-bound}
+取$G=\mathrm{SU}(2)$及内积$-\operatorname{tr}(XY)$，记
+\[
+ k=\int_M c_2(E)=\frac1{8\pi^2}\int_M\operatorname{tr}(F_A\wedge F_A),
+ \qquad E=P\times_{\mathrm{SU}(2)}\mathbb C^2.
+\]
+此数与联络无关，并有
+\begin{equation}\label{eq:ym-bound}
+ 8\pi^2k=\|F_A^-\|^2-\|F_A^+\|^2,\qquad
+ \mathcal Y(A)\geq8\pi^2|k|.
+\end{equation}
+当$k>0$时等号恰为ASD，$k<0$时恰为SD；$k=0$时等号恰为平坦。SD和ASD联络都满足Yang--Mills方程，并在固定丛的全部联络中达到绝对最小能量。
+\end{theorem}
+\begin{proof}
+由于$\operatorname{tr}F=0$，第18章行列式展开给$c_2=\operatorname{tr}(F\wedge F)/(8\pi^2)$。联络无关性由传递公式和Stokes给出。此处先使用已证的实Chern--Weil数；其对一般丛的整数性仍依赖外部整类比较。
+
+按$-\operatorname{tr}$的内积定义，
+\[
+ -\operatorname{tr}(F\wedge F)=\langle F,*F\rangle\mathrm{vol}
+ =(|F^+|^2-|F^-|^2)\mathrm{vol}.
+\]
+积分得第一式，非负数之和不小于其差的绝对值得能量界，等号条件由较小一项为零得到。若$*F=\pm F$，Bianchi给$\dd_AF=0$，所以$\dd_A^*F=-*\dd_A*F=0$。固定丛上$k$不变，故达到该界就是全体联络中的最小值；不表示每个丛都存在达到下界的联络。
+\end{proof}
+
+\begin{figure}[htbp]
+ \centering\input{course-study/figures/yang-mills-bound}
+ \caption{固定$k>0$时的四维能量恒等式（原创示意）。横坐标为$\|F^+\|^2$，纵坐标为能量；直线来自$\mathcal Y=8\pi^2k+2\|F^+\|^2$。图不主张每个横坐标都能由给定丛的联络实现。}
+\end{figure}
+
+\subsection{共形不变与一个可算模型}
+若$\widetilde g=e^{2f}g$，$q$形式的点积乘$e^{-2qf}$，体积乘$e^{nf}$。由星的定义$\alpha\wedge\widetilde *\beta=\langle\alpha,\beta\rangle_{\widetilde g}\mathrm{vol}_{\widetilde g}$得
+\[
+ \widetilde *|_{\Lambda^q}=e^{(n-2q)f}*.
+\]
+故四维二形式的星、SD/ASD方程和Yang--Mills能量均共形不变。它解释紧性分析为何会出现尺度问题，却不是起泡或可去奇点定理的证明。
+
+在平坦单位体积$T^4$上，取线丛$L$的酉联络满足
+$F_L=-2\pi i(a\,\dd x^{12}+b\,\dd x^{34})$，$a,b\in\mathbb Z$。
+可在$\mathbb R^4$用$A_L=-2\pi i(ax^1\dd x^2+bx^3\dd x^4)$及整数平移的酉过渡函数下降，整数保证双重平移相容。记$\dd x^{ij}=\dd x^i\wedge\dd x^j$。在$E=L\oplus L^{-1}$取$F=\operatorname{diag}(F_L,-F_L)$，行列式联络平凡，故是SU2模型。直接计算
+\[
+ k=-2ab,\qquad \mathcal Y=8\pi^2(a^2+b^2).
+\]
+$b=-a$时ASD且$k=2a^2$；$b=a$时SD且$k=-2a^2$。曲率常系数且落在交换子代数中，故均为Yang--Mills；$a=1,b=0$则$k=0$而能量正，是临界却未达到下界的反例。这个可约模型不替代不可约BPST瞬子的全局构造。

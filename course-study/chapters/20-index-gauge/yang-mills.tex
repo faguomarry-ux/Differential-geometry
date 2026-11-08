@@ -1,0 +1,30 @@
+\subsection{联络仿射空间中的能量}
+设$P\to M$为紧矩阵Lie群$G$的主丛，$\mathfrak g$上选正定Ad不变内积。对$G\subset U(r)$可取$\langle X,Y\rangle=-\operatorname{tr}(XY)$（视为实内积）。相伴丛$\operatorname{ad}P$承接它。第16章说明两个联络之差为$a\in\Omega^1(\operatorname{ad}P)$；局部
+\[
+ F_A=\dd A+A\wedge A,\qquad
+ \dd_A\alpha=\dd\alpha+A\wedge\alpha-(-1)^k\alpha\wedge A,
+ \quad\alpha\in\Omega^k(\operatorname{ad}P).
+\]
+用内积缩并Lie代数指标定义$L^2$配对与形式伴随$\dd_A^*$。在定向$n$维上它作用于$q$形式为$(-1)^{n(q+1)+1}*\dd_A*$；四维作用于二形式时为$-*\dd_A*$。定义无$1/2$因子的能量
+\begin{equation}\label{eq:ym-energy}
+ \mathcal Y(A)=\|F_A\|_{L^2}^2.
+\end{equation}
+该归一化使后面的SU2下界为$8\pi^2|k|$。换用半能量时所有能量常数也须减半。
+
+\Needspace{17\baselineskip}
+\begin{proposition}[曲率变分与Yang--Mills方程]\label{prop:ym-variation}
+令$A_t=A+ta$，则
+\begin{gather*}
+ F_{A_t}=F_A+t\dd_Aa+t^2a\wedge a,\\
+ \left.\frac{\dd}{\dd t}\right|_0\mathcal Y(A_t)
+ =2(\dd_Aa,F_A)=2(a,\dd_A^*F_A).
+\end{gather*}
+故$A$对所有光滑联络变分临界当且仅当$\dd_A^*F_A=0$。此为Yang--Mills方程。
+\end{proposition}
+\begin{proof}
+展开$\dd(A+ta)+(A+ta)\wedge(A+ta)$，一次项为$\dd a+A\wedge a+a\wedge A=\dd_Aa$，二次项为$a\wedge a$。对能量范数平方求导得第一配对。Ad不变性使局部协变分部积分相容，Stokes在无边界紧流形上给第二配对。若所有方向导数零，取$a=\dd_A^*F_A$即可使该截面范数平方为零；反向直接代入。
+\end{proof}
+
+第16章被动标架公式为$A^h=h^{-1}Ah+h^{-1}\dd h$、$F^h=h^{-1}Fh$，Ad不变性使能量不变。若用主动规范作用$g\cdot A=gAg^{-1}-(\dd g)g^{-1}$，它等于前式取$h=g^{-1}$；沿$g=e^{t\phi}$的切向量为$-\dd_A\phi$。全文在写主动作用时使用后一约定。
+
+对$U(1)$写$A=i\alpha$，则$F=i\dd\alpha$，方程化为$\delta\dd\alpha=0$。在\emph{平凡线丛}的闭流形上，分部积分得$\|\dd\alpha\|^2=(\alpha,\delta\dd\alpha)=0$，故临界联络平坦；非平凡线丛没有全局$\alpha$，不能作同样推断。一般$U(1)$的曲率闭且余闭，因而为其上同调类的调和代表。题20.5给非零曲率实例。

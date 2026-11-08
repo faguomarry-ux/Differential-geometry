@@ -1,0 +1,27 @@
+% Chapter 20: finite defects, exact energy identity, and proof dependencies.
+\DGDeclareDiagram{fredholm-splitting}{%
+ \node[dg/box,text width=28mm] (k) at (-2.5,1.2) {$K=\ker T$};
+ \node[dg/box,text width=28mm] (x) at (-2.5,-.5) {$X_0$};
+ \node[dg/box,text width=28mm] (c) at (2.5,1.2) {$C=\operatorname{coker}T$};
+ \node[dg/box,text width=28mm] (y) at (2.5,-.5) {$Y_0=\operatorname{im}T$};
+ \draw[dg/map] (x)--(y) node[midway,above] {$T_0:\ \simeq$};
+ \node at (0,1.2) {有限维缺陷};
+ \node at (0,-1.7) {$\operatorname{ind}T=\dim K-\dim C$};}
+\DGDeclareDiagram{yang-mills-bound}{%
+ \draw[dg/axis] (0,0)--(5.3,0) node[right] {$\|F^+\|^2$};
+ \draw[dg/axis] (0,0)--(0,3.5) node[above] {$\mathcal Y$};
+ \draw[dg/guide] (0,1)--(4.8,1);
+ \draw[dg/curve] (0,1)--(4,3);
+ \fill[DGGreen] (0,1) circle (2pt);
+ \node[left] at (0,1) {$8\pi^2k$};
+ \node[above,rotate=26.565] at (2.5,2.25) {$8\pi^2k+2\|F^+\|^2$};
+ \node at (2.7,-.8) {$k>0$：ASD为等号条件};}
+\DGDeclareDiagram{gauge-moduli-boundary}{%
+ \node[dg/box,text width=35mm] (a) at (-2.4,1) {几何方程\\规范作用};
+ \node[dg/box,text width=35mm] (b) at (2.4,1) {规范固定\\线性Fredholm};
+ \node[dg/box,text width=35mm] (c) at (2.4,-1.3) {非线性切片\\横截与紧性};
+ \node[dg/box,text width=35mm] (d) at (-2.4,-1.3) {定向、配边\\不变量};
+ \draw[dg/map] (a)--(b);
+ \draw[dg/map] (b)--(c);
+ \draw[dg/map] (c)--(d);
+ \node at (0,-2.5) {局部符号计算不能替代后续构造};}

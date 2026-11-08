@@ -256,13 +256,14 @@
   {
     "id": "20-index-gauge",
     "title": "指标定理、规范场与进阶专题",
-    "source": "周第10章",
-    "status": "planned",
+    "source": "周第10章（本地页码待核对）；Dai2015第3章；Figueroa-O’Farrill2006讲义3–5；Perutz2018第17–20节；AS/Spin-c拓扑及模空间不变量外引未证",
+    "status": "draft",
     "sections": [
       "椭圆算子、符号与Fredholm指标",
       "Atiyah--Singer定理及证明所需分析工具",
       "Yang--Mills泛函与规范理论",
-      "Seiberg--Witten方程及适用条件"
+      "Seiberg--Witten方程及适用条件",
+      "指标与规范场习题及详细解答"
     ]
   },
   {

@@ -358,5 +358,23 @@
     "title": "特殊Lagrange平面的相位分支",
     "chapter": "19",
     "provenance": "原创；对角Lagrange平面相位和，图像定向下实部为正才属相位0校准"
+  },
+  {
+    "id": "fredholm-splitting",
+    "title": "Fredholm分裂与有限维缺陷",
+    "chapter": "20",
+    "provenance": "原创；闭像上的限制为同构，指标为核减余核维数，不表示核维数分别不变"
+  },
+  {
+    "id": "yang-mills-bound",
+    "title": "四维Yang--Mills能量界",
+    "chapter": "20",
+    "provenance": "原创；固定$k>0$，$\\mathcal Y=8\\pi^2k+2\\|F^+\\|^2$，等号ASD；横坐标为平方范数"
+  },
+  {
+    "id": "gauge-moduli-boundary",
+    "title": "从规范方程到不变量的依赖",
+    "chapter": "20",
+    "provenance": "原创；区分线性Fredholm、非线性切片及全局紧性配边，不宣称模空间已构造"
   }
 ]

@@ -114,3 +114,15 @@ $N_J=[JX,JY]-J[JX,Y]-J[X,JY]-[X,Y]$，在两个$(0,1)$向量上为$-4\pi^{1,0}[X
 旋量联络势为$A^{\mathbb S}(X)=\frac14\sum_{i,j}g(\nabla_Xe_i,e_j)c_ic_j$，系数指标不可未经转置便换成矩阵行列记号。偶维手征$\Gamma=i^{n/2}c_1\cdots c_n$，外代数模型中为$(-1)^{\deg}$。几何Dirac取$D=\sum c_i\nabla_{e_i}$，用$\partial\mapsto i\xi$时主符号$ic(\xi^\sharp)$平方为正的$|\xi|^2$。粗Laplace取负二阶迹，因此$D^2=\nabla^*\nabla+\mathrm{Scal}/4$；扭丛另有$\sum_{i<j}c_ic_jF^E(e_i,e_j)$。
 
 Spin过渡提升的中心符号为$z_{ijk}=h_{ij}h_{jk}h_{ki}$；给定良覆盖上证明的符号障碍不等于已建立一般拓扑$w_2$比较。形式自伴不等于已证明非紧本质自伴或Fredholm。校准要求闭性及逐有向规范平面上界1；图像定向下的特殊Lagrange条件还须$\operatorname{Re}\det(I+i\operatorname{Hess}f)>0$，不能只检查虚部零。
+
+\Needspace{16\baselineskip}
+\section{Fredholm定义域与四维规范归一化}
+第20章把一阶算子视为有界映射$H^1\to L^2$；在紧致无边界情形，对满足两侧Dirac型符号恒等式的算子证明核光滑、闭像和有限维余核。指标为核减余核维数，手征指标不能与全自伴Dirac的零指标混同。一般Hilbert稳定性使用有界逆定理这一外部分析先修。Atiyah--Singer等式及Spin$^c$虚维数公式仍外引，非紧和边界分析未证明。
+
+Yang--Mills取$\mathcal Y=\|F\|^2$，SU2内积为$-\operatorname{tr}(XY)$，$k=\int c_2=\int\operatorname{tr}(F\wedge F)/(8\pi^2)$。因此$8\pi^2k=\|F^-\|^2-\|F^+\|^2$，$k>0$的最小能量等号为ASD。主动规范作用为$g\cdot A=gAg^{-1}-(\dd g)g^{-1}$，与第16章被动公式以$h=g^{-1}$互换。
+
+Spin$^c$行列式联络记$B$，旋量中心项为$B/2$；主动作用为
+\[
+ (B,\psi)\longmapsto(B-2u^{-1}\dd u,u\psi).
+\]
+以$c(\omega)=\sum_{i<j}\omega_{ij}c_ic_j$延拓二形式作用，取$c(F_B^+)=\psi\psi^*-|\psi|^2I/2$；平方公式中的中心修正为$c(F_B^+)/2$，积分四次项为$|\psi|^4/4$。该尺度与外部资料的另一种$q$归一化需同时换算。非负标量曲率排除非零旋量解，不排除可约解；局部椭圆性不能代替模空间紧性、横截和不变量构造。
